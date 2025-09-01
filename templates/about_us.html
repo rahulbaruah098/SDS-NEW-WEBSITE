@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SDS — Who We Are</title>
+
+    <!-- Fonts (bold condensed for headlines + clean sans for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Reset + base -->
+    <style>
+        :root {
+            --ink: #071016;
+            /* deep navy */
+            --sand: #FFE7CC;
+            /* warm peach/beige */
+            --rose: #FF6478;
+            /* coral */
+            --sage: #4E6357;
+            /* muted green */
+            --ink-80: #0b1216;
+            --max: 1300px;
+            --pad: clamp(16px, 2.5vw, 32px);
+            --gap: clamp(16px, 2.2vw, 28px);
+            --radius: 24px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            color: #fff;
+            background: var(--ink);
+            line-height: 1.65;
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad)
+        }
+
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 12px
+        }
+
+        .brand span {
+            font-family: Anton, system-ui;
+            letter-spacing: .5px;
+            font-size: 22px;
+        }
+
+        .nav a.button {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #111a21;
+            border: 1px solid #1d2933;
+        }
+
+        .nav a.button:hover {
+            transform: translateY(-2px)
+        }
+
+        .nav a {
+            opacity: .9
+        }
+
+        .nav a:hover {
+            opacity: 1
+        }
+
+        /* Hero split */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: stretch;
+            min-height: 78vh;
+            border-bottom: 1px solid #1b2630;
+        }
+
+        .hero .left {
+            background: var(--ink);
+            padding: clamp(28px, 6vw, 64px) var(--pad);
+            display: grid;
+            align-content: center;
+        }
+
+        .eyebrow {
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: color-mix(in oklab, #fff 60%, #7aa29a);
+            font-size: 14px;
+        }
+
+        .title-xl {
+            font-family: Anton, system-ui;
+            font-size: clamp(42px, 5.5vw, 120px);
+            line-height: .9;
+            margin: .3em 0 .25em;
+            letter-spacing: 1px;
+        }
+
+        .lead {
+            font-size: clamp(16px, 1.4vw, 18px);
+            color: #d9dee2;
+            max-width: 52ch
+        }
+
+        .hero .right {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #1b2a33, #0c1318);
+            display: grid;
+            align-items: end;
+        }
+
+        .hero .right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            filter: saturate(1.02) contrast(1.05);
+        }
+
+        .hero-tag {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--sage);
+            color: #f3eddc;
+            padding: 24px var(--pad);
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            font-size: clamp(16px, 1.3vw, 20px);
+        }
+
+        /* ========= MOBILE RESPONSIVE HERO ========= */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                /* Stack text and image */
+                min-height: auto;
+            }
+
+            .hero .left {
+                padding: 32px 20px;
+                text-align: center;
+            }
+
+            .title-xl {
+                font-size: clamp(32px, 8vw, 64px);
+                line-height: 1.1;
+            }
+
+            .lead {
+                font-size: 16px;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .hero .right {
+                height: 50vh;
+                /* Give space for image */
+            }
+
+            .hero .right img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transform: scale(1.1);
+                /* keep parallax nice */
+            }
+
+            .hero-tag {
+                font-size: 14px;
+                padding: 16px;
+                text-align: center;
+            }
+        }
+
+        /* ========= EXTRA SMALL SCREENS ========= */
+        @media (max-width: 480px) {
+            .title-xl {
+                font-size: 28px;
+            }
+
+            .lead {
+                font-size: 14px;
+            }
+
+            .hero .right {
+                height: 40vh;
+            }
+
+            .hero-tag {
+                font-size: 12px;
+                padding: 12px;
+            }
+        }
+
+
+        /* Two feature cards (Leadership / CSR) */
+        .duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 60px var(--pad);
+            background: var(--ink);
+        }
+
+        .card {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid #1a2430;
+            background: #0e151b;
+            min-height: 520px;
+            position: relative;
+            isolation: isolate;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+        }
+
+        .card .imgwrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #0b1318;
+        }
+
+        .card .imgwrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+        }
+
+        .card .tag {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 16px var(--pad);
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: color-mix(in oklab, var(--rose) 8%, transparent);
+        }
+
+        .card .block {
+            padding: 26px var(--pad);
+            background: var(--rose);
+            color: #0a0e11;
+        }
+
+        .card .block.alt {
+            background: var(--sage);
+            color: #f2ecdf
+        }
+
+        .card h3 {
+            font-family: Anton;
+            font-size: clamp(40px, 5.8vw, 90px);
+            line-height: .9;
+            margin: 8px 0 0;
+        }
+
+        /* Alternating image + content sections */
+        .section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: center;
+            min-height: 80vh;
+            border-top: 1px solid #15202a;
+            border-bottom: 1px solid #15202a;
+        }
+
+        .section .image {
+            position: relative;
+            background: var(--sage);
+            padding: clamp(24px, 4vw, 40px);
+        }
+
+        .section .image .float {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-16px)
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Card styling */
+        .card {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            animation: float 4s ease-in-out infinite;
+            /* floating */
+            transition: transform 0.3s ease;
+        }
+
+        /* Image wrapper */
+        .card .imgwrap {
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px 15px 0 0;
+        }
+
+        /* Image styles */
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+            /* smooth zoom */
+        }
+
+        /* Hover zoom effect */
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Optional tag styling */
+        .card .tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .section .content {
+            background: var(--ink);
+            color: #e9eef2;
+            padding: clamp(36px, 7vw, 80px) var(--pad);
+        }
+
+        .kicker {
+            font-family: Anton;
+            font-size: clamp(36px, 6vw, 96px);
+            line-height: .95;
+            letter-spacing: .5px;
+            color: var(--sand);
+            margin: 0 0 .2em;
+        }
+
+        .content p {
+            max-width: 70ch;
+            font-size: clamp(18px, 1.5vw, 22px);
+            color: #d4dbe1
+        }
+
+        /* Big statement section */
+        .statement {
+            padding: clamp(48px, 7vw, 100px) var(--pad);
+            text-align: center;
+            background: #0a0f13;
+            color: #f0f5f8;
+        }
+
+        .statement p {
+            font-size: clamp(px, 2.6vw, 40px);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ========= MOBILE RESPONSIVE FEATURE CARDS ========= */
+        @media (max-width: 992px) {
+            .duo {
+                grid-template-columns: 1fr;
+                /* stack cards */
+                padding: 40px 20px;
+                gap: 24px;
+            }
+
+            .card {
+                min-height: auto;
+                /* let cards adapt height */
+            }
+
+            .card h3 {
+                font-size: clamp(28px, 6vw, 48px);
+                text-align: center;
+            }
+
+            .card .block {
+                padding: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                grid-template-columns: 1fr;
+                /* stack alternating sections */
+                min-height: auto;
+            }
+
+            .section .image,
+            .section .content {
+                padding: 24px;
+                text-align: center;
+            }
+
+            .section .image .float {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            .kicker {
+                font-size: clamp(28px, 8vw, 40px);
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .duo {
+                padding: 20px 15px;
+                gap: 16px;
+            }
+
+            .card h3 {
+                font-size: 22px;
+                line-height: 1.2;
+            }
+
+            .card .tag {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .kicker {
+                font-size: 22px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .statement p {
+                font-size: 18px;
+                padding: 0 10px;
+            }
+        }
+
+        /* OUR MISSION (custom content you provided) */
+        .mission {
+            background: var(--rose);
+            color: #111318;
+            padding: clamp(60px, 8vw, 120px) var(--pad);
+        }
+
+        .mission .container {
+            max-width: 1100px
+        }
+
+        .mission .title {
+            font-family: Anton;
+            font-size: clamp(40px, 6.8vw, 110px);
+            line-height: .9;
+            margin: 0 0 .5em;
+        }
+
+        .mission p {
+            font-size: clamp(18px, 1.5vw, 22px);
+            margin: 0 0 1em
+        }
+
+        .meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
+        .chip {
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 999px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, .75);
+            color: #0e1215;
+            font-weight: 600
+        }
+
+        /* Footer back-to-top */
+        .to-top {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #0f1820;
+            display: grid;
+            place-items: center;
+            border: 1px solid #1e2b36;
+            cursor: pointer;
+            z-index: 60;
+            opacity: .8;
+        }
+
+        .to-top:hover {
+            transform: translateY(-3px);
+            opacity: 1
+        }
+
+        .to-top svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff
+        }
+
+        /* Scroll reveal helpers */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            will-change: transform, opacity
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+            transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .9s ease
+        }
+
+        .parallax {
+            transform: translateY(0);
+            will-change: transform
+        }
+
+        .business-focus {
+            background-color: #f6dcc0;
+            padding: 5rem 1rem 6rem;
+            text-align: center;
+        }
+
+        .business-focus h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: #121212;
+        }
+
+        .focus-points {
+            display: inline-flex;
+            gap: 1.8rem;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #121212;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .focus-points span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .focus-points svg {
+            fill: #000;
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-touch {
+            border: 1px solid #000;
+            background: none;
+            padding: 0.8rem 2.4rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.07em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #121212;
+        }
+
+        .btn-touch:hover {
+            background-color: #000;
+            color: #f6dcc0;
+        }
+
+        .my-navbar nav {
+            background: #111;
+            color: white;
+        }
+
+        .my-navbar nav ul li {
+            list-style: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .my-footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+        /* Text reveal animation */
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Image fade + zoom animation */
+        @keyframes fadeZoom {
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+
+        /* Apply animations */
+        .hero .eyebrow {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero .title-xl {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero .lead {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .hero .right img {
+            opacity: 0;
+            animation: fadeZoom 1.5s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Image fade + zoom-in entrance */
+        @keyframes fadeZoom {
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Text slide-up entrance */
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Entrance animations */
+        .hero .eyebrow {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero .title-xl {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero .lead {
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .hero .right img {
+            opacity: 0;
+            animation: fadeZoom 1.5s ease forwards, float 6s ease-in-out infinite;
+            animation-delay: 0.8s, 2.3s;
+            /* float starts after fadeZoom ends */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a73e8;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1a73e8, #6c63ff);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Carousel container */
+        .sdg-carousel-container {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        /* Carousel track */
+        .sdg-carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        /* SDG Card */
+        .sdg-card {
+            flex: 0 0 calc(100% / 3 - 20px);
+            margin: 0 10px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            transform: scale(0.95);
+        }
+
+        .sdg-card.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .sdg-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sdg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .sdg-card:hover .sdg-image img {
+            transform: scale(1.05);
+        }
+
+        .sdg-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        }
+
+        .sdg-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .sdg-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .sdg-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+        }
+
+        .sdg-content p {
+            color: #4a5568;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Navigation buttons */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            transform: scale(1.2);
+        }
+
+        /* Carousel controls */
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .carousel-control {
+            pointer-events: auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 15px;
+        }
+
+        .carousel-control:hover {
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .sdg-card {
+                flex: 0 0 calc(100% / 2 - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sdg-card {
+                flex: 0 0 calc(100% - 20px);
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sdg-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .sdg-carousel-section {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            width: 100%;
+        }
+
+        .sdg-carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .sdg-section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .sdg-section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a73e8;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sdg-section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1a73e8, #6c63ff);
+            border-radius: 2px;
+        }
+
+        .sdg-section-header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .sdg-carousel-outer {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .sdg-carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .sdg-card {
+            flex: 0 0 calc(100% / 3 - 20px);
+            margin: 0 10px;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            transform: scale(0.95);
+        }
+
+        .sdg-card.sdg-active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .sdg-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sdg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .sdg-card:hover .sdg-image img {
+            transform: scale(1.05);
+        }
+
+        .sdg-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        }
+
+        .sdg-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .sdg-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .sdg-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+        }
+
+        .sdg-content p {
+            color: #4a5568;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .sdg-carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .sdg-nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sdg-nav-dot.sdg-active {
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            transform: scale(1.2);
+        }
+
+        .sdg-carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .sdg-carousel-control {
+            pointer-events: auto;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 15px;
+        }
+
+        .sdg-carousel-control:hover {
+            background: linear-gradient(135deg, #6c63ff, #1a73e8);
+            color: white;
+        }
+
+        @media (max-width: 992px) {
+            .sdg-card {
+                flex: 0 0 calc(100% / 2 - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sdg-card {
+                flex: 0 0 calc(100% - 20px);
+            }
+
+            .sdg-section-header h2 {
+                font-size: 2rem;
+            }
+
+            .sdg-carousel-control {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @keyframes sdg-fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sdg-card {
+            animation: sdg-fadeIn 0.6s ease forwards;
+        }
+
+        .sdg-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6c63ff, #1a73e8);
+            width: 100%;
+            transform-origin: left;
+            transition: transform 0.1s linear;
+        }
+
+        /* Existing media queries you had */
+        @media (max-width: 992px) {
+            .sdg-card {
+                flex: 0 0 calc(50% - 20px);
+                /* 2 cards per row */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sdg-card {
+                flex: 0 0 calc(100% - 20px);
+                /* 1 card per row */
+                margin: 10px auto;
+            }
+
+            .sdg-section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .sdg-section-header p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .sdg-carousel-control {
+                width: 40px;
+                height: 40px;
+                margin: 0 5px;
+            }
+
+            .sdg-carousel-controls {
+                top: auto;
+                bottom: -60px;
+                /* move controls below carousel */
+                transform: none;
+            }
+
+            .sdg-carousel-nav {
+                margin-top: 15px;
+                gap: 6px;
+            }
+
+            .sdg-nav-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .sdg-carousel-section {
+                padding: 40px 10px;
+            }
+
+            .sdg-section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .sdg-section-header p {
+                font-size: 0.9rem;
+            }
+
+            .sdg-card {
+                border-radius: 12px;
+            }
+
+            .sdg-content {
+                padding: 15px;
+            }
+
+            .sdg-content h3 {
+                font-size: 1rem;
+            }
+
+            .sdg-content p {
+                font-size: 0.85rem;
+            }
+
+            .sdg-image {
+                height: 160px;
+            }
+
+            .sdg-carousel-control {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        .team-section-wrapper {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            padding: 60px 20px;
+            width: 100%;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .team-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .team-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+        }
+
+        .shards-track {
+            display: flex;
+            animation: slide 15s linear infinite;
+            padding: 20px 0;
+            gap: 25px;
+        }
+
+        .shard {
+            flex: 0 0 320px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .shard:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .shard-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .shard-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .shard-role {
+            color: #ff7e5f;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .shard-summary {
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+
+        .shard-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .shard-social a {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shard-social a:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+
+        .team-controls {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .team-controls button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .team-controls button:hover {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            transform: translateY(-2px);
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .pause-animation {
+            animation-play-state: paused;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .team-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .shard {
+                flex: 0 0 280px;
+            }
+            
+            .team-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .logo-f {
+  height: 75px;
+}
+/* Fill the remaining height on the "Giving Back To Communities" card */
+.duo .card .block.alt{
+  /* span from the second grid row to the last, so it occupies all leftover space */
+  grid-row: 2 / -1;
+  min-height: 100%;
+}
+
+/* (Optional) If a sliver still shows, collapse the unused third row for that card only */
+.duo .card:nth-child(2){
+  grid-template-rows: auto 1fr;
+}
+
+    </style>
+    
+
+</head>
+
+<body>
+
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section><br><br>
+  
+    <main>
+
+
+        <!-- HERO split (Left: big text, Right: hero image with tag) -->
+        <section class="hero">
+            <div class="left">
+                <div class="eyebrow">About SDS</div>
+                <h1 class="title-xl reveal">We Specialise In Helping<br>Our Customers<br>Modernise Their Business</h1>
+                <p class="lead reveal"></p>
+            </div>
+            <div class="right">
+                <!-- HERO IMAGE — replace with Screenshot (670) or your hero -->
+                <img class="parallax" data-speed="0.15" src="static/Images/jonaki mel 2.jpg" alt="Mountains hero">
+            </div>
+        </section>
+
+        <!-- Two feature cards (Leadership / CSR) -->
+        <section class="duo container">
+            <!-- CARD 1 -->
+            <article class="card reveal">
+                <div class="imgwrap">
+                    <!-- Replace with marching band image (your Screenshot 664/665 area) -->
+                    <img class="parallax" data-speed="0.08" src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__69467.png"" alt="Leadership">
+                    <div class="tag">Leadership</div>
+                </div>
+                <div class="block">
+                    <h3>The People<br>Leading The Way</h3>
+                </div>
+            </article>
+
+
+
+            <!-- CARD 2 -->
+            <article class="card reveal">
+                <div class="imgwrap">
+                    <!-- Replace with person + chicken image -->
+                    <img class="parallax" data-speed="0.08"
+                        src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__95362.jpeg" alt="CSR">
+                    <div class="tag"></div>
+                </div>
+                <div class="block alt">
+                    <h3>Giving Back To<br>Communities</h3>
+                </div>
+            </article>
+        </section>
+
+        <!-- YOUR MISSION (requested exact content) -->
+        <section class="mission" id="mission">
+            <div class="container">
+                <h2 class="title reveal">Our Mission</h2>
+                <p class="reveal">
+                    SDS is dedicated to providing enabling services to organizations and individuals, to create
+                    potentials
+                    that positively affect the lives of the disadvantaged sections of society. We achieve this through a
+                    team of highly qualified personnel with extensive practical experience working at the grassroots
+                    level.
+                </p>
+                <p class="reveal">
+                    Operating in 11 states across India, including all Northeast India states, Bihar, Odisha, and
+                    Karnataka,
+                    SDS serves the needs of Central and State governments, CSR agencies, not-for-profits, FPOs,
+                    individual
+                    entrepreneurs, and other organizations in the development sector.
+                </p>
+                <div class="meta reveal">
+                    <span class="chip">11 States</span>
+                    <span class="chip">Grassroots Experts</span>
+                    <span class="chip">CSR & Govt Partners</span>
+                    <span class="chip">Impact Focused</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR VISION (image left, content right) -->
+        <section class="section" id="vision">
+            <div class="image">
+                <div class="float reveal">
+                    <!-- Replace with your bee/flower image (Screenshot 666/667) -->
+                    <img src="static/Images/hero1.jpg" alt="Bee closeup">
+                </div>
+            </div>
+            <div class="content">
+                <h2 class="kicker reveal">Our Vision</h2>
+                <p class="reveal">SDS aims to be a top-tier development support organization, promoting rural
+                    livelihoods in
+                    Eastern and North-Eastern India by facilitating livelihood ecosystems. Being among the best
+                    consulting
+                    firms in the Northeast, we strive to provide our top consultancy services in every nook and corner
+                    of
+                    the region.</p>
+            </div>
+        </section>
+
+        <!-- OUR VALUES (image left, content right on sand background) -->
+        <section class="section" id="values" style="background:var(--sand); color:#070b0f">
+            <div class="image" style="background:var(--sage)">
+                <div class="float reveal">
+                    <!-- Replace with your blue heart light image -->
+                    <img src="static/Images/hero2.jpg" alt="Light heart">
+                </div>
+            </div>
+            <div class="content" style="background:var(--sand); color:#0a1015">
+                <h2 class="kicker reveal" style="color:#0a1015">Our Values</h2>
+                <p class="reveal" style="color:#1a232c">
+                    SDS is committed to fostering a culture that prioritizes excellence, expertise, and community
+                    engagement. We stand for values of:
+                    <br>
+                    <b>Equity</b>- Justness, fairness, and equality of rights and opportunities.<br>
+                    <b>Integrity</b>- Alignment in thought, word and action.<br>
+                    <b>Excellence</b>- Excellence at every step for our clients and customers<br>
+                    <b>Trust</b>- Firm belief in the reliability, truth, or ability of someone or something.<br>
+                </p>
+            </div>
+        </section>
+
+        <!-- Big statement block -->
+        <section class="statement">
+            <div class="container">
+                <p class="reveal">
+                <h2 class="kicker reveal">Our Story</h2>
+                Founded in 2013, Sesta Development Services (SDS) is now among the top consultancy firms rendering high
+                quality services in Research and Communication, Livelihoods, Value Chain Skills, FPO Promotion,
+                Organization Development, Climate Change and Natural Resource Management.
+                Over a decade, SDS has provided customised solution to Government Organizations, CSR Agencies,
+                Corporates, Farmer Producer Organizations and NGO’s for effective planning, implementation, and review
+                of development programmes. Our strategy is built on four pillars: sustainable lives, sustainable
+                communities, sustainable markets, and sustainable growth.
+                </p>
+            </div>
+        </section>
+
+        <section class="business-focus">
+            <div class="container">
+                <h1>OUR SERVICES:</h1>
+                <div class="focus-points" aria-label="Business focus points with check icons">
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> FPO MANAGEMENT & DEVELOPMENT</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> RESEARCH & STUDY</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> AGRIPRENEURSHIP</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> VALUE CHAIN DEVELOPMENT</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> MARKETING</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> INSTITUTE BUILDING AND CAPACITY BUILDING(IBCB)</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg>MONITORING & EVALUATION</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg>ORGANISATION</span>
+                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                            <path
+                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
+                            </path>
+                        </svg> COMMUNICATION FOR DEVELOPMENT</span>
+
+                </div>
+
+                <br>
+                <button class="btn-touch" aria-label="Get in touch button"><a href="/getintouch">GET IN TOUCH</a></button>
+            </div>
+        </section>
+
+
+        <!-- Footer spacer -->
+<footer class="container" style="display:none !important; padding:60px var(--pad) 90px; color:#9fb0bf">
+  <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+    <div><span id="yr"></span></div>
+    <div></div>
+  </div>
+</footer>
+
+        <!-- existing webpage content -->
+    </main>
+
+
+    <!-- SDG Carousel Section -->
+    <section class="sdg-carousel-section">
+        <div class="sdg-carousel-container">
+            <div class="sdg-section-header">
+                <h2>SDS's Commitment to the SDGs</h2>
+                <p>Our commitment to the UN 2030 agenda and a sustainable future for all drives our consultancy
+                    services. We strategically align with 7 out of the 17 SDGs, making significant impact in the region
+                    and beyond.</p>
+            </div>
+
+            <div class="sdg-carousel-outer">
+                <div class="sdg-carousel-controls">
+                    <div class="sdg-carousel-control sdg-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="sdg-carousel-control sdg-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="sdg-carousel-track">
+                    <!-- SDG 1 -->
+                    <div class="sdg-card sdg-active">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="No Poverty">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">1</span> NO POVERTY</h3>
+                            <p>Distributing inputs and establishing market linkages stabilized income & enhanced
+                                livelihood
+                                for over 1 lakh households.</p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 2 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Zero Hunger">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">2</span> ZERO HUNGER</h3>
+                            <p>Ensured food security and impacted 20,000 households through diverse commodity
+                                production.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 5 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Gender Equality">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">5</span> GENDER EQUALITY</h3>
+                            <p>Maa Chandika FPC mobilized 90% female members generating ₹6.5 lakh annual business.</p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 10 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Reduced Inequalities">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">10</span> REDUCED INEQUALITIES</h3>
+                            <p>Bridging rural inequality through institution building and sustainable solutions for the
+                                poor.</p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 12 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Responsible Consumption">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">12</span> RESPONSIBLE PRODUCTION</h3>
+                            <p>Enhancing sustainable patterns by empowering FPOs and local entrepreneurs.</p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 15 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Life on Land">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">15</span> LIFE ON LAND</h3>
+                            <p>Promoting sustainable agriculture, organic farming and climate-smart practices.</p>
+                        </div>
+                    </div>
+
+                    <!-- SDG 16 -->
+                    <div class="sdg-card">
+                        <div class="sdg-progress-bar"></div>
+                        <div class="sdg-image">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                alt="Strong Institutions">
+                        </div>
+                        <div class="sdg-content">
+                            <h3><span class="sdg-number">16</span> STRONG INSTITUTIONS</h3>
+                            <p>SHGs, VOs and FPCs collectively impacted 1 lakh households through institutional
+                                development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sdg-carousel-nav">
+                    <div class="sdg-nav-dot sdg-active" data-index="0"></div>
+                    <div class="sdg-nav-dot" data-index="1"></div>
+                    <div class="sdg-nav-dot" data-index="2"></div>
+                    <div class="sdg-nav-dot" data-index="3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<section id="sds-team-marquee" class="sds-team-marquee" aria-label="Meet our team">
+  <style>
+  /* =========================
+     Meet Our Team — Marquee
+     - Mobile: swipe/drag scroll + snap + auto-marquee (pauses on hover/drag)
+     - Desktop: auto-marquee (pauses on hover/drag) + swipe/drag scroll + snap
+     - Social links removed from shards
+     ========================= */
+
+  /* Design tokens scoped to the section (not global) */
+  #sds-team-marquee{
+    /* Theme palette */
+    --sds-tm-bg:#0a0b10;
+    --sds-tm-card:#12131b;
+    --sds-tm-ink:#f1f5f9;
+    --sds-tm-ink-dim:#9aa4b2;
+    --sds-tm-accent:#f59e0b;
+    --sds-tm-accent-2:#10b981;
+
+    /* Layout variables */
+    --sds-tm-radius:20px;
+    --sds-tm-gap:18px;
+    --sds-tm-speed:44s;
+    --sds-tm-shard-w:320px;
+
+    /* IMAGE HEIGHT = CROPPED COVER */
+    --sds-tm-shard-h: 360px;  /* desktop image window height */
+
+    /* CARD HEIGHTS — ensures every shard is identical */
+    --sds-tm-card-h: 560px;   /* total card height desktop */
+    --sds-tm-body-min: 170px; /* space reserved for text */
+  }
+
+  /* Section */
+  #sds-team-marquee.sds-team-marquee{
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(245,158,11,.10), transparent 60%),
+      radial-gradient(900px 560px at 100% 100%, rgba(16,185,129,.10), transparent 60%),
+      linear-gradient(180deg,#0a0b10 0%, #0b0d13 100%);
+    padding:clamp(44px,6.5vw,90px) 16px;
+    color:var(--sds-tm-ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+    overflow:hidden; position:relative; isolation:isolate;
+  }
+
+  #sds-team-marquee .sds-tm-header{ text-align:center; margin-bottom:clamp(26px,4.8vw,46px); }
+  #sds-team-marquee .sds-tm-eyebrow{
+    display:inline-block; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--sds-tm-ink-dim); border:1px solid rgba(241,245,249,.08);
+    padding:6px 12px; border-radius:999px; backdrop-filter:blur(6px);
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00));
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 6px 24px rgba(16,185,129,.05);
+  }
+  #sds-team-marquee .sds-tm-title{
+    font-size:clamp(30px,3.8vw,48px); line-height:1.05; margin:12px 0 10px;
+    font-weight:900; letter-spacing:-.01em;
+    background:linear-gradient(90deg,#ffffff 0%, #fde68a 25%, #bbf7d0 50%, #a7f3d0 60%, #ffffff 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 20px rgba(16,185,129,.08);
+  }
+  #sds-team-marquee .sds-tm-sub{
+    color:var(--sds-tm-ink-dim); max-width:880px; margin:0 auto;
+    font-size:clamp(14px,1.8vw,16px); line-height:1.7;
+  }
+
+  /* Marquee rails (scroll container) */
+  #sds-team-marquee .sds-tm-marquee{
+    position:relative;
+    margin-top:clamp(22px,3vw,34px);
+    /* Make it scrollable by drag on both desktop & mobile */
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    /* Hide scrollbars */
+    -ms-overflow-style:none; scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+            mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    user-select:none;
+  }
+  #sds-team-marquee .sds-tm-marquee::-webkit-scrollbar{ display:none; }
+  #sds-team-marquee .sds-tm-marquee.dragging{ cursor:grabbing; }
+
+  /* Moving track (auto-marquee via CSS keyframes) */
+  #sds-team-marquee .sds-tm-track{
+    display:flex; gap:var(--sds-tm-gap); width:max-content; will-change:transform;
+    animation:sds-tm-scroll-left var(--sds-tm-speed) linear infinite;
+  }
+  /* Pause on hover/focus for both desktop & touch devices */
+  #sds-team-marquee .sds-tm-marquee:focus-within .sds-tm-track,
+  #sds-team-marquee .sds-tm-marquee:hover .sds-tm-track{
+    animation-play-state:paused;
+  }
+  @media (prefers-reduced-motion: reduce){
+    #sds-team-marquee .sds-tm-track{ animation:none; }
+  }
+  #sds-team-marquee .sds-tm-group{ display:flex; gap:var(--sds-tm-gap); }
+
+  @keyframes sds-tm-scroll-left { 0%{transform:translateX(0%);} 100%{transform:translateX(-50%);} }
+
+  /* Card */
+  #sds-team-marquee .sds-tm-card{
+    width:var(--sds-tm-shard-w);
+    height:var(--sds-tm-card-h);
+    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00)), var(--sds-tm-card);
+    border:1px solid rgba(255,255,255,.06); border-radius:var(--sds-tm-radius);
+    overflow:hidden; position:relative;
+    box-shadow:0 12px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.02) inset;
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease, filter .35s ease;
+    clip-path:polygon(0% 0%, calc(100% - 22px) 0%, 100% 22px, 100% 100%, 0% 100%);
+    backdrop-filter:saturate(110%) blur(6px);
+    display:flex; flex-direction:column;
+    scroll-snap-align:start; /* snap stop */
+  }
+  #sds-team-marquee .sds-tm-card::after{
+    content:""; position:absolute; top:0; right:0; width:32px; height:32px;
+    background:conic-gradient(from 210deg, var(--sds-tm-accent), var(--sds-tm-accent-2));
+    filter:blur(.2px); clip-path:polygon(100% 0, 0 0, 100% 100%); opacity:.95;
+  }
+  #sds-team-marquee .sds-tm-card:hover{
+    transform:translateY(-6px) scale(1.01);
+    border-color:rgba(16,185,129,.45);
+    box-shadow:0 18px 60px rgba(16,185,129,.14), 0 28px 80px rgba(0,0,0,.50);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--sds-tm-card);
+  }
+
+  /* Image */
+  #sds-team-marquee .sds-tm-media{
+    height:var(--sds-tm-shard-h) !important;
+    background:transparent; overflow:hidden; position:relative; flex:0 0 auto;
+  }
+  #sds-team-marquee .sds-tm-media::before{
+    content:""; position:absolute; inset:auto 16px 0 16px; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); opacity:.6;
+  }
+  #sds-team-marquee .sds-tm-media img{
+    display:block; width:100%; height:100%;
+    object-fit:cover; object-position:center 35%;
+    transform:none; transition:transform .35s ease, filter .35s ease;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,.25));
+    pointer-events:none; -webkit-user-drag:none; user-drag:none; /* smoother dragging */
+  }
+  #sds-team-marquee .sds-tm-card:hover .sds-tm-media img{
+    transform:scale(1.015);
+    filter:drop-shadow(0 18px 28px rgba(16,185,129,.12));
+  }
+
+  /* Body */
+  #sds-team-marquee .sds-tm-body{
+    padding:14px 16px 16px;
+    min-height:var(--sds-tm-body-min);
+    display:flex; flex-direction:column; gap:6px; flex:1 1 auto;
+  }
+  #sds-team-marquee .sds-tm-name{
+    font-weight:800; font-size:19px; line-height:1.2; margin:2px 0 0;
+    letter-spacing:.01em; color:#f8fafc; text-shadow:0 1px 0 rgba(255,255,255,.02);
+    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  #sds-team-marquee .sds-tm-role{
+    font-size:12px; color:#fde68a; text-transform:uppercase; letter-spacing:.10em; margin-bottom:4px;
+    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  #sds-team-marquee .sds-tm-bio{
+    font-size:13.5px; line-height:1.6; color:var(--sds-tm-ink-dim);
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
+
+  /* Responsive */
+  @media (max-width:1024px){
+    #sds-team-marquee{
+      --sds-tm-shard-h: 320px;
+      --sds-tm-card-h: 520px;
+      --sds-tm-body-min: 160px;
+    }
+  }
+  @media (max-width:640px){
+    #sds-team-marquee{
+      --sds-tm-shard-w:260px;
+      --sds-tm-gap:14px;
+      --sds-tm-shard-h: 260px;
+      --sds-tm-card-h: 460px;
+      --sds-tm-body-min: 150px;
+    }
+    /* On small screens, show full edges (remove mask feather) */
+    #sds-team-marquee .sds-tm-marquee{
+      -webkit-mask-image:none; mask-image:none;
+    }
+  }
+  </style>
+
+  <div class="sds-tm-header">
+    <span class="sds-tm-eyebrow">Our People</span>
+    <h2 class="sds-tm-title">Meet Our Team</h2>
+    <p class="sds-tm-sub">Curious minds and careful builders—our people bring diverse skills and perspectives to push what’s possible and make a difference together.</p>
+  </div>
+
+  <!-- Marquee -->
+  <div class="sds-tm-marquee" role="region" aria-label="Team carousel (auto-scrolling left)">
+    <div class="sds-tm-track" aria-hidden="false">
+      <!-- GROUP A (define once; JS clones for seamless loop) -->
+      <div class="sds-tm-group">
+        <!-- 1 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="static/Images/em/Parag_sir[1].png" alt="Mr Parag Baruah portrait">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Mr Parag Baruah</div>
+            <div class="sds-tm-role">Managing Director</div>
+            <p class="sds-tm-bio">Leads strategy and culture with a people-first approach and a bias for delivery.</p>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="static/Images/em/Madhurjya Image.png" alt="Madhurjya Madhob Borah portrait">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Madhurjya Madhob Borah</div>
+            <div class="sds-tm-role">HR Manager</div>
+            <p class="sds-tm-bio">Builds resilient systems and mentors teams to ship clean, secure work.</p>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="static/Images/em/Saunak_Photo.png" alt="Saunak Jyoti Bhuyan portrait">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Saunak Jyoti Bhuyan</div>
+            <div class="sds-tm-role">Executive (Operations)</div>
+            <p class="sds-tm-bio">Turning collective efforts into sustainable growth.</p>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="static/Images/em/tirtha da 2.jpg" alt="Tirtharaj Gohain portrait">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Tirtharaj Gohain</div>
+            <div class="sds-tm-role">Executive — Communications & Business Development</div>
+            <p class="sds-tm-bio">Cause-driven professional in communications, partnerships, and community development.</p>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="static/Images/em/Priya 4.jpg" alt="Priya Thihing portrait">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Priya Thihing</div>
+            <div class="sds-tm-role">Executive (MIS)</div>
+            <p class="sds-tm-bio">2+ years in data management, reporting, and monitoring with strong stakeholder coordination.</p>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/richa.jpg" alt="Richa Gogoi portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Richa Gogoi</div>
+            <div class="sds-tm-role">Associate (HR)</div>
+            <p class="sds-tm-bio">Human resources is not about managing people—it's about empowering them to grow.</p>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media">
+            <img src="" alt="Rahul Baruah portrait"
+                 onerror="this.src='https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=1200&auto=format';">
+          </div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Rahul Baruah</div>
+            <div class="sds-tm-role">Associate (IT)</div>
+            <p class="sds-tm-bio">Programming turns logic into reality—one line at a time.</p>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/ruhul.jpg" alt="Md Ruhul Amin portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Md Ruhul Amin</div>
+            <div class="sds-tm-role">Associate (Operation)</div>
+            <p class="sds-tm-bio">Professionalism is reflected in consistency, humility, and responsibility.</p>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/amit daa.jpg" alt="Amit Saha portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Amit Saha</div>
+            <div class="sds-tm-role">Manager (Accounts)</div>
+            <p class="sds-tm-bio">Accounting turns numbers into stories of growth.</p>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/farhan 2.JPG" alt="Farhan Ahmed portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Farhan Ahmed</div>
+            <div class="sds-tm-role">Management Trainee (Data Analyst)</div>
+            <p class="sds-tm-bio">A data analyst is a storyteller—translating numbers into decisions.</p>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Upasana.jpg" alt="Upasana Goswami portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Upasana Goswami</div>
+            <div class="sds-tm-role">Associate Graphics Designer</div>
+            <p class="sds-tm-bio">Design is where creativity meets purpose.</p>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Sonali.jpg" alt="Sonali Boro portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Sonali Boro</div>
+            <div class="sds-tm-role">Executive (Research)</div>
+            <p class="sds-tm-bio">Seeking truth through deep research and close observation.</p>
+          </div>
+        </article>
+
+        <!-- 13 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Monashree.jpg" alt="Monashree Sarma Bora portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Monashree Sarma Bora</div>
+            <div class="sds-tm-role">Executive (Research)</div>
+            <p class="sds-tm-bio">No research without action; no action without research.</p>
+          </div>
+        </article>
+
+        <!-- 14 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Menoka.jpeg" alt="Menoka Bordoloi portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Menoka Bordoloi</div>
+            <div class="sds-tm-role">Management Trainee</div>
+            <p class="sds-tm-bio">True progress is when no one is left behind.</p>
+          </div>
+        </article>
+
+        <!-- 15 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Dhurbo.jpeg" alt="Dhrubajyoti Kakati portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Dhrubajyoti Kakati</div>
+            <div class="sds-tm-role">Executive (Operation)</div>
+            <p class="sds-tm-bio">Small, consistent efforts lead to meaningful impact.</p>
+          </div>
+        </article>
+
+        <!-- 16 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Amitabh Guha Thakurata.jpg" alt="Amitabh Guha Thakurata portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Amitabh Guha Thakurata</div>
+            <div class="sds-tm-role">Institution Building Expert (IBCB TSA - TRESP)</div>
+            <p class="sds-tm-bio">Development is about people, participation, and lasting change.</p>
+          </div>
+        </article>
+
+        <!-- 17 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Manash Da.jpg" alt="Manash Das portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Manash Das</div>
+            <div class="sds-tm-role">Manager (Marketing)</div>
+            <p class="sds-tm-bio">Driving farmer empowerment and rural entrepreneurship through market linkages and brand building.</p>
+          </div>
+        </article>
+
+        <!-- 18 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Susmita Roy SDS Agartala.jpeg" alt="Susmita Roy portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Susmita Roy</div>
+            <div class="sds-tm-role">Trainer (TRESP)</div>
+            <p class="sds-tm-bio">Empowering communities through knowledge, skills, and participatory learning.</p>
+          </div>
+        </article>
+
+        <!-- 19 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Biplab Singha.jpg" alt="Biplab Singha portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Biplab Singha</div>
+            <div class="sds-tm-role">IBCB — Field Expert</div>
+            <p class="sds-tm-bio">Serving the roots to strengthen the whole community.</p>
+          </div>
+        </article>
+
+        <!-- 20 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/deharjoy.jpeg" alt="Deharjoy Reang portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Deharjoy Reang</div>
+            <div class="sds-tm-role">Field Expert (TSA TRESP)</div>
+            <p class="sds-tm-bio">Supporting PGs for account opening in scheduled banks.</p>
+          </div>
+        </article>
+
+        <!-- 21 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format" alt="Team member portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Member 21</div>
+            <div class="sds-tm-role">Role</div>
+            <p class="sds-tm-bio">Short professional summary goes here.</p>
+          </div>
+        </article>
+
+        <!-- 22 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format" alt="Team member portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Member 22</div>
+            <div class="sds-tm-role">Role</div>
+            <p class="sds-tm-bio">Short professional summary goes here.</p>
+          </div>
+        </article>
+
+        <!-- 23 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=1200&auto=format" alt="Team member portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Member 23</div>
+            <div class="sds-tm-role">Role</div>
+            <p class="sds-tm-bio">Short professional summary goes here.</p>
+          </div>
+        </article>
+
+        <!-- 24 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=1200&auto=format" alt="Team member portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Member 24</div>
+            <div class="sds-tm-role">Role</div>
+            <p class="sds-tm-bio">Short professional summary goes here.</p>
+          </div>
+        </article>
+
+        <!-- 25 -->
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/Nahakpam Surjobala.jpeg" alt="Nahakpam Surjobala Devi portrait"></div>
+          <div class="sds-tm-body">
+            <div class="sds-tm-name">Nahakpam Surjobala Devi</div>
+            <div class="sds-tm-role">Project Associate (Operation)</div>
+            <p class="sds-tm-bio">Do something today that your future self will thank you for.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById('sds-team-marquee');
+      if(!root) return;
+
+      const marquee = root.querySelector('.sds-tm-marquee');
+      const track   = root.querySelector('.sds-tm-track');
+      const groupA  = root.querySelector('.sds-tm-group');
+
+      /* Build seamless loop (clone once to make 50% width shift loop clean) */
+      if (track && groupA && track.children.length < 2) {
+        const clone = groupA.cloneNode(true);
+        track.appendChild(clone);
+      }
+
+      /* Keyboard nudge for accessibility */
+      root.addEventListener('keydown', (e) => {
+        if (!marquee) return;
+        if (e.key === 'ArrowRight') { marquee.scrollLeft += 80; }
+        if (e.key === 'ArrowLeft')  { marquee.scrollLeft -= 80; }
+      });
+
+      /* Drag / swipe to scroll (desktop + mobile via Pointer Events) */
+      let isDown = false, startX = 0, startScroll = 0, pointerId = null, resumeTimer = null, scrollPauseTimer = null;
+
+      const pauseAnim = () => { if (track) track.style.animationPlayState = 'paused'; };
+      const resumeAnim = () => {
+        if (!track) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        track.style.animationPlayState = 'running';
+      };
+
+      const onPointerDown = (e) => {
+        if (!marquee) return;
+        isDown = true; pointerId = e.pointerId;
+        startX = e.clientX; startScroll = marquee.scrollLeft;
+        marquee.classList.add('dragging');
+        marquee.setPointerCapture && marquee.setPointerCapture(pointerId);
+        pauseAnim();
+        clearTimeout(resumeTimer);
+      };
+
+      const onPointerMove = (e) => {
+        if (!isDown || !marquee) return;
+        const dx = e.clientX - startX;
+        marquee.scrollLeft = startScroll - dx;
+      };
+
+      const onPointerUp = () => {
+        if (!marquee) return;
+        isDown = false; pointerId = null;
+        marquee.classList.remove('dragging');
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(resumeAnim, 1200); /* grace period before resuming auto */
+      };
+
+      marquee.addEventListener('pointerdown', onPointerDown, {passive:true});
+      window.addEventListener('pointermove', onPointerMove, {passive:true});
+      window.addEventListener('pointerup', onPointerUp, {passive:true});
+      window.addEventListener('pointercancel', onPointerUp, {passive:true});
+      window.addEventListener('blur', onPointerUp, {passive:true});
+
+      /* Also pause while user scrolls via wheel/trackpad/touch momentum */
+      marquee.addEventListener('scroll', () => {
+        pauseAnim();
+        clearTimeout(scrollPauseTimer);
+        scrollPauseTimer = setTimeout(resumeAnim, 800);
+      }, {passive:true});
+    })();
+  </script>
+</section>
+
+
+
+
+    <!--Footer Section-->
+
+    <footer>
+        <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+            <div class="logo-container-f">
+                <a href="templates/index.html">
+                    <img src="static/Images/tttttttttt.png" alt="SDS Logo" class="logo-f">
+                </a>
+            </div>
+            <div class="footer-left" aria-label="Company branding and partner logos">
+                <div class="footer-social" aria-label="Social media links">
+                    <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f"
+                            aria-hidden="true"></i></button>
+                    <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+                    <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in"
+                            aria-hidden="true"></i></button>
+                    <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+                    <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <div class="footer-columns" aria-label="Footer navigation">
+                <nav class="footer-column" aria-labelledby="footer-legal">
+                    <h3 id="footer-legal">SECTORS</h3>
+                    <ul>
+         <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-careers">
+                    <h3 id="footer-careers">CAREERS</h3>
+                    <ul>
+
+                        <li><a href="templates/Career.html" tabIndex="0">Join Us</a></li>
+
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-contact">
+                    <h3 id="footer-contact">Company</h3>
+                    <ul>
+                        <li><a href="templates/index.html" tabIndex="0">Home</a></li>
+                        <li><a href="templates/about us.html" tabIndex="0">About Us</a></li>
+                        <li tabIndex="0">Sectors</li>
+                        <li><a href="templates/Research.html" tabIndex="0">Publication</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-products">
+                    <h3 id="footer-products">Services</h3>
+                    <ul>
+                        <li><a href="templates/fpo.html" tabIndex="0">FPO Management</a></li>
+                        <li tabIndex="0">Agricultural Development</a></li>
+                        <li tabIndex="0">Fishery Development</li>
+                        <li tabIndex="0">Rural Finance</li>
+                        <li tabIndex="0">Value Chain Development</li>
+                        <li tabIndex="0">Marketing</li>
+                        <li tabIndex="0">All Services</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+            <div class="links">
+                <a href="#" tabindex="0">Code of Conduct</a>
+                <a href="#" tabindex="0">Privacy Policy</a>
+                <a href="#" tabindex="0">Terms of Service</a>
+                <a href="#" tabindex="0">Sitemap</a>
+                <a href="#" tabindex="0">Accessibility</a>
+            </div>
+            <div class="copyright">
+                © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Back to top -->
+    <button class="to-top" aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5l7 7-1.41 1.41L13 9.83V20h-2V9.83l-4.59 4.58L5 12l7-7z" />
+        </svg>
+    </button>
+
+
+
+    <!-- Minimal, dependency-free scroll effects -->
+    <script>
+        // Self-executing function to avoid conflicts with existing code
+        (function () {
+            // Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                const track = document.querySelector('.sdg-carousel-track');
+                const cards = document.querySelectorAll('.sdg-card');
+                const dots = document.querySelectorAll('.sdg-nav-dot');
+                const prevBtn = document.querySelector('.sdg-prev');
+                const nextBtn = document.querySelector('.sdg-next');
+                const progressBars = document.querySelectorAll('.sdg-progress-bar');
+
+                let cardWidth = cards[0].offsetWidth + 20;
+                let currentIndex = 0;
+                let autoSlideInterval;
+                let progressInterval;
+
+                // Function to update carousel position
+                function updateCarousel() {
+                    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+                    // Update active dot
+                    const dotIndex = Math.floor(currentIndex / (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3));
+                    dots.forEach((dot, index) => {
+                        if (index === dotIndex) {
+                            dot.classList.add('sdg-active');
+                        } else {
+                            dot.classList.remove('sdg-active');
+                        }
+                    });
+
+                    // Update active cards
+                    cards.forEach((card, index) => {
+                        if (index === currentIndex ||
+                            index === currentIndex + 1 ||
+                            index === currentIndex + 2) {
+                            card.classList.add('sdg-active');
+                        } else {
+                            card.classList.remove('sdg-active');
+                        }
+                    });
+
+                    // Reset progress bars
+                    resetProgressBars();
+                    startProgressBar();
+                }
+
+                // Next slide function
+                function nextSlide() {
+                    if (currentIndex < cards.length - (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3)) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                    updateCarousel();
+                }
+
+                // Previous slide function
+                function prevSlide() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else {
+                        currentIndex = cards.length - (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3);
+                    }
+                    updateCarousel();
+                }
+
+                // Progress bar functions
+                function startProgressBar() {
+                    const activeCard = cards[currentIndex];
+                    const progressBar = activeCard.querySelector('.sdg-progress-bar');
+
+                    let width = 0;
+                    clearInterval(progressInterval);
+
+                    progressInterval = setInterval(() => {
+                        if (width >= 100) {
+                            clearInterval(progressInterval);
+                            nextSlide();
+                        } else {
+                            width += 0.5;
+                            progressBar.style.transform = `scaleX(${width / 100})`;
+                        }
+                    }, 20);
+                }
+
+                function resetProgressBars() {
+                    progressBars.forEach(bar => {
+                        bar.style.transform = 'scaleX(0)';
+                    });
+                }
+
+                // Set up auto sliding
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(nextSlide, 2000);
+                    startProgressBar();
+                }
+
+                // Stop auto sliding
+                function stopAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                    clearInterval(progressInterval);
+                }
+
+                // Event listeners for buttons
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        stopAutoSlide();
+                        nextSlide();
+                        startAutoSlide();
+                    });
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        stopAutoSlide();
+                        prevSlide();
+                        startAutoSlide();
+                    });
+                }
+
+                // Event listeners for dots
+                dots.forEach(dot => {
+                    dot.addEventListener('click', function () {
+                        stopAutoSlide();
+                        currentIndex = parseInt(this.getAttribute('data-index')) * (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3);
+                        updateCarousel();
+                        startAutoSlide();
+                    });
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', function () {
+                    cardWidth = cards[0].offsetWidth + 20;
+                    updateCarousel();
+                });
+
+                // Pause auto slide when hovering over carousel
+                const carouselContainer = document.querySelector('.sdg-carousel-outer');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+                    carouselContainer.addEventListener('mouseleave', startAutoSlide);
+                }
+
+                // Initialize auto sliding
+                startAutoSlide();
+            });
+        })();
+        // Year
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // Reveal on scroll
+        const revealEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            })
+        }, { threshold: .12 });
+        revealEls.forEach(el => io.observe(el));
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.animate-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.animationPlayState = 'paused';
+                observer.observe(card);
+            });
+        });
+
+        // Lightweight parallax based on scroll speed factor
+        const px = document.querySelectorAll('.parallax');
+        const pxf = () => {
+            const scY = window.scrollY || window.pageYOffset;
+            px.forEach(el => {
+                const speed = parseFloat(el.dataset.speed || 0.1);
+                const rect = el.getBoundingClientRect();
+                // Only apply when in viewport
+                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                    const offset = (scY - (el._top || (el._top = scY + rect.top))) * speed;
+                    el.style.transform = `translateY(${offset.toFixed(1)}px) scale(1.05)`;
+                }
+            });
+            requestAnimationFrame(pxf);
+        };
+        requestAnimationFrame(pxf);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".hero .eyebrow, .hero .title-xl, .hero .lead, .hero .right img");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = "running";
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            reveals.forEach(el => {
+                el.style.animationPlayState = "paused"; // pause until in view
+                observer.observe(el);
+            });
+        });
+
+
+        // Smooth hover lift for buttons (tiny polish)
+        document.querySelectorAll('a.button').forEach(b => {
+            b.addEventListener('mouseenter', () => b.style.transform = 'translateY(-2px)');
+            b.addEventListener('mouseleave', () => b.style.transform = 'translateY(0)');
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const navToggle = document.querySelector(".my-navbar .nav-toggle");
+            const navMenu = document.querySelector(".my-navbar .nav-menu");
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener("click", () => {
+                    navMenu.classList.toggle("active");
+                });
+            }
+        });
+
+    </script>
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

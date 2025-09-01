@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SDS - Career</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+ .logo-f {
+            height: 75px;
+        }
+
+      
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+  </style>
+  <body>
+
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+<br><br><br>
+
+  {% raw %}
+  <!-- ==============================
+    SDS CAREERS — Modern, Professional, Responsive
+    (Wrapped in {% raw %} so Jinja ignores this whole block)
+  ================================= -->
+  <section id="sds-careers" aria-label="Careers at SDS">
+    <style>
+      /* ---------- NAMESPACE: #sds-careers ---------- */
+      #sds-careers{
+        --bg:#ffffff;
+        --ink:#0e1116;
+        --muted:#667085;
+        --panel:#f8fafc;
+        --line:#e5e7eb;
+        --brand:#0ea5e9;       /* cyan */
+        --brand-2:#7c3aed;     /* violet */
+        --accent:#22c55e;      /* green */
+        --danger:#ef4444;
+        --ring:rgba(14,165,233,.25);
+        --shadow:0 12px 32px rgba(2,6,23,.08), 0 3px 8px rgba(2,6,23,.06);
+        --radius:20px;
+        --radius-sm:12px;
+        --container:min(1200px,94vw);
+        --gap:clamp(16px,2.4vw,28px);
+        background:var(--bg);
+        color:var(--ink);
+        font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+        padding:clamp(24px,3vw,40px) 0 56px;
+      }
+      #sds-careers .wrap{width:var(--container);margin-inline:auto;display:grid;gap:var(--gap);}
+
+      /* HERO */
+      #sds-careers .hero{
+        position:relative;
+        display:grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap:var(--gap);
+        align-items:center;
+        background:linear-gradient(180deg,#ffffff, #fbfdff);
+        border:1px solid var(--line);
+        border-radius:var(--radius);
+        overflow:hidden;
+        box-shadow:var(--shadow);
+      }
+      @media (max-width: 900px){
+        #sds-careers .hero{grid-template-columns:1fr}
+      }
+      #sds-careers .hero .copy{padding:clamp(18px,3vw,28px) clamp(18px,3vw,32px);}
+      #sds-careers .eyebrow{
+        display:inline-flex;align-items:center;gap:8px;
+        font-weight:600;color:#05506a;background:#e6f7fd;border:1px solid #cceefb;
+        padding:6px 10px;border-radius:999px;font-size:12px;letter-spacing:.3px;
+      }
+      #sds-careers h2{font-size:clamp(22px,2.4vw,34px);margin:10px 0 8px;line-height:1.25;}
+      #sds-careers p.lead{color:var(--muted);font-size:clamp(14px,1.2vw,16px);max-width:60ch}
+      #sds-careers .hero .actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+      #sds-careers .btn{
+        --btn-bg:var(--ink);--btn-fg:#fff;
+        display:inline-flex;align-items:center;gap:8px;
+        padding:10px 14px;border-radius:12px;border:1px solid transparent;
+        background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:600;
+        transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+        box-shadow:0 6px 14px rgba(2,6,23,.12);
+        cursor:pointer;
+      }
+      #sds-careers .btn:hover{transform:translateY(-1px)}
+      #sds-careers .btn:focus-visible{outline:2px solid transparent;box-shadow:0 0 0 4px var(--ring)}
+      #sds-careers .btn.secondary{--btn-bg:#f3f4f6;--btn-fg:#111827;border-color:#e5e7eb;box-shadow:none}
+      #sds-careers .btn.ghost{--btn-bg:transparent;--btn-fg:#111827;border-color:#e5e7eb;box-shadow:none}
+      #sds-careers .hero .media{
+        position:relative;min-height:260px;isolation:isolate;
+        background:linear-gradient(180deg, #e8f4ff, #fff);
+      }
+      #sds-careers .media img{
+        width:100%;height:100%;object-fit:cover;display:block;mix-blend:multiply;
+      }
+      #sds-careers .media .grid{
+        position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;
+        padding:8px;opacity:.95;
+      }
+      #sds-careers .media .tile{
+        border-radius:16px;overflow:hidden;border:1px solid #e5eef8;background:#fff;
+        transition:transform .3s ease, box-shadow .3s ease;
+        box-shadow:0 8px 20px rgba(2,6,23,.08);
+      }
+      #sds-careers .media .tile:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(2,6,23,.14)}
+      #sds-careers .media .tile img{height:100%;}
+
+      /* SUB SECTIONS (students / events / interview) */
+      #sds-careers .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+      @media (max-width: 1000px){#sds-careers .panels{grid-template-columns:1fr}}
+      #sds-careers .panel{
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+      }
+      #sds-careers .panel h3{margin:6px 0 4px;font-size:18px}
+      #sds-careers .panel p{color:var(--muted);font-size:14px;margin:6px 0 12px}
+      #sds-careers .chip{
+        display:inline-flex;align-items:center;gap:8px;border:1px dashed #dbe5ef;border-radius:999px;
+        padding:6px 10px;font-size:12px;background:#fff
+      }
+
+      /* FILTERS + RESULTS */
+      #sds-careers .search{
+        display:grid;grid-template-columns: 320px 1fr;gap:var(--gap);align-items:start
+      }
+      @media (max-width: 1000px){#sds-careers .search{grid-template-columns:1fr}}
+      #sds-careers .filters{
+        position:sticky;top:14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+        padding:14px;display:grid;gap:12px
+      }
+      #sds-careers .filters h4{margin:4px 0 2px;font-size:16px}
+      #sds-careers .field{display:grid;gap:6px}
+      #sds-careers .field input[type="text"],
+      #sds-careers .field select{
+        width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;
+        box-shadow:inset 0 1px 0 rgba(0,0,0,.02);font-size:14px
+      }
+      #sds-careers .fieldset{border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+      #sds-careers .radios, #sds-careers .checks{display:grid;gap:8px}
+      #sds-careers .checks .pill, #sds-careers .radios .pill{
+        display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+        padding:8px 10px;border-radius:999px;background:#fff;font-size:13px;cursor:pointer;
+        transition:background .2s ease, border-color .2s ease, transform .15s ease;
+        user-select:none
+      }
+      #sds-careers .checks input, #sds-careers .radios input{display:none}
+      #sds-careers .checks input:checked + .pill, #sds-careers .radios input:checked + .pill{
+        background:#eef9ff;border-color:#cdeeff;box-shadow:0 0 0 3px var(--ring)
+      }
+      #sds-careers .filters .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+      #sds-careers .filters .btn.sm{padding:8px 10px;border-radius:10px;font-size:13px}
+
+      #sds-careers .results{display:grid;gap:12px}
+      #sds-careers .toolbar{
+        display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap
+      }
+      #sds-careers .toolbar .right{display:flex;gap:8px;align-items:center}
+      #sds-careers .select{display:inline-grid}
+      #sds-careers .select select{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:13px}
+
+      #sds-careers .list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+      @media (max-width: 900px){#sds-careers .list{grid-template-columns:1fr}}
+      #sds-careers .card{
+        display:grid;grid-template-columns: 1fr 120px;gap:14px;
+        border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:var(--shadow);
+        transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      #sds-careers .card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(2,6,23,.14);border-color:#dbe6f5}
+      #sds-careers .card .meta{padding:12px}
+      #sds-careers .card h5{margin:2px 0 6px;font-size:16px}
+      #sds-careers .card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+      #sds-careers .tag{font-size:12px;color:#05506a;background:#e6f7fd;border:1px solid #cceefb;padding:4px 8px;border-radius:999px}
+      #sds-careers .thumb{background:#f1f5f9;display:grid;place-items:center}
+      #sds-careers .thumb img{width:100%;height:100%;object-fit:cover}
+
+      #sds-careers .empty{
+        border:2px dashed #d7e3f4;border-radius:18px;padding:22px;background:#fbfdff;text-align:center;color:#667085
+      }
+      #sds-careers .empty strong{color:#0b4459}
+
+      #sds-careers .foot-actions{display:flex;justify-content:center;margin-top:8px}
+      #sds-careers .rss{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border:1px dashed #dbe5ef;border-radius:12px;background:#fff}
+
+      /* micro animations */
+      #sds-careers .btn:hover .chev{transform:translateX(3px)}
+      #sds-careers .chev{transition:transform .15s ease}
+    </style>
+
+    <div class="wrap">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="copy">
+          <span class="eyebrow">Careers at SDS</span>
+          <h2>Grow faster with a team that backs you.</h2>
+          <p class="lead">
+            Whether you’re finishing your undergraduate degree or studying at the postgraduate level, you won’t just continue learning at SDS—you’ll grow faster here than anywhere else.
+            Learn about opportunities, recruiting events, interview prep, and open roles.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#job-search" aria-label="Skip to job search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Explore Roles
+            </a>
+            <a class="btn secondary" href="#students">Students &amp; Early Careers</a>
+            <a class="btn ghost" href="#events">Recruiting Events</a>
+          </div>
+        </div>
+        <div class="media" aria-hidden="true">
+          <div class="grid">
+            <div class="tile"><img src="static/Images/C1.png" alt=""></div>
+            <div class="tile"><img src="static/Images/c2.png" alt=""></div>
+            <div class="tile"><img src="static/Images/c3.png" alt=""></div>
+            <div class="tile"><img src="static/Images/C1.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANELS -->
+      <div class="panels" id="students">
+        <article class="panel">
+          <span class="chip">Career paths for students</span>
+          <h3>Start strong. Grow faster.</h3>
+          <p>Learn more about opportunities for students, search for your school, view campus application deadlines, and more.</p>
+          <a class="btn" href="#job-search">Find student opportunities <span class="chev">›</span></a>
+        </article>
+        <article class="panel" id="events">
+          <span class="chip">SDS Recruiting Events</span>
+          <h3>Meet us—online or on campus</h3>
+          <p>Get to know our people, offices, and roles at events in your region.</p>
+          <a class="btn secondary" href="#events-list">Explore all events <span class="chev">›</span></a>
+        </article>
+        <article class="panel">
+          <span class="chip">Getting ready for your interview</span>
+          <h3>Interviewing is a two-way process</h3>
+          <p>Learn how we assess thinking, skills, and drive—and how you can assess SDS and what you could achieve here.</p>
+          <a class="btn ghost" href="#interview">Learn about our process <span class="chev">›</span></a>
+        </article>
+      </div>
+
+      <!-- ROLE PATHS -->
+      <div class="panels" id="paths">
+        <article class="panel">
+          <span class="chip">Choosing your path at SDS</span>
+          <h3>Serving our clients</h3>
+          <p>Work closely with clients to navigate complex challenges and drive lasting change. Use problem-solving skills and industry expertise…</p>
+          <a class="btn" href="#job-search">Learn about consulting roles <span class="chev">›</span></a>
+        </article>
+        <article class="panel">
+          <span class="chip">Choosing your path at SDS</span>
+          <h3>Innovating with tech</h3>
+          <p>Join our global tech colleagues who are passionate about innovation, impact, and professional development.</p>
+          <a class="btn" href="#job-search">Learn about tech roles <span class="chev">›</span></a>
+        </article>
+        <article class="panel">
+          <span class="chip">Choosing your path at SDS</span>
+          <h3>Running our company</h3>
+          <p>Work with top professionals—designers, lawyers, assistants, and more—to keep the organization running at its best.</p>
+          <a class="btn" href="#job-search">Learn about internal roles <span class="chev">›</span></a>
+        </article>
+      </div>
+
+      <!-- JOB SEARCH + FILTERS -->
+      <div class="search" id="job-search">
+        <!-- FILTERS -->
+        <aside class="filters" aria-label="Job filters">
+          <div class="field">
+            <label for="q"><strong>Job Title, Keywords, or Phrase</strong></label>
+            <input id="q" type="text" placeholder="e.g., Associate, MIS, Marketing">
+          </div>
+
+          <div class="field">
+            <label for="loc"><strong>City, State or ZIP</strong></label>
+            <input id="loc" type="text" placeholder="e.g., Guwahati, Assam">
+          </div>
+
+          <div class="field">
+            <label for="sector"><strong>Select Sector</strong></label>
+            <select id="sector">
+              <option value="">All</option>
+              <option>Agriculture</option><option>Aromatic</option><option>Creative</option>
+              <option>Dairy</option><option>Fishery</option><option>IBCB</option>
+              <option>Insurance</option><option>IT &amp; MIS</option><option>Livestock</option>
+              <option>Marketing</option><option>Poultry</option><option>Research</option>
+            </select>
+          </div>
+
+          <div class="fieldset">
+            <h4>Date Posted</h4>
+            <div class="radios">
+              <label><input type="radio" name="posted" value="1h"><span class="pill">Last Hour</span></label>
+              <label><input type="radio" name="posted" value="24h"><span class="pill">Last 24 hours</span></label>
+              <label><input type="radio" name="posted" value="1w"><span class="pill">Last week</span></label>
+              <label><input type="radio" name="posted" value="2w"><span class="pill">Last 2 weeks</span></label>
+              <label><input type="radio" name="posted" value="1m"><span class="pill">Last month</span></label>
+              <label><input type="radio" name="posted" value=""><span class="pill">All</span></label>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h4>Job Type</h4>
+            <div class="checks">
+              <label><input type="checkbox" value="Contract"><span class="pill">Contract</span></label>
+              <label><input type="checkbox" value="Full-time"><span class="pill">Full-time</span></label>
+              <label><input type="checkbox" value="Internship"><span class="pill">Internship</span></label>
+              <label><input type="checkbox" value="Part-time"><span class="pill">Part-time</span></label>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h4>Locations (India)</h4>
+            <div class="field">
+              <select id="locationList">
+                <option value="">All</option>
+                <optgroup label="Assam">
+                  <option>Arunachal Pradesh</option>
+                  <option>Assam</option>
+                  <option>Bajali</option><option>Baksa</option><option>Barpeta</option>
+                  <option>Biswanath</option><option>Bongaigaon</option><option>Cachar</option>
+                  <option>Charaideo</option><option>Chirang</option><option>Darrang</option>
+                  <option>Dhemaji</option><option>Dhubri</option><option>Dibrugarh</option>
+                  <option>Dima Hasao</option><option>Goalpara</option><option>Golaghat</option>
+                  <option>Hailakandi</option><option>Hojai</option><option>Jorhat</option>
+                  <option>Kamrup</option><option>Kamrup Metropolitan</option><option>Guwahati</option>
+                  <option>Karbi Anglong</option><option>Karimganj</option><option>Kokrajhar</option>
+                  <option>Lakhimpur</option><option>Majuli</option><option>Morigaon</option>
+                  <option>Nagaon</option><option>Nalbari</option><option>Sivasagar</option>
+                  <option>Sonitpur</option><option>South Salmara-Mankachar</option><option>Tamulpur</option>
+                  <option>Tinsukia</option><option>Udalguri</option><option>West Karbi Anglong</option>
+                </optgroup>
+                <optgroup label="Other States">
+                  <option>Bihar</option><option>Meghalaya</option><option>Mizoram</option>
+                  <option>Odisha</option><option>Tripura</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="fieldset">
+            <h4>Skills</h4>
+            <div class="checks">
+              <label><input type="checkbox" value="able to work unsupervised"><span class="pill">work unsupervised</span></label>
+              <label><input type="checkbox" value="Office assistant, Marketing"><span class="pill">Office assistant, Marketing</span></label>
+              <label><input type="checkbox" value="Self motivated"><span class="pill">Self motivated</span></label>
+              <label><input type="checkbox" value="Team Player"><span class="pill">Team Player</span></label>
+              <label><input type="checkbox" value="time bound delivery"><span class="pill">time bound delivery</span></label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn sm" id="applyFilters">Apply Filters</button>
+            <button class="btn sm secondary" id="clearFilters">Clear</button>
+          </div>
+        </aside>
+
+        <!-- RESULTS -->
+        <div class="results" aria-live="polite">
+          <div class="toolbar">
+            <div class="left">
+              <strong id="resultCount">0 Jobs Found</strong>
+              <span id="resultSub" class="muted">Displayed Here: 0 Jobs</span>
+            </div>
+            <div class="right">
+              <label class="select">Sort
+                <select id="sortBy">
+                  <option value="recent">Most Recent</option>
+                  <option value="title">Title A–Z</option>
+                  <option value="location">Location A–Z</option>
+                </select>
+              </label>
+              <label class="select">Per Page
+                <select id="pageSize">
+                  <option>10</option><option>20</option><option>50</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="list" id="jobList">
+            <!-- Cards injected here -->
+          </div>
+
+          <div class="empty" id="emptyState">
+            <strong>No Record</strong><br>
+            Sorry! Does not match record with your keyword.<br>
+            Change your filter keywords to re-submit.
+          </div>
+
+          <div class="foot-actions">
+            <button class="rss" type="button" aria-label="Subscribe to job RSS feed">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9" stroke="#f97316" stroke-width="2" stroke-linecap="round"/><path d="M4 4a16 16 0 0 1 16 16" stroke="#f97316" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="18" r="2" fill="#f97316"/></svg>
+              RSS Feed
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CULTURE -->
+      <div class="panels" id="working">
+        <article class="panel">
+          <span class="chip">Working at SDS</span>
+          <h3>Do work that matters—together</h3>
+          <p>You’ll work on challenges that truly matter, alongside supportive, smart colleagues who want you to succeed. We look for distinctive, driven, curious people with diverse backgrounds who are determined to find the best solutions.</p>
+          <a class="btn" href="#working">See what it’s like working here <span class="chev">›</span></a>
+        </article>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const jobs = [
+          // ================== ADD FUTURE VACANCIES HERE ==================
+          // Example:
+          // {
+          //   title: "Associate (IT & MIS)",
+          //   location: "Guwahati, Assam",
+          //   sector: "IT & MIS",
+          //   type: "Full-time",
+          //   skills: ["Self motivated","Team Player","time bound delivery"],
+          //   posted: "2025-08-20", // ISO date
+          //   image: "/static/Images/job-it.jpg",
+          //   url: "/careers/associate-it-mis"
+          // },
+        ];
+
+        const q = document.getElementById('q');
+        const loc = document.getElementById('loc');
+        const sector = document.getElementById('sector');
+        const postedRadios = document.querySelectorAll('input[name="posted"]');
+        const jobTypeChecks = document.querySelectorAll('.fieldset:nth-of-type(2) input[type="checkbox"]');
+        const skillsChecks = document.querySelectorAll('.fieldset:last-of-type input[type="checkbox"]');
+        const locationList = document.getElementById('locationList');
+        const applyBtn = document.getElementById('applyFilters');
+        const clearBtn = document.getElementById('clearFilters');
+        const list = document.getElementById('jobList');
+        const empty = document.getElementById('emptyState');
+        const resultCount = document.getElementById('resultCount');
+        const resultSub = document.getElementById('resultSub');
+        const sortBy = document.getElementById('sortBy');
+        const pageSize = document.getElementById('pageSize');
+
+        function withinDateRange(isoDate, code){
+          if(!code) return true;
+          const posted = new Date(isoDate);
+          const now = new Date();
+          const oneHour = 3600e3, oneDay = 86400e3, oneWeek = oneDay*7, twoWeeks = oneWeek*2, oneMonth = oneDay*30;
+          const map = { "1h":oneHour, "24h":oneDay, "1w":oneWeek, "2w":twoWeeks, "1m":oneMonth };
+          return (now - posted) <= (map[code] || Infinity);
+        }
+
+        function normalize(str){ return (str||"").toLowerCase(); }
+
+        function render(items){
+          list.innerHTML = "";
+          if(!items.length){
+            empty.style.display = "block";
+            resultCount.textContent = "0 Jobs Found";
+            resultSub.textContent = "Displayed Here: 0 Jobs";
+            return;
+          }
+          empty.style.display = "none";
+          const per = parseInt(pageSize.value,10) || 10;
+          const pageItems = items.slice(0, per);
+          pageItems.forEach(job=>{
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.innerHTML = `
+              <div class="meta">
+                <h5>${job.title}</h5>
+                <div class="tags">
+                  <span class="tag">${job.location}</span>
+                  <span class="tag">${job.sector}</span>
+                  <span class="tag">${job.type}</span>
+                </div>
+                <p style="color:#64748b;font-size:13px;margin:8px 0 12px">Posted: ${new Date(job.posted).toLocaleDateString()}</p>
+                <a class="btn sm" href="${job.url||'#'}" aria-label="Apply to ${job.title}">
+                  Apply Now <span class="chev">›</span>
+                </a>
+              </div>
+              <div class="thumb" aria-hidden="true">
+                <img src="${job.image||'/static/Images/job-default.jpg'}" alt="">
+              </div>
+            `;
+            list.appendChild(card);
+          });
+          resultCount.textContent = items.length + " Jobs Found";
+          resultSub.textContent = "Displayed Here: " + Math.min(items.length, per) + " Jobs";
+        }
+
+        function apply(){
+          const text = normalize(q.value);
+          const locText = normalize(loc.value);
+          const sectorVal = sector.value;
+          const postedVal = Array.from(postedRadios).find(r=>r.checked)?.value || "";
+          const types = Array.from(jobTypeChecks).filter(c=>c.checked).map(c=>c.value);
+          const skills = Array.from(skillsChecks).filter(c=>c.checked).map(c=>c.value);
+          const locationPick = locationList.value;
+
+          let out = jobs.filter(j=>{
+            const t = normalize((j.title||"") + " " + (j.sector||"") + " " + (j.skills||[]).join(" "));
+            const jl = normalize(j.location||"");
+            const passText = !text || t.includes(text);
+            const passLoc = (!locText && !locationPick) || jl.includes(locText) || (!locText && locationPick && jl.includes(normalize(locationPick)));
+            const passSector = !sectorVal || j.sector === sectorVal;
+            const passType = !types.length || types.includes(j.type);
+            const passSkills = !skills.length || skills.every(s => (j.skills||[]).includes(s));
+            const passDate = !j.posted || withinDateRange(j.posted, postedVal);
+            return passText && passLoc && passSector && passType && passSkills && passDate;
+          });
+
+          const s = sortBy.value;
+          out.sort((a,b)=>{
+            if(s==='recent') return new Date(b.posted||0) - new Date(a.posted||0);
+            if(s==='title') return (a.title||"").localeCompare(b.title||"");
+            if(s==='location') return (a.location||"").localeCompare(b.location||"");
+            return 0;
+          });
+
+          render(out);
+        }
+
+        function clear(){
+          q.value = ""; loc.value = ""; sector.value = "";
+          postedRadios.forEach(r=>r.checked = r.value==="");
+          jobTypeChecks.forEach(c=>c.checked=false);
+          skillsChecks.forEach(c=>c.checked=false);
+          locationList.value = "";
+          sortBy.value="recent"; pageSize.value="10";
+          apply();
+        }
+
+        applyBtn.addEventListener('click', apply);
+        clearBtn.addEventListener('click', clear);
+        sortBy.addEventListener('change', apply);
+        pageSize.addEventListener('change', apply);
+        [q,loc].forEach(el=>el.addEventListener('keydown',e=>{ if(e.key==='Enter') apply(); }));
+
+        apply();
+      })();
+    </script>
+  </section>
+  {% endraw %}
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo-f">
+      </div>
+
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li tabindex="0">Join Us</li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="index.html" tabindex="0">Home</a></li>
+            <li><a href="/about" tabindex="0">About Us</a></li>
+            <li tabindex="0">Sectors</li>
+            <li><a href="Research.html" tabindex="0">Publication</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="fpo.html" tabindex="0">FPO Management</a></li>
+            <li tabindex="0">Agricultural Development</li>
+            <li tabindex="0">Fishery Development</li>
+            <li tabindex="0">Rural Finance</li>
+            <li tabindex="0">Value Chain Development</li>
+            <li tabindex="0">Marketing</li>
+            <li tabindex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Site JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

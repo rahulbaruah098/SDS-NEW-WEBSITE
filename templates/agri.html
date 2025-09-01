@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agripreneurship|SDS</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <style>
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.section {
+  padding: 80px 10%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+/* Section Colors */
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+}
+
+.green {
+  background-color: #456254;
+  color: #f8e4c9;
+}
+
+.white {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #0d1219;
+}
+
+/* Text Styles */
+.small-title {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.big-title {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.paragraph {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.paragraph.black {
+  color: #000;
+}
+
+/* Button */
+.apply-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 1px solid #f8e4c9;
+  color: #f8e4c9;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: #f8e4c9;
+  color: #0d1219;
+}
+
+/* Animation class */
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+  /* Black border around the whole section */
+  box-sizing: border-box;
+  margin-top: 50px;
+  /* Pushes section down */
+}
+
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+ 
+  /* Black border around the whole section */
+  box-sizing: border-box;
+  margin-top: 50px;
+  /* Pushes section down */
+  padding: 180px 20%;
+  /* More height: top/bottom 150px, sides stay same */
+}
+.logo-f {
+  height: 75px;
+}
+  </style>
+  <body>
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px;
+
+      /* Desktop colors */
+      --left-bg:   #3A6A61;
+      --right-bg:  #F1D9B7;
+
+      /* Mobile colors */
+      --left-bg-mobile: #0b1119;
+      --left-link-mobile: #f5e6d3;
+      --left-line-mobile: rgba(255,255,255,.12);
+
+      /* Shared */
+      --left-link: #f3d9bd;
+      --right-link:#222;
+      --right-link-hover:#000;
+      --line-left: rgba(255,255,255,.25);
+      --line-right: rgba(0,0,0,.22);
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* ===== NAV SHELL fixed to the top ===== */
+    #sds-navigation{
+      position:fixed; top:0; left:0; width:100%;
+      z-index:10000;
+    }
+
+    /* ===== HEADER (always above overlay) ===== */
+    .header{
+      position:relative;
+      z-index:10001; /* keep header above overlay */
+      height:var(--header-h);
+      background:#fff;
+      padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+      border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{height:70px; display:block;}
+
+    /* Hamburger / Close */
+    .hamburger{
+      grid-column:3; justify-self:end;
+      position:relative; width:32px; height:24px; cursor:pointer;
+      z-index:10002; /* clickable above everything */
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hamburger span{
+      position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px;
+      transition:transform .35s ease, top .35s ease, opacity .25s ease, background .3s ease;
+    }
+    .hamburger span:nth-child(1){ top:0; }
+    .hamburger span:nth-child(2){ top:10.5px; }
+    .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* ===== OVERLAY ===== */
+    #overlay{
+      position:absolute;
+      top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1;
+      display:flex;
+      overflow-y:auto; overflow-x:hidden;
+
+      /* closed */
+      background:none;
+      opacity:0;
+      transform:translateY(-8px);
+      pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    /* visible close button inside overlay */
+    .close-btn{
+      position:absolute; top:10px; right:14px;
+      font-size:28px; line-height:1; color:#111;
+      background:#fff; width:36px; height:36px; border-radius:999px;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none;
+      box-shadow:0 2px 10px rgba(0,0,0,.1);
+      z-index:3;
+    }
+
+    /* ===== LEFT COLUMN ===== */
+    .overlay-left{
+      position:relative; flex:1;
+      background:var(--left-bg);
+      padding:40px 24px 80px 56px;
+      display:flex; flex-direction:column;
+      min-height:100%;
+    }
+    .overlay-left::after{content:""; display:block; height:300px;}
+    .main-menu{list-style:none; margin:0; padding:0; flex:1;}
+    .main-menu li{position:relative; margin:28px 0; width:100%;}
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link);
+      font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px);
+      background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{
+      content:""; position:absolute; left:0; bottom:-12px; height:2px;
+      width:100%; max-width:560px; background:var(--line-left);
+    }
+    .main-menu li:last-child{margin-bottom:52px;}
+    .red-text a{color:#ff5a5a!important;}
+    .has-panel > .link-btn::after{
+      content:"";
+      position:absolute; right:0; top:50%;
+      width:10px; height:10px;
+      border-right:3px solid currentColor; border-bottom:3px solid currentColor;
+      transform:translateY(-60%) rotate(45deg);
+      transition:transform .2s ease;
+    }
+    .has-panel.expanded > .link-btn::after{transform:translateY(-30%) rotate(225deg);}
+
+    /* ===== RIGHT PANELS (desktop view) ===== */
+    .overlay-right{flex:1; background:var(--right-bg); padding:40px 36px 60px 36px; display:none;}
+    .overlay-right.open{display:block;}
+    .overlay-right h3{margin:0 0 14px; font-size:22px; color:var(--right-link);}
+    .top-rule{height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px;}
+    .overlay-right ul{list-style:none; margin:0; padding:0;}
+    .overlay-right li{margin:0 0 14px;}
+    .overlay-right a{
+      text-decoration:none; color:var(--right-link);
+      font-size:16px; font-weight:700; line-height:1.35;
+      padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right);
+      transition:color .2s ease, border-color .2s ease, opacity .2s ease;
+    }
+    .overlay-right a:hover{color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95;}
+
+    /* Hide the mobile panel by default (desktop/tablet) */
+    .mobile-panel{display:none;}
+
+    /* ===== Mobile behavior: slide-in panel ===== */
+    @media (max-width:900px){
+      #overlay{flex-direction:column;}
+      .overlay-left{background:var(--left-bg-mobile); padding:28px 16px 40px 16px;}
+      .overlay-left::after{height:260px;}
+      .main-menu a,.main-menu .link-btn{
+        font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px;
+      }
+      .main-menu li{width:100%; margin:18px 0;}
+      .main-menu li::after{width:100%; background:var(--left-line-mobile);}
+
+      /* hide desktop right column entirely on mobile */
+      .overlay-right{display:none!important;}
+
+      /* mobile “detail” panel that replaces the list */
+      .mobile-panel{
+        display:block;                 /* show only on mobile */
+        position:absolute; inset:0;    /* fill overlay-left */
+        background:var(--left-bg-mobile);
+        padding:28px 16px 40px 16px;
+        transform:translateX(100%);
+        transition:transform .28s ease;
+        overflow:auto;
+        z-index:2;                     /* above list, below close btn */
+      }
+      .mobile-panel.open{transform:translateX(0);}
+      .mp-head{
+        display:flex; align-items:center; justify-content:space-between;
+        padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile);
+        color:#fff; font-weight:800; letter-spacing:.5px;
+      }
+      .mp-title{color:#f5e6d3; font-size:14px; opacity:.9;}
+      .mp-back{
+        display:inline-flex; align-items:center; gap:6px;
+        font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer;
+      }
+      .mp-list{list-style:none; margin:14px 0 0; padding:0;}
+      .mp-list li{margin:0; border-bottom:1px solid var(--left-line-mobile);}
+      .mp-list a{
+        display:block; padding:14px 0;
+        color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px;
+      }
+
+      .left-search-label{color:#d9c8ac; font-size:15px;}
+      .left-search-input{color:#e9dec9; max-width:60vw; font-size:15px; border-bottom-color:var(--left-line-mobile);}
+      .left-search-results{color:#cbbfa8;}
+    }
+
+    /* Tap press-in effect */
+    .overlay-left .main-menu > li > a{display:inline-block; transition:transform .12s ease; will-change:transform;}
+    .overlay-left .main-menu > li > a:active{transform:translateX(6px);}
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{transform:translateX(6px);}
+  </style>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- ===== OVERLAY ===== -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <!-- LEFT MENU -->
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES">
+          <button class="link-btn" type="button">SERVICES</button>
+        </li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS">
+          <button class="link-btn" type="button">SECTORS</button>
+        </li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-dot" aria-hidden="true"></div>
+            <div class="left-search-label">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="">
+          </div>
+          <ul id="left-search-results" class="left-search-results"></ul>
+        </li>
+      </ul>
+
+      <!-- Mobile slide-in panel target -->
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- RIGHT PANELS (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+
+      /* ---------- explicit open/close state ---------- */
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      // Hamburger toggles (also acts as close when it's 'X')
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }
+      });
+
+      // Overlay built-in close button
+      overlayClose.addEventListener('click', closeOverlay);
+
+      // Click on empty overlay background closes
+      overlay.addEventListener('click', (e)=>{
+        if(e.target === overlay) closeOverlay();
+      });
+
+      // Clicking header area (not the burger) closes if open
+      document.querySelector('.header')?.addEventListener('click', (e)=>{
+        if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay();
+      });
+
+      // Esc closes (or backs out of mobile subpanel first)
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape' && isMenuOpen){
+          if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay();
+        }
+      });
+
+      // Desktop: open right column; Mobile: slide-in list
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn');
+        if(!btn)return;
+        e.preventDefault();
+        const li=btn.closest('.has-panel');
+        const panelId=li?.dataset.panel;
+        const title=li?.dataset.title || '';
+        const panel=panelId?document.getElementById(panelId):null;
+
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `
+            <div class="mp-head">
+              <div class="mp-title">${title}</div>
+              <button class="mp-back" type="button" aria-label="Back">&larr; Back</button>
+            </div>`;
+          mobilePanel.innerHTML = head;
+          if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      // Close overlay when a normal link is clicked (both desktop & mobile)
+      overlay.addEventListener('click', e=>{
+        const a = e.target.closest('a');
+        if(a && !a.closest('.has-panel')) closeOverlay();
+      });
+
+      /* ---------- mobile subpanel helpers ---------- */
+      function openMobilePanel(){
+        mainMenu.style.visibility='hidden';
+        mobilePanel.setAttribute('aria-hidden','false');
+        mobilePanel.classList.add('open');
+      }
+      function closeMobilePanel(){
+        mobilePanel.classList.remove('open');
+        mobilePanel.setAttribute('aria-hidden','true');
+        mobilePanel.innerHTML = '';       // clear content so nothing lingers
+        mainMenu.style.visibility='';
+      }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+
+      // Back button inside the mobile panel
+      mobilePanel.addEventListener('click', (e)=>{
+        const back = e.target.closest('.mp-back');
+        if(back){ e.preventDefault(); closeMobilePanel(); }
+      });
+
+      // If switching width while open, reset appropriately
+      mqMobile.addEventListener?.('change', ()=>{
+        closeMobilePanel();
+        panels.forEach(p=>p.classList.remove('open'));
+      });
+    })();
+  </script>
+</section>
+
+<br><br>
+
+
+  <!-- ==============================
+  AGRIPRENEURSHIP (SDS) — Mobile Responsive
+================================= -->
+<section id="sds-agripreneurship" aria-label="Agripreneurship at SDS">
+  <style>
+    /* ---------- NAMESPACE: #sds-agripreneurship ---------- */
+    #sds-agripreneurship {
+      --bg: #ffffff;
+      --ink: #111827;
+      --muted: #6b7280;
+      --panel: #f8fafc;
+      --line: #e5e7eb;
+      --accent: #ff4d6d;
+      --accent-2: #ff8c00;
+      --accent-3: #3b82f6;
+      --accent-4: #a855f7;
+      --ring: rgba(59,130,246,.2);
+      --radius-xl: 22px;
+      --shadow: 0 12px 30px rgba(17,24,39,.08), 0 4px 10px rgba(17,24,39,.06);
+      background: var(--bg);
+      color: var(--ink);
+      position: relative;
+      isolation: isolate;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    }
+
+    /* ---------- CONTAINER ---------- */
+    #sds-agripreneurship .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+    @media (max-width: 640px){
+      #sds-agripreneurship .container { padding: 40px 16px 56px; }
+    }
+
+    /* ---------- HERO ---------- */
+    #sds-agripreneurship .hero {
+      display: grid; gap: 28px; align-items: center;
+      grid-template-columns: 1fr;
+      padding: 16px 0 0;
+    }
+    #sds-agripreneurship .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 12px; border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,77,109,.12), rgba(59,130,246,.12));
+      color: #1f2937; font-weight: 700; letter-spacing: .35px;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    #sds-agripreneurship .kicker{
+font-size: clamp(24px, 4.2vw, 44px); /* bigger min/mid/max */
+  padding: 10px 24px;                     /* slightly taller/wider to match size */
+  letter-spacing: 0.5px;               /* optional: a hair more tracking for all-caps */
+  line-height: 1;                      /* keeps the pill tight */
+}
+    #sds-agripreneurship .title {
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 5vw, 58px);
+      line-height: 1.06;
+      letter-spacing: .2px;
+      color: #0b1220;
+      text-wrap: balance;
+    }
+    #sds-agripreneurship .title-underline {
+      width: 140px; height: 4px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      margin: 14px 0 0;
+      box-shadow: 0 2px 10px rgba(255,140,0,.25);
+    }
+    #sds-agripreneurship .subtitle {
+      color: var(--muted); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.8;
+      max-width: 58ch;
+    }
+
+    /* ---------- HERO MEDIA (floated beside intro; stacks on mobile) ---------- */
+    #sds-agripreneurship .hero-media {
+      position: relative;
+      aspect-ratio: 16/10;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    #sds-agripreneurship .hero-media img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    #sds-agripreneurship .float-right-static {
+      float: right;
+      width: clamp(260px, 38vw, 540px);
+      max-width: 90vw;
+      margin: 6px 0 16px 22px;
+    }
+    @media (max-width: 860px){
+      #sds-agripreneurship .float-right-static{
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 16px 0;
+      }
+    }
+
+    /* ---------- INTRO COPY ---------- */
+    #sds-agripreneurship .lead {
+      margin-top: 36px; font-size: clamp(16px, 1.8vw, 19px); color: #1f2937; line-height: 1.8;
+      max-width: 85ch;
+    }
+    #sds-agripreneurship .lead strong { color: #0b1220; }
+
+    /* ---------- PROCESS PILLS ---------- */
+    #sds-agripreneurship .process {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+      margin: 30px 0 6px;
+      clear: both; /* ensure wrapping clears the floated media */
+    }
+    @media (max-width: 1024px){
+      #sds-agripreneurship .process { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 760px){
+      #sds-agripreneurship .process { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 480px){
+      #sds-agripreneurship .process { grid-template-columns: repeat(2, 1fr); }
+    }
+    #sds-agripreneurship .chip {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px; padding: 10px 14px;
+      text-align: center; font-size: 14px; color: var(--muted);
+      box-shadow: 0 6px 16px rgba(17,24,39,.05);
+    }
+    #sds-agripreneurship .chip:nth-child(1){border-color: rgba(255,77,109,.5)}
+    #sds-agripreneurship .chip:nth-child(2){border-color: rgba(255,140,0,.5)}
+    #sds-agripreneurship .chip:nth-child(3){border-color: rgba(59,130,246,.5)}
+    #sds-agripreneurship .chip:nth-child(4){border-color: rgba(168,85,247,.5)}
+    #sds-agripreneurship .chip:nth-child(5){border-color: rgba(255,77,109,.5)}
+    #sds-agripreneurship .chip:nth-child(6){border-color: rgba(59,130,246,.5)}
+
+    /* ---------- FEATURE ROWS ---------- */
+    #sds-agripreneurship .features {
+      margin-top: 22px; display: grid; gap: 16px;
+    }
+    #sds-agripreneurship .feature {
+      display: grid; grid-template-columns: 64px 1fr; gap: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl); padding: 18px;
+      position: relative; overflow: clip;
+      transform: translateY(14px); opacity: 0;
+      transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .7s;
+      box-shadow: var(--shadow);
+    }
+    #sds-agripreneurship .feature.reveal { transform: translateY(0); opacity: 1; }
+    #sds-agripreneurship .feature::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2), var(--accent-3));
+    }
+    #sds-agripreneurship .icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      display: grid; place-items: center;
+      background: linear-gradient(180deg, rgba(255,77,109,.12), rgba(59,130,246,.12));
+      border: 1px solid var(--line);
+      color: #111827; font-size: 26px;
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    #sds-agripreneurship .feature h3 { margin: 2px 0 6px; color: #0b1220; font-size: 18px; }
+    #sds-agripreneurship .feature p { color: var(--muted); line-height: 1.75; font-size: 15px; }
+    @media (max-width: 480px){
+      #sds-agripreneurship .feature{ grid-template-columns:52px 1fr; padding:14px; border-radius:16px }
+      #sds-agripreneurship .icon{ width:52px; height:52px; font-size:22px; border-radius:12px; box-shadow:0 0 0 4px var(--ring) }
+      #sds-agripreneurship .feature h3{ font-size:16px }
+      #sds-agripreneurship .feature p{ font-size:14px }
+    }
+
+    /* ---------- METRICS ---------- */
+    #sds-agripreneurship .metrics {
+      margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    @media (max-width: 960px){
+      #sds-agripreneurship .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px){
+      #sds-agripreneurship .metrics { grid-template-columns: 1fr; }
+    }
+    #sds-agripreneurship .metric {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px; padding: 18px; text-align: center;
+      box-shadow: var(--shadow);
+      position: relative; overflow: hidden;
+    }
+    #sds-agripreneurship .metric::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent-4));
+    }
+    #sds-agripreneurship .metric .num {
+      font-weight: 800; font-size: clamp(22px, 4vw, 34px);
+      background: linear-gradient(90deg, #0b1220, #ff4d6d 45%, #3b82f6 80%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    #sds-agripreneurship .metric .label { color: var(--muted); font-size: 14px; letter-spacing:.35px }
+
+    /* ---------- REDUCED MOTION ---------- */
+    @media (prefers-reduced-motion: reduce){
+      #sds-agripreneurship .feature{transition:none}
+    }
+  </style>
+
+  <div class="container">
+    <!-- HERO (text only) -->
+    <div class="hero">
+      <div>
+        <span class="kicker">AGRIPRENEURSHIP</span>
+        <h2 class="title">From farmer collectives to market-ready enterprises</h2>
+        <div class="title-underline" aria-hidden="true"></div>
+        <p class="subtitle">
+          SDS builds strong, member-owned institutions that aggregate produce, unlock finance, and forge market linkages—
+          so smallholders capture more value and raise incomes with dignity.
+        </p>
+      </div>
+    </div>
+
+    <!-- STATIC HERO MEDIA floated to the right of the first paragraph -->
+    <div class="hero-media float-right-static" id="agri-pip" aria-hidden="false">
+      <img src="{{ url_for('static', filename='Images/hero2.jpg') }}" alt="Indian farmers in the field">
+    </div>
+
+    <!-- INTRO -->
+    <p class="lead">
+      <strong>Transforming farmers into entrepreneurs is the core aim of SDS.</strong>
+      Through collectivisation, smallholders negotiate fairer prices, reduce input costs,
+      and build reliable routes to market. For over a decade, SDS has worked at the grassroots
+      to promote Farmer Producer Organisations (FPOs) and Cluster-based Business Organisations,
+      creating an enabling ecosystem for the rural poor to thrive.
+    </p>
+
+    <!-- PROCESS -->
+    <div class="process" aria-label="Enterprise development process">
+      <div class="chip">Mobilise</div>
+      <div class="chip">Form FPO</div>
+      <div class="chip">Plan &amp; Finance</div>
+      <div class="chip">Aggregate &amp; Add Value</div>
+      <div class="chip">Link to Markets</div>
+      <div class="chip">Scale &amp; Govern</div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">🏛️</div>
+        <div>
+          <h3>Institution Building &amp; Compliance</h3>
+          <p>
+            Member-owned structures with bylaws, shareholder discipline, board processes, audits, and statutory filings.
+            Clear roles for the Board, CEO, and field teams ensure decisions remain transparent and farmer-first.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">🧭</div>
+        <div>
+          <h3>Business Planning &amp; Market Strategy</h3>
+          <p>
+            Bankable plans aligned to demand, with product-mix, margins, and cash-flow cycles mapped. Backward/forward
+            linkages with buyers, processors, and input firms drive predictable offtake and working-capital health.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">📦</div>
+        <div>
+          <h3>Aggregation, Logistics &amp; Value Addition</h3>
+          <p>
+            Procurement SOPs, primary processing, grading, packing, and last-mile delivery—so FPOs retain more value
+            within the chain and build brand trust with consistent quality.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">📚</div>
+        <div>
+          <h3>Capacity Building &amp; Extension</h3>
+          <p>
+            Governance, financial systems, record-keeping, and customer service training for boards, CEOs and staff.
+            Farmer field schools and peer cohorts embed good practices across clusters.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">💳</div>
+        <div>
+          <h3>Finance Access &amp; Risk Services</h3>
+          <p>
+            Credit readiness, working-capital planning, linkages to institutional finance, insurance and risk
+            mitigation—so FPOs invest and expand responsibly.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div class="icon" aria-hidden="true">🌾</div>
+        <div>
+          <h3>Climate Resilience &amp; Quality Assurance</h3>
+          <p>
+            Climate-smart agronomy, traceability, and quality standards to protect livelihoods and meet market
+            and regulatory requirements—building resilience and reputation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics" aria-label="Key highlights">
+      <div class="metric" data-reveal>
+        <div class="num">10+ Years</div>
+        <div class="label">Grassroots enterprise building</div>
+      </div>
+      <div class="metric" data-reveal>
+        <div class="num">Farmer-Owned</div>
+        <div class="label">Institutions with clear governance</div>
+      </div>
+      <div class="metric" data-reveal>
+        <div class="num">Market-Linked</div>
+        <div class="label">Demand-driven value chains</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Reveal-on-scroll for features & metrics
+    (function () {
+      const root = document.querySelector('#sds-agripreneurship');
+      if (!root) return;
+      const els = root.querySelectorAll('[data-reveal]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
+</section>
+
+<!-- ==============================
+  Ecosystem Image (Screen-fit) — Mobile Responsive
+  Uses --header-h if defined globally; falls back to 0px.
+================================= -->
+<section id="ecosystem-screen-fit" class="mode-contain" aria-label="Ecosystem of Support image">
+  <img
+    src="{{ url_for('static', filename='Images/Ecosystem.jpg') }}"
+    alt="Ecosystem of Support diagram by SDS"
+    loading="lazy" />
+</section>
+
+<style>
+  :root { --header-h: var(--header-h, 0px); } /* keeps compatibility if not set elsewhere */
+
+  #ecosystem-screen-fit {
+    min-height: calc(100vh - var(--header-h, 0px));
+    margin-top: var(--header-h, 0px);
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    overflow: hidden;
+    padding: 0 16px;
+  }
+
+  #ecosystem-screen-fit img {
+    display: block;
+    width: 60%;   /* desktop default */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    transition: transform .4s ease;
+  }
+  #ecosystem-screen-fit:hover img { transform: scale(1.01); }
+
+  /* Responsive scaling */
+  @media (max-width: 1200px){ #ecosystem-screen-fit img{ width: 70% } }
+  @media (max-width: 992px){  #ecosystem-screen-fit img{ width: 78% } }
+  @media (max-width: 768px){  #ecosystem-screen-fit img{ width: 86% } }
+  @media (max-width: 560px){  #ecosystem-screen-fit img{ width: 94% } }
+  @media (max-width: 400px){  #ecosystem-screen-fit img{ width: 98%; border-radius: 8px } }
+</style>
+
+
+  <!-- Footers -->
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <a href="{{ url_for('home') }}">
+          <img src="static/Images/tttttttttt.png" alt="SDS Logo" class="logo-f">
+        </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li><a href="/career" tabIndex="0">Join Us</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
+            <li tabIndex="0">Fishery Development</li>
+            <li tabIndex="0">Rural Finance</li>
+            <li tabIndex="0">Value Chain Development</li>
+            <li tabIndex="0">Marketing</li>
+            <li tabIndex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

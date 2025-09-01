@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPO Management & Development | Empowering Rural Communities</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- GLOBAL spacing helpers (keeps overlay flush to header but adds section gaps) -->
+  <style>
+    :root { --section-gap: clamp(24px, 5vw, 64px); }
+
+    /* First content section starts below fixed header + extra gap */
+    #sds-navigation + section {
+      margin-top: calc(var(--header-h) + var(--section-gap));
+    }
+    /* Spacing between all following sections */
+    #sds-navigation + section ~ section {
+      margin-top: var(--section-gap);
+    }
+    /* Anchor jumps account for sticky header */
+    #sds-navigation ~ section {
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+.logo-f{ height:75px; }
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+  </style>
+</head>
+
+<body>
+<!-- ======================= NAVIGATION (fixed) ======================= -->
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+<!-- ===================== END NAV ===================== -->
+
+
+<!-- ===================== FPO SECTION ===================== -->
+<section id="sds-fpo" aria-label="FPO Management & Development">
+  <style>
+    #sds-fpo{
+      --bg:#ffffff; --ink:#0e1116; --muted:#5b6876; --brand:#0ea5e9; --brand-2:#22c55e; --accent:#7c3aed;
+      --ring:rgba(14,165,233,.18); --panel:#f8fafc; --shadow:0 10px 24px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.06);
+      --radius:20px; --radius-lg:24px; --wrap:min(1180px,94vw); --gap:clamp(16px,2.6vw,28px);
+      background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      padding:clamp(24px,4vw,56px) 0; isolation:isolate;
+    }
+    #sds-fpo .wrap{ width:var(--wrap); margin-inline:auto; display:grid; gap:var(--gap); }
+
+    /* Hero */
+    #sds-fpo .hero{ position:relative; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--ring);
+      background:#0b1825; min-height: clamp(360px, 52vw, 540px); display:grid; place-items:stretch; color:#fff; }
+    #sds-fpo .hero .slides{ position:absolute; inset:0; overflow:hidden; z-index:0; }
+    #sds-fpo .hero .slides img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 900ms ease; filter:contrast(1.05) saturate(1.05); }
+    #sds-fpo .hero .slides img.active{ opacity:1; }
+    #sds-fpo .hero::after{ content:""; position:absolute; inset:0; background:
+        radial-gradient(1200px 400px at 20% 100%, rgba(14,165,233,.25), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55)); z-index:0; pointer-events:none; }
+    #sds-fpo .hero .content{ position:relative; z-index:1; display:grid; align-content:center; padding:clamp(18px,4vw,36px); gap:clamp(10px,1.8vw,16px); max-width:900px; }
+    #sds-fpo .hero .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px; width:max-content; color:#0a2030; background:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.5); backdrop-filter: blur(4px); }
+    #sds-fpo .hero h1{ margin:0; font-size:clamp(28px,4.8vw,52px); line-height:1.06; letter-spacing:.2px; font-weight:850; }
+    #sds-fpo .hero .shine{ background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--accent),var(--brand)); background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 1px 0 rgba(255,255,255,.2)); animation:fpo-shine 7s ease-in-out infinite; }
+    @keyframes fpo-shine{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    #sds-fpo .hero p{ margin:0; font-size:clamp(14px,1.6vw,18px); opacity:.95; max-width:80ch; }
+
+    /* About */
+    #sds-fpo .about{ display:grid; gap:clamp(12px,2vw,16px); border:1px solid var(--ring); border-radius:var(--radius-lg); background:#fff; box-shadow:var(--shadow); padding:clamp(16px,2.6vw,26px); }
+    #sds-fpo .about .title{ margin:0; font-size:clamp(20px,2.2vw,28px); letter-spacing:.2px; }
+    #sds-fpo .about .grid{ display:grid; gap:clamp(12px,2vw,18px); grid-template-columns:1.3fr .9fr; }
+    @media (max-width:900px){ #sds-fpo .about .grid{ grid-template-columns:1fr; } }
+    #sds-fpo .about .text{ display:grid; gap:10px; color:var(--muted); font-size:clamp(14px,1.45vw,16px); }
+    #sds-fpo .about .media{ border-radius:18px; overflow:hidden; position:relative; aspect-ratio:4/3; background:#f2f6fb; border:1px solid var(--ring); }
+    #sds-fpo .about .media img{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); }
+
+    /* Services */
+    #sds-fpo .services{ display:grid; gap:clamp(12px,2vw,18px); border:1px solid var(--ring); border-radius:var(--radius-lg); background:linear-gradient(180deg,#fbfdff 0%,#ffffff 100%); box-shadow:var(--shadow); padding:clamp(16px,2.6vw,26px); }
+    #sds-fpo .services .title{ margin:0; font-size:clamp(20px,2.2vw,28px); }
+    #sds-fpo .services .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,2vw,18px); }
+    @media (max-width:1000px){ #sds-fpo .services .grid{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:560px){ #sds-fpo .services .grid{ grid-template-columns:1fr; } }
+    #sds-fpo .card{ border:1px solid var(--ring); border-radius:16px; background:#fff; padding:clamp(12px,1.8vw,16px); display:grid; gap:8px; transition:transform .25s, box-shadow .25s, border-color .25s; }
+    #sds-fpo .card:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(0,0,0,.12), 0 6px 16px rgba(0,0,0,.08); border-color:rgba(14,165,233,.32); }
+    #sds-fpo .card h3{ margin:0; font-size:clamp(15px,1.7vw,18px); display:flex; align-items:center; gap:10px; }
+    #sds-fpo .card p{ margin:0; color:var(--muted); font-size:clamp(13px,1.35vw,15px); }
+    #sds-fpo .icon{ width:22px; height:22px; flex:0 0 22px; color:var(--brand); }
+    #sds-fpo .icon svg{ width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    #sds-fpo .icon .dash{ stroke-dasharray:120; stroke-dashoffset:120; }
+    #sds-fpo .card.show .icon .dash{ animation: dash 1.2s ease forwards; }
+    @keyframes dash{ to{ stroke-dashoffset:0; } }
+    #sds-fpo .card .float{ animation: float 4.6s ease-in-out infinite; transform-origin:50% 50%; }
+    @keyframes float{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-2px) } }
+    #sds-fpo .reveal{ opacity:0; transform:translateY(10px); transition:opacity .6s, transform .6s; }
+    #sds-fpo .reveal.show{ opacity:1; transform:none; }
+    @media (prefers-reduced-motion:reduce){ #sds-fpo *{ animation:none!important; transition:none!important; } #sds-fpo .hero .slides img{ opacity:1!important; } }
+  </style>
+
+  <div class="wrap">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="slides" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1558919049-7a69e3a5a1e2?q=80&w=1600&auto=format&fit=crop" alt="" class="active">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" alt="">
+      </div>
+      <div class="content">
+        <span class="kicker">FPO Management & Development</span>
+        <h1>Empowering Rural Communities <span class="shine">Through Collective Enterprise</span></h1>
+        <p>We unite smallholder farmers in Eastern and North-Eastern India under Farmer Producer Organizations (FPOs) to create sustainable livelihoods and drive rural development.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <h2 class="title">Where We Come In</h2>
+      <div class="grid">
+        <div class="text">
+          <p class="reveal">SDS's core focus revolves around mitigating vulnerability through the promotion of collectivization. We manage and develop community enterprises to foster sustainable businesses and entrepreneurial ventures at the grassroots level.</p>
+          <p class="reveal">Our approach focuses on empowering rural communities, particularly smallholder farmers, through the formation and promotion of community-owned enterprises such as Farmer Producer Organizations (FPOs) and Producer Groups (PGs). These collectives help in advancing rural development and creating sustainable solutions to rural livelihood challenges.</p>
+          <p class="reveal">By uniting small and marginal farmers under a common umbrella, we enhance their bargaining power, improve access to markets, and increase their income potential while reducing individual risk.</p>
+        </div>
+        <figure class="media reveal">
+          <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1600&auto=format&fit=crop" alt="Farmers working together in a field">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services" style="background-color:#fff;">
+      <h2 class="title">Our Comprehensive Support</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path class="dash" d="M3 7l9-4 9 4-9 4-9-4zM3 7v5l9 4 9-4V7"/><path class="float" d="M8 14v4m8-4v4"/></svg>
+          </span>Knowledge, Skill & Technology</h3>
+          <p>We provide training programs and access to modern agricultural technologies to enhance productivity and efficiency.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path class="dash" d="M8 7h6a3 3 0 010 6H9a3 3 0 100 6h7"/><path class="float" d="M12 3v18"/></svg>
+          </span>Income Enhancement</h3>
+          <p>Our programs focus on increasing farmers' income through better practices, value addition, and market linkages.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path class="dash" d="M3 9l2-4h14l2 4v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path class="float" d="M7 13h10M7 17h6"/></svg>
+          </span>Marketing Support</h3>
+          <p>We help FPOs access better markets, negotiate fair prices, and develop branding for their products.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle class="dash" cx="7" cy="17" r="3"/><circle class="dash" cx="18" cy="17" r="3"/><path class="dash" d="M10 17h5m-8-6h7l2 2h5"/><path class="float" d="M4 11h3"/></svg>
+          </span>Farm Equipment</h3>
+          <p>We facilitate access to modern farming equipment through shared resource centers and equipment banks.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect class="dash" x="3" y="6" width="18" height="12" rx="2"/><path class="float" d="M3 10h18"/><path class="dash" d="M8 14h4"/></svg>
+          </span>Financial Services</h3>
+          <p>We connect farmers with financial institutions for credit, savings, and other financial services.</p>
+        </article>
+
+        <article class="card reveal">
+          <h3><span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path class="dash" d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/><path class="float" d="M9.5 13.5l1.8 1.8 3.2-3.8"/></svg>
+          </span>Insurance Solutions</h3>
+          <p>We provide access to crop and health insurance products to mitigate risks and protect livelihoods.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const host = document.getElementById('sds-fpo');
+      if(!host) return;
+
+      /* Hero slideshow */
+      const imgs = Array.from(host.querySelectorAll('.hero .slides img'));
+      let idx = 0, timer = null;
+      const next = () => { imgs[idx].classList.remove('active'); idx = (idx + 1) % imgs.length; imgs[idx].classList.add('active'); };
+      const start = () => { stop(); if(imgs.length > 1) timer = setInterval(next, 5000); };
+      const stop  = () => { if(timer) clearInterval(timer); timer = null; };
+
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver(es=>{ es.forEach(e => e.isIntersecting ? start() : stop()); }, {threshold:.3});
+        io.observe(host.querySelector('.hero'));
+      } else { start(); }
+
+      const hero = host.querySelector('.hero');
+      hero.addEventListener('mouseenter', stop);
+      hero.addEventListener('mouseleave', start);
+      hero.addEventListener('focusin', stop);
+      hero.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+
+      /* Scroll reveal */
+      const reveals = Array.from(host.querySelectorAll('.reveal, .card'));
+      reveals.forEach(el => el.classList.remove('show'));
+      if('IntersectionObserver' in window){
+        const rio = new IntersectionObserver(es=>{
+          es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); rio.unobserve(e.target);} });
+        }, {threshold:.15});
+        reveals.forEach(el => rio.observe(el));
+      } else { reveals.forEach(el => el.classList.add('show')); }
+    })();
+  </script>
+</section>
+<!-- ===================== END FPO SECTION ===================== -->
+
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+    <div class="logo-container-f">
+      <a href="{{ url_for('home') }}">
+        <img src="static/Images/tttttttttt.png" alt="SDS Logo" class="logo-f">
+      </a>
+    </div>
+
+    <div class="footer-left">
+      <div class="footer-social" aria-label="Social media links">
+        <button aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+        <button aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+        <button aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+        <button aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+        <button aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+      </div>
+    </div>
+
+    <div class="footer-columns" aria-label="Footer navigation">
+      <nav class="footer-column" aria-labelledby="footer-legal">
+        <h3 id="footer-legal">SECTORS</h3>
+        <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-careers">
+        <h3 id="footer-careers">CAREERS</h3>
+        <ul>
+          <li><a href="Career.html">Join Us</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-contact">
+        <h3 id="footer-contact">Company</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about us.html">About Us</a></li>
+          <li>Sectors</li>
+          <li><a href="Research.html">Publication</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-products">
+        <h3 id="footer-products">Services</h3>
+        <ul>
+          <li><a href="fpo.html">FPO Management</a></li>
+          <li>Agricultural Development</li>
+          <li>Fishery Development</li>
+          <li>Rural Finance</li>
+          <li>Value Chain Development</li>
+          <li>Marketing</li>
+          <li>All Services</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+    <div class="links">
+      <a href="#">Code of Conduct</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Accessibility</a>
+    </div>
+    <div class="copyright">© 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- (optional) your app script -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

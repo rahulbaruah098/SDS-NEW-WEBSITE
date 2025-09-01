@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SDS - Contact Page </title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto&display=swap');
+
+        /* Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #fff; color: #111; line-height: 1.5; font-size: 1rem;
+        }
+        strong { font-weight: 700; }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        /* Main container */
+        .page-wrapper { max-width: 1240px; margin: 0 auto; padding: 0 16px 64px; }
+
+        /* Region tabs */
+        .region-tabs {
+            margin-top: 48px; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+        }
+        .region-tab {
+            background-color: #0a0c0f; color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700;
+            font-size: 1rem; padding: 12px 32px; cursor: pointer; user-select: none; transition: background-color 0.3s; white-space: nowrap;
+        }
+        .region-tab.active { background-color: #ff677d; color: #fff; }
+        .region-tab:not(.active):hover { background-color: #222426; }
+
+        /* Offices container */
+        .offices-container {
+            margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px 16px;
+        }
+        .office-card { border: 1px solid #eee; padding: 16px 18px 20px; }
+        .office-card strong { display: block; font-family: 'Oswald', sans-serif; margin-bottom: 6px; font-weight: 700; }
+        .office-address { font-size: 0.9rem; line-height: 1.3; }
+
+        .logo-f { height: 75px; }
+
+        /* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+
+        /* Contact offices colored section */
+        .contact-offices {
+            max-width: 1240px; margin: 56px auto 56px auto; padding: 0 16px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+        }
+        .contact-office { flex: 1 1 290px; padding: 24px; font-size: 0.95rem; color: #111; }
+        .contact-office strong {
+            font-family: 'Oswald', sans-serif; font-size: 1.2rem; text-transform: uppercase; display: block; margin-bottom: 12px; font-weight: 700;
+        }
+        .contact-office:nth-child(1){ background-color: #fae4ca; }
+        .contact-office:nth-child(2){ background-color: #ff677d; color: white; }
+        .contact-office:nth-child(2) strong, .contact-office:nth-child(2) p { color: white; }
+        .contact-office:nth-child(3){ background-color: #5a6a60; color: #f2e4cb; }
+        .contact-office:nth-child(3) strong, .contact-office:nth-child(3) p { color: #f2e4cb; }
+
+        /* 24x7 support section */
+        .support-section { max-width: 1840px; margin: 100px auto 100px; display: flex; flex-wrap: wrap; }
+        .support-left, .support-right { flex: 1 1 500px; }
+        .support-left { background-color: #0a0c0f; display: flex; justify-content: center; align-items: center; }
+        .support-left img { width: 90%; height: auto; object-fit: cover; display: block; }
+        .support-right {
+            background-color: #5a6a60; padding: 56px 48px; color: #f2e4cb; display: flex; flex-direction: column; justify-content: center;
+        }
+        .support-right strong.title { font-family: 'Oswald', sans-serif; font-size: 2.8rem; line-height: 1; margin-bottom: 24px; }
+        .support-right p { font-size: 1.1rem; margin-bottom: 20px; }
+        .helpdesk-btn {
+            align-self: start; padding: 12px 30px; border: 1px solid #f2e4cb; background: none; color: inherit; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.8px;
+            text-transform: uppercase; border-radius: 0; line-height: 1; transition: background-color 0.3s, color 0.3s; cursor: pointer;
+        }
+        .helpdesk-btn:hover { background-color: #f2e4cb; color: #5a6a60; }
+
+        /* Inquiry/contact blocks */
+        .enquiry-section { max-width: 1240px; margin: 0 auto 48px; display: flex; gap: 24px; flex-wrap: wrap; }
+        .enquiry-card { flex: 1 1 400px; color: #111; padding: 24px; font-size: 1rem; display: flex; flex-direction: column; border-radius: 0; }
+        .enquiry-card.sales { background-color: #fae4ca; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+        .enquiry-card.portal { background-color: #ff677d; color: white; border-bottom: 1px solid #ddd; }
+        .enquiry-card h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; margin-bottom: 12px; }
+        .enquiry-card p { flex-grow: 1; }
+        .enquiry-card a { margin-top: 18px; border-top: 1px solid currentColor; font-weight: 700; font-size: 0.95rem; padding-top: 10px; width: max-content; }
+
+        /* Breadcrumb line */
+        .breadcrumb {
+            max-width: 1240px; font-size: 0.8rem; color: #222; padding: 16px 16px 5px; font-family: 'Roboto', serif; display: flex; align-items: center; gap: 8px; user-select: none;
+        }
+        .breadcrumb a { font-weight: 700; color: #111; }
+        .breadcrumb span { color: #777; }
+
+        /* Contact Heading on image + dark bg */
+        .contact-header-section {
+            height: 320px; display: flex; flex-wrap: nowrap; overflow: hidden; max-width: 1240px; margin: 48px auto 32px auto;
+        }
+        .contact-header-left {
+            background-color: #0a0c0f; color: #fae4ca; flex: 1 1 360px; padding: 48px 40px; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; font-size: 2.8rem; letter-spacing: 2px;
+        }
+        .contact-header-right { flex: 3 1 580px; overflow: hidden; }
+        .contact-header-right img { width: 100%; height: 100%; object-fit: cover; vertical-align: middle; aspect-ratio: 4 / 3; }
+
+        @media (max-width: 1024px) {
+            .support-section { flex-direction: column; }
+            .support-left, .support-right { flex: 1 1 100%; text-align: center; }
+            .support-right { padding: 32px 20px; align-items: center; }
+            .support-right strong.title { font-size: 2rem; }
+            .helpdesk-btn { align-self: center; }
+        }
+        @media (max-width: 768px) {
+            .enquiry-section { flex-direction: column; gap: 16px; }
+            .enquiry-card { flex: 1 1 100%; }
+            .contact-offices { flex-direction: column; gap: 16px; }
+            .contact-office { flex: 1 1 100%; }
+
+            .main-container { flex-direction: column; align-items: center; text-align: center; }
+            .main-container .left-section { padding: 20px; }
+            .main-container h1 { font-size: 2rem; }
+            .main-container img.right-image { width: 100%; max-width: 400px; margin-top: 20px; }
+
+            .breadcrumb { font-size: 0.7rem; justify-content: center; }
+            .contact-header-section { flex-direction: column; height: auto; }
+            .contact-header-left { font-size: 1.6rem; padding: 24px; }
+            .contact-header-right img { aspect-ratio: auto; height: auto; }
+        }
+        @media (max-width: 480px) {
+            .support-right strong.title { font-size: 1.6rem; }
+            .support-right p { font-size: 0.9rem; }
+            .helpdesk-btn { font-size: 0.75rem; padding: 10px 20px; }
+            .contact-office { font-size: 0.85rem; padding: 16px; }
+        }
+
+        @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
+        @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.1)} 100%{transform:scale(1)} }
+
+        @media (max-width: 768px) {
+            .faq-section { padding: 40px 16px; border-radius: 16px; }
+            .faq-header h2 { font-size: 2.2rem; }
+            .faq-question { padding: 18px 20px; }
+            .faq-question h3 { font-size: 1.1rem; }
+            .question-icon { font-size: 1.2rem; margin-right: 12px; }
+            .contact-button { padding: 16px 28px; font-size: 1rem; }
+        }
+
+        @media only screen and (max-width: 840px) {
+            .region-tabs { justify-content: center; }
+            .footer-main { gap: 24px; justify-content: center; }
+            .footer-logo-col { flex: 1 0 100%; }
+            .footer-col { flex: 1 0 40%; }
+            .contact-offices { flex-direction: column; gap: 20px; }
+            .support-section { flex-direction: column; }
+            .support-left { order: 2; }
+            .support-right { order: 1; padding: 40px 24px; }
+            .enquiry-section { flex-direction: column; }
+            .breadcrumb { padding-left: 8px; padding-right: 8px; }
+            .contact-header-section { flex-direction: column; height: auto; }
+            .contact-header-left { padding: 32px 24px; font-size: 2rem; text-align: center; flex: none; }
+            .contact-header-right img { aspect-ratio: auto; height: 240px; width: 100%; object-fit: cover; }
+        }
+
+        .font-extrabold { font-weight: 900; }
+        .text-8xl { font-size: 5rem; line-height: 1.1; }
+        .bg-dark { background-color: #0a1128; }
+        .text-cream { color: #f5e2c8; }
+
+        html, body { margin: 0; padding: 0; overflow-x: hidden; font-family: 'Arial', sans-serif; }
+
+        .left-section { display: flex; flex-direction: column; justify-content: flex-start; height: 100vh; padding: 3rem 4rem; box-sizing: border-box; background-color: black; }
+        .contact-small { font-weight: 700; font-size: 1.125rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4rem; color: #f5e2c8; }
+
+        .main-container { display: flex; width: 100vw; height: 100vh; }
+        .right-image { width: 60vw; height: 100vh; object-fit: cover; object-position: center; }
+
+        .map-section {
+            padding: 80px 20px; background: linear-gradient(135deg, #f8fafc, #e2e8f0); text-align: center; position: relative; overflow: hidden;
+        }
+        .map-title { font-size: 2rem; font-weight: bold; margin-bottom: 10px; color: #1e293b; opacity: 0; animation: slideUp 1s ease forwards; animation-delay: 0.2s; }
+        .map-subtitle { font-size: 1.1rem; color: #475569; margin-bottom: 30px; opacity: 0; animation: slideUp 1s ease forwards; animation-delay: 0.5s; }
+        .map-container { max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transform: translateY(40px); opacity: 0; animation: fadeInUp 1.5s ease forwards; animation-delay: 1s; }
+
+        @keyframes slideUp { 0%{opacity:0;transform:translateY(40px)} 100%{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInUp { 0%{opacity:0;transform:translateY(60px) scale(0.95)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+
+        /* (Old) .overlay from earlier code kept if needed elsewhere */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #356d63; z-index: 9999; margin: 0; padding: 0; display:none; }
+
+        @media (max-width: 960px) {
+            .main-container { flex-direction: column; height: auto; }
+            .left-section { height: auto; padding: 2rem; }
+            .right-image { width: 100vw; height: 300px; }
+            .text-8xl { font-size: 3rem; }
+            .contact-small { margin-bottom: 2rem; }
+        }
+
+        /* FAQ section (scoped) */
+        .faq-section-wrapper { padding: 60px 20px; background: #f8fafc; display: flex; justify-content: center; }
+        .faq-section { max-width: 900px; width: 100%; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; }
+        .faq-header { text-align: center; margin-bottom: 40px; }
+        .faq-header h2 { font-size: 2.2rem; color: #1e293b; margin-bottom: 12px; font-weight: 700; }
+        .faq-header .subtitle { font-size: 1rem; color: #64748b; max-width: 500px; margin: 0 auto; }
+        .faq-container { display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { border-radius: 12px; overflow: hidden; background: #f8fafc; border: 1px solid #e2e8f0; transition: all 0.3s ease; opacity: 0; transform: translateY(20px); }
+        .faq-item.active { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #c7d2fe; }
+        .faq-item.in-view { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .faq-question { padding: 20px; display: flex; align-items: center; cursor: pointer; }
+        .faq-question:hover { background: rgba(199,210,254,0.1); }
+        .question-icon { font-size: 1.5rem; margin-right: 16px; width: 40px; text-align: center; }
+        .faq-question h3 { font-size: 1.1rem; font-weight: 600; color: #1e293b; flex: 1; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+        .faq-answer p { padding: 0 20px 20px 76px; color: #475569; }
+        .faq-answer a { color: #4f46e5; text-decoration: none; }
+        .faq-answer a:hover { color: #3730a3; text-decoration: underline; }
+        .faq-cta { text-align: center; margin-top: 40px; }
+        .contact-button {
+            background: #4f46e5; color: #fff; border: none; padding: 14px 28px; border-radius: 50px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(79,70,229,0.2);
+        }
+        .contact-button:hover { background: #3730a3; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(79,70,229,0.3); }
+        .button-icon { font-size: 1.2rem; }
+
+        @media (max-width: 768px) {
+            .faq-section { padding: 24px; }
+            .faq-header h2 { font-size: 2rem; }
+            .faq-answer p { padding: 0 16px 16px 60px; }
+            .question-icon { width: 32px; margin-right: 12px; }
+        }
+        @media (max-width: 480px) {
+            .faq-question h3 { font-size: 1rem; }
+            .faq-answer p { padding: 0 16px 16px 16px; }
+            .question-icon { display: none; }
+        }
+
+        /* Inquiry Section Styles */
+        .inquiry-section { font-family: 'Inter', sans-serif; padding: 40px 20px; background: #fff; }
+        .inquiry-container { max-width: 900px; margin: auto; text-align: center; }
+        .inquiry-subtitle { color: #666; margin-bottom: 30px; }
+        .inquiry-form { text-align: left; }
+        .form-card { background: #f9fafb; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .form-card h3 { font-size: 18px; margin-bottom: 20px; color: #1a1a1a; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 14px; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .submit-wrap { text-align: center; margin-top: 20px; }
+        .submit-wrap button { background: #22543d; color: #fff; font-size: 16px; font-weight: 600; padding: 14px 30px; border-radius: 8px; border: none; cursor: pointer; }
+        .submit-wrap button:hover { background: #1a3c2d; }
+        .note { font-size: 13px; color: #666; margin-top: 10px; }
+
+        .newsletter-group { margin: 30px auto; text-align: center; font-family: "Segoe UI", Tahoma, sans-serif; max-width: 600px; }
+        .newsletter-label { display: inline-block; position: relative; padding-left: 28px; cursor: pointer; font-size: 15px; font-weight: 500; color: #2c3e50; line-height: 1.5; }
+        .newsletter-label input { position: absolute; opacity: 0; cursor: pointer; }
+        .checkmark { position: absolute; left: 0; top: 3px; height: 18px; width: 18px; background-color: #f1f1f1; border: 2px solid #ccc; border-radius: 4px; transition: all 0.3s ease; }
+        .newsletter-label:hover .checkmark { border-color: #007bff; }
+        .newsletter-label input:checked ~ .checkmark { background-color: #007bff; border-color: #007bff; }
+        .checkmark:after { content: ""; position: absolute; display: none; }
+        .newsletter-label input:checked ~ .checkmark:after { display: block; }
+        .checkmark:after { left: 5px; top: 1px; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+        .helper-text { display: block; margin-top: 6px; font-size: 13px; color: #777; }
+
+        .inquiry-title {
+            font-family: "Segoe UI", Tahoma, sans-serif; font-size: 28px; font-weight: 700; color: #2c3e50; text-align: center; position: relative; margin: 40px 0 25px;
+            opacity: 0; transform: translateY(20px); animation: fadeUp 1s ease forwards;
+        }
+        .inquiry-title::after {
+            content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: #007bff; border-radius: 2px; animation: expandLine 1s ease 0.5s forwards; opacity: 0;
+        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes expandLine { from { width: 0; opacity: 0; } to { width: 60px; opacity: 1; } }
+
+        .faq-animate { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-in-out; }
+        .faq-animate.visible { opacity: 1; transform: translateY(0); }
+        .faq-animate h2:hover, .faq-animate .subtitle:hover {
+            color: #2200ff; transform: scale(1.05); text-shadow: 0 0 10px rgba(0,13,255,0.718); transition: all 0.3s ease-in-out;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+<!-- NOTE: Removed the extra top <header class="header"> to prevent the “moving” logo. -->
+
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+
+
+    <!-- Section below navigation bar with left text and right image -->
+    <section class="main-container" style="margin-top: var(--header-h);">
+        <div class="left-section"><br><br><br><br><br>
+            <div class="contact-small" aria-label="Contact ITQ small heading">CONTACT SDS</div>
+            <br><br><br><br><br><br>
+            <h1 class="text-8xl font-extrabold text-cream" aria-label="Get in Touch main heading">GET IN TOUCH</h1>
+        </div>
+        <img src="top-view-email-icon-with-two-messages.jpg"
+            alt="Two people sitting in a small boat on a river or lake surrounded by lush green trees, looking at a tall giraffe standing near the water edge under a partly cloudy sky"
+            class="right-image"
+            onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b77df47-10e7-458d-9f9c-d3d2f8d7d9a1.png';" />
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="{{ url_for('home') }}" tabindex="0">Home</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">GET IN TOUCH</span>
+    </nav>
+
+    <br>
+
+    <!-- Inquiry Section -->
+    <section class="enquiry-section" aria-label="Customer inquiry and portal section">
+        <article class="enquiry-card sales" tabindex="0">
+            <h3>HR-OFFICE HQ</h3>
+            <p>Tell us about your enquiry and we’ll be in touch right away.</p>
+            <a href="#" aria-label="Contact sales">Contact sales</a>
+        </article>
+        <article class="enquiry-card portal" tabindex="0">
+            <h3>CUSTOMER-CARE</h3>
+            <p>Our customer portal for information, services and support.</p>
+            <a href="#" aria-label="Visit the portal">Visit the portal</a>
+        </article>
+    </section>
+
+    <!-- 24x7 SUPPORT Section -->
+    <section class="support-section" aria-label="24x7 support information">
+        <div class="support-left">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0e461405-2b19-46c0-b69a-d3d53e1f1f65.png"
+                alt="Two people kayaking on a river with a giraffe standing near the shore in a green nature reserve"
+                onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c1708e63-81da-45b0-aa78-1d82d1c2d147.png';" />
+        </div>
+        <div class="support-right">
+            <strong class="title">24x7 SUPPORT</strong>
+            <p style="color: black !important;">
+                SDS - SAYANANT DEVELOPENT SERVICES <br />
+                <small>(A PARTY OF SAYANANT GROUP)</small> <br />
+                <strong>Head Office</strong> <br />
+                H.No- 2, Bishnu Jyoti Nagar, Dharapur,<br />
+                Guwahati, Assam 781017, India
+            </p>
+            <button class="helpdesk-btn" aria-label="Go to helpdesk">HELPDESK</button>
+        </div>
+    </section>
+
+    <!-- Contact offices color blocks -->
+    <section class="contact-offices" aria-label="Office contact information">
+        <article class="contact-office" id="office-registered">
+            <strong>Tripura</strong>
+            <p>
+                SDS Tripura.<br />
+                1st Floor, Space No. 4, Scindia House,<br />
+                Outer Circle, Connaught Place,<br />
+                New Delhi - 110001
+            </p>
+        </article>
+        <article class="contact-office" id="office-corporate">
+            <strong>Mizoram</strong>
+            <p>
+                SDS - Sesta Development Services<br />
+                Ainwn Veng<br />
+                Aizawl-Mizoram,796009,India<br />
+                <strong>Tel : </strong>+91 87980 42242<br />
+                <strong>Email : </strong>sonali@sdsindia.in
+            </p>
+        </article>
+        <article class="contact-office" id="office-srilanka">
+            <strong>Manipur</strong>
+            <p>
+                SDS Lanka (Pvt) Ltd.<br />
+                3rd Floor, HQ Colombo, 464A, T.B.Jayah Mawatha, Colombo 10, Sri Lanka<br />
+                Postal Code – 01000<br />
+                <strong>Tel :</strong> +94 11 7555155<br />
+                <strong>Fax :</strong> +94 11 2555160
+            </p>
+        </article>
+    </section>
+
+    <section class="map-section">
+        <div class="map-content">
+            <h2 class="map-title">📍 Our Head Office Location</h2>
+            <p class="map-subtitle">Visit us at Sayanant Development Services</p>
+
+            <div class="map-container reveal">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.799696651722!2d91.62166457486853!3d26.13807319295175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8937596a197b5a9b%3A0x7e5b0731ea26c7!2sSayanant%20Development%20Services!5e0!3m2!1sen!2sin!4v1755493814713!5m2!1sen!2sin"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+
+    <!-- Smart Inquiry System Section -->
+    <section class="inquiry-section">
+        <div class="inquiry-container">
+            <h2 class="inquiry-title">Smart Inquiry System</h2>
+            <p class="inquiry-subtitle">Tell us about your project and we'll connect you with the right experts</p>
+            <form class="inquiry-form">
+                <div class="form-card">
+                    <h3><i class="fas fa-user"></i> Contact Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" placeholder="Dr. Rajesh Kumar" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Organization *</label>
+                            <input type="text" placeholder="Ministry of Agriculture" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" placeholder="rajesh.kumar@gov.in" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label>Position/Title</label>
+                            <input type="text" placeholder="Director, Agricultural Development">
+                        </div>
+                        <div class="form-group">
+                            <label>Stakeholder Type *</label>
+                            <select required>
+                                <option>Select stakeholder type</option>
+                                <option>Government</option>
+                                <option>NGO</option>
+                                <option>Private Sector</option>
+                                <option>Research Institution</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Project Description *</label>
+                    <textarea
+                        placeholder="Please describe your project objectives, target beneficiaries, expected outcomes, and any specific requirements..."
+                        required></textarea>
+                </div>
+        </div>
+
+        <div class="form-group newsletter-group">
+            <label class="newsletter-label">
+                <input type="checkbox" class="newsletter-checkbox">
+                <span class="checkmark"></span>
+                Subscribe to our newsletter for development insights and project updates
+            </label>
+        </div>
+
+        <div class="faq-cta">
+            <button class="contact-button">
+                <span>SUBMIT ENQUIRY</span>
+            </button>
+        </div>
+        <center>
+            <p class="note">We'll respond within 24 hours with next steps and relevant team member contact information.</p>
+        </center>
+        </div>
+        </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section-wrapper">
+        <div class="faq-section">
+            <div class="faq-header faq-animate">
+                <h2>Frequently Asked Questions</h2>
+                <p class="subtitle">Get the scoop on everything SDS India!</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">💡</div>
+                        <h3>What services does SDS India offer?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>SDS India specializes in consulting, project management, and implementation in Agriculture, Fishery, Poultry, Livestock, Aromatic & Medicinal plants, and Dairy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">🏭</div>
+                        <h3>What industries does SDS India cater to?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We cater to multiple industries, including agri, rural development, and sustainable business models. Our team works closely with clients to ensure impactful and sustainable solutions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">✨</div>
+                        <h3>Does SDS India offer custom solutions for businesses?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, every organization has unique needs. We provide custom solutions tailored to specific goals and challenges of your business.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">📞</div>
+                        <h3>How can I get in touch with SDS India for business inquiries?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach us via the contact form, email <a href="mailto:info@sdsindia.in">info@sdsindia.in</a>, or call +91 99573 67398 during business hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">📍</div>
+                        <h3>Where is SDS India located?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our head office is at House No.02, Second Floor, Bishnujyoti Nagar Dharapur, Guwahati, Assam-781017. More details are available on our Contact Us page.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-icon">🤝</div>
+                        <h3>What is the process for partnering with SDS India?</h3>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To start a partnership, reach out via our contact form. Our team will schedule a consultation to discuss your needs and objectives.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-cta">
+                <button class="contact-button">
+                    <span>GET IN TOUCH</span>
+                    <div class="button-icon"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+            <div class="logo-container-f">
+                <a href="index.html">
+                    <!-- FIX: use the same static path as header -->
+                    <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo-f">
+                </a>
+            </div>
+            <div class="footer-left" aria-label="Company branding and partner logos">
+                <div class="footer-social" aria-label="Social media links">
+                    <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+                    <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+                    <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+                    <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+                    <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <div class="footer-columns" aria-label="Footer navigation">
+                <nav class="footer-column" aria-labelledby="footer-legal">
+                    <h3 id="footer-legal">SECTORS</h3>
+                    <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-careers">
+                    <h3 id="footer-careers">CAREERS</h3>
+                    <ul>
+                        <li><a href="Career.html" tabIndex="0">Join Us</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-contact">
+                    <h3 id="footer-contact">Company</h3>
+                    <ul>
+                        <li><a href="index.html" tabIndex="0">Home</a></li>
+                        <li><a href="about us.html" tabIndex="0">About Us</a></li>
+                        <li tabIndex="0">Sectors</li>
+                        <li><a href="Research.html" tabIndex="0">Publication</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-column" aria-labelledby="footer-products">
+                    <h3 id="footer-products">Services</h3>
+                    <ul>
+                        <li><a href="fpo.html" tabIndex="0">FPO Management</a></li>
+                        <li tabIndex="0">Agricultural Development</li>
+                        <li tabIndex="0">Fishery Development</li>
+                        <li tabIndex="0">Rural Finance</li>
+                        <li tabIndex="0">Value Chain Development</li>
+                        <li tabIndex="0">Marketing</li>
+                        <li tabIndex="0">All Services</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+            <div class="links">
+                <a href="#" tabindex="0">Code of Conduct</a>
+                <a href="#" tabindex="0">Privacy Policy</a>
+                <a href="#" tabindex="0">Terms of Service</a>
+                <a href="#" tabindex="0">Sitemap</a>
+                <a href="#" tabindex="0">Accessibility</a>
+            </div>
+            <div class="copyright">
+                © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        // Region tab keyboard interaction
+        const tabs = document.querySelectorAll('.region-tab');
+        const panels = document.querySelectorAll('[role="tabpanel"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('aria-controls');
+                tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); t.setAttribute('tabindex','-1'); });
+                tab.classList.add('active'); tab.setAttribute('aria-selected','true'); tab.setAttribute('tabindex','0');
+                panels.forEach(panel => {
+                    if (panel.id === target) { panel.removeAttribute('hidden'); panel.setAttribute('aria-hidden','false'); }
+                    else { panel.setAttribute('hidden',''); panel.setAttribute('aria-hidden','true'); }
+                });
+            });
+        });
+        document.querySelector('.contact-button').onclick = function () {
+            window.location.href = "contact.html";
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const faqHeader = document.querySelector('.faq-animate');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.2 });
+            if (faqHeader) observer.observe(faqHeader);
+        });
+
+        // FAQ interactions
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqWrapper = document.querySelector('.faq-section-wrapper');
+            if (!faqWrapper) return;
+            const faqItems = faqWrapper.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    faqItems.forEach(other => { if (other !== item) other.classList.remove('active'); });
+                    item.classList.toggle('active');
+                });
+            });
+
+            function checkIfInView() {
+                faqItems.forEach(item => {
+                    const pos = item.getBoundingClientRect();
+                    if (pos.top < window.innerHeight - 50 && pos.bottom >= 0) {
+                        item.classList.add('in-view');
+                    }
+                });
+            }
+            window.addEventListener('scroll', checkIfInView);
+            window.addEventListener('load', checkIfInView);
+
+            const contactBtn = faqWrapper.querySelector('.contact-button');
+            contactBtn.addEventListener('click', () => {
+                alert('This would scroll to your Contact section.');
+            });
+        });
+
+        // Keyboard navigation between tabs container
+        const regionTabsContainer = document.querySelector('.region-tabs');
+        if (regionTabsContainer) {
+            regionTabsContainer.addEventListener('keydown', (e) => {
+                const activeTab = document.activeElement;
+                if (!activeTab.classList.contains('region-tab')) return;
+                let idx = Array.from(tabs).indexOf(activeTab);
+                if (e.key === 'ArrowRight') { e.preventDefault(); idx = (idx + 1) % tabs.length; tabs[idx].focus(); tabs[idx].click(); }
+                else if (e.key === 'ArrowLeft') { e.preventDefault(); idx = (idx - 1 + tabs.length) % tabs.length; tabs[idx].focus(); tabs[idx].click(); }
+            });
+        }
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
