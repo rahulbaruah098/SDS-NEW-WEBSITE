@@ -239,6 +239,11 @@ footer .footer-column h3 {
       .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
       .overlay-left .main-menu > li > a.pressed,
       .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+      @media (max-width: 400px) {
+  #sds-ibcb {
+    margin-top: calc(var(--header-h) + 6px) !important; /* header height + a little breathing room */
+  }
+}
     </style>
   </head>
 
