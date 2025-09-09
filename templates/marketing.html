@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Value Chain Development|SDS</title>
+    <title>Marketing|SDS</title>
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
@@ -330,7 +330,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+       
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -460,203 +460,252 @@ footer .footer-column h3 {
       window.addEventListener('load', syncHeaderHeight);
     })();
   </script>
-</section><br>
+</section><br><br><br>
 <!--Marketing-->
 <!-- ======================================================
   SDS — MARKETING SECTION (Hero + Topic Blocks)
   White background, animated hero heading, image placeholders,
   conflict-safe (scoped to #sds-marketing), mobile responsive.
 ======================================================= -->
-<section id="sds-marketing" aria-label="Marketing at SDS">
-  <style>
-    /* --------------- NAMESPACE: #sds-marketing --------------- */
-    #sds-marketing {
-      --bg: #ffffff;
-      --ink: #0e1116;
-      --muted: #6b7280;
-      --brand: #0ea5e9;   /* sky */
-      --brand-2: #22c55e; /* emerald */
-      --ring: rgba(2, 6, 23, 0.08);
-      --shadow: 0 10px 24px rgba(0,0,0,.16), 0 4px 12px rgba(0,0,0,.08);
-      --radius: 18px;
-      --gap: clamp(14px, 3vw, 28px);
-      background: var(--bg);
-      color: var(--ink);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      padding: clamp(24px, 5vw, 56px) 0 72px;
-      overflow: clip;
-    }
-    #sds-marketing .wrap { width: min(1200px, 94vw); margin-inline: auto; display: grid; gap: clamp(18px, 4vw, 32px); }
+<section id="sds-marketing" aria-label="Marketing at SDS"> <style> /* ---------- Scoped design tokens (mirrors sds-pigs) ---------- */ #sds-marketing{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-marketing *{ box-sizing:border-box; } #sds-marketing figure{ margin:0; }
+/* ============ HERO ============ */
+#sds-marketing .hero{
+  min-height:88vh;
+  display:grid; grid-template-columns:1.15fr 1fr;
+  gap:clamp(16px,3vw,32px);
+  align-items:stretch;
+  padding:clamp(16px,2.5vw,28px);
+}
+@media (max-width: 980px){
+  #sds-marketing .hero{ grid-template-columns:1fr; min-height:72vh; }
+}
 
-    /* ---------------- HERO ---------------- */
-    #sds-marketing .hero {
-      position: relative;
-      border-radius: var(--radius);
-      border: 1px solid var(--ring);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      background: #fff;
-      display: grid; align-items: end;
-      min-height: clamp(340px, 52vw, 520px);
-      isolation: isolate;
-    }
-    #sds-marketing .hero-bg {
-      position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(80% 60% at 10% 0%, rgba(14,165,233,.12), transparent 60%),
-                  radial-gradient(70% 60% at 100% 20%, rgba(34,197,94,.12), transparent 60%);
-      filter: saturate(1.2);
-    }
-    #sds-marketing .hero-copy { position: relative; z-index: 2; padding: clamp(16px, 4vw, 32px); display: grid; gap: 10px; }
-    #sds-marketing .kicker { text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: 12px; color: var(--brand); }
+/* Ambient background */
+#sds-marketing .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh;
+  background:
+    radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+    radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+  filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+}
 
-    /* Animated headline: lines slide + shimmer underline */
-    #sds-marketing .headline { font-weight: 800; letter-spacing: -0.01em; line-height: 1.12; font-size: clamp(22px, 3.8vw, 42px); text-wrap: balance; }
-    #sds-marketing .headline span.line { display:block; opacity:0; transform: translateY(18px); animation: mkt-rise .7s var(--delay,0s) cubic-bezier(.2,.7,.2,1) forwards; }
-    @keyframes mkt-rise { to { opacity:1; transform: translateY(0); } }
-    #sds-marketing .underline { position: relative; display:inline-block; }
-    #sds-marketing .underline::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 6px; border-radius: 999px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-      transform: scaleX(0); transform-origin: left; animation: mkt-underline 1s .9s cubic-bezier(.2,.7,.2,1) forwards;
-    }
-    @keyframes mkt-underline { to { transform: scaleX(1); } }
+/* Left: copy */
+#sds-marketing .hero-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+#sds-marketing .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
+  color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content;
+}
+#sds-marketing .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    #sds-marketing .lead { max-width: 88ch; color: var(--ink); opacity: .9; font-size: clamp(14px, 1.8vw, 18px); }
+/* Title animation */
+#sds-marketing .title{
+  font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block;
+  background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:titleShift 10s linear infinite; position:relative;
+}
+#sds-marketing .title::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none;
+}
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
 
-    /* ---------------- TOPIC GRID ---------------- */
-    #sds-marketing .topics { display: grid; gap: calc(var(--gap) * 1.25); }
+/* Scrolling info line */
+#sds-marketing .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-marketing .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px;
+  font-weight:600; color:#09425a; animation:ticker 16s linear infinite;
+}
+#sds-marketing .scrolling-track i{ opacity:.75; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    #sds-marketing .topic {
-      display: grid; gap: var(--gap);
-      grid-template-columns: 1fr; align-items: center;
-      padding: clamp(12px, 2vw, 18px);
-      border: 1px solid var(--ring);
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: var(--shadow);
-      overflow: clip;
-    }
-    #sds-marketing .topic:nth-child(even) { background: #fff; }
+#sds-marketing .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
 
-    @media (min-width: 880px) {
-      #sds-marketing .topic { grid-template-columns: 1.1fr .9fr; }
-      #sds-marketing .topic.flip { grid-template-columns: .9fr 1.1fr; }
-    }
+#sds-marketing .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-marketing .btn{
+  appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700;
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+#sds-marketing .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+#sds-marketing .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-marketing .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-marketing .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
 
-    #sds-marketing .topic h3 { margin: 0 0 6px 0; font-size: clamp(18px, 2.5vw, 26px); letter-spacing: -.01em; }
-    #sds-marketing .topic p { color: var(--muted); font-size: clamp(14px, 1.6vw, 16px); }
+#sds-marketing .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+#sds-marketing .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+#sds-marketing .stat b{ font-size:20px; display:block; }
+#sds-marketing .stat span{ font-size:12px; color:var(--muted); }
 
-    /* Image area with placeholder */
-    #sds-marketing .media { position: relative; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; border: 1px solid var(--ring); }
-    #sds-marketing .media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.02) contrast(1.02); }
-    #sds-marketing .ph { background: repeating-linear-gradient(45deg, #f6f7f9, #f6f7f9 12px, #eef1f5 12px, #eef1f5 24px); width: 100%; height: 100%; display: grid; place-items: center; color: #9aa3ad; font-weight: 600; font-size: 14px; }
+/* Right: single image (replaces slider) */
+#sds-marketing .hero-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-marketing .hero-image{
+  position:relative; min-height:clamp(340px,56vh,540px); overflow:hidden;
+}
+#sds-marketing .hero-image img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center center;
+  background:#e5e7eb; display:block;
+}
+#sds-marketing .hero-image::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%);
+  pointer-events:none;
+}
+#sds-marketing .slide-caption{
+  position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45);
+  font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25);
+  padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px);
+}
 
-    /* Tiny hover motion */
-    #sds-marketing .media:hover { transform: translateY(-2px); transition: transform .2s ease; }
+/* ============ CONTENT ============ */
+#sds-marketing .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-marketing .section-intro{ display:grid; gap:10px; }
+#sds-marketing .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-marketing .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
 
-    /* Reveal on scroll */
-    #sds-marketing .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
-    #sds-marketing .reveal.is-in { opacity: 1; transform: translateY(0); }
+/* Info cards (4 topics from your brief) */
+#sds-marketing .cards{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+#sds-marketing .card{
+  grid-column:span 6; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#sds-marketing .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
+#sds-marketing .card h4{ margin:6px 0 6px; font-size:18px; }
+#sds-marketing .card p{ margin:0; color:var(--muted); line-height:1.7; }
+#sds-marketing .icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line);
+  background:linear-gradient(145deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); }
+@media (max-width:920px){ #sds-marketing .card{ grid-column:span 12; } }
 
-    /* A11y utility */
-    #sds-marketing .sr { position: absolute; width:1px; height:1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Parallax tiles */
+#sds-marketing .image-strip{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:8px; }
+#sds-marketing .tile{
+  grid-column:span 4; position:relative; height:220px; border-radius:16px; overflow:hidden;
+  border:1px solid var(--line); background:#f8fafc; box-shadow:var(--shadow-1); transform:translateZ(0);
+}
+#sds-marketing .tile img{ width:100% !important; height:100% !important; object-fit:cover; display:block; }
+#sds-marketing .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
+@media (max-width:920px){ #sds-marketing .tile{ grid-column:span 12; height:200px; } }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      #sds-marketing .headline span.line { animation: none; opacity: 1; transform: none; }
-      #sds-marketing .underline::after { animation: none; transform: none; }
-      #sds-marketing .reveal { transition: none; opacity: 1; transform: none; }
-    }
-  </style>
+/* Divider */
+#sds-marketing .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
 
-  <div class="wrap">
-    <!-- ================= HERO ================= -->
-    <header class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <span class="kicker">Marketing</span>
-        <h1 class="headline" aria-label="Marketing: We prioritize a sustainable marketing approach…">
-          <span class="line" style="--delay:.05s">MARKETING</span>
-          <span class="line underline" style="--delay:.20s">We prioritize a sustainable marketing approach,</span>
-          <span class="line" style="--delay:.35s">covering key elements like market linkages, product development, systems,</span>
-          <span class="line" style="--delay:.50s">production conditions, product characteristics, and value based support.</span>
-          <span class="line" style="--delay:.65s">Sustainable Marketing aims for an environment-conscious and socially</span>
-          <span class="line" style="--delay:.80s">responsible marketing approach, fostering innovation, linkages,</span>
-          <span class="line" style="--delay:.95s">and ethical practices for the benefit of businesses and consumers.</span>
-        </h1>
-        <p class="lead">Purpose-led marketing that connects rural producers to markets, builds stronger products and brands, and anchors growth in ethics and sustainability.</p>
-      </div>
-    </header>
+/* =======================
+   MOBILE-ONLY ENHANCEMENTS
+   ======================= */
+@media (max-width: 720px){
+  #sds-marketing .hero{ padding:16px; gap:14px; }
+  #sds-marketing .kicker{ font-size:12px; padding:6px 10px; }
+  #sds-marketing .scrolling-track{ gap:22px; }
+  #sds-marketing .cta-row .btn{ width:100%; justify-content:center; }
+  #sds-marketing .stats{ grid-template-columns:1fr; gap:8px; }
+  #sds-marketing .content{ padding:0 16px; }
+}
+@media (max-width: 420px){
+  #sds-marketing .title{ font-size:32px; }
+  #sds-marketing .lead{ font-size:14px; }
+}
 
-    <!-- =============== TOPICS =============== -->
-    <div class="topics">
-      <!-- Market Linkages and Access to New Markets -->
-      <article class="topic reveal">
-        <div class="text">
-          <h3>Market Linkages and Access to New Markets</h3>
-          <p>SDS bridges rural producers with consumers, retailers, and institutional buyers. Through <strong>NE Fresh</strong>—an online farm-to-fork store—FPCs directly reach consumers, showcasing 200+ products (fruits, vegetables, honey, and more) to a base of over 10,000 buyers and building dependable demand.</p>
-        </div>
-        <figure class="media">
-          <!-- Replace src with your actual image URL; keep alt descriptive -->
-          <img src="https://placehold.co/1000x620?text=Market+Linkages+%7C+Replace+with+your+image" alt="Producers connecting with buyers via NE Fresh platform" loading="lazy" decoding="async" />
-        </figure>
-      </article>
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <!-- Left: content --> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Marketing</div>
+  <h1 class="title">Sustainable, Ethical &amp; Market-Ready Marketing</h1>
 
-      <!-- Value Addition and Product Development -->
-      <article class="topic flip reveal">
-        <figure class="media">
-          <img src="https://placehold.co/1000x620?text=Value+Addition+%7C+Replace+with+your+image" alt="Processing, packaging, and branding of rural products" loading="lazy" decoding="async" />
-        </figure>
-        <div class="text">
-          <h3>Value Addition and Product Development</h3>
-          <p>We support cleaning, processing, packaging, and branding so rural products meet market standards. By elevating raw produce into premium goods, farmers capture higher prices and diversify their portfolios for new opportunities.</p>
-        </div>
-      </article>
-
-      <!-- Business and Operational Support for Farmers -->
-      <article class="topic reveal">
-        <div class="text">
-          <h3>Business and Operational Support for Farmers</h3>
-          <p>SDS equips rural enterprises and FPOs with business planning, market research, risk assessment, and financial management. We co-create bankable plans, stakeholder analyses, and value chain assessments—and facilitate <em>credit linkages</em> to finance growth.</p>
-        </div>
-        <figure class="media">
-          <img src="https://placehold.co/1000x620?text=Business+Support+%7C+Replace+with+your+image" alt="FPO members planning operations and finances" loading="lazy" decoding="async" />
-        </figure>
-      </article>
-
-      <!-- Partnerships and Networking -->
-      <article class="topic flip reveal">
-        <figure class="media">
-          <img src="https://placehold.co/1000x620?text=Partnerships+%7C+Replace+with+your+image" alt="Public–private partnerships enabling access to technology and markets" loading="lazy" decoding="async" />
-        </figure>
-        <div class="text">
-          <h3>Partnerships and Networking</h3>
-          <p>We cultivate partnerships with government agencies, CSR programs, private sector, and international organizations. These networks unlock technologies, market intelligence, and retail platforms—expanding reach and resilience for smallholders.</p>
-        </div>
-      </article>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-link"></i> Market linkages &amp; access</span>
+      <span><i class="fa-solid fa-boxes-stacked"></i> Product development &amp; value addition</span>
+      <span><i class="fa-solid fa-sitemap"></i> Systems &amp; operational support</span>
+      <span><i class="fa-solid fa-handshake-angle"></i> Partnerships &amp; networks</span>
+      <span><i class="fa-solid fa-earth-asia"></i> Environment-conscious &amp; socially responsible</span>
+      <span><i class="fa-solid fa-link"></i> Market linkages &amp; access</span>
     </div>
   </div>
 
-  <!-- --------- Scoped JS (no conflicts) --------- -->
-  <script>
-    (function initSDSMarketing(){
-      const root = document.currentScript.closest('#sds-marketing');
+  <p class="lead">
+    Purpose-led marketing that connects rural producers to markets, strengthens products and brands,
+    and anchors growth in ethics and sustainability. We focus on innovation, linkages, and responsible practices
+    for the benefit of producers, businesses, and consumers.
+  </p>
 
-      // Reveal on scroll
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target);} });
-      }, { threshold: 0.15 });
-      root.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  <div class="cta-row">
+    <button class="btn btn-primary"><i class="fa-solid fa-shop"></i> Explore Market Programs</button>
+    <button class="btn btn-ghost"><i class="fa-regular fa-file-lines"></i> Download Marketing Brief</button>
+  </div>
 
-      // If user prefers reduced motion, show all immediately
-      try {
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          root.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
-        }
-      } catch(e){}
-    })();
-  </script>
-</section>
+  <div class="stats">
+    <div class="stat"><b>10k+ Buyers</b><span>Across online &amp; retail</span></div>
+    <div class="stat"><b>200+ SKUs</b><span>Showcased via NE Fresh</span></div>
+    <div class="stat"><b>Pan-NE</b><span>Rural-to-urban linkages</span></div>
+  </div>
+</div>
+
+<!-- Right: single image (no slider) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="hero-image">
+    <!-- Replace src with your image; it will auto-fit the frame -->
+    <img src="{{ url_for('static', filename='Images/Marketing.jpg') }}" alt="Marketing — market linkages, value addition, and partnerships">
+    <figcaption class="slide-caption">Marketing in action</figcaption>
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> <h3>Marketing at SDS</h3> <p> We prioritize a sustainable marketing approach—covering market linkages, product development, systems, production conditions, product characteristics, and value-based support—so producers can compete fairly and grow responsibly. </p> </div>
+<div class="divider"></div>
+
+<div class="cards">
+  <!-- 1: Market Linkages and Access to New Markets -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-link"></i></div>
+    <h4>Market Linkages &amp; Access</h4>
+    <p>SDS bridges rural producers with consumers, retailers, and institutional buyers. Through <b>NE Fresh</b>—an online farm-to-fork store—FPCs reach 10,000+ buyers with 200+ products, building dependable demand.</p>
+  </article>
+
+  <!-- 2: Value Addition and Product Development -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+    <h4>Value Addition &amp; Product Development</h4>
+    <p>Cleaning, processing, packaging, and branding elevate raw produce into premium goods—meeting standards, capturing higher prices, and opening new segments.</p>
+  </article>
+
+  <!-- 3: Business & Operational Support -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-sitemap"></i></div>
+    <h4>Business &amp; Operational Support</h4>
+    <p>Business planning, market research, risk assessment, and financial management for enterprises and FPOs—plus <em>credit linkages</em> to finance growth.</p>
+  </article>
+
+  <!-- 4: Partnerships and Networking -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-handshake-angle"></i></div>
+    <h4>Partnerships &amp; Networking</h4>
+    <p>We cultivate partnerships with government, CSR, private sector, and international organizations—unlocking technology, market intelligence, and retail platforms for reach and resilience.</p>
+  </article>
+</div>
+
+<div class="image-strip">
+  <div class="tile" data-parallax data-speed="0.10">
+    <img src="static/Images/Producers showcasing products to buyers.jpg" alt="Producers showcasing products to buyers">
+  </div>
+  <div class="tile" data-parallax data-speed="-0.06">
+    <img src="static/Images/marketing 2.png" alt="Packaging and branding for value addition">
+  </div>
+  <div class="tile" data-parallax data-speed="0.08">
+    <img src="static/Images/Public–private partnerships and retail networks.jpg" alt="Public–private partnerships and retail networks">
+  </div>
+</div>
+
+</div> <script> (function(){ const root = document.getElementById('sds-marketing'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp = (n,min,max)=> Math.max(min, Math.min(max, n)); let ticking = false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el=>{ const speed = parseFloat(el.dataset.speed || 0.1); const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT); el.style.transform = `translateY(${shift}px)`; }); ticking = false; }); ticking = true; } } window.addEventListener('scroll', onScroll, { passive:true }); onScroll(); })(); /* Reduce Motion */ (function(){ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track = root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); })(); </script> </section>
+
 
 
 
@@ -696,6 +745,7 @@ footer .footer-column h3 {
           <h3 id="footer-careers">CAREERS</h3>
           <ul>
             <li><a href="/career" tabIndex="0">Join Us</a></li>
+          
           </ul>
         </nav>
 
@@ -707,6 +757,7 @@ footer .footer-column h3 {
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+              <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 

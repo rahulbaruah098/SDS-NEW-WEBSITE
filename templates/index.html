@@ -5,14 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDS - Sayanant Development Services</title>
-     
 
-
-        <!-- Font Awesome 6 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <style>
     * {
         margin: 0;
@@ -71,54 +68,25 @@
 
     /* Animations */
     @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0px);
-        }
-
-        50% {
-            transform: translateY(-20px);
-        }
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
     }
 
     @keyframes pulse-slow {
-
-        0%,
-        100% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: 0.5;
-        }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
     }
 
     @keyframes slide-up {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    .animate-float {
-        animation: float 6s ease-in-out infinite;
-    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+    .animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
 
-    .animate-pulse-slow {
-        animation: pulse-slow 3s ease-in-out infinite;
-    }
-
-    .animate-slide-up {
-        animation: slide-up 0.6s ease-out forwards;
-    }
-
-    /* Hero Section */
+    /* Hero Section (generic, unused by .hero) */
     .hero-section {
         min-height: 100vh;
         display: flex;
@@ -129,83 +97,45 @@
         overflow: hidden;
     }
 
-    .hero-bg {
-        position: absolute;
-        inset: 0;
-    }
-
-    .bg-circle {
-        position: absolute;
-        border-radius: 50%;
-    }
+    .hero-bg { position: absolute; inset: 0; }
+    .bg-circle { position: absolute; border-radius: 50%; }
 
     .bg-circle-1 {
-        top: 5rem;
-        left: 5rem;
-        width: 16rem;
-        height: 16rem;
+        top: 5rem; left: 5rem; width: 16rem; height: 16rem;
         background: hsl(var(--primary) / 0.05);
         animation: float 8s ease-in-out infinite;
     }
-
     .bg-circle-2 {
-        bottom: 8rem;
-        right: 5rem;
-        width: 12rem;
-        height: 12rem;
+        bottom: 8rem; right: 5rem; width: 12rem; height: 12rem;
         background: hsl(var(--accent) / 0.05);
-        animation: float 8s ease-in-out infinite;
-        animation-delay: 2s;
+        animation: float 8s ease-in-out infinite; animation-delay: 2s;
     }
-
     .bg-circle-3 {
-        top: 50%;
-        left: 2.5rem;
-        width: 8rem;
-        height: 8rem;
+        top: 50%; left: 2.5rem; width: 8rem; height: 8rem;
         background: hsl(var(--primary) / 0.1);
-        animation: float 8s ease-in-out infinite;
-        animation-delay: 1s;
+        animation: float 8s ease-in-out infinite; animation-delay: 1s;
     }
 
-    .hero-content {
-        text-align: center;
-        position: relative;
-        z-index: 10;
-    }
-
+    .hero-content { text-align: center; position: relative; z-index: 10; }
     .hero-title {
-        font-size: 3rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-        opacity: 0;
+        font-size: 3rem; font-weight: bold; margin-bottom: 1.5rem; opacity: 0;
         animation: slide-up 0.6s ease-out 0.2s forwards;
     }
 
     .gradient-text {
         background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        background-clip: text;
+        -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
-        font-size: 1.25rem;
-        color: hsl(var(--muted-foreground));
-        margin-bottom: 2rem;
-        max-width: 48rem;
-        margin-left: auto;
-        margin-right: auto;
-        opacity: 0;
+        font-size: 1.25rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem;
+        max-width: 48rem; margin-left: auto; margin-right: auto; opacity: 0;
         animation: slide-up 0.6s ease-out 0.4s forwards;
     }
 
     .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        justify-content: center;
-        opacity: 0;
+        display: flex; flex-direction: column; gap: 1rem; justify-content: center; opacity: 0;
         animation: slide-up 0.6s ease-out 0.6s forwards;
     }
 
@@ -223,65 +153,26 @@
         align-items: center;
         gap: 0.5rem;
     }
-
-    .btn-modern:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-elegant);
-    }
+    .btn-modern:hover { transform: translateY(-2px); box-shadow: var(--shadow-elegant); }
 
     .btn-outline {
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        border: 2px solid hsl(var(--primary));
-        color: hsl(var(--primary));
-        background: transparent;
-        cursor: pointer;
-        transition: var(--transition-smooth);
+        padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 600;
+        border: 2px solid hsl(var(--primary)); color: hsl(var(--primary)); background: transparent;
+        cursor: pointer; transition: var(--transition-smooth);
     }
+    .btn-outline:hover { background: hsl(var(--primary)); color: white; }
 
-    .btn-outline:hover {
-        background: hsl(var(--primary));
-        color: white;
-    }
-
-    .btn-with-icon {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .btn-icon {
-        width: 1rem;
-        height: 1rem;
-        transition: var(--transition-smooth);
-    }
-
-    .btn-modern:hover .btn-icon {
-        transform: translateX(0.25rem);
-    }
+    .btn-with-icon { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .btn-icon { width: 1rem; height: 1rem; transition: var(--transition-smooth); }
+    .btn-modern:hover .btn-icon { transform: translateX(0.25rem); }
 
     /* Section Headers */
-    .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
-
-    .text-accent {
-        color: hsl(var(--accent));
-    }
-
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem; }
+    .text-accent { color: hsl(var(--accent)); }
     .section-subtitle {
-        font-size: 1.125rem;
-        color: hsl(var(--muted-foreground));
-        max-width: 48rem;
-        margin: 0 auto;
+        font-size: 1.125rem; color: hsl(var(--muted-foreground));
+        max-width: 48rem; margin: 0 auto;
     }
 
     /* Solutions Section */
@@ -289,111 +180,38 @@
         padding: 5rem 0;
         background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.2) 50%, hsl(var(--background)) 100%);
     }
-
-    .solutions-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
+    .solutions-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
     .solution-card {
-        background: hsl(var(--card) / 0.5);
-        backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        padding: 2rem;
-        cursor: pointer;
-        transition: var(--transition-smooth);
-        border: 1px solid hsl(var(--border) / 0.5);
-        opacity: 0;
+        background: hsl(var(--card) / 0.5); backdrop-filter: blur(10px);
+        border-radius: 1rem; padding: 2rem; cursor: pointer; transition: var(--transition-smooth);
+        border: 1px solid hsl(var(--border) / 0.5); opacity: 0;
     }
-
-    .solution-card.visible {
-        opacity: 1;
-        animation: slide-up 0.6s ease-out forwards;
-    }
-
+    .solution-card.visible { opacity: 1; animation: slide-up 0.6s ease-out forwards; }
     .solution-card:hover {
         transform: scale(1.05);
         box-shadow: 0 20px 40px -10px hsl(var(--primary) / 0.2);
         background: hsl(var(--card) / 0.8);
     }
-
     .solution-icon {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-        position: relative;
-        transition: var(--transition-smooth);
+        width: 4rem; height: 4rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center;
+        font-size: 2rem; margin-bottom: 1.5rem; position: relative; transition: var(--transition-smooth);
     }
-
-    .solution-card:hover .solution-icon {
-        transform: scale(1.1);
-    }
-
+    .solution-card:hover .solution-icon { transform: scale(1.1); }
     .solution-icon::after {
-        content: '';
-        position: absolute;
-        top: -0.5rem;
-        right: -0.5rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        background: hsl(var(--accent));
-        border-radius: 50%;
-        opacity: 0;
-        transition: var(--transition-smooth);
+        content: ''; position: absolute; top: -0.5rem; right: -0.5rem; width: 1.5rem; height: 1.5rem;
+        background: hsl(var(--accent)); border-radius: 50%; opacity: 0; transition: var(--transition-smooth);
     }
-
-    .solution-card:hover .solution-icon::after {
-        opacity: 1;
-        animation: pulse-slow 2s infinite;
-    }
-
-    .solution-title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: hsl(var(--card-foreground));
-        transition: var(--transition-smooth);
-    }
-
-    .solution-card:hover .solution-title {
-        color: hsl(var(--primary));
-    }
-
-    .solution-description {
-        color: hsl(var(--muted-foreground));
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-
+    .solution-card:hover .solution-icon::after { opacity: 1; animation: pulse-slow 2s infinite; }
+    .solution-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; color: hsl(var(--card-foreground)); transition: var(--transition-smooth); }
+    .solution-card:hover .solution-title { color: hsl(var(--primary)); }
+    .solution-description { color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem; line-height: 1.6; }
     .learn-more {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: hsl(var(--primary));
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition-smooth);
+        display: inline-flex; align-items: center; gap: 0.5rem; color: hsl(var(--primary)); font-weight: 600;
+        text-decoration: none; transition: var(--transition-smooth);
     }
-
-    .learn-more:hover {
-        color: hsl(var(--accent));
-    }
-
-    .learn-more svg {
-        width: 1rem;
-        height: 1rem;
-        transition: var(--transition-smooth);
-    }
-
-    .learn-more:hover svg {
-        transform: translateX(0.25rem);
-    }
+    .learn-more:hover { color: hsl(var(--accent)); }
+    .learn-more svg { width: 1rem; height: 1rem; transition: var(--transition-smooth); }
+    .learn-more:hover svg { transform: translateX(0.25rem); }
 
     /* Legacy Section */
     .legacy-section {
@@ -402,193 +220,61 @@
         position: relative;
         overflow: hidden;
     }
-
-    .legacy-bg {
-        position: absolute;
-        inset: 0;
-    }
-
+    .legacy-bg { position: absolute; inset: 0; }
     .bg-circle-4 {
-        top: 5rem;
-        left: 2.5rem;
-        width: 8rem;
-        height: 8rem;
-        background: hsl(var(--accent) / 0.1);
-        animation: float 8s ease-in-out infinite;
+        top: 5rem; left: 2.5rem; width: 8rem; height: 8rem;
+        background: hsl(var(--accent) / 0.1); animation: float 8s ease-in-out infinite;
     }
-
     .bg-circle-5 {
-        bottom: 5rem;
-        right: 2.5rem;
-        width: 6rem;
-        height: 6rem;
-        background: hsl(var(--primary) / 0.1);
-        animation: float 8s ease-in-out infinite;
-        animation-delay: 1s;
+        bottom: 5rem; right: 2.5rem; width: 6rem; height: 6rem;
+        background: hsl(var(--primary) / 0.1); animation: float 8s ease-in-out infinite; animation-delay: 1s;
     }
-
     .bg-circle-6 {
-        top: 50%;
-        left: 25%;
-        width: 4rem;
-        height: 4rem;
-        background: hsl(var(--accent) / 0.05);
-        animation: float 8s ease-in-out infinite;
-        animation-delay: 2s;
+        top: 50%; left: 25%; width: 4rem; height: 4rem;
+        background: hsl(var(--accent) / 0.05); animation: float 8s ease-in-out infinite; animation-delay: 2s;
     }
-
     .legacy-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        align-items: center;
-        position: relative;
+        display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; position: relative;
     }
-
     .glass-card {
-        background: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(20px);
-        border-radius: 1.5rem;
-        padding: 3rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px);
+        border-radius: 1.5rem; padding: 3rem; border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: var(--shadow-glass);
     }
-
-    .legacy-icon {
-        margin-bottom: 2rem;
-        position: relative;
-    }
-
+    .legacy-icon { margin-bottom: 2rem; position: relative; }
     .icon-container {
-        width: 5rem;
-        height: 5rem;
-        background: var(--gradient-primary);
-        border-radius: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 2.5rem;
+        width: 5rem; height: 5rem; background: var(--gradient-primary); border-radius: 1rem;
+        display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem;
         animation: float 6s ease-in-out infinite;
     }
-
-    .icon-dot {
-        position: absolute;
-        border-radius: 50%;
-        background: hsl(var(--accent));
-        animation: pulse-slow 3s ease-in-out infinite;
-    }
-
-    .icon-dot-1 {
-        top: -0.5rem;
-        right: -0.5rem;
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .icon-dot-2 {
-        bottom: -0.5rem;
-        left: -0.5rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        background: hsl(var(--primary) / 0.6);
-        animation-delay: 1s;
-    }
-
-    .legacy-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-    }
-
-    .legacy-description {
-        font-size: 1.125rem;
-        color: hsl(var(--muted-foreground));
-        margin-bottom: 2rem;
-        line-height: 1.6;
-    }
-
-    .legacy-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .stat {
-        text-align: center;
-    }
-
-    .stat-number {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: hsl(var(--primary));
-        margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
-        font-size: 0.875rem;
-        color: hsl(var(--muted-foreground));
-    }
-
-    .legacy-image {
-        position: relative;
-        animation: float 8s ease-in-out infinite;
-    }
-
+    .icon-dot { position: absolute; border-radius: 50%; background: hsl(var(--accent)); animation: pulse-slow 3s ease-in-out infinite; }
+    .icon-dot-1 { top: -0.5rem; right: -0.5rem; width: 2rem; height: 2rem; }
+    .icon-dot-2 { bottom: -0.5rem; left: -0.5rem; width: 1.5rem; height: 1.5rem; background: hsl(var(--primary) / 0.6); animation-delay: 1s; }
+    .legacy-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; }
+    .legacy-description { font-size: 1.125rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem; line-height: 1.6; }
+    .legacy-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 1.5rem; font-weight: bold; color: hsl(var(--primary)); margin-bottom: 0.25rem; }
+    .stat-label { font-size: 0.875rem; color: hsl(var(--muted-foreground)); }
+    .legacy-image { position: relative; animation: float 8s ease-in-out infinite; }
     .image-container {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1.5rem;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-        transform: rotate(2deg);
-        transition: var(--transition-smooth);
+        position: relative; overflow: hidden; border-radius: 1.5rem;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3); transform: rotate(2deg); transition: var(--transition-smooth);
     }
-
-    .image-container:hover {
-        transform: rotate(0deg);
-    }
-
-    .image-container img {
-        width: 100%;
-        height: 24rem;
-        object-fit: cover;
-    }
-
-    .image-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(45deg, hsl(var(--primary) / 0.2) 0%, transparent 100%);
-    }
-
+    .image-container:hover { transform: rotate(0deg); }
+    .image-container img { width: 100%; height: 24rem; object-fit: cover; }
+    .image-overlay { position: absolute; inset: 0; background: linear-gradient(45deg, hsl(var(--primary) / 0.2) 0%, transparent 100%); }
     .floating-element {
-        position: absolute;
-        border-radius: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.5rem;
-        animation: float 6s ease-in-out infinite;
+        position: absolute; border-radius: 1rem; display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 1.5rem; animation: float 6s ease-in-out infinite;
     }
-
     .floating-element-1 {
-        top: -1rem;
-        right: -1rem;
-        width: 6rem;
-        height: 6rem;
-        background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6));
-        animation-delay: 1s;
+        top: -1rem; right: -1rem; width: 6rem; height: 6rem;
+        background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6)); animation-delay: 1s;
     }
-
     .floating-element-2 {
-        bottom: -1.5rem;
-        left: -1.5rem;
-        width: 5rem;
-        height: 5rem;
-        background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6));
-        animation-delay: 2s;
-        font-size: 1.25rem;
+        bottom: -1.5rem; left: -1.5rem; width: 5rem; height: 5rem;
+        background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6)); animation-delay: 2s; font-size: 1.25rem;
     }
 
     /* Insights Section */
@@ -596,615 +282,257 @@
         padding: 5rem 0;
         background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.1) 100%);
     }
-
-    .insights-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
-
+    .insights-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
     .insight-card {
-        background: hsl(var(--card));
-        border-radius: 1rem;
-        overflow: hidden;
-        cursor: pointer;
-        transition: var(--transition-smooth);
-        box-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.1);
-        opacity: 0;
+        background: hsl(var(--card)); border-radius: 1rem; overflow: hidden; cursor: pointer;
+        transition: var(--transition-smooth); box-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.1); opacity: 0;
     }
-
-    .insight-card.visible {
-        opacity: 1;
-        animation: slide-up 0.6s ease-out forwards;
-    }
-
+    .insight-card.visible { opacity: 1; animation: slide-up 0.6s ease-out forwards; }
     .insight-card:hover {
         transform: scale(1.05);
         box-shadow: 0 20px 40px -10px hsl(var(--primary) / 0.2);
         background: hsl(var(--card) / 0.9);
     }
-
-    .insight-image {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .insight-image img {
-        width: 100%;
-        height: 12rem;
-        object-fit: cover;
-        transition: var(--transition-smooth);
-    }
-
-    .insight-card:hover .insight-image img {
-        transform: scale(1.1);
-    }
-
+    .insight-image { position: relative; overflow: hidden; }
+    .insight-image img { width: 100%; height: 12rem; object-fit: cover; transition: var(--transition-smooth); }
+    .insight-card:hover .insight-image img { transform: scale(1.1); }
     .insight-image::after {
-        content: '';
-        position: absolute;
-        inset: 0;
+        content: ''; position: absolute; inset: 0;
         background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
     }
-
     .insight-tag {
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        z-index: 10;
+        position: absolute; top: 1rem; left: 1rem; padding: 0.25rem 0.75rem; border-radius: 9999px;
+        font-size: 0.75rem; font-weight: 500; z-index: 10;
     }
-
     .insight-read-time {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px);
-        color: white;
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-        z-index: 10;
+        position: absolute; bottom: 1rem; right: 1rem; background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px); color: white; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 9999px; z-index: 10;
     }
-
-    .insight-content {
-        padding: 1.5rem;
-    }
-
-    .insight-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.75rem;
-    }
-
-    .insight-category {
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: hsl(var(--primary));
-    }
-
-    .insight-date {
-        font-size: 0.875rem;
-        color: hsl(var(--muted-foreground));
-    }
-
+    .insight-content { padding: 1.5rem; }
+    .insight-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+    .insight-category { font-size: 0.875rem; font-weight: 500; color: hsl(var(--primary)); }
+    .insight-date { font-size: 0.875rem; color: hsl(var(--muted-foreground)); }
     .insight-title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 0.75rem;
-        color: hsl(var(--card-foreground));
-        transition: var(--transition-smooth);
-        line-height: 1.4;
+        font-size: 1.25rem; font-weight: bold; margin-bottom: 0.75rem; color: hsl(var(--card-foreground));
+        transition: var(--transition-smooth); line-height: 1.4;
     }
-
-    .insight-card:hover .insight-title {
-        color: hsl(var(--primary));
-    }
-
-    .insight-excerpt {
-        color: hsl(var(--muted-foreground));
-        margin-bottom: 1rem;
-        line-height: 1.6;
-        font-size: 0.875rem;
-    }
-
+    .insight-card:hover .insight-title { color: hsl(var(--primary)); }
+    .insight-excerpt { color: hsl(var(--muted-foreground)); margin-bottom: 1rem; line-height: 1.6; font-size: 0.875rem; }
     .insight-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: hsl(var(--primary));
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition-smooth);
+        display: inline-flex; align-items: center; gap: 0.5rem; color: hsl(var(--primary)); font-weight: 600;
+        text-decoration: none; transition: var(--transition-smooth);
     }
-
-    .insight-link:hover {
-        color: hsl(var(--accent));
-    }
-
-    .insight-link svg {
-        width: 1rem;
-        height: 1rem;
-        transition: var(--transition-smooth);
-    }
-
-    .insight-link:hover svg {
-        transform: translateX(0.25rem);
-    }
-
-    .section-footer {
-        text-align: center;
-    }
+    .insight-link:hover { color: hsl(var(--accent)); }
+    .insight-link svg { width: 1rem; height: 1rem; transition: var(--transition-smooth); }
+    .insight-link:hover svg { transform: translateX(0.25rem); }
+    .section-footer { text-align: center; }
 
     /* Responsive Design */
     @media (min-width: 640px) {
-        .hero-buttons {
-            flex-direction: row;
-        }
-
-        .solutions-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .hero-buttons { flex-direction: row; }
+        .solutions-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (min-width: 768px) {
-        .hero-title {
-            font-size: 4rem;
-        }
-
-        .legacy-container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .insights-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .hero-title { font-size: 4rem; }
+        .legacy-container { grid-template-columns: repeat(2, 1fr); }
+        .insights-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (min-width: 1024px) {
-        .hero-title {
-            font-size: 4.5rem;
-        }
-
-        .solutions-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .insights-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
+        .hero-title { font-size: 4.5rem; }
+        .solutions-grid { grid-template-columns: repeat(3, 1fr); }
+        .insights-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
-    html {
-        scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     .legacy-image,
     .legacy-content {
         opacity: 0;
         transition: opacity 0.8s ease, transform 0.8s ease;
     }
-
     .legacy-image.visible,
-    .legacy-content.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    .legacy-content.visible { opacity: 1; transform: translateY(0); }
+
     /* HERO SECTION */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  margin-top: 90px;
-  /* pushes below fixed header */
-}
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      margin-top: 90px; /* pushes below fixed header */
+    }
+    .hero-video {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0; pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      color: white; text-align: center;
+    }
+    .hero-content h1 { font-size: 60px; font-weight: bold; }
+    .highlight { color: #f5d6b2; }
+    .hero-buttons { margin-top: 20px; }
+    .btn {
+      border: 2px solid white; padding: 10px 20px; margin: 0 10px; text-decoration: none;
+      color: white; font-weight: bold; transition: background 0.3s ease;
+    }
+    .btn:hover { background: rgba(255, 255, 255, 0.2); }
 
-.hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-}
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #111;
+    }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
+    .footer-wrapper {
+      background-color: #fff;
+      padding: 40px 120px 60px 120px;
+      display: grid; grid-template-columns: minmax(260px, 340px) 1fr;
+      grid-template-areas:
+        "logo  cols"
+        "social cols";
+      column-gap: 80px; row-gap: 20px; align-items: start;
+    }
+    .logo-container-f { grid-area: logo; }
+    .footer-left { grid-area: social; }
+    .footer-columns { grid-area: cols; }
 
-.hero-content h1 {
-  font-size: 60px;
-  font-weight: bold;
-}
+    .logo-container-f {
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .footer-left {
+      display: flex; flex-direction: column; align-items: flex-start; margin-top: 6px;
+    }
+    .footer-social {
+      width: auto; margin-top: 12px; display: flex; justify-content: flex-start; gap: 15px;
+    }
+    .footer-social button {
+      background: #000000; border: none; width: 34px; height: 34px; border-radius: 50%;
+      color: #fff; font-size: 16px; display: flex; justify-content: center; align-items: center;
+      cursor: pointer; transition: background-color 0.3s ease; user-select: none;
+    }
+    .footer-social button:hover { background-color: #5a6a5c; }
 
-.highlight {
-  color: #f5d6b2;
-}
+    .footer-columns {
+      display: flex; flex-wrap: wrap; gap: 80px; justify-content: flex-start;
+    }
+    .footer-columns .footer-column:last-child { margin-left: auto; }
+    .footer-column { min-width: 120px; max-width: 180px; }
+    .footer-column h3 {
+      font-weight: 900; font-size: 14px; margin-bottom: 12px; border-bottom: 1px solid #bbb;
+      padding-bottom: 4px; letter-spacing: 0.035em; user-select: none;
+    }
+    .footer-column ul { list-style: none; margin: 0; padding: 0; }
+    .footer-column ul li {
+      margin-bottom: 12px; font-weight: 400; font-size: 14px; color: #111; cursor: pointer; user-select: none;
+      letter-spacing: 0.015em; transition: color 0.3s ease;
+    }
+    .footer-column ul li:hover { color: #5a6a5c; }
+    .footer-column ul li a { text-decoration: none; color: inherit; display: inline-block; }
+    .footer-column ul li a:hover { text-decoration: underline; }
 
-.hero-buttons {
-  margin-top: 20px;
-}
+    .footer-bottom {
+      background: #fff; border-top: 1px solid #ccc; padding: 10px 120px; font-size: 13px; color: #222;
+      display: flex; justify-content: space-between; align-items: center; user-select: none; font-weight: 600;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom .links { display: flex; gap: 40px; flex-wrap: wrap; }
+    .footer-bottom .links a { color: #222; text-decoration: none; transition: color 0.3s ease; cursor: pointer; }
+    .footer-bottom .links a:hover { color: #5a6a5c; }
+    .footer-bottom .copyright { font-weight: 900; }
 
-.btn {
-  border: 2px solid white;
-  padding: 10px 20px;
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
+    @media (max-width: 960px) {
+      .footer-wrapper {
+        padding: 40px 50px 60px 50px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "logo"
+          "social"
+          "cols";
+        row-gap: 28px;
+      }
+      .footer-columns { gap: 30px; }
+      .footer-columns .footer-column:last-child { margin-left: 0; }
+      .footer-column { max-width: 160px; }
+      .footer-bottom {
+        padding: 10px 50px; flex-direction: column; justify-content: center; text-align: center; gap: 12px;
+      }
+      .footer-bottom .links { justify-content: center; }
+    }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; }
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    .section {
+      padding: 80px 10%; text-align: center; opacity: 0; transform: translateY(50px); transition: all 0.8s ease;
+    }
+    .beige { background-color: #f8e4c9; text-align: left; box-sizing: border-box; margin-top: 50px; }
+    .green { background-color: #456254; color: #f8e4c9; }
+    .white { background-color: #fff; color: #000; }
+    .dark { background-color: #0d1219; }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9fafb;
-  color: #111;
-}
+    .small-title { font-size: 30px; font-weight: bold; letter-spacing: 1px; }
+    .big-title { font-size: 48px; font-weight: 900; line-height: 1.2; }
+    .paragraph { font-size: 20px; line-height: 1.6; max-width: 900px; margin: 20px auto; }
+    .paragraph.black { color: #000; }
 
-.footer-wrapper {
-  background-color: #fff;
-  padding: 40px 120px 60px 120px;
+    .apply-btn {
+      display: inline-block; padding: 15px 30px; border: 1px solid #f8e4c9; color: #f8e4c9;
+      font-weight: bold; text-decoration: none; transition: all 0.3s ease;
+    }
+    .apply-btn:hover { background-color: #f8e4c9; color: #0d1219; }
 
-  /* turn the wrapper into a 2-column grid:
-     left column for logo + socials (stacked),
-     right column for all footer nav columns */
-  display: grid;
-  grid-template-columns: minmax(260px, 340px) 1fr;
-  grid-template-areas:
-    "logo  cols"
-    "social cols";
-  column-gap: 80px;
-  row-gap: 20px;
+    .show { opacity: 1; transform: translateY(0); }
 
-  align-items: start;
-}
+    .beige {
+      background-color: #f8e4c9; text-align: left; box-sizing: border-box; margin-top: 50px;
+      padding: 180px 20%;
+    }
 
-/* place items on the grid */
-.logo-container-f { grid-area: logo; }
-.footer-left      { grid-area: social; }
-.footer-columns   { grid-area: cols; }
+    /* MOBILE RESPONSIVE OVERRIDES */
+    @media (max-width: 900px){
+      :root { --header-h: 64px; }
+      .header{ height: var(--header-h); padding: 0 16px; }
+      .logo{ height: 46px; }
+      .hamburger{ width: 28px; height: 20px; }
+    }
+    .hero{
+      height: 100dvh;
+      margin-top: var(--header-h) !important;
+      padding: 0 16px;
+    }
+    .hero-video{ object-position: center; }
+    .hero-content h1{
+      font-size: clamp(28px, 7vw, 60px);
+      line-height: 1.1;
+    }
+    .hero-buttons .btn{ padding: 10px 16px; font-size: 14px; }
+    .container{ padding: 0 16px; }
+    .solution-card, .insight-card{ will-change: transform; }
 
-/* ---------- LEFT SIDE: LOGO + SOCIAL ---------- */
-.logo-container-f {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* keep logo left-aligned */
-}
-
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;  /* socials align with logo left edge */
-  margin-top: 6px;          /* small space between logo and socials */
-}
-
-/* Social icons under the logo */
-.footer-social {
-  width: auto;
-  margin-top: 12px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-}
-
-.footer-social button {
-  background: #000000;
-  border: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-.footer-social button:hover { background-color: #5a6a5c; }
-
-/* ---------- RIGHT SIDE: NAV COLUMNS ---------- */
-.footer-columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 80px;
-  justify-content: flex-start;
-}
-
-/* push the Services column (the last <nav>) to the far right */
-.footer-columns .footer-column:last-child { margin-left: auto; }
-
-.footer-column { min-width: 120px; max-width: 180px; }
-
-.footer-column h3 {
-  font-weight: 900;
-  font-size: 14px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #bbb;
-  padding-bottom: 4px;
-  letter-spacing: 0.035em;
-  user-select: none;
-}
-
-.footer-column ul { list-style: none; margin: 0; padding: 0; }
-
-.footer-column ul li {
-  margin-bottom: 12px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #111;
-  cursor: pointer;
-  user-select: none;
-  letter-spacing: 0.015em;
-  transition: color 0.3s ease;
-}
-.footer-column ul li:hover { color: #5a6a5c; }
-
-/* links inside list items */
-.footer-column ul li a {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
-.footer-column ul li a:hover { text-decoration: underline; }
-
-/* ---------- BOTTOM BAR ---------- */
-.footer-bottom {
-  background: #fff;
-  border-top: 1px solid #ccc;
-  padding: 10px 120px;
-  font-size: 13px;
-  color: #222;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  font-weight: 600;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.footer-bottom .links {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.footer-bottom .links a {
-  color: #222;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-.footer-bottom .links a:hover { color: #5a6a5c; }
-.footer-bottom .copyright { font-weight: 900; }
-
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 960px) {
-  .footer-wrapper {
-    padding: 40px 50px 60px 50px;
-    grid-template-columns: 1fr;     /* single column */
-    grid-template-areas:
-      "logo"
-      "social"
-      "cols";
-    row-gap: 28px;
-  }
-
-  .footer-columns {
-    gap: 30px;
-  }
-
-  /* don’t force Services to the edge on small screens */
-  .footer-columns .footer-column:last-child { margin-left: 0; }
-
-  .footer-column { max-width: 160px; }
-
-  .footer-bottom {
-    padding: 10px 50px;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 12px;
-  }
-  .footer-bottom .links { justify-content: center; }
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-}
-
-.section {
-  padding: 80px 10%;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
-}
-
-/* Section Colors */
-.beige {
-  background-color: #f8e4c9;
-  text-align: left;
-}
-
-.green {
-  background-color: #456254;
-  color: #f8e4c9;
-}
-
-.white {
-  background-color: #fff;
-  color: #000;
-}
-
-.dark {
-  background-color: #0d1219;
-}
-
-/* Text Styles */
-.small-title {
-  font-size: 30px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.big-title {
-  font-size: 48px;
-  font-weight: 900;
-  line-height: 1.2;
-}
-
-.paragraph {
-  font-size: 20px;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 20px auto;
-}
-
-.paragraph.black {
-  color: #000;
-}
-
-/* Button */
-.apply-btn {
-  display: inline-block;
-  padding: 15px 30px;
-  border: 1px solid #f8e4c9;
-  color: #f8e4c9;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.apply-btn:hover {
-  background-color: #f8e4c9;
-  color: #0d1219;
-}
-
-/* Animation class */
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-.beige {
-  background-color: #f8e4c9;
-  text-align: left;
-  /* Black border around the whole section */
-  box-sizing: border-box;
-  margin-top: 50px;
-  /* Pushes section down */
-}
-
-.beige {
-  background-color: #f8e4c9;
-  text-align: left;
- 
-  /* Black border around the whole section */
-  box-sizing: border-box;
-  margin-top: 50px;
-  /* Pushes section down */
-  padding: 180px 20%;
-  /* More height: top/bottom 150px, sides stay same */
-}
-/* =========================
-   MOBILE RESPONSIVE OVERRIDES
-   (append at the end of your <style>)
-   ========================= */
-
-/* Header height scales on mobile so the fixed nav + hero spacing stay correct */
-@media (max-width: 900px){
-  :root { --header-h: 64px; }
-  .header{ height: var(--header-h); padding: 0 16px; }
-  .logo{ height: 46px; }
-  .hamburger{ width: 28px; height: 20px; }
-}
-
-/* Hero: avoid content hiding behind fixed header, use dynamic viewport units on mobile */
-.hero{
-  height: 100dvh;                /* better on mobile than 100vh */
-  margin-top: var(--header-h) !important;  /* override the 90px with the variable */
-  padding: 0 16px;
-}
-.hero-video{ object-position: center; }
-.hero-content h1{
-  font-size: clamp(28px, 7vw, 60px);
-  line-height: 1.1;
-}
-.hero-buttons .btn{
-  padding: 10px 16px;
-  font-size: 14px;
-}
-
-/* General container breathing room on phones */
-.container{ padding: 0 16px; }
-
-/* Solutions / Insights: keep card motion smooth and avoid jitter on resize */
-.solution-card, .insight-card{ will-change: transform; }
-
-/* Legacy section: image height + stats grid on small screens */
-@media (max-width: 600px){
-  .image-container img{ height: 220px; }
-  .legacy-stats{ grid-template-columns: 1fr 1fr; }
-}
-
-/* Footer: tighter padding + 2-column blocks on narrow screens */
-@media (max-width: 960px){
-  .footer-wrapper{ padding: 32px 24px 48px 24px; }
-  .footer-columns{ gap: 24px; }
-}
-@media (max-width: 600px){
-  .footer-columns{ gap: 18px; }
-  .footer-column{ min-width: 46%; max-width: none; }
-  .footer-bottom{ padding: 10px 24px; }
-}
-
-/* Social tap targets on mobile */
-.footer-social button{ width: 40px; height: 40px; }
-
-/* Kill surprise horizontal scrollbars on tiny devices */
-html, body{ overflow-x: hidden; }
-
-/* Respect user who prefers reduced motion */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
-}
-.logo-f {
-  height: 75px;
-}
-
+    @media (max-width: 600px){
+      .image-container img{ height: 220px; }
+      .legacy-stats{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 960px){
+      .footer-wrapper{ padding: 32px 24px 48px 24px; }
+      .footer-columns{ gap: 24px; }
+    }
+    @media (max-width: 600px){
+      .footer-columns{ gap: 18px; }
+      .footer-column{ min-width: 46%; max-width: none; }
+      .footer-bottom{ padding: 10px 24px; }
+    }
+    .footer-social button{ width: 40px; height: 40px; }
+    html, body{ overflow-x: hidden; }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+    }
+    .logo-f { height: 75px; }
 </style>
 
 <body>
-
 <section id="sds-navigation">
   <style>
     :root{
@@ -1230,8 +558,25 @@ html, body{ overflow-x: hidden; }
     }
     .logo{ height:70px; display:block; }
 
+    /* Right actions (login + hamburger) */
+    .right-actions{
+      grid-column:3; justify-self:end; display:flex; align-items:center; gap:16px;
+    }
+
+    /* Login Icon (anchor wrapper) */
+    .login-icon{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:999px; overflow:hidden; cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+      outline-offset:3px;
+    }
+    .login-icon:hover{ transform:scale(1.06); box-shadow:0 6px 16px rgba(0,0,0,.12); }
+    .login-icon:active{ transform:scale(0.98); }
+    /* Lordicon element sizing */
+    .login-icon lord-icon{ width:40px; height:40px; display:block; }
+
     /* Hamburger */
-    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger{ width:32px; height:24px; cursor:pointer; position:relative; -webkit-tap-highlight-color:transparent; }
     .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
     .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
     .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
@@ -1281,7 +626,10 @@ html, body{ overflow-x: hidden; }
     .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
     .overlay-right ul{ list-style:none; margin:0; padding:0; }
     .overlay-right li{ margin:0 0 14px; }
-    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a{
+      text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px;
+      display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s;
+    }
     .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
 
     .mobile-panel{ display:none; } /* hidden on desktop */
@@ -1308,6 +656,10 @@ html, body{ overflow-x: hidden; }
       .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
       .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
       .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+
+      /* Slightly shrink login icon on mobile */
+      .login-icon{ width:36px; height:36px; }
+      .login-icon lord-icon{ width:36px; height:36px; }
     }
 
     .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
@@ -1315,6 +667,9 @@ html, body{ overflow-x: hidden; }
     .overlay-left .main-menu > li > a.pressed,
     .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
   </style>
+
+  <!-- Lordicon CDN (for animated online icon) -->
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
   <!-- Header -->
   <header class="header" aria-label="Primary">
@@ -1324,8 +679,24 @@ html, body{ overflow-x: hidden; }
         <img src="{{ url_for('static', filename='Images/tttttttttt.png') }}" alt="SDS Logo" class="logo">
       </a>
     </div>
-    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
-      <span></span><span></span><span></span>
+
+    <!-- Right actions: Login + Hamburger -->
+    <div class="right-actions">
+      <!-- Login Icon (animated, colored, associated with login) -->
+      <a href="/login" class="login-icon" aria-label="Login">
+        <lord-icon
+          src="https://cdn.lordicon.com/lbjtvqiv.json"
+          trigger="hover"
+          stroke="bold"
+          colors="primary:#f97316,secondary:#2563eb"
+          style="width:40px;height:40px">
+        </lord-icon>
+      </a>
+
+      <!-- Hamburger -->
+      <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
 
@@ -1341,7 +712,7 @@ html, body{ overflow-x: hidden; }
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -1472,111 +843,329 @@ html, body{ overflow-x: hidden; }
     })();
   </script>
 </section>
- <!-- HERO SECTION -->
-    <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="static/Images/vids/7710243-uhd_3840_2160_30fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-content">
-            <h1><span class="highlight">Growth Through Innovation</span></h1>
-            <div class="hero-buttons">
-                <a href="#" class="btn">Explore Us</a>
-                <a href="/getintouch" class="btn">Partner With Us</a>
-            </div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+      <source src="static/Images/vids/7710243-uhd_3840_2160_30fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+      <h1><span class="highlight">Growth Through Innovation</span></h1>
+      <div class="hero-buttons">
+          <a href="/about" class="btn">Explore Us</a>
+          <a href="/getintouch" class="btn">Partner With Us</a>
+      </div>
+  </div>
+</section>
+
+<!-- Solutions Section -->
+<section class="solutions-section">
+  <div class="container">
+      <div class="section-header">
+          <h2 class="section-title">
+              Explore Our <span class="text-accent">Services</span>
+          </h2>
+          <p class="section-subtitle">
+              Innovative approaches to agricultural development and community empowerment
+          </p>
+      </div>
+
+      <div class="solutions-grid">
+          <!-- Solution cards will be generated by JavaScript -->
+      </div>
+  </div>
+</section>
+
+<section id="sds-outreach" aria-label="SDS Cumulative Outreach">
+  <style>
+    /* ====== TOKENS (scoped) ====== */
+    #sds-outreach{
+      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --brand:#0ea5e9; --brand-2:#16a34a;
+      --line:#e5e7eb; --wrap:min(1180px,94vw); --radius:18px;
+      --shadow:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+      background:var(--bg); color:var(--ink); padding: clamp(36px,6vw,72px) 0;
+    }
+    #sds-outreach .wrap{width:var(--wrap); margin:0 auto;}
+
+    /* ====== HEADER (exactly centered; single-line title) ====== */
+    #sds-outreach .header{ text-align:center; margin-bottom: clamp(22px,4vw,36px); }
+    #sds-outreach .header h2{
+      margin:0; font-weight:800; line-height:1;
+      font-size: clamp(24px,5vw,40px);
+      white-space: nowrap; /* keep to a single line */
+      display:inline-block;
+      background:linear-gradient(92deg,var(--brand),var(--brand-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    #sds-outreach .header p{
+      margin:10px 0 0; color:var(--muted); font-size:clamp(14px,1.8vw,16px);
+    }
+
+    /* ====== LAYOUT: KPIs + Stakeholder card ====== */
+    #sds-outreach .grid{
+      display:grid; gap: clamp(18px,2.4vw,28px);
+      grid-template-columns: 1.15fr .85fr;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      #sds-outreach .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* ====== KPI STRIP ====== */
+    #sds-outreach .kpi-strip{
+      display:grid; gap: clamp(14px,2.4vw,24px);
+      grid-template-columns: repeat(3, 1fr);
+      align-items:stretch; justify-items:center;
+      padding: clamp(16px,2.8vw,22px);
+      border:1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); background:#fff;
+    }
+    @media (max-width: 900px){
+      #sds-outreach .kpi-strip{ grid-template-columns: 1fr; }
+    }
+    #sds-outreach .kpi{ text-align:center; padding: clamp(10px,1.8vw,16px); }
+    #sds-outreach .kpi .num{
+      font-weight:900; letter-spacing:.2px;
+      font-size: clamp(36px,6vw,56px); line-height:1;
+      color:#3a3a3a;
+    }
+    #sds-outreach .kpi .lbl{
+      margin-top:10px; color:var(--muted);
+      font-size: clamp(14px,1.8vw,16px);
+    }
+    @media (min-width: 901px){
+      #sds-outreach .kpi:not(:last-child){ position:relative; }
+      #sds-outreach .kpi:not(:last-child)::after{
+        content:""; position:absolute; top:8%; right:-.5px; bottom:8%;
+        width:1px; background:var(--line);
+      }
+    }
+
+    /* ====== STAKEHOLDER CARD ====== */
+    #sds-outreach .stake-card{
+      background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding: clamp(16px,2.8vw,24px);
+    }
+    #sds-outreach .stake-card .hd{
+      display:flex; gap:10px; align-items:center; margin-bottom:14px;
+    }
+    #sds-outreach .stake-card .hd .ib{
+      width:34px; height:34px; display:grid; place-items:center;
+      background:linear-gradient(180deg,#ecfeff,#f0fdf4);
+      border:1px solid var(--line); border-radius:10px;
+    }
+    #sds-outreach .stake-card .hd h3{
+      margin:0; font-size: clamp(16px,2.2vw,20px); font-weight:800; color:#0b1220;
+      white-space: nowrap;
+    }
+    #sds-outreach .stake-list{ display:grid; gap:10px; margin-top:6px; }
+    #sds-outreach .stake-row{
+      display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px;
+      padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:#fff;
+    }
+    #sds-outreach .stake-row .ib{
+      width:30px; height:30px; display:grid; place-items:center;
+      background:#f8fafc; border-radius:8px; border:1px solid var(--line);
+    }
+    #sds-outreach .stake-row .lbl{ color:#0f172a; font-weight:600; }
+    #sds-outreach .stake-row .num{
+      font-variant-numeric: tabular-nums; font-weight:800; color:#111827;
+      padding:2px 10px; border-radius:999px; background:#f1f5f9; border:1px solid var(--line);
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="header">
+      <h2>SDS Cumulative Outreach</h2><br>
+      <p>We build enabling ecosystems to nurture a sustainable &amp; equitable society.</p>
+    </div>
+
+    <div class="grid">
+      <!-- KPI STRIP -->
+      <section class="kpi-strip" role="list" aria-label="Cumulative Key Figures">
+        <div class="kpi" role="listitem" aria-label="Advisory Engagements">
+          <div class="num"><span class="count" data-count="60">60</span>+</div>
+          <div class="lbl">Advisory Engagements</div>
         </div>
-    </section>
-
-
-    <!-- Solutions Section -->
-    <section class="solutions-section">
-        <div class="container">
-            <!-- Section Header -->
-            <div class="section-header">
-                <h2 class="section-title">
-                    Explore Our <span class="text-accent">Services</span>
-                </h2>
-                <p class="section-subtitle">
-                    Innovative approaches to agricultural development and community empowerment
-                </p>
-            </div>
-
-            <!-- Solutions Grid -->
-            <div class="solutions-grid">
-                <!-- Solution cards will be generated by JavaScript -->
-            </div>
+        <div class="kpi" role="listitem" aria-label="States Impacted">
+          <div class="num"><span class="count" data-count="13">13</span>+</div>
+          <div class="lbl">States Impacted</div>
         </div>
-    </section>
+        <div class="kpi" role="listitem" aria-label="People Impacted">
+          <div class="num"><span class="count" data-count="180000">1,80,000</span>+</div>
+          <div class="lbl">People Impacted (direct &amp; indirect)</div>
+        </div>
+      </section>
 
-    <!-- Legacy Section -->
-    <section class="legacy-section">
-        <!-- Background decorative elements -->
-        <div class="legacy-bg">
-            <div class="bg-circle bg-circle-4"></div>
-            <div class="bg-circle bg-circle-5"></div>
-            <div class="bg-circle bg-circle-6"></div>
+      <!-- STAKEHOLDER ENGAGEMENT -->
+      <aside class="card stake-card" aria-label="Stakeholder Engagement Framework">
+        <div class="hd">
+          <div class="ib" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12c0 5 3 8 8 8s8-3 8-8" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 4c-2.5 1.9-4 4.2-4 8 2.3-1.6 5.1-2.2 8-1.9-.3-2.9-1.3-4.9-4-6.1Z" fill="#16a34a"/>
+            </svg>
+          </div>
+          <h3>Stakeholder Engagement Framework</h3>
         </div>
 
-        <div class="container legacy-container">
-            <!-- Content -->
-            <div class="legacy-content">
-                <div class="glass-card">
-                    <!-- Floating Icon -->
-                    <div class="legacy-icon">
-                        <div class="icon-container">
-                            🏛️
-                        </div>
-                        <div class="icon-dot icon-dot-1"></div>
-                        <div class="icon-dot icon-dot-2"></div>
-                    </div>
-
-                    <h2 class="legacy-title">
-                        Part of the
-                        <span class="gradient-text">Sayanant Group</span>
-                        Legacy
-                    </h2>
-
-                    <p class="legacy-description">
-                        With over three decades of excellence in development consulting, the Sayanant Group has
-                        established itself as a trusted partner for governments, NGOs, and international organizations
-                        across India and beyond.
-                    </p>
-
-
-
-                    <button class="btn-modern btn-with-icon">
-                        Learn About Sayanant Group
-                        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
+        <div class="stake-list">
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 10h18M6 7h12M5 21h14l1-11H4l1 11Z" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
+            <div class="lbl">Multilateral Organization</div>
+            <div class="num"><span class="count" data-count="1">1</span></div>
+          </div>
 
-            <!-- Floating Image -->
-            <div class="legacy-image">
-                <div class="image-container">
-                    <img src="static/Images/ChatGPT Image Aug 30, 2025, 10_58_00 AM.png" alt="Sayanant Group Legacy">
-                    <div class="image-overlay"></div>
-                </div>
-
-                <!-- Floating elements -->
-                <div class="floating-element floating-element-1">✨</div>
-                <div class="floating-element floating-element-2">🌱</div>
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 20h18M4 10h16l-8-6-8 6Zm2 0v10m12-10v10" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
+            <div class="lbl">State Government</div>
+            <div class="num"><span class="count" data-count="10">10</span></div>
+          </div>
+
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 10h14l-7-6-7 6Zm-1 10h16M7 10v10m10-10v10" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="lbl">Central Government</div>
+            <div class="num"><span class="count" data-count="6">6</span></div>
+          </div>
+
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 1 1 0 10A5 5 0 0 1 12 3Zm0 11c-5 0-9 3-9 7h18c0-4-4-7-9-7Z" stroke="#0ea5e9" stroke-width="2"/></svg>
+            </div>
+            <div class="lbl">National NGOs</div>
+            <div class="num"><span class="count" data-count="15">15</span></div>
+          </div>
+
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#0ea5e9" stroke-width="2"/><path d="M7 10h10M7 14h6" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="lbl">CSR Initiatives</div>
+            <div class="num"><span class="count" data-count="2">2</span></div>
+          </div>
+
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 10h16v11H4V10Zm3-5h10l1 5H6l1-5Z" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="lbl">Private Organization</div>
+            <div class="num"><span class="count" data-count="2">2</span></div>
+          </div>
+
+          <div class="stake-row">
+            <div class="ib" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 1 1 0 14A7 7 0 0 1 12 2Zm0 14v6" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="9" r="3" fill="#16a34a"/></svg>
+            </div>
+            <div class="lbl">International Organization</div>
+            <div class="num"><span class="count" data-count="3">3</span></div>
+          </div>
         </div>
-    </section>
+      </aside>
+    </div>
+  </div>
 
+  <script>
+    // Count-up enhancement (respects prefers-reduced-motion)
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const items = document.querySelectorAll('#sds-outreach .count');
+      if(!items.length || prefersReduced) return;
 
+      const formatIndian = (n)=>{
+        const s = n.toString();
+        const after3 = s.slice(-3);
+        let rest = s.slice(0, -3);
+        if (!rest) return after3;
+        return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + after3;
+      };
 
+      const animate = (el)=>{
+        const target = Number(el.getAttribute('data-count') || el.textContent.replace(/\D/g,'')) || 0;
+        const startVal = 0; const dur = 1200; const start = performance.now();
+        const ease = t => 1 - Math.pow(1 - t, 3);
+        function frame(now){
+          const p = Math.min(1, (now - start) / dur);
+          const val = Math.round(startVal + (target - startVal) * ease(p));
+          el.textContent = formatIndian(val);
+          if(p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      };
 
+      const io = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            animate(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.35});
 
+      items.forEach(el => io.observe(el));
+    })();
+  </script>
+</section>
 
-    <!-- Insights Section -->
+<!-- Legacy Section -->
+<section class="legacy-section">
+  <div class="legacy-bg">
+      <div class="bg-circle bg-circle-4"></div>
+      <div class="bg-circle bg-circle-5"></div>
+      <div class="bg-circle bg-circle-6"></div>
+  </div>
+
+  <div class="container legacy-container">
+      <div class="legacy-content">
+          <div class="glass-card">
+              <div class="legacy-icon">
+                  <div class="icon-container">🏛️</div>
+                  <div class="icon-dot icon-dot-1"></div>
+                  <div class="icon-dot icon-dot-2"></div>
+              </div>
+
+              <h2 class="legacy-title">
+                  Part of the <span class="gradient-text">Sayanant Group</span> Legacy
+              </h2>
+
+              <p class="legacy-description">
+                  With over three decades of excellence in development consulting, the Sayanant Group has
+                  established itself as a trusted partner for governments, NGOs, and international organizations
+                  across India and beyond.
+              </p>
+
+              <button class="btn-modern btn-with-icon">
+                  Learn About Sayanant Group
+                  <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+              </button>
+          </div>
+      </div>
+
+      <div class="legacy-image">
+          <div class="image-container">
+              <img src="static/Images/ChatGPT Image Aug 30, 2025, 10_58_00 AM.png" alt="Sayanant Group Legacy">
+              <div class="image-overlay"></div>
+          </div>
+
+          <div class="floating-element floating-element-1">✨</div>
+          <div class="floating-element floating-element-2">🌱</div>
+      </div>
+  </div>
+</section>
+
+<!-- Insights Section -->
 <section class="insights-section" id="insights-section" aria-label="Latest Insights">
   <div class="container">
-    <!-- Section Header -->
     <div class="section-header">
       <h2 class="section-title">
         Latest <span class="text-accent">Insights</span>
@@ -1587,10 +1176,8 @@ html, body{ overflow-x: hidden; }
       </p>
     </div>
 
-    <!-- Insights Grid -->
     <div class="insights-grid" aria-live="polite"></div>
 
-    <!-- Section Footer -->
     <div class="section-footer">
       <button class="btn-modern btn-with-icon" id="viewAllInsightsBtn" aria-expanded="false">
         View All Insights
@@ -1602,232 +1189,226 @@ html, body{ overflow-x: hidden; }
   </div>
 </section>
 
+<section id="sayanant-group" aria-label="Sayanant Group — Video Spotlight">
+  <style>
+    #sayanant-group {
+      --bg:#ffffff; --ink:#0b1220; --muted:#475569;
+      --brand:#5b3df0; --brand-600:#4a33c7;
+      --line:rgba(90,78,200,.25);
+      --wrap:min(1180px,94vw);
+      --radius:18px;
+      --shadow:0 18px 48px rgba(2,6,23,.08);
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+      color:var(--ink); background:var(--bg);
+    }
 
-    <!--Footers-->
+    #sayanant-group .wrap {
+      width:var(--wrap); margin-inline:auto;
+      padding: clamp(28px, 3.5vw, 40px);
+      display:grid;
+      grid-template-columns: 1.05fr 1.2fr;
+      gap: clamp(24px, 3vw, 40px);
+      align-items: start;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background:#fff;
+    }
+
+    #sayanant-group .copy h3 {
+      font-size: clamp(22px, 1.6vw, 28px);
+      margin: 6px 0 14px 0;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    #sayanant-group .copy p {
+      color:var(--muted);
+      line-height:1.75;
+      font-size: clamp(14px, 1.05vw, 16px);
+      margin: 0 0 14px 0;
+    }
+
+    #sayanant-group .btn {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:14px 22px;
+      background:var(--brand); color:#fff;
+      text-decoration:none; font-weight:600;
+      border-radius:12px;
+      box-shadow: 0 10px 28px rgba(91,61,240,.28);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    #sayanant-group .btn:hover {
+      background: var(--brand-600);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(74,51,199,.34);
+    }
+
+    #sayanant-group .video { width:100%; }
+    #sayanant-group .ratio {
+      position:relative; width:100%; aspect-ratio:16/9;
+      background:#000; border-radius:16px; overflow:hidden;
+    }
+    #sayanant-group .ratio iframe {
+      position:absolute; inset:0; width:100%; height:100%; border:0;
+    }
+    #sayanant-group .placeholder {
+      display:grid; place-items:center;
+      height:100%; color:#e2e8f0; font-weight:600;
+      border:2px dashed rgba(148,163,184,.35);
+      border-radius:16px;
+      background: repeating-linear-gradient(45deg, rgba(99,102,241,.08) 0 12px, rgba(99,102,241,.10) 12px 24px);
+      aspect-ratio:16/9;
+    }
+
+    @media (max-width:980px){
+      #sayanant-group .wrap{ grid-template-columns:1fr; }
+      #sayanant-group .copy{ order:2; }
+      #sayanant-group .video{ order:1; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="copy">
+      <h3>SAYANANTH GROUP</h3>
+      <p>Sayananth Group builds enabling ecosystems for inclusive growth. Through Sesta Development Services (SDS) and allied initiatives, we co-design market-linked solutions for rural livelihoods across Northeast India.</p>
+      <p>Our teams work across agripreneurship, aquaculture, poultry and climate-smart agriculture; strengthen institutions like SHGs, CLFs and FPOs; and deliver research, monitoring &amp; evaluation, and program management units that unlock finance, skills and markets for women and youth.</p>
+      <a class="btn" href="https://sdsindia.in" target="_blank" rel="noopener">Read More <span aria-hidden="true">→</span></a>
+    </div>
+
+    <!-- Just change the data-youtube link -->
+    <div class="video" data-youtube="https://www.youtube.com/watch?v=Qg7lXUB0UkQ"></div>
+  </div>
+
+  <script>
+    (function(){
+      const vid = document.querySelector('#sayanant-group .video');
+      const url = vid.getAttribute('data-youtube') || '';
+
+      function extractYouTubeID(u){
+        const re = /(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/;
+        const m = u.match(re);
+        return m ? m[1] : null;
+      }
+
+      const id = extractYouTubeID(url);
+      if(id){
+        const embed = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1`;
+        vid.innerHTML =
+          `<div class="ratio">
+             <iframe src="${embed}" loading="lazy"
+               referrerpolicy="strict-origin-when-cross-origin"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowfullscreen></iframe>
+           </div>`;
+      } else {
+        vid.innerHTML = '<div class="placeholder">Add a valid YouTube link</div>';
+      }
+    })();
+  </script>
+</section>
+
+<br><br>
+
+
+
+<!-- Footers -->
 <footer>
-    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
-        <div class="logo-container-f">
-             <a href="{{ url_for('home') }}">
-                <img src="static/Images/tttttttttt.png" alt="SDS Logo" class="logo-f">
-            </a>
-        </div>
-        <div class="footer-left" aria-label="Company branding and partner logos">
-            <div class="footer-social" aria-label="Social media links">
-                <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
-                <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
-                <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
-                <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
-                <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
-            </div>
-        </div>
+  <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+           <a href="{{ url_for('home') }}">
+              <img src="static/Images/tttttttttt.png" alt="SDS Logo" class="logo-f">
+          </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+          <div class="footer-social" aria-label="Social media links">
+              <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+              <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+              <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+              <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+              <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+          </div>
+      </div>
 
-        <div class="footer-columns" aria-label="Footer navigation">
-            <nav class="footer-column" aria-labelledby="footer-legal">
-                <h3 id="footer-legal">SECTORS</h3>
-                <ul>
-          <li><a href="/agricul">Agriculture</a></li>
-        <li><a href="/fish">Fishery</a></li>
-        <li><a href="/poul">Poultry</a></li>
-        <li><a href="/pig">Piggery</a></li>
-                </ul>
-            </nav>
+      <div class="footer-columns" aria-label="Footer navigation">
+          <nav class="footer-column" aria-labelledby="footer-legal">
+              <h3 id="footer-legal">SECTORS</h3>
+              <ul>
+                <li><a href="/agricul">Agriculture</a></li>
+                <li><a href="/fish">Fishery</a></li>
+                <li><a href="/poul">Poultry</a></li>
+                <li><a href="/pig">Piggery</a></li>
+              </ul>
+          </nav>
 
-            <nav class="footer-column" aria-labelledby="footer-careers">
-                <h3 id="footer-careers">CAREERS</h3>
-                <ul>
-                    <li><a href="/career" tabIndex="0">Join Us</a></li>
-                </ul>
-            </nav>
+          <nav class="footer-column" aria-labelledby="footer-careers">
+              <h3 id="footer-careers">CAREERS</h3>
+              <ul>
+                  <li><a href="/career" tabindex="0">Join Us</a></li>
+              </ul>
+          </nav>
 
-            <nav class="footer-column" aria-labelledby="footer-contact">
-                <h3 id="footer-contact">Company</h3>
-                <ul>
-                    <li><a href="/" tabIndex="0">Home</a></li>
-                    <li><a href="/about" tabIndex="0">About Us</a></li>
-                    <li tabIndex="0">Sectors</li>
-                    <li><a href="/research" tabIndex="0">Publication</a></li>
-                    <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
-                </ul>
-            </nav>
+          <nav class="footer-column" aria-labelledby="footer-contact">
+              <h3 id="footer-contact">Company</h3>
+              <ul>
+                  <li><a href="/" tabindex="0">Home</a></li>
+                  <li><a href="/about" tabindex="0">About Us</a></li>
+                  <li tabindex="0">Sectors</li>
+                  <li><a href="/research" tabindex="0">Publication</a></li>
+                  <li><a href="/getintouch" tabindex="0">Get in Touch</a></li>
+                  <li><a href="/rfp" tabindex="0">Submit RFP</a></li>
+              </ul>
+          </nav>
 
-            <nav class="footer-column" aria-labelledby="footer-products">
-                <h3 id="footer-products">Services</h3>
-                <ul>
-                    <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
-                    <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
-                    <li><a href="{{ url_for('agri') }}" tabIndex="0">Fishery Development</a></li>
-                    <li><a href="{{ url_for('com') }}" tabIndex="0">Communication</a></li>
-                    <li><a href="{{ url_for('value') }}" tabIndex="0">Value Chain Development</a></li>
-                    <li><a href="{{ url_for('agri') }}" tabIndex="0">Marketing</a></li>
-                    <li><a href="{{ url_for('agri') }}" tabIndex="0">All Services</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+          <nav class="footer-column" aria-labelledby="footer-products">
+              <h3 id="footer-products">Services</h3>
+              <ul>
+                  <li><a href="{{ url_for('fpo') }}" tabindex="0">FPO Management</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Agricultural Development</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Fishery Development</a></li>
+                  <li><a href="{{ url_for('com') }}" tabindex="0">Communication</a></li>
+                  <li><a href="{{ url_for('value') }}" tabindex="0">Value Chain Development</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Marketing</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">All Services</a></li>
+              </ul>
+          </nav>
+      </div>
+  </div>
 
-    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
-        <div class="links">
-            <a href="#" tabindex="0">Code of Conduct</a>
-            <a href="#" tabindex="0">Privacy Policy</a>
-            <a href="#" tabindex="0">Terms of Service</a>
-            <a href="#" tabindex="0">Sitemap</a>
-            <a href="#" tabindex="0">Accessibility</a>
-        </div>
-        <div class="copyright">
-            © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
-        </div>
-    </div>
+  <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+          <a href="#" tabindex="0">Code of Conduct</a>
+          <a href="#" tabindex="0">Privacy Policy</a>
+          <a href="#" tabindex="0">Terms of Service</a>
+          <a href="#" tabindex="0">Sitemap</a>
+          <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+          © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+  </div>
 </footer>
 
-
-
-  
-            
-
 <script>
-
-      const solutions = [
-    {
-      id: 1,
-      title: "FPO Management & Development",
-      description: "Comprehensive support for Farmer Producer Organizations covering all aspects of their growth and sustainability.",
-      icon: "🌾",
-      color: "background: linear-gradient(135deg, #22c55e, #16a34a);",
-      link: "/fpo"
-    },
-    {
-      id: 2,
-      title: "Research & Consultancy",
-      description: "Evidence-based insights and in-depth knowledge to help clients make informed strategic decisions.",
-      icon: "📊",
-      color: "background: linear-gradient(135deg, #3b82f6, #1d4ed8);",
-      link: "/research"
-    },
-    {
-      id: 3,
-      title: "Agripreneurship",
-      description: "Promoting FPOs and creating a supportive ecosystem for rural entrepreneurial growth and innovation.",
-      icon: "🚀",
-      color: "background: linear-gradient(135deg, #8b5cf6, #7c3aed);",
-      link: "/agri"
-    },
-    {
-      id: 4,
-      title: "Value Chain Development",
-      description: "Creating sustainable ecosystems by organizing communities into efficient, market-focused producer organizations.",
-      icon: "🔗",
-      color: "background: linear-gradient(135deg, #f97316, #ea580c);",
-      link: "/value"
-    },
-    {
-      id: 5,
-      title: "Marketing",
-      description: "Developing market linkages, product strategies, and value-based support systems for agricultural products.",
-      icon: "📈",
-      color: "background: linear-gradient(135deg, #10b981, #059669);",
-      link: "/mark"
-    },
-    {
-      id: 6,
-      title: "Institute Building and Capacity Building",
-      description: "Strengthening community-owned organizations through targeted training and institutional development.",
-      icon: "🏢",
-      color: "background: linear-gradient(135deg, #6366f1, #4f46e5);",
-      link: "/ibcb"
-    },
-    {
-      id: 7,
-      title: "Monitoring & Evaluation",
-      description: "Real-time data analytics to continuously assess and refine strategies for optimal outcomes.",
-      icon: "📋",
-      color: "background: linear-gradient(135deg, #14b8a6, #0d9488);",
-      link: "/mon"
-    },
-    {
-      id: 8,
-      title: "Organisation Development",
-      description: "Fostering sustainable development through community-owned institutions in Eastern and North-Eastern regions.",
-      icon: "🌍",
-      color: "background: linear-gradient(135deg, #06b6d4, #0891b2);",
-      link: "/org"
-    },
-    {
-      id: 9,
-      title: "Communication For Development",
-      description: "Strategic dissemination of key messages to stakeholders and communities for maximum impact.",
-      icon: "📢",
-      color: "background: linear-gradient(135deg, #f43f5e, #e11d48);",
-      link: "/com"
-    }
+  const solutions = [
+    { id: 1, title: "FPO Management & Development", description: "Comprehensive support for Farmer Producer Organizations covering all aspects of their growth and sustainability.", icon: "🌾", color: "background: linear-gradient(135deg, #22c55e, #16a34a);", link: "/fpo" },
+    { id: 2, title: "Research & Consultancy", description: "Evidence-based insights and in-depth knowledge to help clients make informed strategic decisions.", icon: "📊", color: "background: linear-gradient(135deg, #3b82f6, #1d4ed8);", link: "/research" },
+    { id: 3, title: "Agripreneurship", description: "Promoting FPOs and creating a supportive ecosystem for rural entrepreneurial growth and innovation.", icon: "🚀", color: "background: linear-gradient(135deg, #8b5cf6, #7c3aed);", link: "/agri" },
+    { id: 4, title: "Value Chain Development", description: "Creating sustainable ecosystems by organizing communities into efficient, market-focused producer organizations.", icon: "🔗", color: "background: linear-gradient(135deg, #f97316, #ea580c);", link: "/value" },
+    { id: 5, title: "Marketing", description: "Developing market linkages, product strategies, and value-based support systems for agricultural products.", icon: "📈", color: "background: linear-gradient(135deg, #10b981, #059669);", link: "/mark" },
+    { id: 6, title: "Institute Building and Capacity Building", description: "Strengthening community-owned organizations through targeted training and institutional development.", icon: "🏢", color: "background: linear-gradient(135deg, #6366f1, #4f46e5);", link: "/ibcb" },
+    { id: 7, title: "Monitoring & Evaluation", description: "Real-time data analytics to continuously assess and refine strategies for optimal outcomes.", icon: "📋", color: "background: linear-gradient(135deg, #14b8a6, #0d9488);", link: "/mon" },
+    { id: 8, title: "Organisation Development", description: "Fostering sustainable development through community-owned institutions in Eastern and North-Eastern regions.", icon: "🌍", color: "background: linear-gradient(135deg, #06b6d4, #0891b2);", link: "/org" },
+    { id: 9, title: "Communication For Development", description: "Strategic dissemination of key messages to stakeholders and communities for maximum impact.", icon: "📢", color: "background: linear-gradient(135deg, #f43f5e, #e11d48);", link: "/com" }
   ];
 
   const insights = [
-    {
-      id: 1,
-      title: "Digital Agriculture: Policy Framework for 2025",
-      category: "Digital Agriculture Trends",
-      date: "January 5, 2025",
-      tag: "Policy Analysis",
-      tagColor: "background: #dbeafe; color: #1d4ed8;",
-      excerpt: "Comprehensive analysis of emerging digital agriculture policies and their impact on rural transformation initiatives.",
-      image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80",
-      readTime: "5 min read"
-    },
-    {
-      id: 2,
-      title: "RESEARCH ANALYSIS FOR SCOPING AND MAPPING IN FPO’S, FPC’S, CBBO’S POPI’S AND COORPORATIVES IN MANIPUR.",
-      category: "SCOPING AND MAPPING",
-      date: "December 28, 2024",
-      tag: "Research",
-      tagColor: "background: #dcfce7; color: #16a34a;",
-      excerpt: "Research findings on key success factors for Farmer Producer Organizations based on our 342 managed FPOs.",
-      image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=800&q=80",
-      readTime: "8 min read"
-    },
-    {
-      id: 3,
-      title: "Sustainable Agriculture Trends for 2025",
-      category: "Sustainable Agriculture",
-      date: "December 20, 2024",
-      tag: "Trend Forecast",
-      tagColor: "background: #f3e8ff; color: #7c3aed;",
-      excerpt: "Emerging trends in sustainable agriculture practices and their potential impact on rural development strategies.",
-      image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=800&q=80",
-      readTime: "6 min read"
-    },
-    {
-      id: 4,
-      title: "Climate-Smart Irrigation: Field Results 2025",
-      category: "Climate Resilience",
-      date: "May 12, 2025",
-      tag: "Case Study",
-      tagColor: "background: #fff7ed; color: #c2410c;",
-      excerpt: "On-farm results from micro-irrigation pilots show water savings up to 32% with stable yields in semi-arid belts.",
-      image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80",
-      readTime: "4 min read"
-    },
-    {
-      id: 5,
-      title: "Agri Market Linkages: Playbook for FPOs",
-      category: "Market Access",
-      date: "March 3, 2025",
-      tag: "Playbook",
-      tagColor: "background: #e0e7ff; color: #3730a3;",
-      excerpt: "A step-by-step guide to contracting, aggregation, and QA that improves price realization for smallholders.",
-      image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80",
-      readTime: "7 min read"
-    },
-    {
-      id: 6,
-      title: "Digital Soil Health Cards: Adoption Insights",
-      category: "AgriTech",
-      date: "February 10, 2025",
-      tag: "Insights",
-      tagColor: "background: #fef9c3; color: #854d0e;",
-      excerpt: "Adoption patterns and ROI from digital soil diagnostics across 11 districts and 3,000 farmers.",
-      image: "https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=800&q=80",
-      readTime: "5 min read"
-    }
+    { id: 1, title: "Digital Agriculture: Policy Framework for 2025", category: "Digital Agriculture Trends", date: "January 5, 2025", tag: "Policy Analysis", tagColor: "background: #dbeafe; color: #1d4ed8;", excerpt: "Comprehensive analysis of emerging digital agriculture policies and their impact on rural transformation initiatives.", image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80", readTime: "5 min read" },
+    { id: 2, title: "RESEARCH ANALYSIS FOR SCOPING AND MAPPING IN FPO’S, FPC’S, CBBO’S POPI’S AND COORPORATIVES IN MANIPUR.", category: "SCOPING AND MAPPING", date: "December 28, 2024", tag: "Research", tagColor: "background: #dcfce7; color: #16a34a;", excerpt: "Research findings on key success factors for Farmer Producer Organizations based on our 342 managed FPOs.", image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=800&q=80", readTime: "8 min read" },
+    { id: 3, title: "Sustainable Agriculture Trends for 2025", category: "Sustainable Agriculture", date: "December 20, 2024", tag: "Trend Forecast", tagColor: "background: #f3e8ff; color: #7c3aed;", excerpt: "Emerging trends in sustainable agriculture practices and their potential impact on rural development strategies.", image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=800&q=80", readTime: "6 min read" },
+    { id: 4, title: "Climate-Smart Irrigation: Field Results 2025", category: "Climate Resilience", date: "May 12, 2025", tag: "Case Study", tagColor: "background: #fff7ed; color: #c2410c;", excerpt: "On-farm results from micro-irrigation pilots show water savings up to 32% with stable yields in semi-arid belts.", image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80", readTime: "4 min read" },
+    { id: 5, title: "Agri Market Linkages: Playbook for FPOs", category: "Market Access", date: "March 3, 2025", tag: "Playbook", tagColor: "background: #e0e7ff; color: #3730a3;", excerpt: "A step-by-step guide to contracting, aggregation, and QA that improves price realization for smallholders.", image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80", readTime: "7 min read" },
+    { id: 6, title: "Digital Soil Health Cards: Adoption Insights", category: "AgriTech", date: "February 10, 2025", tag: "Insights", tagColor: "background: #fef9c3; color: #854d0e;", excerpt: "Adoption patterns and ROI from digital soil diagnostics across 11 districts and 3,000 farmers.", image: "https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=800&q=80", readTime: "5 min read" }
   ];
 
   /* ---------- Utilities ---------- */
@@ -2016,7 +1597,7 @@ html, body{ overflow-x: hidden; }
     });
   });
 </script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
 
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </html>

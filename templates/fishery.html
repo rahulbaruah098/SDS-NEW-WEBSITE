@@ -421,7 +421,7 @@ body {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -561,440 +561,297 @@ body {
      Sustainable Aquaculture — SECTION (fixed)
      Dependencies: Font Awesome 6+
      ======================= -->
-<section id="sds-aquaculture" aria-label="Sustainable Aquaculture in the North-East">
-  <style>
-    /* ---------- Scoped design tokens ---------- */
-    #sds-aquaculture{
-      --bg: #ffffff;
-      --ink: #0f172a;
-      --muted:#64748b;
-      --line:#e5e7eb;
-      --brand:#0ea5e9;
-      --brand-2:#16a34a;
-      --ring: rgba(14,165,233,.18);
-      --radius: 18px;
-      --shadow-1: 0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06);
-      --shadow-2: 0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
-      position: relative;
-      isolation: isolate;
-      overflow: clip;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      padding-bottom: 72px;
-    }
-    #sds-aquaculture *{ box-sizing: border-box; }
-    #sds-aquaculture figure{ margin: 0; }
+<section id="sds-aquaculture" aria-label="Sustainable Aquaculture in the North-East"> <style> /* ---------- Scoped design tokens ---------- */ #sds-aquaculture{ --bg: #ffffff; --ink: #0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring: rgba(14,165,233,.18); --radius: 18px; --shadow-1: 0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2: 0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); position: relative; isolation: isolate; overflow: clip; background: var(--bg); color: var(--ink); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; padding-bottom: 72px; } #sds-aquaculture *{ box-sizing: border-box; } #sds-aquaculture figure{ margin: 0; }
+/* ============ HERO ============ */
+#sds-aquaculture .hero{
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: stretch;
+  padding: clamp(16px, 2.5vw, 28px);
+}
+@media (max-width: 980px){
+  #sds-aquaculture .hero{ grid-template-columns: 1fr; min-height: 70vh; }
+}
 
-    /* ============ HERO ============ */
-    #sds-aquaculture .hero{
-      position: relative;
-      min-height: 88vh;
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: clamp(16px, 3vw, 32px);
-      align-items: stretch;
-      padding: clamp(16px, 2.5vw, 28px);
-    }
-    @media (max-width: 980px){
-      #sds-aquaculture .hero{ grid-template-columns: 1fr; min-height: 70vh; }
-    }
+/* Parallax plane */
+#sds-aquaculture .parallax-bg{
+  position: absolute;
+  inset: -10% -2% auto -2%;
+  height: 40vh;
+  background: radial-gradient(1200px 320px at 20% 40%, rgba(14,165,233,.12), transparent 60%),
+              radial-gradient(1200px 320px at 85% 30%, rgba(22,163,74,.10), transparent 60%);
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+  transform: translateY(0);
+}
 
-    /* Parallax plane */
-    #sds-aquaculture .parallax-bg{
-      position: absolute;
-      inset: -10% -2% auto -2%;
-      height: 40vh;
-      background: radial-gradient(1200px 320px at 20% 40%, rgba(14,165,233,.12), transparent 60%),
-                  radial-gradient(1200px 320px at 85% 30%, rgba(22,163,74,.10), transparent 60%);
-      filter: blur(6px);
-      z-index: 0;
-      pointer-events: none;
-      transform: translateY(0);
-    }
+/* Left column */
+#sds-aquaculture .hero-left{
+  z-index: 2;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-1);
+  padding: clamp(18px, 2.6vw, 28px) clamp(18px, 2.6vw, 32px);
+  display: grid;
+  align-content: start;
+  gap: clamp(12px, 2.2vw, 20px);
+}
 
-    /* Left column */
-    #sds-aquaculture .hero-left{
-      z-index: 2;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: var(--shadow-1);
-      padding: clamp(18px, 2.6vw, 28px) clamp(18px, 2.6vw, 32px);
-      display: grid;
-      align-content: start;
-      gap: clamp(12px, 2.2vw, 20px);
-    }
+#sds-aquaculture .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700; letter-spacing:.3px;
+  color:#075985;
+  background: linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+  border:1px solid var(--line);
+  box-shadow: 0 0 0 6px var(--ring);
+  width: max-content;
+}
+#sds-aquaculture .kicker .dot{ width:8px; height:8px; border-radius:50%; background: var(--brand-2); box-shadow: 0 0 0 4px rgba(22,163,74,.18) }
 
-    #sds-aquaculture .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 700; letter-spacing:.3px;
-      color:#075985;
-      background: linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
-      border:1px solid var(--line);
-      box-shadow: 0 0 0 6px var(--ring);
-      width: max-content;
-    }
-    #sds-aquaculture .kicker .dot{ width:8px; height:8px; border-radius:50%; background: var(--brand-2); box-shadow: 0 0 0 4px rgba(22,163,74,.18) }
+/* Title */
+#sds-aquaculture .title{
+  margin: 6px 0 4px;
+  font-size: clamp(28px, 4.8vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.5px;
+  font-weight: 800;
+  display: inline-block;
+  background: linear-gradient(90deg, #0f172a, #0ea5e9 40%, #16a34a 70%, #0f172a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hueShift 8s linear infinite;
+}
+@keyframes hueShift{ 0%{filter:hue-rotate(0)} 100%{filter:hue-rotate(360deg)} }
 
-    /* Title */
-    #sds-aquaculture .title{
-      margin: 6px 0 4px;
-      font-size: clamp(28px, 4.8vw, 54px);
-      line-height: 1.06;
-      letter-spacing: -0.5px;
-      font-weight: 800;
-      display: inline-block;
-      background: linear-gradient(90deg, #0f172a, #0ea5e9 40%, #16a34a 70%, #0f172a 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: hueShift 8s linear infinite;
-    }
-    @keyframes hueShift{ 0%{filter:hue-rotate(0)} 100%{filter:hue-rotate(360deg)} }
+/* Marquee */
+#sds-aquaculture .scrolling-line{
+  position: relative; overflow: hidden; border-radius: 10px;
+  border: 1px dashed var(--line); background: linear-gradient(180deg, #fff, #fafafa);
+}
+#sds-aquaculture .scrolling-track{
+  display:flex; gap: 40px; white-space: nowrap;
+  padding: 10px 16px; animation: ticker 16s linear infinite;
+  font-weight: 600; color:#0b3b4a;
+}
+#sds-aquaculture .scrolling-track i{ opacity:.7; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* Marquee */
-    #sds-aquaculture .scrolling-line{
-      position: relative; overflow: hidden; border-radius: 10px;
-      border: 1px dashed var(--line); background: linear-gradient(180deg, #fff, #fafafa);
-    }
-    #sds-aquaculture .scrolling-track{
-      display:flex; gap: 40px; white-space: nowrap;
-      padding: 10px 16px; animation: ticker 16s linear infinite;
-      font-weight: 600; color:#0b3b4a;
-    }
-    #sds-aquaculture .scrolling-track i{ opacity:.7; }
-    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+#sds-aquaculture .lead{ font-size: clamp(15px, 1.35vw, 17px); line-height: 1.65; color: var(--muted); }
 
-    #sds-aquaculture .lead{ font-size: clamp(15px, 1.35vw, 17px); line-height: 1.65; color: var(--muted); }
+#sds-aquaculture .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-aquaculture .btn{
+  appearance:none; border:none; cursor:pointer; border-radius: 14px;
+  padding: 12px 18px; font-weight: 700; display:inline-flex; align-items:center; gap:10px;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+#sds-aquaculture .btn-primary{ color:#fff; background: linear-gradient(90deg, var(--brand), #22c55e); box-shadow: var(--shadow-2); }
+#sds-aquaculture .btn-primary:hover{ transform: translateY(-2px) scale(1.01); }
+#sds-aquaculture .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-aquaculture .btn-ghost:hover{ box-shadow: var(--shadow-1); transform: translateY(-1px) }
 
-    #sds-aquaculture .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
-    #sds-aquaculture .btn{
-      appearance:none; border:none; cursor:pointer; border-radius: 14px;
-      padding: 12px 18px; font-weight: 700; display:inline-flex; align-items:center; gap:10px;
-      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
-    }
-    #sds-aquaculture .btn-primary{ color:#fff; background: linear-gradient(90deg, var(--brand), #22c55e); box-shadow: var(--shadow-2); }
-    #sds-aquaculture .btn-primary:hover{ transform: translateY(-2px) scale(1.01); }
-    #sds-aquaculture .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
-    #sds-aquaculture .btn-ghost:hover{ box-shadow: var(--shadow-1); transform: translateY(-1px) }
+#sds-aquaculture .stats{
+  margin-top: 6px;
+  display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+}
+#sds-aquaculture .stat{ padding:12px 14px; border:1px solid var(--line); border-radius: 12px; background:#fff; box-shadow: 0 6px 16px rgba(2,6,23,.06); }
+#sds-aquaculture .stat b{ font-size: 20px; display:block }
+#sds-aquaculture .stat span{ color: var(--muted); font-size: 12px }
 
-    #sds-aquaculture .stats{
-      margin-top: 6px;
-      display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-    }
-    #sds-aquaculture .stat{ padding:12px 14px; border:1px solid var(--line); border-radius: 12px; background:#fff; box-shadow: 0 6px 16px rgba(2,6,23,.06); }
-    #sds-aquaculture .stat b{ font-size: 20px; display:block }
-    #sds-aquaculture .stat span{ color: var(--muted); font-size: 12px }
+/* Right column: SINGLE IMAGE (slider removed) */
+#sds-aquaculture .hero-right{
+  z-index: 1; position: relative; border-radius: var(--radius); overflow: clip;
+  border: 1px solid var(--line); box-shadow: var(--shadow-2); background: #f8fafc;
+  display: grid;
+}
+#sds-aquaculture .image-frame{
+  position: relative;
+  height: 100%;
+  min-height: clamp(340px, 56vh, 540px);
+  overflow: hidden;
+}
+#sds-aquaculture .image-frame img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit: cover; object-position: center;
+  display:block;
+  transform: none;
+}
+#sds-aquaculture .image-frame::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.14), rgba(0,0,0,0) 30%, rgba(0,0,0,.25) 100%);
+  pointer-events:none;
+}
+#sds-aquaculture .slide-caption{
+  position: absolute; left: 16px; bottom: 16px; z-index: 3; color:#fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45); font-weight: 700; letter-spacing:.2px;
+  background: rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.25);
+  padding: 8px 12px; border-radius: 12px; backdrop-filter: blur(4px);
+}
 
-    /* Right column (slider) */
-    #sds-aquaculture .hero-right{
-      z-index: 1; position: relative; border-radius: var(--radius); overflow: clip;
-      border: 1px solid var(--line); box-shadow: var(--shadow-2); background: #f8fafc;
-      display: grid;
-    }
-    #sds-aquaculture .slider{
-      position: relative; height: 100%;
-      min-height: clamp(340px, 56vh, 540px); overflow: hidden;
-    }
-    #sds-aquaculture .slides{
-      display: flex; height: 100%; width: 300%;
-      transform: translateX(0); transition: transform .7s ease-in-out;
-    }
-    #sds-aquaculture .slide{ flex: 0 0 100%; height: 100%; position: relative; }
-    #sds-aquaculture .slide img{
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit: cover; transform: scale(1.06); will-change: transform;
-      display:block;
-    }
-    #sds-aquaculture .slide::after{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.14), rgba(0,0,0,0) 30%, rgba(0,0,0,.25) 100%);
-      pointer-events:none;
-    }
-    #sds-aquaculture .slider-controls{
-      position: absolute; inset: auto 0 10px 0; display:flex; justify-content:center; gap:10px; z-index: 3;
-    }
-    #sds-aquaculture .dot{
-      width:10px; height:10px; border-radius: 999px; background: rgba(255,255,255,.6);
-      border:1px solid rgba(255,255,255,.75); box-shadow: 0 0 0 3px rgba(255,255,255,.25);
-      cursor: pointer; transition: transform .15s ease, background .2s ease;
-    }
-    #sds-aquaculture .dot.active{ background:#fff; transform: scale(1.15) }
-    #sds-aquaculture .slide-caption{
-      position: absolute; left: 16px; bottom: 16px; z-index: 3; color:#fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,.45); font-weight: 700; letter-spacing:.2px;
-      background: rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.25);
-      padding: 8px 12px; border-radius: 12px; backdrop-filter: blur(4px);
-    }
+/* ============ CONTENT BLOCKS ============ */
+#sds-aquaculture .content{
+  margin: 34px auto clamp(40px, 6vw, 80px);
+  padding: 0 clamp(16px, 2.6vw, 28px);
+  max-width: 1200px;
+  display: grid;
+  gap: 26px;
+  position: relative;
+  z-index: 1;
+}
 
-    /* ============ CONTENT BLOCKS ============ */
-    #sds-aquaculture .content{
-      margin: 34px auto clamp(40px, 6vw, 80px);
-      padding: 0 clamp(16px, 2.6vw, 28px);
-      max-width: 1200px;
-      display: grid;
-      gap: 26px;
-      position: relative;
-      z-index: 1;
-    }
+#sds-aquaculture .section-intro{ display:grid; gap: 10px; }
+#sds-aquaculture .section-intro h3{ font-size: clamp(22px, 3.4vw, 34px); margin:0; letter-spacing: -0.3px; }
+#sds-aquaculture .section-intro p{ color: var(--muted); line-height: 1.75; margin:0 }
 
-    #sds-aquaculture .section-intro{ display:grid; gap: 10px; }
-    #sds-aquaculture .section-intro h3{ font-size: clamp(22px, 3.4vw, 34px); margin:0; letter-spacing: -0.3px; }
-    #sds-aquaculture .section-intro p{ color: var(--muted); line-height: 1.75; margin:0 }
+#sds-aquaculture .cards{
+  display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px;
+}
+#sds-aquaculture .card{
+  grid-column: span 6; border: 1px solid var(--line); border-radius: 16px; background: #fff;
+  box-shadow: var(--shadow-1); padding: 18px;
+  transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#sds-aquaculture .card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: rgba(14,165,233,.35); }
+#sds-aquaculture .card h4{ margin: 6px 0 6px; font-size: 18px }
+#sds-aquaculture .card p{ margin:0; color: var(--muted); line-height: 1.7 }
+#sds-aquaculture .card .icon{
+  width:42px; height:42px; display:grid; place-items:center; border-radius: 12px;
+  background: linear-gradient(145deg, rgba(14,165,233,.15), rgba(22,163,74,.12)); border:1px solid var(--line);
+}
+@media (max-width: 920px){ #sds-aquaculture .card{ grid-column: span 12 } }
 
-    #sds-aquaculture .cards{
-      display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px;
-    }
-    #sds-aquaculture .card{
-      grid-column: span 6; border: 1px solid var(--line); border-radius: 16px; background: #fff;
-      box-shadow: var(--shadow-1); padding: 18px;
-      transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-    #sds-aquaculture .card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: rgba(14,165,233,.35); }
-    #sds-aquaculture .card h4{ margin: 6px 0 6px; font-size: 18px }
-    #sds-aquaculture .card p{ margin:0; color: var(--muted); line-height: 1.7 }
-    #sds-aquaculture .card .icon{
-      width:42px; height:42px; display:grid; place-items:center; border-radius: 12px;
-      background: linear-gradient(145deg, rgba(14,165,233,.15), rgba(22,163,74,.12)); border:1px solid var(--line);
-    }
-    @media (max-width: 920px){ #sds-aquaculture .card{ grid-column: span 12 } }
+/* Image strip with parallax tiles */
+#sds-aquaculture .image-strip{
+  display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 8px;
+  position: relative; z-index: 1;
+}
+#sds-aquaculture .tile{
+  grid-column: span 4; position: relative; height: 220px; border-radius: 16px; overflow: hidden;
+  border:1px solid var(--line); background:#f8fafc; box-shadow: var(--shadow-1);
+  transform: translateZ(0);
+}
+#sds-aquaculture .tile img{
+  display:block; width:100% !important; height:100% !important; object-fit: cover;
+}
+#sds-aquaculture .tile::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
+@media (max-width: 920px){ #sds-aquaculture .tile{ grid-column: span 12; height: 200px } }
 
-    /* Image strip with parallax tiles */
-    #sds-aquaculture .image-strip{
-      display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 8px;
-      position: relative; z-index: 1;
-    }
-    #sds-aquaculture .tile{
-      grid-column: span 4; position: relative; height: 220px; border-radius: 16px; overflow: hidden;
-      border:1px solid var(--line); background:#f8fafc; box-shadow: var(--shadow-1);
-      transform: translateZ(0);
-    }
-    #sds-aquaculture .tile img{
-      display:block; width:100% !important; height:100% !important; object-fit: cover;
-    }
-    #sds-aquaculture .tile::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
-    @media (max-width: 920px){ #sds-aquaculture .tile{ grid-column: span 12; height: 200px } }
+/* Divider */
+#sds-aquaculture .divider{ height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 10px 0; }
 
-    /* Divider */
-    #sds-aquaculture .divider{ height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 10px 0; }
+/* ========= MOBILE-ONLY ENHANCEMENTS (no desktop changes) ========= */
+@media (max-width: 720px){
+  #sds-aquaculture .hero{ padding:16px; gap:14px; }
+  #sds-aquaculture .title{ font-size: 34px; }
+  #sds-aquaculture .kicker{ font-size:12px; padding:6px 10px; }
+  #sds-aquaculture .scrolling-track{ gap:22px; }
+  #sds-aquaculture .lead{ font-size:14px; }
+  #sds-aquaculture .cta-row .btn{ width:100%; justify-content:center; }
+  #sds-aquaculture .stats{ grid-template-columns:1fr; gap:8px; }
+  #sds-aquaculture .image-frame{ min-height:46vh; }
+  #sds-aquaculture .slide-caption{ font-size:12px; padding:6px 10px; }
+  #sds-aquaculture .content{ padding:0 16px; }
+  #sds-aquaculture .cards{ gap:14px; }
+}
+@media (max-width: 420px){
+  #sds-aquaculture .title{ font-size: 30px; }
+  #sds-aquaculture .image-frame{ min-height:42vh; }
+}
 
-    /* ========= MOBILE-ONLY ENHANCEMENTS (no desktop changes) ========= */
-    @media (max-width: 720px){
-      #sds-aquaculture .hero{ padding:16px; gap:14px; }
-      #sds-aquaculture .title{ font-size: 34px; }
-      #sds-aquaculture .kicker{ font-size:12px; padding:6px 10px; }
-      #sds-aquaculture .scrolling-track{ gap:22px; }
-      #sds-aquaculture .lead{ font-size:14px; }
-      #sds-aquaculture .cta-row .btn{ width:100%; justify-content:center; }
-      #sds-aquaculture .stats{ grid-template-columns:1fr; gap:8px; }
-      #sds-aquaculture .slider{ min-height:46vh; }
-      #sds-aquaculture .slide-caption{ font-size:12px; padding:6px 10px; }
-      #sds-aquaculture .dot{ width:12px; height:12px; }          /* easier to tap */
-      #sds-aquaculture .content{ padding:0 16px; }
-      #sds-aquaculture .cards{ gap:14px; }
-    }
-    @media (max-width: 420px){
-      #sds-aquaculture .title{ font-size: 30px; }
-      #sds-aquaculture .slider{ min-height:42vh; }
-    }
-  </style>
+</style> <!-- soft parallax backdrop --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <!-- Left panel: text --> <div class="hero-left"> <div class="kicker"><span class="dot"></span> Sustainable Aquaculture in the North-East</div>
+  <h1 class="title">
+    Championing Sustainable Fisheries: Empowering Small-Scale Farmers for Equitable Growth
+  </h1>
 
-  <!-- soft parallax backdrop -->
-  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
-
-  <!-- ================= HERO ================= -->
-  <div class="hero">
-    <!-- Left panel: text -->
-    <div class="hero-left">
-      <div class="kicker"><span class="dot"></span> Sustainable Aquaculture in the North-East</div>
-
-      <h1 class="title">
-        Championing Sustainable Fisheries: Empowering Small-Scale Farmers for Equitable Growth
-      </h1>
-
-      <div class="scrolling-line" aria-hidden="true">
-        <div class="scrolling-track">
-          <span><i class="fa-solid fa-fish"></i> Freshwater aquaculture is &gt;95% of India’s production</span>
-          <span><i class="fa-solid fa-chart-line"></i> 6.5× growth over two decades</span>
-          <span><i class="fa-solid fa-people-group"></i> Small-scale, resource-light pathways for farmers</span>
-          <span><i class="fa-solid fa-earth-asia"></i> India is #2 in cultured fisheries</span>
-          <span><i class="fa-solid fa-fish"></i> Freshwater aquaculture is &gt;95% of India’s production</span>
-          <span><i class="fa-solid fa-chart-line"></i> 6.5× growth over two decades</span>
-          <span><i class="fa-solid fa-people-group"></i> Small-scale, resource-light pathways for farmers</span>
-          <span><i class="fa-solid fa-earth-asia"></i> India is #2 in cultured fisheries</span>
-        </div>
-      </div>
-
-      <p class="lead">
-        SDS has been at the forefront of establishing sustainable fisheries across Assam, Tripura, and Odisha.
-        Recognizing rapid sectoral growth and the dominance of freshwater aquaculture, we focus on equitable
-        outcomes. Our approach centers smallholders—bringing practical know-how, affordable technologies,
-        and market linkages to transform livelihoods while nurturing resilient aquatic ecosystems.
-      </p>
-
-      <div class="cta-row">
-        <button class="btn btn-primary"><i class="fa-solid fa-seedling"></i> Explore Programs</button>
-        <button class="btn btn-ghost"><i class="fa-regular fa-circle-play"></i> See Field Stories</button>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><b>95%+</b><span>Freshwater share in production</span></div>
-        <div class="stat"><b>6.5×</b><span>Growth in 20 years</span></div>
-        <div class="stat"><b>3 States</b><span>Assam · Tripura · Odisha</span></div>
-      </div>
-    </div>
-
-    <!-- Right panel: slider -->
-    <div class="hero-right" data-parallax data-speed="-0.08">
-      <div class="slider" id="heroSlider" aria-label="Aquaculture photo carousel">
-        <div class="slides">
-          <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1544551763-7ef878a00672?q=80&w=1600&auto=format&fit=crop" alt="Fish farmer tending nets on a freshwater pond">
-            <figcaption class="slide-caption">Community pond management · Assam</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1508184964240-ee0ecc27a8a5?q=80&w=1600&auto=format&fit=crop" alt="Fingerlings in a nursery tray for stocking">
-            <figcaption class="slide-caption">Nursery & fingerlings · Tripura</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop" alt="Feed preparation and quality checks at a small facility">
-            <figcaption class="slide-caption">Feed & quality · Odisha</figcaption>
-          </figure>
-        </div>
-
-        <div class="slider-controls" aria-hidden="false">
-          <button class="dot" data-slide="0" aria-label="Go to slide 1"></button>
-          <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-          <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
-        </div>
-      </div>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-fish"></i> Freshwater aquaculture is &gt;95% of India’s production</span>
+      <span><i class="fa-solid fa-chart-line"></i> 6.5× growth over two decades</span>
+      <span><i class="fa-solid fa-people-group"></i> Small-scale, resource-light pathways for farmers</span>
+      <span><i class="fa-solid fa-earth-asia"></i> India is #2 in cultured fisheries</span>
+      <span><i class="fa-solid fa-fish"></i> Freshwater aquaculture is &gt;95% of India’s production</span>
+      <span><i class="fa-solid fa-chart-line"></i> 6.5× growth over two decades</span>
+      <span><i class="fa-solid fa-people-group"></i> Small-scale, resource-light pathways for farmers</span>
+      <span><i class="fa-solid fa-earth-asia"></i> India is #2 in cultured fisheries</span>
     </div>
   </div>
 
-  <!-- ================= CONTENT ================= -->
-  <div class="content">
-    <div class="section-intro">
-      <h3>Empowering Fish Farmers for Sustainable Growth</h3>
-      <p>
-        At the core of SDS’s work is a dedication to transforming the livelihoods of rural fish farmers by
-        providing essential knowledge, resources, and technical support. Our interventions boost incomes,
-        strengthen producer groups, and embed practices that sustain both communities and aquatic ecosystems.
-      </p>
-    </div>
+  <p class="lead">
+    SDS has been at the forefront of establishing sustainable fisheries across Assam, Tripura, and Odisha.
+    Recognizing rapid sectoral growth and the dominance of freshwater aquaculture, we focus on equitable
+    outcomes. Our approach centers smallholders—bringing practical know-how, affordable technologies,
+    and market linkages to transform livelihoods while nurturing resilient aquatic ecosystems.
+  </p>
 
-    <div class="divider"></div>
-
-    <div class="cards">
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-toolbox"></i></div>
-        <h4>Structured Interventions</h4>
-        <p>
-          SDS helps farmers access the tools and techniques needed to sustainably scale their aquaculture operations.
-          From pond preparation and water-quality protocols to species selection and health management,
-          our playbooks and trainings are practical, modular, and tailored to local constraints.
-        </p>
-      </article>
-
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
-        <h4>Holistic Support</h4>
-        <p>
-          From setting up hatcheries and nurseries to establishing modern feed mills, SDS covers every step of the
-          fishery value chain. We integrate finance readiness, market linkages, cold-chain advisories, and
-          simple record-keeping so that growth is efficient, equitable, and resilient.
-        </p>
-      </article>
-    </div>
-
-    <!-- Parallax image tiles -->
-    <div class="image-strip">
-      <div class="tile" data-parallax data-speed="0.12">
-        <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=1600&auto=format&fit=crop" alt="Aeration and water quality monitoring">
-      </div>
-      <div class="tile" data-parallax data-speed="-0.05">
-        <img src="https://images.unsplash.com/photo-1560072810-1cffb09faf0f?q=80&w=1600&auto=format&fit=crop" alt="Harvest sorting and grading">
-      </div>
-      <div class="tile" data-parallax data-speed="0.08">
-        <img src="https://images.unsplash.com/photo-1553530979-7ee52a67b12c?q=80&w=1600&auto=format&fit=crop" alt="Farmer group meeting near ponds">
-      </div>
-    </div>
+  <div class="cta-row">
+    <button class="btn btn-primary"><i class="fa-solid fa-seedling"></i> Explore Programs</button>
+    <button class="btn btn-ghost"><i class="fa-regular fa-circle-play"></i> See Field Stories</button>
   </div>
 
-  <script>
-    (function(){
-      const root = document.getElementById('sds-aquaculture');
-      if(!root) return;
+  <div class="stats">
+    <div class="stat"><b>95%+</b><span>Freshwater share in production</span></div>
+    <div class="stat"><b>6.5×</b><span>Growth in 20 years</span></div>
+    <div class="stat"><b>3 States</b><span>Assam · Tripura · Odisha</span></div>
+  </div>
+</div>
 
-      /* Slider */
-      (function(){
-        const slider = root.querySelector('#heroSlider');
-        if(!slider) return;
-        const track = slider.querySelector('.slides');
-        const dots = [...slider.querySelectorAll('.dot')];
-        const total = dots.length;
-        let idx = 0, autoplay;
+<!-- Right panel: single image (slider removed) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="image-frame" aria-label="Aquaculture hero image">
+    <!-- Replace the src below with your image; it will cover the frame -->
+    <img src="static/Images/fisher hero.jpg"
+         alt="Fish farmer tending nets on a freshwater pond">
+    <figcaption class="slide-caption">Community pond management · Assam</figcaption>
+  </figure>
+</div>
 
-        function go(i){
-          idx = (i + total) % total;
-          track.style.transform = `translateX(-${idx*100}%)`;
-          dots.forEach((d,di)=> d.classList.toggle('active', di===idx));
-        }
-        function start(){ stop(); autoplay = setInterval(()=> go(idx+1), 4500); }
-        function stop(){ if(autoplay) clearInterval(autoplay); }
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> <h3>Empowering Fish Farmers for Sustainable Growth</h3> <p> At the core of SDS’s work is a dedication to transforming the livelihoods of rural fish farmers by providing essential knowledge, resources, and technical support. Our interventions boost incomes, strengthen producer groups, and embed practices that sustain both communities and aquatic ecosystems. </p> </div>
+<div class="divider"></div>
 
-        dots.forEach(d => d.addEventListener('click', ()=> { stop(); go(+d.dataset.slide); start(); }));
-        slider.addEventListener('mouseenter', stop);
-        slider.addEventListener('mouseleave', start);
+<div class="cards">
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-toolbox"></i></div>
+    <h4>Structured Interventions</h4>
+    <p>
+      SDS helps farmers access the tools and techniques needed to sustainably scale their aquaculture operations.
+      From pond preparation and water-quality protocols to species selection and health management,
+      our playbooks and trainings are practical, modular, and tailored to local constraints.
+    </p>
+  </article>
 
-        go(0); start();
-      })();
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
+    <h4>Holistic Support</h4>
+    <p>
+      From setting up hatcheries and nurseries to establishing modern feed mills, SDS covers every step of the
+      fishery value chain. We integrate finance readiness, market linkages, cold-chain advisories, and
+      simple record-keeping so that growth is efficient, equitable, and resilient.
+    </p>
+  </article>
+</div>
 
-      /* Parallax (clamped) */
-      (function(){
-        const els = [...root.querySelectorAll('[data-parallax]')];
-        if(!els.length) return;
+<!-- Parallax image tiles -->
+<div class="image-strip">
+  <div class="tile" data-parallax data-speed="0.12">
+    <img src="static/Images/Fishery 0001.jpg" alt="Aeration and water quality monitoring">
+  </div>
+  <div class="tile" data-parallax data-speed="-0.05">
+    <img src="static/Images/fishery 2.jpg" alt="Harvest sorting and grading">
+  </div>
+  <div class="tile" data-parallax data-speed="0.08">
+    <img src="static/Images/fishery 002.jpg" alt="Farmer group meeting near ponds">
+  </div>
+</div>
 
-        const MAX_SHIFT = 24;
-        let ticking = false;
-        const clamp = (n,min,max)=> Math.max(min, Math.min(max, n));
-
-        function onScroll(){
-          if(!ticking){
-            window.requestAnimationFrame(()=>{
-              const y = window.scrollY || window.pageYOffset;
-              els.forEach(el => {
-                const speed = parseFloat(el.dataset.speed || 0.1);
-                const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT);
-                el.style.transform = `translateY(${shift}px)`;
-              });
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-      })();
-
-      /* Reduce motion */
-      (function(){
-        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-        function apply(){
-          root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)');
-          const track = root.querySelector('.scrolling-track');
-          if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; }
-        }
-        mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
-        apply();
-      })();
-    })();
-  </script>
-</section>
-
+</div> <script> (function(){ const root = document.getElementById('sds-aquaculture'); if(!root) return; /* Parallax (clamped) */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; let ticking = false; const clamp = (n,min,max)=> Math.max(min, Math.min(max, n)); function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el => { const speed = parseFloat(el.dataset.speed || 0.1); const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT); el.style.transform = `translateY(${shift}px)`; }); ticking = false; }); ticking = true; } } window.addEventListener('scroll', onScroll, { passive: true }); onScroll(); })(); /* Reduce motion */ (function(){ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track = root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); })(); </script> </section>
 
 
 
@@ -1044,6 +901,7 @@ body {
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 

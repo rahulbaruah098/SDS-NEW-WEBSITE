@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mark Attendance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ------------------------------------
+       THEME TOKENS
+    ------------------------------------ */
+    :root{
+      --bg: #0b1220;                 /* canvas */
+      --bg-grad-1:#0b1220;           /* background gradient anchors */
+      --bg-grad-2:#0e1b34;
+      --ink:#e6edf7;                  /* primary text on dark */
+      --muted:#9fb0c9;                /* secondary text */
+      --border: rgba(255,255,255,.12);
+      --card: rgba(255,255,255,.06);  /* glass card */
+      --ring: rgba(59,130,246,.35);
+
+      --primary:#2563eb;              /* blue */
+      --primary-600:#1d4ed8;
+      --success:#10b981;
+      --danger:#ef4444;
+
+      --shadow: 0 20px 60px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.28);
+      --radius: 18px;
+
+      --grid-w: min(1080px, 94vw);
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8fc;
+        --bg-grad-1:#f6f8fc;
+        --bg-grad-2:#e8eef9;
+        --ink:#0f172a;
+        --muted:#64748b;
+        --border:#e5e7eb;
+        --card:#ffffffcc;
+        --shadow: 0 14px 40px rgba(2,6,23,.10), 0 6px 18px rgba(2,6,23,.08);
+      }
+    }
+
+    /* Animated gradient angle (for borders/accents) */
+    @property --angle {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(37,99,235,.22), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(139,92,246,.18), transparent 65%),
+        linear-gradient(180deg, var(--bg-grad-1), var(--bg-grad-2));
+    }
+
+    /* Soft animated glow orbs (pure CSS, no extra DOM) */
+    body::before, body::after{
+      content:""; position:fixed; inset:auto; width:54vmin; height:54vmin; border-radius:50%;
+      filter: blur(60px); opacity:.22; z-index:0; pointer-events:none;
+      background: radial-gradient(circle at 30% 30%, #60a5fa, transparent 60%);
+      animation: float1 18s ease-in-out infinite;
+    }
+    body::after{
+      width:44vmin; height:44vmin; background: radial-gradient(circle at 70% 40%, #a78bfa, transparent 60%);
+      animation: float2 22s ease-in-out infinite;
+    }
+    @keyframes float1{ 0%,100%{transform: translate(6vw,8vh)} 50%{transform: translate(2vw,16vh)} }
+    @keyframes float2{ 0%,100%{transform: translate(78vw,12vh)} 50%{transform: translate(72vw,22vh)} }
+
+    /* ------------------------------------
+       TOPBAR (glass, sticky, subtle motion)
+    ------------------------------------ */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: saturate(160%) blur(10px);
+      background: linear-gradient(180deg, rgba(10,14,22,.66), rgba(10,14,22,.44));
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 22px;
+    }
+    .topbar div[style*="font-weight:800"]{
+      background: conic-gradient(from var(--angle), #60a5fa, #a78bfa, #60a5fa);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: spin 12s linear infinite;
+      font-size: clamp(18px, 3vw, 22px);
+      letter-spacing:.3px;
+    }
+    @keyframes spin{ to{ --angle: 360deg; } }
+
+    /* ------------------------------------
+       LAYOUT
+    ------------------------------------ */
+    .wrap{ max-width: var(--grid-w); margin:26px auto; padding:0 18px; position:relative; z-index:1; }
+    .card{
+      position:relative; background:var(--card);
+      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px;
+      overflow:hidden;
+    }
+    /* Animated gradient border ring */
+    .card::before{
+      content:""; position:absolute; inset:0; pointer-events:none; border-radius:calc(var(--radius) + 1px);
+      padding:1px; background: conic-gradient(from var(--angle), rgba(96,165,250,.9), rgba(167,139,250,.9), rgba(96,165,250,.9));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: spin 18s linear infinite;
+    }
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr } }
+
+    /* ------------------------------------
+       MEDIA FRAMES
+    ------------------------------------ */
+    video,canvas{
+      width:100%; aspect-ratio: 16/10;
+      border-radius:16px; border:1px solid var(--border); background:#030712;
+      position:relative; box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      outline: 0 solid transparent; transition: outline-color .25s ease, outline-width .25s ease, transform .2s ease;
+    }
+    video.mirror{ transform: scaleX(-1); }
+    video:is(:hover,:focus-visible), canvas:is(:hover,:focus-visible){
+      outline-width: 3px; outline-color: var(--ring);
+    }
+
+    /* Subtle skeleton shimmer until video ready */
+    video:not([src]):not([srcObject]) {
+      background:
+        linear-gradient(90deg, #0b1220 25%, #0f172a 37%, #0b1220 63%);
+      background-size: 400% 100%;
+      animation: shimmer 2s infinite linear;
+    }
+    @keyframes shimmer{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* ------------------------------------
+       BUTTONS (micro-interactions)
+    ------------------------------------ */
+    .btn{
+      height:46px; padding:0 18px; border-radius:12px; border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color:var(--ink); cursor:pointer; position:relative; overflow:hidden;
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease, opacity .2s;
+      will-change: transform;
+    }
+    .btn:hover{ box-shadow: 0 8px 18px rgba(2,6,23,.22); border-color: rgba(255,255,255,.24); }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+    .btn:focus-visible{ outline:3px solid var(--ring); outline-offset:2px; }
+
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--primary), var(--primary-600));
+      color:#fff; box-shadow:0 12px 28px rgba(37,99,235,.35);
+    }
+    .btn.primary::after{
+      content:""; position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,255,255,.35), transparent 40% 60%, rgba(255,255,255,.35));
+      transform: translateX(-100%);
+      transition: transform .8s ease;
+    }
+    .btn.primary:hover::after{ transform: translateX(100%); }
+
+    .btn[disabled]{ opacity:.65; cursor:not-allowed; box-shadow:none; }
+
+    /* ------------------------------------
+       TEXT + LISTS
+    ------------------------------------ */
+    h3{ margin:0 0 8px; font-weight:800; letter-spacing:.2px; }
+    ul{ margin:0 0 10px 18px; color:var(--muted); line-height:1.4; }
+    .status{
+      min-height:24px; margin-top:10px; font-weight:700; letter-spacing:.2px;
+      display:inline-flex; align-items:center; gap:10px; color:var(--muted);
+    }
+    .status.ok{ color:var(--success); }
+    .status.err{ color:var(--danger); }
+    .status.loading{ color:var(--muted); }
+
+    .status.ok::before,
+    .status.err::before,
+    .status.loading::before{
+      content:""; width:18px; height:18px; border-radius:50%;
+      border:2px solid currentColor; display:inline-block; position:relative;
+    }
+    .status.ok::before{ background: radial-gradient(circle at 60% 35%, currentColor 30%, transparent 31%); }
+    .status.err::before{
+      background:
+        linear-gradient(45deg, transparent 43%, currentColor 44% 56%, transparent 57%),
+        linear-gradient(-45deg, transparent 43%, currentColor 44% 56%, transparent 57%);
+    }
+    .status.loading::before{
+      border:2px solid transparent; border-top-color: currentColor; border-right-color: currentColor;
+      border-radius:50%; animation: spinRing .8s linear infinite;
+    }
+    @keyframes spinRing{ to{ transform: rotate(360deg); } }
+
+    /* Button row responsive wrap gap already present; just add breathing */
+    .grid > div:first-child > div{ gap:12px; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div style="font-weight:800">Attendance</div>
+    <div>
+      <a class="btn" href="{{ url_for('employee_dashboard') }}">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="grid">
+        <div>
+          <video id="cam" autoplay playsinline></video>
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button id="snap" class="btn primary">I'm here</button>
+            <button id="flip" class="btn">Flip Camera</button>
+            <span id="msg" class="status"></span>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">Tips</h3>
+          <ul style="margin:0 0 10px 18px;color:#64748b">
+            <li>Allow camera access when prompted.</li>
+            <li>Face the camera in good lighting; avoid backlight.</li>
+            <li>Keep your face inside the frame, blink/move slightly.</li>
+          </ul>
+          <h3 style="margin:12px 0 8px">Preview</h3>
+          <canvas id="preview"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Advanced, but same structure & IDs retained.
+    let useUserFacing = true;
+    const cam = document.getElementById('cam');
+    const msg = document.getElementById('msg');
+    const preview = document.getElementById('preview');
+    const snapBtn = document.getElementById('snap');
+    const flipBtn = document.getElementById('flip');
+    let stream;
+    let hasEnvCam = false;
+
+    function setStatus(text, type){
+      msg.textContent = text || "";
+      msg.className = "status" + (type ? " " + type : "");
+    }
+
+    async function detectCameras(){
+      try{
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoInputs = devices.filter(d => d.kind === 'videoinput');
+        hasEnvCam = videoInputs.length > 1;
+        // Hide flip if only one camera
+        flipBtn.style.display = hasEnvCam ? '' : 'none';
+      }catch{ /* ignore */ }
+    }
+
+    async function startCamera(){
+      try{
+        setStatus("Starting camera…", "loading");
+        stream && stream.getTracks().forEach(t=>t.stop());
+
+        const constraints = {
+          video: {
+            facingMode: useUserFacing ? "user" : "environment",
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          },
+          audio: false
+        };
+
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        cam.srcObject = stream;
+
+        // Mirror for front camera for natural UX
+        cam.classList.toggle('mirror', useUserFacing);
+
+        setStatus(""); // clear
+      }catch(e){
+        setStatus("Camera permission denied or unavailable.", "err");
+      }
+    }
+
+    flipBtn.addEventListener('click', async ()=>{
+      if(!hasEnvCam && useUserFacing === false){ return; } // safety guard
+      useUserFacing = !useUserFacing;
+      await startCamera();
+    });
+
+    async function captureAndSend(){
+      if(!cam.videoWidth){
+        setStatus("Camera not ready.", "err"); return;
+      }
+      snapBtn.disabled = true;
+      setStatus("Checking…", "loading");
+
+      // Draw to canvas for preview (keeps exact structure)
+      preview.width = cam.videoWidth;
+      preview.height = cam.videoHeight;
+      const ctx = preview.getContext('2d');
+
+      // If video is mirrored, flip the canvas content too so server receives normal orientation
+      if(useUserFacing){
+        ctx.save();
+        ctx.scale(-1, 1);
+        ctx.drawImage(cam, -preview.width, 0);
+        ctx.restore();
+      } else {
+        ctx.drawImage(cam, 0, 0);
+      }
+
+      // Convert to blob
+      const blob = await new Promise(r => preview.toBlob(r, 'image/jpeg', 0.92));
+      const fd = new FormData(); fd.append('image', blob, 'frame.jpg');
+
+      try{
+        const res = await fetch('{{ url_for("attendance_mark") }}', {
+          method:'POST', body:fd, credentials:'include'
+        });
+        const j = await res.json();
+        if(j.ok){
+          // Small haptic feedback, if available
+          if(navigator.vibrate) navigator.vibrate(20);
+          const conf =
+            (typeof j.confidence === 'number' && j.confidence.toFixed)
+            ? j.confidence.toFixed(2)
+            : (j.confidence ?? '-');
+          setStatus(`Marked ${j.type} ✓  (conf: ${conf})`, "ok");
+        }else{
+          setStatus(`Failed: ${j.reason || 'Unknown'}`, "err");
+        }
+      }catch(e){
+        setStatus("Network error.", "err");
+      }finally{
+        snapBtn.disabled = false;
+      }
+    }
+
+    // Keyboard: Enter triggers capture (accessibility)
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' && !snapBtn.disabled) captureAndSend();
+    });
+
+    // Clean up on leave
+    window.addEventListener('beforeunload', ()=>{ stream && stream.getTracks().forEach(t=>t.stop()); });
+
+    // Pause/Resume on tab visibility (saves battery)
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden){ stream && stream.getTracks().forEach(t=>t.stop()); }
+      else{ startCamera(); }
+    });
+
+    snapBtn.addEventListener('click', captureAndSend);
+
+    // Boot
+    (async ()=>{
+      if(!navigator.mediaDevices?.getUserMedia){
+        setStatus("Camera API not supported in this browser.", "err"); return;
+      }
+      await detectCameras();
+      await startCamera();
+    })();
+  </script>
+</body>
+</html>

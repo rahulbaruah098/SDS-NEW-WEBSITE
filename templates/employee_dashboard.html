@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#eef2ff;            /* page background (soft indigo) */
+      --ink:#0f172a;
+      --muted:#64748b;
+      --border:#e5e7eb;
+
+      --primary:#6d28d9;       /* purple */
+      --primary-600:#5b21b6;
+      --primary-soft:#ede9fe;  /* very light purple */
+
+      --accent:#22d3ee;        /* cyan accent for small tags/buttons */
+      --success:#10b981;
+      --warn:#f59e0b;
+
+      --card:#ffffff;
+      --shadow:0 14px 40px rgba(2,6,23,.08);
+      --radius:18px;
+      --radius-lg:22px;
+      --pill:#f1f5f9;
+
+      /* fluid type & spacing */
+      --fs-12: clamp(10px, 1.2vw, 12px);
+      --fs-14: clamp(12px, 1.35vw, 14px);
+      --fs-16: clamp(13.5px, 1.6vw, 16px);
+      --fs-18: clamp(15px, 1.9vw, 18px);
+      --fs-20: clamp(16px, 2.2vw, 20px);
+      --gap: clamp(10px, 2.8vw, 16px);
+
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+      font-size: var(--fs-16);
+    }
+    a{color:inherit}
+
+    /* ===== Layout grid: sidebar + content ===== */
+    .app {
+      display:grid;
+      grid-template-columns: 250px 1fr;
+      min-height:100dvh;
+    }
+
+    /* ===== Sidebar (purple) ===== */
+    .sidebar{
+      background:linear-gradient(180deg,#4c1d95 0%, #6d28d9 100%);
+      color:#fff; padding:20px 18px;
+      border-top-right-radius:28px;
+      border-bottom-right-radius:28px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+      position:relative;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;margin-bottom:18px;
+      font-weight:800; letter-spacing:.2px; font-size: var(--fs-18);
+    }
+    .brand .dot{width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.2);
+      display:grid;place-items:center; flex:0 0 auto}
+    .nav{
+      display:flex;flex-direction:column;gap:8px;margin-top:6px
+    }
+    .nav .item{
+      display:flex;align-items:center;gap:12px;
+      padding:12px 14px;border-radius:12px;color:#e9e7ff;text-decoration:none;
+      transition:transform .18s, background .18s, box-shadow .18s;
+      white-space:nowrap;
+    }
+    .nav .item:hover{transform:translateX(3px);background:rgba(255,255,255,.08)}
+    .nav .item.active{background:#fff;color:#4c1d95;box-shadow:var(--shadow)}
+    .nav .badge{
+      margin-left:auto;font-size:12px;font-weight:700;
+      background:rgba(255,255,255,.18); padding:4px 8px;border-radius:999px
+    }
+
+    /* Optional mascot / illustration corner */
+    .bird{margin-top:auto;display:flex;align-items:flex-end;gap:10px;color:#e9e7ff;opacity:.95}
+    .bird .cta{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:14px;background:#fff;color:#4c1d95;
+      text-decoration:none;font-weight:700; box-shadow:var(--shadow)
+    }
+    .bird small{opacity:.85}
+
+    /* ===== Topbar in content ===== */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:calc(12px + var(--safe-top)) 20px 8px 20px;
+      position:sticky; top:0; z-index:30;
+      background:linear-gradient(180deg, #eef2ff, rgba(238,242,255,.7));
+      backdrop-filter: blur(8px);
+    }
+
+    /* Hamburger (hidden on desktop, animated) */
+    .hamburger{
+      display:none; /* shown on <=1024px */
+      width:44px;height:44px;border-radius:12px;border:1px solid var(--border);
+      background:#fff; cursor:pointer; align-items:center; justify-content:center;
+      padding:0; margin-right:6px;
+    }
+    .hamburger span{
+      position:relative; display:block; width:20px; height:2px; background:#0f172a;
+      transition: transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content:""; position:absolute; left:0; width:20px; height:2px; background:#0f172a;
+      transition: transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease;
+    }
+    .hamburger span::before{ top:-6px }
+    .hamburger span::after{ bottom:-6px }
+
+    .hamburger.is-open span{ background:transparent }
+    .hamburger.is-open span::before{ top:0; transform: rotate(45deg) }
+    .hamburger.is-open span::after{ bottom:0; transform: rotate(-45deg) }
+
+    .search{
+      display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);
+      height:42px;border-radius:999px;padding:0 14px;min-width:220px; flex:1 1 320px;
+    }
+    .search input{border:0;outline:0;font:inherit;width:100%;min-width:0}
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;flex:0 0 auto}
+    .btn{
+      height:40px;padding:0 14px;border:1px solid var(--border);border-radius:12px;background:#fff;
+      cursor:pointer;text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:8px;
+      transition:transform .18s, box-shadow .18s;
+      font-size: var(--fs-14);
+      line-height: 1;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.12)}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff;box-shadow:0 12px 28px rgba(124,58,237,.35)}
+
+    /* ===== Content grid ===== */
+    .wrap{max-width:1200px;margin:0 auto;padding:0 18px calc(20px + var(--safe-bottom))}
+    .grid{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}
+    .card{
+      background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);padding:16px;animation:fadeInUp .35s ease both;
+    }
+    .card h3{margin:0 0 12px;font-size:var(--fs-18)}
+
+    /* ===== Profile header card ===== */
+    .profile{
+      display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:center;
+      background:#fff;border:1px solid var(--border);border-radius:24px;padding:16px;
+    }
+    .avatar{
+      width:min(90px,22vw); height:min(90px,22vw); border-radius:999px; overflow:hidden;
+      border:6px solid var(--primary-soft);
+      background:linear-gradient(135deg,#fde68a,#fbcfe8); display:grid;place-items:center;
+      font-weight:800;color:#4c1d95; font-size: var(--fs-20);
+      flex:0 0 auto;
+    }
+    .pf-lines{display:grid;gap:6px; min-width:0}
+    .pf-lines .name{font-size:var(--fs-20);font-weight:800; overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .pf-lines .meta{color:var(--muted);font-size:var(--fs-12)}
+    .pf-social{display:flex;gap:8px;flex-wrap:wrap}
+    .pf-social a{
+      width:32px;height:32px;border-radius:999px;background:var(--primary-soft);display:grid;place-items:center;text-decoration:none;
+      transition:transform .18s; font-weight:700; color:#4c1d95
+    }
+    .pf-social a:hover{transform:translateY(-2px)}
+    .pf-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+    /* ===== Right column small cards ===== */
+    .mini{
+      background:#fff;border:1px solid var(--border);border-radius:20px;padding:14px; min-height:60px;
+    }
+    .payrow{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+    .brandstrip{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{padding:6px 10px;border-radius:999px;background:#f1f5f9;font-size:12px;font-weight:700}
+    .chip.ok{background:#ecfdf5;color:#065f46}
+    .chip.warn{background:#fff7ed;color:#a16207}
+
+    /* ===== Timeline ===== */
+    .timeline{
+      background:#fff;border:1px solid var(--border);border-radius:20px;padding:14px
+    }
+    .line{position:relative;margin:14px 0 0 0;padding-left:32px;display:grid;gap:10px}
+    .line::before{content:'';position:absolute;left:13px;top:6px;bottom:6px;width:2px;background:#e9d5ff;}
+    .step{
+      position:relative;background:#faf5ff;border:1px solid #ede9fe;border-radius:16px;padding:12px;
+      display:grid;gap:4px
+    }
+    .step::before{
+      content:'';position:absolute;left:-22px;top:14px;width:12px;height:12px;border-radius:999px;background:#a78bfa;border:2px solid #fff;box-shadow:0 0 0 4px #ede9fe;
+    }
+    .step .title{font-weight:700; font-size: var(--fs-16)}
+    .step .sub{font-size:var(--fs-12);color:#6b7280; overflow-wrap:anywhere}
+    .step .right{margin-left:auto}
+    .tag{padding:6px 10px;border-radius:999px;background:#dcfce7;color:#166534;font-size:12px;font-weight:800}
+    .tag.purple{background:#ede9fe;color:#5b21b6}
+    .tag.gray{background:#f3f4f6;color:#374151}
+
+    /* ===== Table restyle (optional) ===== */
+    table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff}
+    thead th{background:#f8fafc;font-size:12px;color:#334155;text-align:left;padding:10px;border-bottom:1px solid var(--border)}
+    tbody td{padding:10px;border-bottom:1px solid #f1f5f9;font-size:14px}
+    tbody tr:hover{background:#f8fafc}
+
+    /* ===== Animations ===== */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    /* ===== RESPONSIVE BEHAVIOR ===== */
+
+    /* Large tablets and below */
+    @media (max-width: 1200px){
+      .wrap{padding:0 16px calc(20px + var(--safe-bottom))}
+    }
+
+    /* Tablets */
+    @media (max-width: 1080px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* Turn sidebar into an OFF-CANVAS drawer with overlay + horizontal fallback nav */
+    @media (max-width: 1024px){
+      .app{grid-template-columns:1fr}
+      /* Hamburger visible on mobile */
+      .hamburger{display:inline-flex}
+      /* Off-canvas drawer */
+      .sidebar{
+        position:fixed; top:0; left:0; bottom:0; height:100dvh;
+        width:min(78vw, 320px);
+        transform:translateX(-103%);
+        transition: transform .28s ease;
+        border-radius:0 20px 20px 0;
+        padding:16px 14px 14px;
+        z-index:50;
+        overflow:auto; -webkit-overflow-scrolling:touch;
+      }
+      body.nav-open .sidebar{ transform:translateX(0) }
+
+      /* Dim overlay via body pseudo; no extra markup needed */
+      body.nav-open::before{
+        content:""; position:fixed; inset:0; z-index:40;
+        background:rgba(2,6,23,.42);
+        backdrop-filter: blur(2px);
+      }
+
+      .brand{margin:0 6px 8px 6px}
+      .nav{
+        flex-direction:column; gap:8px; margin:0; padding:6px;
+      }
+      .nav .item{min-width:auto; justify-content:flex-start}
+      .bird{display:none}
+
+      .topbar{backdrop-filter: blur(8px)}
+      /* Avoid body scroll behind the drawer */
+      body.nav-open{ overflow:hidden }
+    }
+
+    /* Phones */
+    @media (max-width: 720px){
+      .topbar{padding:10px 14px 6px}
+      .search{height:40px; padding:0 12px}
+      .actions{gap:8px}
+      .btn{height:38px; padding:0 12px}
+      .profile{grid-template-columns: auto 1fr; align-items:center}
+      .pf-cta{grid-column: 1 / -1; justify-content:stretch}
+      .pf-cta .btn{flex:1 1 140px; justify-content:center}
+      .pf-social a{width:28px;height:28px}
+      .line{padding-left:26px}
+      .line::before{left:11px}
+      .step::before{left:-19px}
+    }
+
+    /* Small phones */
+    @media (max-width: 520px){
+      .brand .dot{width:28px;height:28px;border-radius:10px}
+      .brand{font-size: var(--fs-16)}
+      .avatar{border-width:4px}
+      .wrap{padding:0 12px calc(18px + var(--safe-bottom))}
+      .topbar{gap:8px}
+      .actions .btn{padding:0 10px}
+      .card{padding:12px;border-radius:16px}
+      .timeline{padding:12px}
+      .step{padding:10px;border-radius:14px}
+    }
+
+    /* Ultra-small devices */
+    @media (max-width: 380px){
+      .actions .btn{padding:0 8px; height:36px; font-size: var(--fs-12)}
+      .search{min-width:0}
+      .pf-cta{gap:6px}
+      .pf-cta .btn{padding:0 10px}
+    }
+
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce){
+      *{animation: none !important; transition: none !important;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar" id="sideNav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="dot">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M3 7.5L12 3l9 4.5-9 4.5-9-4.5Zm0 6L12 9l9 4.5-9 4.5-9-4.5Z"/></svg>
+        </div>
+        <div>SUCCESS</div>
+      </div>
+
+      <nav class="nav">
+        <a class="item active" href="{{ url_for('employee_dashboard') }}">
+          <span>Profile</span>
+        </a>
+        <a class="item" href="{{ url_for('attendance_page') }}">
+          <span>My courses</span> <span class="badge">{{ month_count or 0 }}</span>
+        </a>
+        <a class="item" href="{{ url_for('attendance_page') }}"><span>Completed</span></a>
+        <a class="item" href="{{ url_for('attendance_page') }}"><span>Events</span></a>
+        <a class="item" href="{{ url_for('attendance_page') }}"><span>Achievements</span></a>
+        <a class="item" href="{{ url_for('attendance_page') }}"><span>Schedule</span></a>
+        <a class="item" href="{{ url_for('attendance_page') }}"><span>Messages</span></a>
+      </nav>
+    </aside>
+
+    <!-- ===== Content ===== -->
+    <section>
+      <!-- Topbar -->
+      <div class="topbar">
+        <!-- Animated Hamburger (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="sideNav" aria-expanded="false">
+          <span></span>
+        </button>
+
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14z" stroke="#64748b" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input placeholder="Search…" aria-label="Search" />
+        </div>
+        <div class="actions">
+          <a class="btn" href="{{ url_for('attendance_page') }}">Attendance</a>
+          <a class="btn primary" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <!-- Profile header / payments column -->
+        <div class="grid">
+          <div class="card" style="padding:0">
+            <div class="profile">
+              <div class="avatar">
+                {{ (name or 'U')[:1] }}
+              </div>
+              <div class="pf-lines">
+                <div class="name">{{ name or '—' }}</div>
+                <div class="meta">
+                  Role: <b>{{ role or 'EMP' }}</b> •
+                  Last: <b>{{ last_log_type or '-' }}</b> •
+                  Seen: <b>{{ last_log_time.strftime('%Y-%m-%d %H:%M') if last_log_time else '-' }}</b>
+                </div>
+                <div class="pf-social">
+                  <a href="#" title="fb" aria-label="Facebook">f</a>
+                  <a href="#" title="ig" aria-label="Instagram">i</a>
+                  <a href="#" title="vk" aria-label="VK">vk</a>
+                  <a href="#" title="tg" aria-label="Telegram">tg</a>
+                </div>
+              </div>
+              <div class="pf-cta">
+                <a class="btn primary" href="{{ url_for('attendance_page') }}">Mark Attendance</a>
+                <a class="btn" href="{{ url_for('logout') }}">Logout</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini">
+            <!-- Right top small card content placeholder -->
+          </div>
+        </div>
+
+        <!-- Timeline / subscription column -->
+        <div class="grid" style="margin-top:16px">
+          <div class="timeline">
+            <h3>Attendance</h3>
+            <div class="line">
+              {% if logs %}
+                {% for r in logs %}
+                  <div class="step">
+                    <div class="title">
+                      {{ r.type }} — {{ r.timestamp.strftime('%Y-%m-%d %H:%M:%S') if r.timestamp else '-' }}
+                    </div>
+                    <div class="sub">
+                      Confidence: {{ '%.2f'|format(r.confidence or 0) }} • Device: {{ r.device or '-' }}
+                    </div>
+                    <div class="right">
+                      <span class="tag {% if r.type == 'IN' %}purple{% else %}gray{% endif %}">
+                        {% if r.type == 'IN' %}Начат{% else %}Завершён{% endif %}
+                      </span>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="step">
+                  <div class="title">No logs yet</div>
+                  <div class="sub">Use the “Mark Attendance” button above.</div>
+                  <div class="right"><span class="tag gray">—</span></div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="mini" style="background:#4c1d95;color:#fff">
+            <!-- Right lower accent card placeholder -->
+          </div>
+        </div>
+
+        <!-- (Optional) raw table retained in comment -->
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Mobile drawer controller with accessible states
+    (function(){
+      const burger = document.getElementById('hamburger');
+      const sidebar = document.getElementById('sideNav');
+
+      function setNav(open){
+        document.body.classList.toggle('nav-open', open);
+        burger.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', String(open));
+      }
+
+      burger.addEventListener('click', ()=> {
+        setNav(!document.body.classList.contains('nav-open'));
+      });
+
+      // Close when clicking outside the drawer
+      document.addEventListener('click', (e)=>{
+        if(!document.body.classList.contains('nav-open')) return;
+        const clickInsideSidebar = sidebar.contains(e.target);
+        const clickBurger = burger.contains(e.target);
+        if(!clickInsideSidebar && !clickBurger){ setNav(false); }
+      });
+
+      // ESC to close
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){ setNav(false); }
+      });
+
+      // Auto-close when resizing to desktop
+      const mq = window.matchMedia('(min-width: 1025px)');
+      mq.addEventListener('change', (m)=>{ if(m.matches) setNav(false); });
+    })();
+  </script>
+</body>
+</html>

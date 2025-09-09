@@ -319,7 +319,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+       
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -451,286 +451,229 @@ footer .footer-column h3 {
   </script>
 </section>
 
-
+<br><br><br>
   
   <!-- ==============================
   MONITORING & EVALUATION — Full-bleed Hero + Hover Title + Modern Cards
   Drop this single <section> anywhere in your page.
 ================================= -->
-<section id="sds-monitoring-eval" aria-label="Monitoring & Evaluation">
-  <style>
-    /* ---------- NAMESPACE: #sds-monitoring-eval ---------- */
-    #sds-monitoring-eval{
-      --container: min(1180px, 94vw);
-      --bg: #ffffff;
-      --ink: #0e1116;
-      --muted: #667085;
-      --brand: #0ea5e9;     /* sky */
-      --brand-2:#7c3aed;    /* violet */
-      --ring: rgba(14,165,233,.18);
-      --shadow: 0 12px 30px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
-      --radius: 20px;
-      --gap: clamp(16px, 2vw, 24px);
-      background: var(--bg);
-      color: var(--ink);
-      margin: 0; /* no extra space between adjacent sections */
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    }
+<section id="sds-monitoring-eval" aria-label="Monitoring & Evaluation"> <style> /* ---------- Scoped design tokens (matching your other sections) ---------- */ #sds-monitoring-eval{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#7c3aed; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; scroll-margin-top:90px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-monitoring-eval *{box-sizing:border-box} #sds-monitoring-eval figure{margin:0}
+/* Ambient parallax glow */
+#sds-monitoring-eval .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh;
+  background:
+    radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.14), transparent 60%),
+    radial-gradient(1100px 320px at 84% 28%, rgba(124,58,237,.14), transparent 60%);
+  filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+}
 
-    /* Full-bleed hero that covers left and right edges */
-    #sds-monitoring-eval .me-hero{
-      position: relative;
-      inline-size: 100vw;           /* stretch edge to edge */
-      margin-left: calc(50% - 50vw);/* bleed outside container */
-      block-size: clamp(280px, 56vh, 520px);
-      overflow: clip;
-      isolation: isolate;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(1200px 400px at 80% 20%, rgba(124,58,237,.25), transparent 65%),
-        radial-gradient(1000px 420px at 20% 80%, rgba(14,165,233,.25), transparent 70%),
-        linear-gradient(180deg, #0b1020 0%, #0f1530 40%, #12182f 100%);
-    }
+/* ================= HERO (shared layout) ================= */
+#sds-monitoring-eval .hero{
+  min-height:88vh;
+  display:grid; grid-template-columns:1.15fr 1fr;
+  gap:clamp(16px,3vw,32px);
+  align-items:stretch;
+  padding:clamp(16px,2.5vw,28px);
+}
+@media (max-width:980px){ #sds-monitoring-eval .hero{grid-template-columns:1fr; min-height:72vh} }
 
-    /* Optional: replace bg with your own image */
-    #sds-monitoring-eval .me-hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        /* Put your image URL here (kept as commented example) */
-        /* url('static/Images/your-hero.jpg') center/cover no-repeat, */
-        conic-gradient(from 180deg at 50% 50%, rgba(255,255,255,.06), transparent 20% 60%, rgba(255,255,255,.06) 80% 100%);
-      mix-blend-mode: overlay;
-      opacity:.9;
-      z-index:-1;
-    }
-    #sds-monitoring-eval .me-hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(80% 100% at 50% 100%, rgba(0,0,0,.45), transparent 60%),
-                  linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.15), transparent 70%);
-      z-index:-1;
-    }
+/* Left: copy panel */
+#sds-monitoring-eval .hero-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+#sds-monitoring-eval .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:#0a2230; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(124,58,237,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content;
+}
+#sds-monitoring-eval .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    /* Centered inner wrap for content */
-    #sds-monitoring-eval .wrap{ width: var(--container); margin-inline:auto; }
+/* Title — make heading gradient */
+#sds-monitoring-eval .title{
+  margin:0; font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:900; letter-spacing:-.015em; text-align:left;
+  background:linear-gradient(90deg,var(--brand) 0%, var(--brand-2) 50%, var(--brand) 100%) 0 0/300% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:meShine 7s ease-in-out infinite;
+}
+@keyframes meShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-    /* Title with hover effect */
-    #sds-monitoring-eval .me-title{
-      font-size: clamp(28px, 5vw, 56px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      display: inline-block;
-      padding: .2em .35em;
-      border-radius: 16px;
-      transition: transform .35s ease, letter-spacing .35s ease;
-      background: linear-gradient(90deg, #dbeafe 0%, #e9d5ff 50%, #dbeafe 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 0 rgba(0,0,0,0); /* keep crisp */
-    }
-    #sds-monitoring-eval .me-title span{
-      font-weight: 900;
-      opacity:.85;
-    }
-    #sds-monitoring-eval .me-title::after{
-      content:"";
-      position:absolute; left: 10%; right:10%; bottom:-8px;
-      height: 2px; border-radius: 2px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-      transform-origin: center;
-      transform: scaleX(.25);
-      opacity: .85;
-      transition: transform .35s ease;
-    }
-    #sds-monitoring-eval .me-title:hover{
-      transform: translateY(-1px) scale(1.02);
-      letter-spacing: 0.01em;
-      background: linear-gradient(90deg, #a5b4fc 0%, #f0abfc 50%, #93c5fd 100%);
-      -webkit-background-clip: text; background-clip: text;
-    }
-    #sds-monitoring-eval .me-title:hover::after{ transform: scaleX(1); }
+/* Scrolling info line */
+#sds-monitoring-eval .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-monitoring-eval .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px;
+  font-weight:600; color:#0b3a55; animation:meTicker 16s linear infinite;
+}
+#sds-monitoring-eval .scrolling-track i{ opacity:.75; }
+@keyframes meTicker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* Body panel */
-    #sds-monitoring-eval .me-body{
-      padding: clamp(20px, 4vw, 44px) 0 clamp(28px, 4vw, 64px);
-      background: var(--bg);
-    }
+#sds-monitoring-eval .lead{ color:var(--muted); line-height:1.75; font-size:clamp(15px,1.35vw,17px); }
 
-    /* Intro (organization paragraph) */
-    #sds-monitoring-eval .intro{
-      margin: clamp(16px,2vw,28px) auto clamp(16px,2vw,24px);
-      font-size: clamp(16px, 1.2vw, 18px);
-      color: var(--muted);
-      max-width: 78ch;
-      text-align: center;
-    }
+/* Right: SINGLE IMAGE (fits the frame; slider removed) */
+#sds-monitoring-eval .hero-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#0b1220; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-monitoring-eval .hero-image{
+  position:relative; height:100%; min-height:clamp(340px,56vh,560px); overflow:hidden;
+}
+#sds-monitoring-eval .hero-image img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block; filter:saturate(1.02) contrast(1.04);
+  background:#0b1220;
+}
+#sds-monitoring-eval .hero-image::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,0) 35%, rgba(0,0,0,.25));
+  z-index:1;
+}
 
-    /* Cards grid */
-    #sds-monitoring-eval .grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--gap);
-      width: var(--container);
-      margin-inline: auto;
-    }
-    #sds-monitoring-eval .card{
-      grid-column: span 12;
-      background: #fff;
-      border: 1px solid var(--ring);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: clamp(16px, 2vw, 24px);
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    #sds-monitoring-eval .card:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0,0,0,.10), 0 6px 16px rgba(0,0,0,.08);
-      border-color: rgba(124,58,237,.28);
-    }
+/* ================= CONTENT (your original intro + cards) ================= */
+#sds-monitoring-eval .content{ max-width:1180px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-monitoring-eval .section-intro{ display:grid; gap:10px; }
+#sds-monitoring-eval .section-intro h3{ margin:0; font-size:clamp(22px,3.2vw,34px); letter-spacing:-.3px; }
+#sds-monitoring-eval .section-intro p{ margin:0; color:var(--muted); line-height:1.8; }
 
-    /* Headings inside cards */
-    #sds-monitoring-eval .card h3{
-      font-size: clamp(18px, 1.5vw, 22px);
-      line-height: 1.2;
-      margin: 0 0 8px 0;
-      display: flex; align-items: center; gap: 10px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-      -webkit-background-clip: text; background-clip: text;
-      color: transparent;
-    }
-    #sds-monitoring-eval .card p{
-      margin: 0;
-      font-size: 16px;
-      color: #1f2937;
-    }
+#sds-monitoring-eval .grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(16px,2vw,24px); }
+#sds-monitoring-eval .card{
+  grid-column:span 12; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:var(--shadow-1); transition:transform .25s, box-shadow .25s, border-color .25s;
+}
+#sds-monitoring-eval .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(124,58,237,.28); }
+#sds-monitoring-eval .card h3{
+  margin:0 0 8px; font-size:clamp(18px,1.5vw,22px); line-height:1.2; display:flex; align-items:center; gap:10px;
+  background:linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+#sds-monitoring-eval .card p{ margin:0; font-size:16px; color:#1f2937; }
 
-    /* Simple responsive: 2 cols on md+, 3 cols on xl */
-    @media (min-width: 700px){
-      #sds-monitoring-eval .card{ grid-column: span 6; }
-      #sds-monitoring-eval .card.card--wide{ grid-column: span 12; }
-    }
-    @media (min-width: 1100px){
-      #sds-monitoring-eval .card{ grid-column: span 4; }
-      #sds-monitoring-eval .card.card--wide{ grid-column: span 8; }
-      #sds-monitoring-eval .card.card--tall{ grid-column: span 4; }
-    }
+/* Responsive columns like your brief */
+@media (min-width:700px){
+  #sds-monitoring-eval .card{ grid-column:span 6 }
+  #sds-monitoring-eval .card.card--wide{ grid-column:span 12 }
+}
+@media (min-width:1100px){
+  #sds-monitoring-eval .card{ grid-column:span 4 }
+  #sds-monitoring-eval .card.card--wide{ grid-column:span 8 }
+  #sds-monitoring-eval .card.card--tall{ grid-column:span 4 }
+}
 
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce){
-      #sds-monitoring-eval .me-title,
-      #sds-monitoring-eval .me-title::after,
-      #sds-monitoring-eval .card{ transition: none !important; }
-    }
-  </style>
+/* Divider */
+#sds-monitoring-eval .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); }
 
-  <!-- HERO -->
-  <div class="me-hero">
-    <div class="wrap">
-      <h1 class="me-title" title="Hover me ✨">
-        Monitoring <span>AND</span> Evaluation
-      </h1>
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-monitoring-eval .hero{ padding:16px; gap:14px }
+  #sds-monitoring-eval .kicker{ font-size:12px; padding:6px 10px }
+  #sds-monitoring-eval .scrolling-track{ gap:22px }
+  #sds-monitoring-eval .content{ padding:0 16px }
+  #sds-monitoring-eval .hero-image{ min-height:46vh }
+}
+@media (max-width:420px){
+  #sds-monitoring-eval .title{ font-size:32px }
+  #sds-monitoring-eval .lead{ font-size:14px }
+  #sds-monitoring-eval .hero-image{ min-height:42vh }
+}
+
+@media (prefers-reduced-motion:reduce){
+  #sds-monitoring-eval .scrolling-track{ animation:none }
+}
+
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <!-- Left: content (keeps your original wording) --> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Monitoring &amp; Evaluation</div> <h1 class="title" title="Hover me ✨">Monitoring <span>AND</span> Evaluation</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-diagram-project"></i> Theory of Change (ToC)</span>
+      <span><i class="fa-solid fa-ruler-combined"></i> KPIs &amp; Results Framework</span>
+      <span><i class="fa-solid fa-square-poll-vertical"></i> Baseline · Midline · Endline</span>
+      <span><i class="fa-solid fa-chart-line"></i> Outcome &amp; Impact Evaluation</span>
+      <span><i class="fa-solid fa-database"></i> Data systems &amp; dashboards</span>
+      <span><i class="fa-solid fa-diagram-project"></i> Theory of Change (ToC)</span>
     </div>
   </div>
 
-  <!-- BODY -->
-  <div class="me-body">
-    <p class="intro">
-      Sesta Development Services (SDS) plays a critical role in Monitoring and Evaluation (M&E) to ensure that development
-      projects are effectively designed, implemented, and achieve their intended impact. M&E is a core component of SDS’s
-      strategy for driving improvements in project performance, accountability, and learning.
+  <p class="lead">
+    Sesta Development Services (SDS) plays a critical role in Monitoring and Evaluation (M&amp;E) to ensure that development
+    projects are effectively designed, implemented, and achieve their intended impact. M&amp;E is a core component of SDS’s
+    strategy for driving improvements in project performance, accountability, and learning.
+  </p>
+</div>
+
+<!-- Right: single image (slider removed; image will fit the frame) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="hero-image">
+    <!-- Replace src with your image; it will auto-fit the frame -->
+    <img src="static/Images/Monitoring AND Evaluation.jpeg" alt="Monitoring & Evaluation — analysis and dashboards">
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> <h3>How SDS Delivers Monitoring &amp; Evaluation</h3> <p>We retain your exact content below and present it in a responsive card grid consistent with your site-wide design.</p> </div>
+<div class="grid">
+  <!-- Establishing a Robust M&E Framework -->
+  <article class="card reveal">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18v2H3V5zm2 4h14v2H5V9zm-2 4h18v2H3v-2zm2 4h10v2H5v-2z"/></svg>
+      Establishing a Robust M&amp;E Framework
+    </h3>
+    <p>
+      SDS starts by designing a comprehensive M&amp;E framework tailored to each project. This framework outlines key objectives, indicators,
+      and tools used to measure progress and assess outcomes, while clearly defining timelines, roles, and responsibilities across each
+      stage of the M&amp;E cycle.
     </p>
+  </article>
 
-    <div class="grid">
-      <!-- Establishing a Robust M&E Framework -->
-      <article class="card">
-        <h3>
-          <!-- icon -->
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18v2H3V5zm2 4h14v2H5V9zm-2 4h18v2H3v-2zm2 4h10v2H5v-2z"/></svg>
-          Establishing a Robust M&E Framework
-        </h3>
-        <p>
-          SDS starts by designing a comprehensive M&E framework tailored to each project. This framework outlines key objectives, indicators,
-          and tools used to measure progress and assess outcomes, while clearly defining timelines, roles, and responsibilities across each
-          stage of the M&E cycle.
-        </p>
-      </article>
+  <!-- Theory of Change -->
+  <article class="card reveal">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      Theory of Change (ToC) &amp; Results-Based Framework
+    </h3>
+    <p>
+      Using a Theory of Change, SDS maps how activities credibly lead to outputs, outcomes, and long-term impact, surfacing the key
+      assumptions and enabling conditions. This underpins a results-based framework for consistent planning, measurement, and learning.
+    </p>
+  </article>
 
-      <!-- Theory of Change -->
-      <article class="card">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          Theory of Change (ToC) & Results-Based Framework
-        </h3>
-        <p>
-          Using a Theory of Change, SDS maps how activities credibly lead to outputs, outcomes, and long-term impact, surfacing the key
-          assumptions and enabling conditions. This underpins a results-based framework for consistent planning, measurement, and learning.
-        </p>
-      </article>
+  <!-- KPIs -->
+  <article class="card reveal">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h4v8H3v-8zm7-6h4v14h-4V7zm7 3h4v11h-4V10z"/></svg>
+      Key Performance Indicators (KPIs)
+    </h3>
+    <p>
+      SDS defines clear KPIs to track processes and results aligned to project goals—for example, higher agricultural productivity, improved
+      farmer incomes, or enhanced access to markets—enabling timely management decisions and accountability.
+    </p>
+  </article>
 
-      <!-- KPIs -->
-      <article class="card">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h4v8H3v-8zm7-6h4v14h-4V7zm7 3h4v11h-4V10z"/></svg>
-          Key Performance Indicators (KPIs)
-        </h3>
-        <p>
-          SDS defines clear KPIs to track processes and results aligned to project goals—for example, higher agricultural productivity, improved
-          farmer incomes, or enhanced access to markets—enabling timely management decisions and accountability.
-        </p>
-      </article>
+  <!-- Evaluating Outcomes & Impact -->
+  <article class="card card--wide reveal">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3v10H3V3h8m2-2H1v14h12V1zm9 8-4.5 4.5L14 9l1.4-1.4 2.1 2.1L19.6 6 21 7.4z"/></svg>
+      Evaluating Outcomes &amp; Impact
+    </h3>
+    <p>
+      Guided by the framework, SDS conducts systematic evaluations to understand short- and long-term effects of interventions. Evidence on
+      outcomes and impact informs adaptive management, policy dialogue, and scale-up decisions.
+    </p>
+  </article>
 
-      <!-- Evaluating Outcomes & Impact -->
-      <article class="card card--wide">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3v10H3V3h8m2-2H1v14h12V1zm9 8-4.5 4.5L14 9l1.4-1.4 2.1 2.1L19.6 6 21 7.4z"/></svg>
-          Evaluating Outcomes & Impact
-        </h3>
-        <p>
-          Guided by the framework, SDS conducts systematic evaluations to understand short- and long-term effects of interventions. Evidence on
-          outcomes and impact informs adaptive management, policy dialogue, and scale-up decisions.
-        </p>
-      </article>
+  <!-- Baseline, Midline, Endline -->
+  <article class="card card--tall reveal">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v2h2V5h14v14h-2v2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM3 9h10v2H3V9Zm0 4h8v2H3v-2Zm0 4h6v2H3v-2Z"/></svg>
+      Baseline, Midline &amp; Endline Evaluations
+    </h3>
+    <p>
+      SDS conducts baselines to set reference values at project start, midlines to check trajectory and course-correct during implementation,
+      and endlines to assess overall achievements against targets and draw lessons for future programming.
+    </p>
+  </article>
+</div>
 
-      <!-- Baseline, Midline, Endline -->
-      <article class="card card--tall">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v2h2V5h14v14h-2v2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM3 9h10v2H3V9Zm0 4h8v2H3v-2Zm0 4h6v2H3v-2Z"/></svg>
-          Baseline, Midline & Endline Evaluations
-        </h3>
-        <p>
-          SDS conducts baselines to set reference values at project start, midlines to check trajectory and course-correct during implementation,
-          and endlines to assess overall achievements against targets and draw lessons for future programming.
-        </p>
-      </article>
-    </div>
-  </div>
+</div> <script> (function initSDS_ME(){ const root = document.currentScript.closest('#sds-monitoring-eval'); if(!root) return; /* --- Parallax (ambient) --- */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX = 24; let ticking=false; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); function onScroll(){ if(!ticking){ requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el=>{ const speed = parseFloat(el.dataset.speed||0.1); el.style.transform = `translateY(${clamp(y*speed,-MAX,MAX)}px)`; }); ticking=false; }); ticking=true; } } window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* --- Reveal on scroll --- */ (function(){ const els=[...root.querySelectorAll('.reveal')]; if(!('IntersectionObserver' in window)){ els.forEach(el=>el.classList.add('show')); return; } const io=new IntersectionObserver(es=> es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }), {threshold:.15}); els.forEach(el=> io.observe(el)); })(); /* --- Respect reduced motion --- */ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function applyRM(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const trackLine = root.querySelector('.scrolling-track'); if(trackLine) trackLine.style.animationPlayState = mq.matches ? 'paused' : 'running'; } mq.addEventListener ? mq.addEventListener('change', applyRM) : mq.addEventListener('change', applyRM); applyRM(); })(); </script> </section>
 
-  <script>
-    // Tiny polish: gently pulse the underline once on first view
-    (function(){
-      const title = document.querySelector('#sds-monitoring-eval .me-title');
-      if(!title) return;
-      const once = 'meTitleSeen';
-      if(sessionStorage.getItem(once)) return;
-      const io = new IntersectionObserver(([e])=>{
-        if(e.isIntersecting){
-          title.classList.add('hover-sim');
-          setTimeout(()=>title.classList.remove('hover-sim'), 900);
-          sessionStorage.setItem(once, '1');
-          io.disconnect();
-        }
-      }, {threshold:.6});
-      io.observe(title);
-    })();
-  </script>
-</section>
 
   
   
@@ -767,6 +710,7 @@ footer .footer-column h3 {
           <h3 id="footer-careers">CAREERS</h3>
           <ul>
             <li><a href="/career" tabIndex="0">Join Us</a></li>
+           
           </ul>
         </nav>
 
@@ -778,6 +722,7 @@ footer .footer-column h3 {
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 

@@ -319,7 +319,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+      
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -456,177 +456,139 @@ footer .footer-column h3 {
   ORGANIZATIONAL DEVELOPMENT — Full-bleed Hero + Hover Title
   Drop this single <section> anywhere in your page.
 ================================= -->
-<section id="sds-org-dev" aria-label="Organizational Development">
-  <style>
-    /* ---------- NAMESPACE: #sds-org-dev ---------- */
-    #sds-org-dev{
-      --container: min(1180px, 94vw);
-      --bg: #ffffff;
-      --ink: #0e1116;
-      --muted: #667085;
-      --brand: #0ea5e9;      /* sky */
-      --brand-2: #7c3aed;    /* violet */
-      --ring: rgba(14,165,233,.18);
-      --shadow: 0 12px 30px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
-      --radius: 20px;
-      --gap: clamp(16px, 2vw, 24px);
-      background: var(--bg);
-      color: var(--ink);
-      margin: 0; /* no extra space between adjacent sections */
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    }
+<section id="sds-org-dev" aria-label="Organizational Development"> <style> /* ---------- Scoped design tokens (matching your other SDS sections) ---------- */ #sds-org-dev{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#7c3aed; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; scroll-margin-top:90px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-org-dev *{box-sizing:border-box} #sds-org-dev figure{margin:0}
+/* ---------------- Ambient background glow ---------------- */
+#sds-org-dev .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh;
+  background:
+    radial-gradient(1100px 320px at 18% 40%, rgba(14,165,233,.14), transparent 60%),
+    radial-gradient(1100px 320px at 82% 28%, rgba(124,58,237,.14), transparent 60%);
+  filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+}
 
-    /* ----- HERO: full-bleed across the page edges ----- */
-    #sds-org-dev .od-hero{
-      position: relative;
-      inline-size: 100vw;                    /* stretch edge to edge */
-      margin-left: calc(50% - 50vw);         /* bleed outside container */
-      block-size: clamp(320px, 58vh, 560px);
-      overflow: clip;
-      isolation: isolate;
-      display: grid;
-      place-items: center;
-      background: #0f1530;                   /* fallback color under image */
-    }
-    #sds-org-dev .hero-img{
-      position: absolute; inset: 0;
-      display: block;
-    }
-    #sds-org-dev .hero-img img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;                      /* cover entire hero */
-      object-position: center;
-      display: block;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.02);                 /* tiny zoom for parallax feel */
-    }
-    /* soft overlays for readability */
-    #sds-org-dev .od-hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(60% 80% at 20% 20%, rgba(124,58,237,.30), transparent 60%),
-        radial-gradient(70% 70% at 80% 80%, rgba(14,165,233,.28), transparent 60%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-    #sds-org-dev .od-hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25) 40%, rgba(0,0,0,.10) 70%, rgba(0,0,0,.00)),
-        radial-gradient(80% 60% at 50% 100%, rgba(0,0,0,.35), transparent 70%);
-      pointer-events: none;
-    }
-    #sds-org-dev .wrap{ width: var(--container); margin-inline: auto; }
+/* ================= HERO (left card + right image) ================= */
+#sds-org-dev .hero{
+  min-height:88vh;
+  display:grid; grid-template-columns:1.15fr 1fr;
+  gap:clamp(16px,3vw,32px);
+  align-items:stretch;
+  padding:clamp(16px,2.5vw,28px);
+}
+@media (max-width:980px){ #sds-org-dev .hero{grid-template-columns:1fr; min-height:72vh} }
 
-    /* ----- Title with hover effect ----- */
-    #sds-org-dev .od-title{
-      position: relative;
-      z-index: 2;
-      font-size: clamp(30px, 5.6vw, 60px);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      text-align: center;
-      padding: .2em .45em;
-      border-radius: 16px;
-      background: linear-gradient(90deg, #dbeafe 0%, #e9d5ff 50%, #dbeafe 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: transform .35s ease, letter-spacing .35s ease, background .35s ease;
-    }
-    #sds-org-dev .od-title::after{
-      content:"";
-      position:absolute; left:10%; right:10%; bottom:-10px;
-      height:2px; border-radius:2px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-      transform: scaleX(.25);
-      transform-origin: center;
-      opacity:.9;
-      transition: transform .35s ease;
-    }
-    #sds-org-dev .od-title:hover{
-      transform: translateY(-1px) scale(1.02);
-      letter-spacing: .01em;
-      background: linear-gradient(90deg, #a5b4fc 0%, #f0abfc 50%, #93c5fd 100%);
-      -webkit-background-clip: text; background-clip: text;
-    }
-    #sds-org-dev .od-title:hover::after{ transform: scaleX(1); }
+/* Left: copy panel */
+#sds-org-dev .hero-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+#sds-org-dev .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:#0a2230; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(124,58,237,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content;
+}
+#sds-org-dev .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    /* ----- Body copy panel ----- */
-    #sds-org-dev .od-body{
-      padding: clamp(24px, 4vw, 56px) 0 clamp(28px, 4vw, 64px);
-      background: var(--bg);
-    }
-    #sds-org-dev .intro{
-      width: var(--container);
-      margin: 0 auto;
-      background: #fff;
-      border: 1px solid var(--ring);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: clamp(18px, 2.2vw, 28px);
-    }
-    #sds-org-dev .intro p{
-      margin: 0;
-      font-size: clamp(16px, 1.2vw, 18px);
-      color: #1f2937;
-    }
+/* Title shimmer (gradient heading) */
+#sds-org-dev .title{
+  margin:0; font-size:clamp(30px,5.2vw,60px); line-height:1.05; font-weight:900; letter-spacing:-.01em;
+  background:linear-gradient(90deg,#dbeafe 0%, #e9d5ff 50%, #dbeafe 100%) 0 0/300% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:odShine 7s ease-in-out infinite;
+}
+@keyframes odShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce){
-      #sds-org-dev .od-title, #sds-org-dev .od-title::after{ transition: none !important; }
-      #sds-org-dev .hero-img img{ transform: none !important; }
-    }
-  </style>
+/* Scrolling info line */
+#sds-org-dev .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-org-dev .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px;
+  font-weight:600; color:#0b3a55; animation:odTicker 16s linear infinite;
+}
+#sds-org-dev .scrolling-track i{ opacity:.75; }
+@keyframes odTicker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-  <!-- HERO -->
-  <div class="od-hero">
-    <!-- Replace the image source below with your asset -->
-    <picture class="hero-img" aria-hidden="true">
-      <!-- Optional smaller/mobile asset -->
-      <source media="(max-width: 640px)" srcset="static/Images/org-dev-hero-mobile.jpg">
-      <img src="static/Images/org-dev-hero.jpg" alt="Community organizations and farmer collectives in action">
-    </picture>
+#sds-org-dev .lead{ color:var(--muted); line-height:1.75; font-size:clamp(15px,1.35vw,17px); }
 
-    <div class="wrap">
-      <h1 class="od-title" title="Hover me ✨">Organizational Development</h1>
+/* Right: SINGLE image (fills the frame) */
+#sds-org-dev .hero-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#0b1220; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-org-dev .hero-image{
+  position:relative; height:100%; min-height:clamp(360px,56vh,560px); overflow:hidden;
+}
+#sds-org-dev .hero-image img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block; filter:saturate(1.02) contrast(1.04);
+  background:#0b1220;
+}
+#sds-org-dev .hero-image::after{
+  content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,0) 35%, rgba(0,0,0,.25)); pointer-events:none; z-index:1;
+}
+
+/* ================= CONTENT ================= */
+#sds-org-dev .content{ max-width:1180px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:20px; position:relative; z-index:1; }
+#sds-org-dev .info-card{
+  background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:var(--shadow-1); transition:transform .25s, box-shadow .25s, border-color .25s;
+}
+#sds-org-dev .info-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.28); }
+#sds-org-dev .info-card p{ margin:0; font-size:16px; color:#1f2937; }
+
+/* Divider */
+#sds-org-dev .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); }
+
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-org-dev .hero{ padding:16px; gap:14px }
+  #sds-org-dev .kicker{ font-size:12px; padding:6px 10px }
+  #sds-org-dev .scrolling-track{ gap:22px }
+  #sds-org-dev .content{ padding:0 16px }
+  #sds-org-dev .hero-image{ min-height:46vh }
+}
+@media (max-width:420px){
+  #sds-org-dev .title{ font-size:32px }
+  #sds-org-dev .lead{ font-size:14px }
+  #sds-org-dev .hero-image{ min-height:42vh }
+}
+
+@media (prefers-reduced-motion:reduce){
+  #sds-org-dev .scrolling-track{ animation:none }
+}
+
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <!-- Left: content (kept content intact) --> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Organizational Development</div> <h1 class="title">Organizational Development</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-people-group"></i> CLFs &amp; FPOs formation</span>
+      <span><i class="fa-solid fa-scale-balanced"></i> Governance &amp; compliance</span>
+      <span><i class="fa-solid fa-chart-line"></i> Strategy &amp; performance</span>
+      <span><i class="fa-solid fa-handshake-angle"></i> Community empowerment</span>
+      <span><i class="fa-solid fa-people-group"></i> CLFs &amp; FPOs formation</span>
+      <span><i class="fa-solid fa-scale-balanced"></i> Governance &amp; compliance</span>
+      <span><i class="fa-solid fa-chart-line"></i> Strategy &amp; performance</span>
+      <span><i class="fa-solid fa-handshake-angle"></i> Community empowerment</span>
     </div>
   </div>
 
-  <!-- BODY -->
-  <div class="od-body">
-    <div class="intro">
-      <p>
-        SDS contributes significantly to organizational development through the formation and promotion of community owned
-        organizations like Cluster Level Federations (CLF) and Farmer Producer Organizations (FPO) of smallholder farmers,
-        marginalized communities and SHG groups at the grassroots level that empower rural communities.
-      </p>
-    </div>
-  </div>
+  <p class="lead">
+    SDS contributes significantly to organizational development through the formation and promotion of community owned
+    organizations like Cluster Level Federations (CLF) and Farmer Producer Organizations (FPO) of smallholder farmers,
+    marginalized communities and SHG groups at the grassroots level that empower rural communities.
+  </p>
+</div>
 
-  <script>
-    // Tiny polish: animate the underline once when the title enters view
-    (function(){
-      const title = document.querySelector('#sds-org-dev .od-title');
-      if(!title) return;
-      const key = 'odTitleSeen';
-      if(sessionStorage.getItem(key)) return;
-      const io = new IntersectionObserver(([e])=>{
-        if(e.isIntersecting){
-          title.classList.add('hover-sim');
-          setTimeout(()=>title.classList.remove('hover-sim'), 900);
-          sessionStorage.setItem(key, '1');
-          io.disconnect();
-        }
-      }, {threshold:.65});
-      io.observe(title);
-    })();
-  </script>
-</section>
+<!-- Right: single image (fits the frame) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="hero-image">
+    <!-- Replace src with your own image; it will auto-fit the frame -->
+    <img src="static/Images/Organizational Development.jpg" alt="Community organizations and farmer collectives in action">
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="info-card"> <p> SDS contributes significantly to organizational development through the formation and promotion of community owned organizations like Cluster Level Federations (CLF) and Farmer Producer Organizations (FPO) of smallholder farmers, marginalized communities and SHG groups at the grassroots level that empower rural communities. </p> </div> </div> <script> (function initSDS_OD(){ const root = document.currentScript.closest('#sds-org-dev'); if(!root) return; /* --- Parallax (ambient) --- */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX = 24; let ticking=false; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); function onScroll(){ if(!ticking){ requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el=>{ const speed = parseFloat(el.dataset.speed||0.1); el.style.transform = `translateY(${clamp(y*speed,-MAX,MAX)}px)`; }); ticking=false; }); ticking=true; } } window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* --- Respect reduced motion --- */ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function applyRM(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const trackLine = root.querySelector('.scrolling-track'); if(trackLine) trackLine.style.animationPlayState = mq.matches ? 'paused' : 'running'; } mq.addEventListener ? mq.addEventListener('change', applyRM) : mq.addListener(applyRM); applyRM(); })(); </script> </section>
+
 
 <!-- Footers -->
   <footer>
@@ -661,6 +623,7 @@ footer .footer-column h3 {
           <h3 id="footer-careers">CAREERS</h3>
           <ul>
             <li><a href="/career" tabIndex="0">Join Us</a></li>
+          
           </ul>
         </nav>
 
@@ -672,6 +635,7 @@ footer .footer-column h3 {
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+              <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 

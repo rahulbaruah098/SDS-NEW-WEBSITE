@@ -319,7 +319,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -458,394 +458,219 @@ footer .footer-column h3 {
   Full-bleed Hero + Hover Title + Modern Cards + Image Mosaic
   Drop this single <section> anywhere in your page.
 ================================= -->
-<section id="sds-c4d-pro" aria-label="Communication for Development — Pro">
-  <style>
-    /* ---------------- NAMESPACE: #sds-c4d-pro ---------------- */
-    #sds-c4d-pro{
-      --container: min(1180px, 94vw);
-      --bg: #ffffff;
-      --ink: #0e1116;
-      --muted: #667085;
-      --brand: #0ea5e9;      /* cyan */
-      --accent: #7c3aed;     /* violet */
-      --ring: rgba(14,165,233,.18);
-      --shadow: 0 14px 28px rgba(2,6,23,.08), 0 6px 16px rgba(2,6,23,.06);
-      --radius: 20px;
-      --radius-lg: 22px;
-      --gap: clamp(16px, 2vw, 24px);
-      --hero-h: clamp(360px, 64vh, 640px);
-      --perspective: 900px;
-
-      background: var(--bg);
-      color: var(--ink);
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      position: relative;
-      isolation: isolate;
-    }
-
-    #sds-c4d-pro .wrap{ width: var(--container); margin-inline: auto; }
-
-    /* ---------------- Smooth scrolling opt-in (scoped) ---------------- */
-    body.sds-smooth-scroll { scroll-behavior: smooth; }
-
-    /* ---------------- Page-load reveal ---------------- */
-    #sds-c4d-pro .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    #sds-c4d-pro[data-loaded="true"] .reveal{ opacity:1; transform:none; }
-
-    /* ---------------- HERO: slider + parallax ---------------- */
-    #sds-c4d-pro .hero{
-      position: relative;
-      height: var(--hero-h);
-      border-bottom: 1px solid rgba(2,6,23,.06);
-      overflow: clip;
-      background: #0b1221;
-    }
-    /* Parallax layers */
-    #sds-c4d-pro .hero .layer{ position:absolute; inset:0; will-change: transform; transform: translateZ(0); }
-    #sds-c4d-pro .hero .sky{ background: radial-gradient(120% 120% at 80% 10%, #111a2e 0%, #0b1221 60%); z-index:0; }
-
-    /* Slider track */
-    #sds-c4d-pro .slider{ position:absolute; inset:0; z-index:1; }
-    #sds-c4d-pro .slides{ display:flex; height:100%; width:100%; transition: transform .7s cubic-bezier(.2,.8,.2,1); will-change: transform; }
-    #sds-c4d-pro .slide{ flex:0 0 100%; position:relative; }
-    #sds-c4d-pro .slide img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter: saturate(1.05) contrast(1.03); }
-    #sds-c4d-pro .slide::after{ content:""; position:absolute; inset:0; pointer-events:none; background: linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05)); }
-
-    /* Overlay content */
-    #sds-c4d-pro .hero .content{ position:relative; z-index:2; height:100%; display:grid; place-items:center; text-align:center; }
-    #sds-c4d-pro .title{
-      font-size: clamp(32px, 5.6vw, 64px);
-      font-weight: 900; line-height:1.04; letter-spacing:-.01em; margin:0;
-      background: linear-gradient(90deg, #dbeafe, #e9d5ff, #dbeafe);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow: 0 1px 0 rgba(255,255,255,.25);
-    }
-    #sds-c4d-pro .sub{ margin:.6rem 0 0; color:#f1f5f9; opacity:.92; font-weight:600; font-size: clamp(14px, 1.8vw, 18px); }
-
-    /* Controls */
-    #sds-c4d-pro .nav{ position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; pointer-events:none; }
-    #sds-c4d-pro .arrow{ pointer-events:auto; align-self:center; justify-self:start; margin-left:10px; width:44px; height:44px; border-radius:999px; border:1px solid rgba(255,255,255,.45); background:rgba(0,0,0,.35); backdrop-filter: blur(4px); display:grid; place-items:center; cursor:pointer; color:#fff; transition: transform .2s ease, opacity .2s ease; }
-    #sds-c4d-pro .arrow.right{ justify-self:end; margin-right:10px; }
-    #sds-c4d-pro .arrow:hover{ transform: scale(1.05); }
-    #sds-c4d-pro .dots{ position:absolute; left:50%; bottom:14px; transform: translateX(-50%); display:flex; gap:10px; z-index:3; }
-    #sds-c4d-pro .dot{ width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.9); opacity:.6; transition:opacity .25s ease, transform .25s ease; }
-    #sds-c4d-pro .dot[aria-current="true"]{ opacity:1; transform: scale(1.25); }
-
-    /* ---------------- BODY ---------------- */
-    #sds-c4d-pro .body{ background:#fff; padding: clamp(26px, 4vw, 64px) 0; }
-    #sds-c4d-pro .lead{ width: var(--container); margin: 0 auto clamp(18px, 2.2vw, 26px); text-align:center; color: var(--muted); font-size: clamp(16px,1.2vw,18px); max-width: 82ch; position: relative; }
-
-    /* Floating deco images behind paragraphs */
-    #sds-c4d-pro .float-field{ position:relative; width: var(--container); margin: 0 auto; height: 0; }
-    #sds-c4d-pro .float-img{ position:absolute; z-index:-1; opacity:.18; filter: saturate(1.05) contrast(1.05) blur(.2px); will-change: transform; transform: translate3d(0,0,0) rotateZ(var(--rz,0deg)); }
-    #sds-c4d-pro .f1{ top:-60px; left:-40px; width: 200px; height: 140px; border-radius:16px; overflow:hidden; box-shadow: var(--shadow); }
-    #sds-c4d-pro .f2{ top:-30px; right:-30px; width: 160px; height: 160px; border-radius:50%; overflow:hidden; box-shadow: var(--shadow); }
-    #sds-c4d-pro .f3{ top: 120px; left: -60px; width: 130px; height: 180px; border-radius: 18px; overflow:hidden; box-shadow: var(--shadow); }
-
-    /* Grid Cards with 3D scroll illusion */
-    #sds-c4d-pro .grid{ width: var(--container); margin-inline:auto; display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); perspective: var(--perspective); }
-    #sds-c4d-pro .card{ grid-column: span 12; background:#fff; border:1px solid var(--ring); border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(16px, 2vw, 24px); transform-style: preserve-3d; will-change: transform; transition: border-color .25s ease, box-shadow .25s ease; }
-    #sds-c4d-pro .card:hover{ box-shadow: 0 16px 36px rgba(2,6,23,.12), 0 8px 18px rgba(2,6,23,.08); border-color: rgba(124,58,237,.28); }
-    #sds-c4d-pro .card h3{ margin:0 0 8px 0; display:flex; align-items:center; gap:10px; font-size: clamp(18px, 1.5vw, 22px); line-height:1.2; background: linear-gradient(90deg, var(--brand), var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    #sds-c4d-pro .card p{ margin:0; color:#1f2937; font-size:16px; }
-
-    @media (min-width: 700px){
-      #sds-c4d-pro .card{ grid-column: span 6; }
-      #sds-c4d-pro .card.card--wide{ grid-column: span 12; }
-      #sds-c4d-pro .card.card--tall{ grid-column: span 6; }
-    }
-    @media (min-width: 1100px){
-      #sds-c4d-pro .card{ grid-column: span 4; }
-      #sds-c4d-pro .card.card--wide{ grid-column: span 8; }
-      #sds-c4d-pro .card.card--tall{ grid-column: span 4; }
-    }
-
-    /* Mosaic (optional visual interest) */
-    #sds-c4d-pro .mosaic{ grid-column: span 12; display:grid; gap: var(--gap); grid-template-columns: repeat(12, 1fr); }
-    #sds-c4d-pro .mosaic figure{ position:relative; overflow:hidden; border-radius:16px; border:1px solid var(--ring); box-shadow: var(--shadow); transform: translateZ(0); }
-    #sds-c4d-pro .mosaic img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s ease, filter .5s ease; }
-    #sds-c4d-pro .mosaic figure:hover img{ transform: scale(1.06); filter: saturate(1.05); }
-    #sds-c4d-pro .mosaic figcaption{ position:absolute; left:10px; bottom:10px; background: rgba(0,0,0,.55); color:#fff; font-size:14px; padding:6px 10px; border-radius:10px; backdrop-filter: blur(4px); }
-    #sds-c4d-pro .m1{ grid-column: span 7; height: clamp(200px, 34vh, 320px); }
-    #sds-c4d-pro .m2{ grid-column: span 5; height: clamp(200px, 34vh, 320px); }
-    #sds-c4d-pro .m3{ grid-column: span 4; height: clamp(160px, 26vh, 240px); }
-    #sds-c4d-pro .m4{ grid-column: span 4; height: clamp(160px, 26vh, 240px); }
-    #sds-c4d-pro .m5{ grid-column: span 4; height: clamp(160px, 26vh, 240px); }
-
-    /* Reduce motion accessibility */
-    @media (prefers-reduced-motion: reduce){
-      #sds-c4d-pro .slides{ transition:none !important; }
-      #sds-c4d-pro .reveal{ transition:none !important; opacity:1 !important; transform:none !important; }
-    }
-    <style>
-/* ===== Mobile (≤640px) responsive overrides for #sds-c4d-pro ===== */
-@media (max-width: 640px){
-  #sds-c4d-pro{ --hero-h: clamp(260px, 52vh, 420px); --gap: 14px; }
-  #sds-c4d-pro .wrap{ width: min(92vw, 100%); }
-  #sds-c4d-pro .title{ font-size: clamp(24px, 6.2vw, 34px); }
-  #sds-c4d-pro .sub{ font-size: 13px; }
-
-  /* Cards & grid */
-  #sds-c4d-pro .grid{ grid-template-columns: 1fr; gap: 14px; }
-  #sds-c4d-pro .card,
-  #sds-c4d-pro .card.card--wide,
-  #sds-c4d-pro .card.card--tall{ grid-column: 1 / -1; padding: 14px; }
-
-  /* Kill 3D tilt on tiny screens (JS will try to set transforms) */
-  #sds-c4d-pro .card{ transform: none !important; }
-
-  /* Mosaic collapses to single column with sane heights */
-  #sds-c4d-pro .mosaic{ grid-template-columns: 1fr; }
-  #sds-c4d-pro .mosaic .m1,
-  #sds-c4d-pro .mosaic .m2,
-  #sds-c4d-pro .mosaic .m3,
-  #sds-c4d-pro .mosaic .m4,
-  #sds-c4d-pro .mosaic .m5{
-    grid-column: 1 / -1;
-    height: clamp(180px, 34vh, 260px);
-  }
-
-  /* Decorative float images can overlap on small phones—hide them */
-  #sds-c4d-pro .float-field{ display: none; }
-
-  /* Slider UI tweaks */
-  #sds-c4d-pro .arrow{ width: 36px; height: 36px; }
-  #sds-c4d-pro .dots{ bottom: 8px; }
-  #sds-c4d-pro .dot{ width: 8px; height: 8px; }
+<section id="sds-c4d-pro" aria-label="Communication for Development — Pro"> <style> /* ========== TOKENS (copied to match FPO design) ========== */ #sds-c4d-pro{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; padding-bottom:72px; } #sds-c4d-pro *{box-sizing:border-box} #sds-c4d-pro figure{margin:0}
+/* ========== AMBIENT BACKGROUND (FPO parallax glow) ========== */
+#sds-c4d-pro .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+    radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+  filter:blur(6px); transform:translateY(0);
 }
-</style>
 
-  </style>
+/* ========== HERO GRID (matches FPO) ========== */
+#sds-c4d-pro .sv2-hero{
+  position:relative; display:grid; isolation:isolate;
+  grid-template-columns:1.15fr 1fr;
+  align-items:stretch; gap:clamp(16px,3vw,32px);
+  padding:clamp(16px,2.5vw,28px);
+  min-height:88vh;
+  z-index:1;
+}
+@media (max-width:980px){
+  #sds-c4d-pro .sv2-hero{grid-template-columns:1fr; min-height:72vh}
+}
 
-  <!-- HERO -->
-  <div class="hero" aria-label="C4D hero">
-    <div class="layer sky" aria-hidden="true"></div>
-    <div class="slider" aria-live="polite">
-      <div class="slides" id="c4dSlides">
-        <figure class="slide"><img src="static/Images/c4d-hero1.jpg" alt="Community dialogue using print, radio, and mobile"></figure>
-        <figure class="slide"><img src="static/Images/c4d-hero2.jpg" alt="Frontline worker counseling with a mobile toolkit"></figure>
-        <figure class="slide"><img src="static/Images/c4d-hero3.jpg" alt="Youth-led media creation in local language"></figure>
-      </div>
-      <div class="nav" aria-hidden="false">
-        <button class="arrow left" id="c4dPrev" aria-label="Previous slide">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="arrow right" id="c4dNext" aria-label="Next slide">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-      <div class="dots" id="c4dDots" aria-label="Slide indicators"></div>
-    </div>
-    <div class="content">
-      <div class="wrap">
-        <h1 class="title reveal">Communication for Development</h1>
-        <p class="sub reveal">Insight → Co‑creation → Mobilization → Behavior & Systems Change</p>
-      </div>
+/* ========== LEFT PANEL (styled like FPO hero-left, keeping your classes) ========== */
+#sds-c4d-pro .sv2-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+
+/* Kicker pill (FPO style) */
+#sds-c4d-pro .sv2-kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
+  color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content;
+}
+
+/* Title with animated gradient + sheen (FPO title) */
+#sds-c4d-pro .sv2-title{
+  font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block;
+  background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:c4dTitleShift 10s linear infinite; position:relative; margin:0;
+}
+#sds-c4d-pro .sv2-title::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  mix-blend-mode:overlay; animation:c4dSheen 3.6s ease-in-out infinite; pointer-events:none;
+}
+@keyframes c4dTitleShift{ to{ background-position:200% 0; } }
+@keyframes c4dSheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+
+/* Scrolling info line (FPO ticker), content-neutral */
+#sds-c4d-pro .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-c4d-pro .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px;
+  font-weight:600; color:#09425a; animation:c4dTicker 16s linear infinite;
+}
+@keyframes c4dTicker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* Lead text (FPO lead) */
+#sds-c4d-pro .sv2-lede{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); margin:0; }
+
+/* CTAs (mapped to FPO buttons while keeping your classes) */
+#sds-c4d-pro .sv2-cta{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-c4d-pro .sv2-btn{
+  appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700;
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2);
+}
+#sds-c4d-pro .sv2-btn:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-c4d-pro .sv2-btn.secondary{
+  color:#0f172a; background:#fff; border:1px solid var(--line); box-shadow:none;
+}
+#sds-c4d-pro .sv2-btn.secondary:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+
+/* KPIs styled like FPO stats but keep your classes/content */
+#sds-c4d-pro .sv2-kpis{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+#sds-c4d-pro .sv2-kpi{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; text-align:center; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+#sds-c4d-pro .sv2-kpi .num{ font-size:20px; font-weight:800; }
+#sds-c4d-pro .sv2-kpi .lab{ font-size:12px; color:var(--muted); font-weight:600; }
+
+/* ========== RIGHT: SINGLE IMAGE FRAME (no slider) ========== */
+#sds-c4d-pro .sv2-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-c4d-pro .image-frame{
+  position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden;
+}
+#sds-c4d-pro .image-frame img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block;
+}
+#sds-c4d-pro .image-frame::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%);
+  pointer-events:none;
+}
+#sds-c4d-pro .slide-caption{
+  position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45);
+  font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25);
+  padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px);
+}
+
+/* ========== SOLUTIONS (keep your content, mirror FPO cards look) ========== */
+#sds-c4d-pro .sv2-solutions{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-c4d-pro .sv2-solutions h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-c4d-pro .sv2-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+#sds-c4d-pro .sv2-card{
+  grid-column:span 4; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#sds-c4d-pro .sv2-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
+#sds-c4d-pro .sv2-thumb{ width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin-bottom:12px }
+#sds-c4d-pro .sv2-thumb img{ width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition:transform .5s ease }
+#sds-c4d-pro .sv2-card:hover .sv2-thumb img{ transform:scale(1.06) }
+#sds-c4d-pro .sv2-card h4{ margin:6px 0 6px; font-size:18px; }
+#sds-c4d-pro .sv2-card p{ margin:0; color:var(--muted); line-height:1.7; }
+@media (max-width:1024px){ #sds-c4d-pro .sv2-card{grid-column:span 6} }
+@media (max-width:640px){  #sds-c4d-pro .sv2-card{grid-column:span 12} }
+
+/* Divider (subtle) */
+#sds-c4d-pro .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
+
+/* ========== MOBILE TWEAKS (match FPO) ========== */
+@media (max-width:720px){
+  #sds-c4d-pro .sv2-hero{ padding:16px; gap:14px }
+  #sds-c4d-pro .sv2-kicker{ font-size:12px; padding:6px 10px }
+  #sds-c4d-pro .scrolling-track{ gap:22px }
+  #sds-c4d-pro .sv2-cta .sv2-btn{ width:100%; justify-content:center }
+  #sds-c4d-pro .sv2-kpis{ grid-template-columns:1fr; gap:8px }
+  #sds-c4d-pro .image-frame{ min-height:46vh }
+  #sds-c4d-pro .slide-caption{ font-size:12px; padding:6px 10px }
+}
+@media (max-width:420px){
+  #sds-c4d-pro .sv2-title{ font-size:32px }
+  #sds-c4d-pro .sv2-lede{ font-size:14px }
+  #sds-c4d-pro .image-frame{ min-height:42vh }
+}
+
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- HERO (left: your content; right: single image frame) --> <div class="sv2-hero"> <!-- Left --> <div class="sv2-left"> <span class="sv2-kicker">Communication for Development</span> <h1 class="sv2-title">Strategic Communication for Social Change</h1>
+  <!-- Decorative scrolling ticker (does not alter your content) -->
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span>SBCC · community radio · folk media</span>
+      <span>Co-creation · local languages · trust</span>
+      <span>Advocacy · mobilization · participation</span>
+      <span>Digital + interpersonal · multichannel</span>
+      <span>SBCC · community radio · folk media</span>
+      <span>Co-creation · local languages · trust</span>
+      <span>Advocacy · mobilization · participation</span>
+      <span>Digital + interpersonal · multichannel</span>
     </div>
   </div>
 
-  <!-- BODY -->
-  <div class="body">
-    <p class="lead reveal">
-      Communication for Development (C4D) blends strategic communication, social & behavior change, community
-      mobilization, and advocacy to enable people to participate in decisions that affect their lives and adopt
-      healthy, productive practices. SDS designs end‑to‑end C4D programs rooted in local culture, languages,
-      and channels people trust.
-    </p>
+  <p class="sv2-lede">
+    SDS designs end-to-end C4D programs rooted in local culture, languages, and trusted channels.
+    We blend strategic communication, social & behavior change, community mobilization, and advocacy
+    to enable people to participate in decisions that affect their lives.
+  </p>
 
-    <!-- Floating decorative images (behind text) -->
-    <div class="float-field" aria-hidden="true">
-      <figure class="float-img f1"><img src="static/Images/c4d-float1.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"/></figure>
-      <figure class="float-img f2"><img src="static/Images/c4d-float2.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"/></figure>
-      <figure class="float-img f3"><img src="static/Images/c4d-float3.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"/></figure>
-    </div>
-
-    <div class="grid" id="c4dGrid">
-      <!-- What C4D Does -->
-      <article class="card reveal" data-depth="70">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 5h20v2H2V5zm2 4h16v2H4V9zm-2 4h20v2H2v-2zm2 4h12v2H4v-2z"/></svg>
-          What C4D Does
-        </h3>
-        <p>
-          Uses evidence‑based messaging and two‑way dialogue to address barriers—knowledge, social norms, access, and
-          agency. It aligns message, messenger, medium, and moment to catalyze behavior and systems change across health,
-          agriculture, education, nutrition, WASH, gender, and livelihoods.
-        </p>
-      </article>
-
-      <!-- Core Pillars -->
-      <article class="card reveal" data-depth="120">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20A10 10 0 0 0 12 2Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>
-          Core Pillars
-        </h3>
-        <p>
-          <strong>SBCC:</strong> Social & Behavior Change Communication for daily practices. <br/>
-          <strong>Social Mobilization:</strong> Community leaders, SHGs, FPOs, and youth groups co‑lead action. <br/>
-          <strong>Advocacy:</strong> Data‑driven narratives influence policies and budgets. <br/>
-          <strong>Participatory Communication:</strong> Co‑creation workshops and feedback loops ensure ownership.
-        </p>
-      </article>
-
-      <!-- Channels & Formats -->
-      <article class="card reveal" data-depth="90">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 6h16v12H4zM2 4h20v2H2zM2 18h20v2H2z"/></svg>
-          Channels & Formats
-        </h3>
-        <p>
-          Interpersonal counseling, farmer field schools, community radio, folk media, street plays, school programs,
-          IVR & voice messages, WhatsApp chatbots, SMS drips, social media micro‑content, IEC materials, and short films
-          in local languages.
-        </p>
-      </article>
-
-      <!-- Strategy & Design -->
-      <article class="card card--wide reveal" data-depth="160">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h4v8H3v-8Zm7-6h4v14h-4V7Zm7 3h4v11h-4V10Z"/></svg>
-          Strategy & Design
-        </h3>
-        <p>
-          Audience segmentation (primary/secondary/influencers), barrier analysis (knowledge, norms, access), message
-          framing (gain‑framed, norm‑nudges), creative testing, media mix modeling, and content calendars. SDS aligns
-          timing with agricultural and festival calendars to maximize reach and resonance.
-        </p>
-      </article>
-
-      <!-- Implementation & Capacity Building -->
-      <article class="card card--tall reveal" data-depth="120">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 4 8 8 1-6 6 2 9-8-4-8 4 2-9-6-6 8-1 4-8Z"/></svg>
-          Implementation & Capacity Building
-        </h3>
-        <p>
-          Training frontline workers and community facilitators, creating toolkits, and establishing peer‑educator
-          networks. SDS equips CLFs, SHGs, and FPOs to run meetings, demonstrations, and community scorecards for
-          sustained local ownership.
-        </p>
-      </article>
-
-      <!-- Measurement, Learning & Adaptation -->
-      <article class="card reveal" data-depth="100">
-        <h3>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v2h2V5h14v14h-2v2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM3 9h10v2H3V9Zm0 4h8v2H3v-2Zm0 4h6v2H3v-2Z"/></svg>
-          Measurement, Learning & Adaptation
-        </h3>
-        <p>
-          KAP surveys, pre/post tests, exposure tracking, call‑center analytics, WhatsApp engagement, IVR completion,
-          and outcome indicators (adoption, referrals, service uptake). Rapid learning cycles refine messages and media mixes.
-        </p>
-      </article>
-
-      <!-- Image Mosaic -->
-      <div class="mosaic reveal" data-depth="40">
-        <figure class="m1"><img src="static/Images/c4d-mosaic1.jpg" alt="Women’s SHG meeting discussing nutrition and livelihoods"><figcaption>Participatory dialogue</figcaption></figure>
-        <figure class="m2"><img src="static/Images/c4d-mosaic2.jpg" alt="Community radio broadcast covering seasonal agriculture tips"><figcaption>Community radio</figcaption></figure>
-        <figure class="m3"><img src="static/Images/c4d-mosaic3.jpg" alt="Frontline worker using a mobile app for counseling"><figcaption>Digital counseling</figcaption></figure>
-        <figure class="m4"><img src="static/Images/c4d-mosaic4.jpg" alt="Street theatre performance on sanitation behaviors"><figcaption>Folk & street theatre</figcaption></figure>
-        <figure class="m5"><img src="static/Images/c4d-mosaic5.jpg" alt="Youth volunteers creating hyperlocal social media content"><figcaption>Youth creators</figcaption></figure>
-      </div>
-    </div>
+  <div class="sv2-cta">
+    <button class="sv2-btn" aria-label="Explore C4D Programs">Explore Programs</button>
+    <button class="sv2-btn secondary" aria-label="See Our Impact">Case Studies</button>
   </div>
 
-  <script>
-    (function(){
-      const host = document.getElementById('sds-c4d-pro');
-      if(!host) return;
+  <div class="sv2-kpis" aria-label="Our Impact">
+    <div class="sv2-kpi">
+      <div class="num" data-to="250" data-suffix="+">0</div>
+      <div class="lab">Communities Reached</div>
+    </div>
+    <div class="sv2-kpi">
+      <div class="num" data-to="85" data-suffix="%">0</div>
+      <div class="lab">Behavior Change Rate</div>
+    </div>
+    <div class="sv2-kpi">
+      <div class="num" data-to="15" data-suffix=" Languages">0</div>
+      <div class="lab">Local Content</div>
+    </div>
+  </div>
+</div>
 
-      // 1) Smooth scrolling opt-in (scoped)
-      document.body.classList.add('sds-smooth-scroll');
+<!-- Right: SINGLE image (slider removed; image fits the frame) -->
+<div class="sv2-right" data-parallax data-speed="-0.08">
+  <figure class="image-frame" aria-label="C4D hero image">
+    <img class="sv2-img" src="static/Images/Communication for Developments.jpg" alt="Community dialogue using print, radio, and mobile">
+    <figcaption class="slide-caption">People-centered communication</figcaption>
+  </figure>
+</div>
 
-      // 2) Page-load reveal gate
-      requestAnimationFrame(()=> host.setAttribute('data-loaded','true'));
+</div> <!-- SOLUTIONS (your content retained) --> <div class="sv2-solutions"> <h3>Our Communication for Development Approach</h3> <div class="sv2-grid"> <article class="sv2-card"> <div class="sv2-thumb"> <img loading="lazy" src="static/Images/Social & Behavior Change.jpg" alt="Women's SHG meeting" /> </div> <h4>Social & Behavior Change</h4> <p>Evidence-based messaging and two-way dialogue to address knowledge gaps and social norms.</p> </article>
+  <article class="sv2-card">
+    <div class="sv2-thumb">
+      <img loading="lazy" src="static/Images/Community Mobilization.jpg" alt="Community radio broadcast" />
+    </div>
+    <h4>Community Mobilization</h4>
+    <p>Engaging community leaders, SHGs, FPOs, and youth groups to co-lead development initiatives.</p>
+  </article>
 
-      // 3) Intersection-based reveal
-      const reveals = host.querySelectorAll('.reveal');
-      if('IntersectionObserver' in window){
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.transitionDelay = (e.target.dataset.delay || '0ms'); e.target.classList.add('in'); io.unobserve(e.target); setTimeout(()=>{ e.target.style.willChange = 'auto'; }, 800); } });
-        }, { threshold: .18 });
-        reveals.forEach(el=>{ el.style.willChange = 'opacity,transform'; io.observe(el); });
-      } else { reveals.forEach(el=> el.style.opacity = 1); }
+  <article class="sv2-card">
+    <div class="sv2-thumb">
+      <img loading="lazy" src="static/Images/Multi-Channel Strategy.jpg" alt="Digital counseling" />
+    </div>
+    <h4>Multi-Channel Strategy</h4>
+    <p>Using interpersonal counseling, community radio, folk media, and digital platforms for maximum reach.</p>
+  </article>
+</div>
 
-      // 4) HERO slider
-      const track = host.querySelector('#c4dSlides');
-      const slides = track ? Array.from(track.children) : [];
-      const prev = host.querySelector('#c4dPrev');
-      const next = host.querySelector('#c4dNext');
-      const dotsWrap = host.querySelector('#c4dDots');
-      let index = 0, timerId = null, touchStartX = 0, touchDX = 0;
+</div> <script> (function(){ const root = document.getElementById('sds-c4d-pro'); if(!root) return; /* KPI Count-up (your original logic preserved) */ (function(){ const els = root.querySelectorAll('.num'); if(!els.length) return; const io = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ const el = entry.target, to = +el.dataset.to || 0, suf = el.dataset.suffix || ''; const start = performance.now(), dur = 1200; const step = now=>{ const p = Math.min(1,(now-start)/dur); const v = Math.floor(to*(0.1+0.9*Math.pow(p,1.6))); el.textContent = v.toLocaleString('en-IN') + ' ' + suf; if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); io.unobserve(el); } }); },{threshold:.4}); els.forEach(el=> io.observe(el)); })(); /* Parallax (same as FPO) */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp = (n,min,max)=> Math.max(min, Math.min(max, n)); let ticking = false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el=>{ const speed = parseFloat(el.dataset.speed || 0.1); const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT); el.style.transform = `translateY(${shift}px)`; }); ticking = false; }); ticking = true; } } window.addEventListener('scroll', onScroll, { passive:true }); onScroll(); })(); /* Reduce Motion (pause ticker shimmer if user prefers) */ (function(){ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track = root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); })(); </script> </section>
 
-      function renderDots(){
-        if(!dotsWrap) return; dotsWrap.innerHTML='';
-        slides.forEach((_,i)=>{
-          const b = document.createElement('button'); b.className = 'dot'; b.type='button'; b.setAttribute('aria-label', `Go to slide ${i+1}`);
-          b.setAttribute('aria-current', i===index ? 'true':'false'); b.addEventListener('click', ()=> goTo(i, {user:true})); dotsWrap.appendChild(b);
-        });
-      }
-      function goTo(i, {user=false}={} ){ if(!slides.length) return; index = (i + slides.length) % slides.length; track.style.transform = `translate3d(-${index*100}%,0,0)`; updateDots(); if(user) restart(); }
-      function nextFn(){ goTo(index+1) } function prevFn(){ goTo(index-1) }
-      function start(){ stop(); if(slides.length) timerId = setInterval(nextFn, 4800); }
-      function stop(){ if(timerId) clearInterval(timerId); timerId = null; }
-      function restart(){ stop(); start(); }
-      function updateDots(){ dotsWrap?.querySelectorAll('.dot').forEach((el,i)=> el.setAttribute('aria-current', i===index ? 'true':'false')); }
-
-      renderDots(); start();
-      prev?.addEventListener('click', ()=> goTo(index-1, {user:true}));
-      next?.addEventListener('click', ()=> goTo(index+1, {user:true}));
-      track?.addEventListener('mouseenter', stop); track?.addEventListener('mouseleave', start);
-
-      // Touch (mobile)
-      track?.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; touchDX=0; stop(); }, {passive:true});
-      track?.addEventListener('touchmove', (e)=>{ touchDX = e.touches[0].clientX - touchStartX; }, {passive:true});
-      track?.addEventListener('touchend', ()=>{ if(Math.abs(touchDX) > 40){ if(touchDX<0) nextFn(); else prevFn(); } start(); touchDX=0; });
-
-      // 5) Parallax (hero background + floating images)
-      const sky = host.querySelector('.hero .sky');
-      const floats = host.querySelectorAll('.float-img');
-      let lastY = window.pageYOffset;
-      function onScroll(){
-        const y = window.pageYOffset || document.documentElement.scrollTop; // hero parallax
-        const heroRect = host.querySelector('.hero').getBoundingClientRect();
-        const heroIn = Math.max(0, Math.min(1, 1 - Math.abs(heroRect.top)/heroRect.height));
-        if(sky){ sky.style.transform = `translateY(${(1-heroIn)*-30}px)`; }
-        // floating images subtle drift
-        floats.forEach((el, i)=>{ const speed = (i+1) * 6; const rx = Math.sin((y + i*120)/600) * 3; const ry = Math.cos((y + i*90)/600) * 3; el.style.transform = `translate3d(${rx}px, ${ry}px, 0) rotateZ(${(y/200 + i*10)}deg)`; });
-        lastY = y;
-        // 3D scroll illusion for cards
-        update3D();
-      }
-
-      // 6) 3D scroll illusion on cards
-      const cards = host.querySelectorAll('.card');
-      function update3D(){
-        const vpH = window.innerHeight;
-        cards.forEach(card=>{
-          const depth = +card.dataset.depth || 80; // px translateZ
-          const r = card.getBoundingClientRect();
-          const center = r.top + r.height/2; // element center
-          const dist = (center - vpH/2) / (vpH/2); // -1..1
-          const tz = -Math.min(depth, Math.max(-depth, dist * depth));
-          const rx = dist * 6; // tilt
-          card.style.transform = `translateZ(${tz}px) rotateX(${rx}deg)`;
-        });
-      }
-
-      // raf scroll handler
-      let ticking = false;
-      window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(()=>{ onScroll(); ticking=false; }); ticking=true; } }, {passive:true});
-      window.addEventListener('resize', ()=>{ update3D(); });
-      onScroll();
-
-      // Pause slider when tab inactive
-      document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
-
-    })();
-  </script>
-</section>
 
 
 
@@ -894,6 +719,7 @@ footer .footer-column h3 {
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 

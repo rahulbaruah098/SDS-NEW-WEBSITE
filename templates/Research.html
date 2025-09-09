@@ -334,7 +334,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+       
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -464,486 +464,299 @@ footer .footer-column h3 {
       window.addEventListener('load', syncHeaderHeight);
     })();
   </script>
-</section><br><br>
+</section><br><br><br><br>
     <!-- ==============================================
   Research & Consulting — Single, Drop-in Section
   - White background, animated hero slider, services, publications
   - Self-contained (scoped CSS + tiny JS, no external deps)
   - Mobile-first, accessible, reduced-motion friendly
 ================================================= -->
-<section id="sds-research" aria-label="Research & Consulting">
-  <style>
-    /* ------------------ THEME (scoped to #sds-research) ------------------ */
-    #sds-research{
-      --bg:#fff;
-      --ink:#0e1116;
-      --muted:#5b6876;
-      --brand:#0ea5e9;   /* cyan */
-      --brand2:#36cfc9;  /* teal */
-      --accent:#ffe48b;  /* warm */
-      --ring:rgba(14,165,233,.18);
-      --shadow:0 10px 24px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.06);
-      --radius:20px;
-      --radius-lg:24px;
-      --wrap:min(1180px,94vw);
-      --gap:clamp(16px,2.6vw,28px);
-      background:var(--bg); color:var(--ink);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      padding:clamp(24px,4vw,56px) 0;
-      scroll-margin-top: 90px; /* anchor-friendly if page has sticky header */
-      isolation:isolate;
-    }
-    #sds-research .wrap{ width:var(--wrap); margin-inline:auto; display:grid; gap:var(--gap); }
+<section id="sds-research" aria-label="Research & Consulting"> <style> /* ====== TOKENS (copied from sds-agri) ====== */ #sds-research{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --radius:18px; --shadow-1:0 8px 24px rgba(2,6,23,.08),0 2px 10px rgba(2,6,23,.05); --shadow-2:0 14px 44px rgba(2,6,23,.10),0 4px 18px rgba(2,6,23,.06); --nudge: clamp(6px, 0.7vw, 12px); /* slight drop so right matches left visually */ font-family: ui-sans-serif, system-ui,-apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif; color:var(--ink); background:var(--bg); } *{box-sizing:border-box} html,body{margin:0;padding:0} body{overflow-x:hidden} #sds-research figure{margin:0} /* remove default figure margin (prevents white gap) */
+/* ====== HERO GRID (same layout as sds-agri) ====== */
+#sds-research .sv2-hero{
+  position:relative; display:grid; isolation:isolate;
+  grid-template-columns:minmax(320px, 640px) 1fr;
+  align-items:stretch; gap:0;
+}
+@media (max-width:980px){ #sds-research .sv2-hero{grid-template-columns:1fr} }
 
-    /* ------------------ HERO (cross-fade slider) ------------------ */
-    #sds-research .hero{
-      position:relative; border-radius:var(--radius-lg); overflow:hidden;
-      border:1px solid var(--ring); box-shadow:var(--shadow);
-      min-height: clamp(380px, 56vw, 560px);
-      background:#0b1825; color:#fff;
-    }
-    #sds-research .slider{ position:absolute; inset:0; }
-    #sds-research .slide{
-      position:absolute; inset:0;
-      background-position:center; background-size:cover; background-repeat:no-repeat;
-      opacity:0; transform:scale(1.03);
-      transition: opacity 900ms ease, transform 6s ease;
-      will-change: opacity, transform;
-    }
-    #sds-research .slide.active{ opacity:1; transform:scale(1.0); }
-    #sds-research .slide::after{
-      content:""; position:absolute; inset:0;
-      background:
-        radial-gradient(1200px 400px at 20% 100%, rgba(14,165,233,.25), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55));
-      pointer-events:none;
-    }
+/* Left panel */
+#sds-research .sv2-left{display:grid; align-content:center; padding:clamp(20px,4vw,36px)}
+#sds-research .sv2-panel{
+  border:1px solid var(--line); border-radius:var(--radius); padding:clamp(18px,2.6vw,28px);
+  box-shadow:var(--shadow-1); background:#fff;
+}
+#sds-research .sv2-kicker{
+  display:inline-flex; gap:10px; align-items:center; font-weight:700;
+  padding:6px 12px; border-radius:999px;
+  background:linear-gradient(90deg, rgba(22,163,74,.10), rgba(14,165,233,.10));
+  border:1px solid rgba(2,6,23,.10);
+}
 
-    /* Hero content */
-    #sds-research .hero .container{ position:relative; z-index:1; height:100%; display:grid; align-items:center; }
-    #sds-research .slide-content{
-      padding: clamp(18px,4vw,36px);
-      max-width: 900px; display:grid; gap: clamp(10px,1.8vw,16px);
-    }
-    #sds-research .slide-title{
-      margin:0; font-weight:850; letter-spacing:.2px;
-      font-size: clamp(26px, 4.6vw, 50px); line-height:1.06;
-      /* animated gradient ink */
-      background:linear-gradient(90deg,var(--brand),var(--brand2),#7c3aed,var(--brand));
-      background-size:300% 100%;
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      filter:drop-shadow(0 1px 0 rgba(255,255,255,.2));
-      animation: sds-r-shine 7s ease-in-out infinite;
-    }
-    @keyframes sds-r-shine{ 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-    #sds-research .slide-desc{ margin:0; font-size: clamp(14px,1.6vw,18px); opacity:.95; max-width: 80ch; }
-    #sds-research .btn{
-      width:max-content; text-decoration:none; user-select:none;
-      padding:10px 16px; border-radius:999px; font-weight:800; letter-spacing:.3px;
-      background:#fff; color:#0a2030; border:1px solid rgba(255,255,255,.5);
-      backdrop-filter: blur(4px); transition: transform .15s ease, box-shadow .25s ease;
-      box-shadow: 0 8px 18px rgba(0,0,0,.18);
-    }
-    #sds-research .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 24px rgba(0,0,0,.22); }
-    #sds-research .btn:active{ transform: translateY(0); }
+/* Title — gradient + sheen (exact pattern) */
+#sds-research .sv2-title{
+  font-size:clamp(28px,4.6vw,56px); font-weight:900; line-height:1.06; letter-spacing:-.015em;
+  margin:10px 0 6px; position:relative; display:inline-block;
+  background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:titleShift 10s linear infinite;
+}
+#sds-research .sv2-title::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  mix-blend-mode:overlay; pointer-events:none; animation:sheen 3.6s ease-in-out infinite;
+}
+#sds-research .sv2-title::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:4px; width:0%;
+  background:linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius:2px;
+  animation:sv2-underline 1.1s .2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes sv2-underline{to{width:100%}}
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
 
-    /* Hero dots */
-    #sds-research .slider-nav{
-      position:absolute; left:0; right:0; bottom:14px; display:flex; gap:10px; justify-content:center; z-index:2;
-    }
-    #sds-research .slider-dot{
-      width:10px; height:10px; border-radius:999px; background:rgba(255,255,255,.55); cursor:pointer;
-      transition:transform .16s ease, background .2s ease;
-      border:1px solid rgba(0,0,0,.25);
-    }
-    #sds-research .slider-dot.active{ background:#fff; transform: scale(1.1); }
+#sds-research .sv2-lede{color:var(--muted); font-size:clamp(15px,1.2vw,17px); max-width:70ch; margin-top:10px}
 
-    /* ------------------ SECTION TITLES ------------------ */
-    #sds-research .section-title{ text-align:center; display:grid; gap:8px; }
-    #sds-research .section-title h2{ margin:0; font-size:clamp(20px,2.2vw,28px); }
-    #sds-research .section-title p{ margin:0; color:var(--muted); font-size:clamp(14px,1.45vw,16px); }
+/* CTAs */
+#sds-research .sv2-cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+#sds-research .sv2-btn{
+  appearance:none; border:0; cursor:pointer; font-weight:800;
+  padding:12px 16px; border-radius:12px; background:var(--brand); color:#fff;
+  box-shadow:var(--shadow-1); transition:transform .2s ease, filter .2s ease;
+}
+#sds-research .sv2-btn:hover{transform:translateY(-2px); filter:brightness(1.05)}
+#sds-research .sv2-btn.secondary{background:#0b1220}
 
-    /* ------------------ SERVICES ------------------ */
-    #sds-research .services{
-      border:1px solid var(--ring); border-radius:var(--radius-lg);
-      background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
-      box-shadow: var(--shadow);
-      padding: clamp(16px,2.6vw,26px);
-      display:grid; gap: clamp(12px,2vw,18px);
-    }
-    #sds-research .services-grid{
-      display:grid; gap: clamp(12px,2vw,18px);
-      grid-template-columns: repeat(4, 1fr);
-    }
-    @media (max-width:1100px){ #sds-research .services-grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width:560px){  #sds-research .services-grid{ grid-template-columns: 1fr; } }
+/* KPIs */
+#sds-research .sv2-kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px}
+#sds-research .sv2-kpi{
+  background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px; text-align:center;
+  transition: box-shadow .2s ease, transform .2s ease; box-shadow:var(--shadow-1);
+}
+#sds-research .sv2-kpi:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+#sds-research .sv2-kpi .num{font-weight:900; font-size:clamp(24px,3.2vw,34px)}
+#sds-research .sv2-kpi .lab{color:var(--muted); font-weight:600}
+@media (max-width:640px){ #sds-research .sv2-kpis{grid-template-columns:1fr 1fr} }
 
-    #sds-research .service-card{
-      border:1px solid var(--ring); border-radius:16px; background:#fff;
-      padding: clamp(12px,1.8vw,16px);
-      display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:flex-start;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    #sds-research .service-card:hover{
-      transform: translateY(-3px);
-      border-color: rgba(14,165,233,.32);
-      box-shadow: 0 14px 30px rgba(0,0,0,.12), 0 6px 16px rgba(0,0,0,.08);
-    }
-    #sds-research .service-icon{ width:44px; height:44px; display:grid; place-items:center; }
-    /* subtle icon animation */
-    #sds-research .service-card svg .dash{ stroke-dasharray:120; stroke-dashoffset:120; }
-    #sds-research .service-card.show svg .dash{ animation: sds-r-dash 1.1s ease forwards; }
-    @keyframes sds-r-dash{ to{ stroke-dashoffset:0; } }
-    #sds-research .service-card svg .float{ animation: sds-r-float 4.6s ease-in-out infinite; transform-origin:50% 50%; }
-    @keyframes sds-r-float{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-2px) } }
+/* ====== RIGHT: SINGLE IMAGE (fits frame & aligned) ====== */
+#sds-research .sv2-right{
+  position:relative; overflow:hidden; background:#f6f7fb;
+  border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-2);
+  padding:clamp(20px,4vw,36px);          /* same outer padding as left column */
+  margin-top:var(--nudge);               /* tiny drop to visually align with left card */
+  display:grid;                           /* ensure the frame stretches fully */
+}
+#sds-research .image-frame{
+  position:relative; height:100%; width:100%; overflow:hidden;
+  border-radius:calc(var(--radius) - 4px); /* inner rounding match */
+}
+#sds-research .image-frame img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center center; display:block;
+  transform:translateZ(0); /* avoid sub-pixel lines on some GPUs */
+}
+/* Remove white overlay on image */
+#sds-research .image-scrim{ display:none !important; }
 
-    #sds-research .service-title{ margin:0; font-size:clamp(15px,1.7vw,18px); }
-    #sds-research .service-desc{ margin:6px 0 0; color:var(--muted); font-size:clamp(13px,1.35vw,15px); }
-    #sds-research .service-content .btn{ margin-top:8px; padding:8px 12px; font-weight:800; }
+/* ====== SERVICES (mapped to “solutions” grid style) ====== */
+#sds-research .sv2-solutions{max-width:1200px; margin:clamp(28px,5vw,60px) auto; padding:0 clamp(18px,3vw,32px)}
+#sds-research .sv2-solutions h3{font-size:clamp(22px,2.4vw,32px); margin:0 0 12px; letter-spacing:-.01em; text-align:center}
+#sds-research .sv2-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+#sds-research .sv2-card{
+  grid-column:span 3; background:#fff; border:1px solid var(--line); border-radius:16px;
+  box-shadow:var(--shadow-1); padding:16px; transition:transform .25s, box-shadow .25s, border-color .25s; overflow:hidden;
+  display:grid; gap:8px;
+}
+#sds-research .sv2-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35)}
+#sds-research .sv2-thumb{width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin-bottom:6px}
+#sds-research .sv2-thumb img{width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition:transform .5s ease}
+#sds-research .sv2-card:hover .sv2-thumb img{transform:scale(1.06)}
+#sds-research .sv2-card h4{font-size:clamp(16px,1.5vw,19px); margin:2px 0 2px}
+#sds-research .sv2-card p{color:var(--muted); margin:0}
+@media (max-width:1024px){ #sds-research .sv2-card{grid-column:span 6} }
+@media (max-width:640px){  #sds-research .sv2-card{grid-column:span 12} }
 
-    /* ------------------ PUBLICATIONS ------------------ */
-    #sds-research .publications{
-      border:1px solid var(--ring); border-radius:var(--radius-lg);
-      background:#fff; box-shadow:var(--shadow);
-      padding: clamp(16px,2.6vw,26px);
-      display:grid; gap: clamp(12px,2vw,18px);
-    }
-    #sds-research .publications-container{
-      display:grid; gap: clamp(12px,2vw,18px);
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width:1100px){ #sds-research .publications-container{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width:640px){  #sds-research .publications-container{ grid-template-columns: 1fr; } }
+/* ====== PUBLICATIONS (3 per row like cards) ====== */
+#sds-research .pubs{max-width:1200px; margin:clamp(10px,2vw,18px) auto clamp(32px,6vw,70px); padding:0 clamp(18px,3vw,32px)}
+#sds-research .pubs h3{font-size:clamp(22px,2.4vw,30px); margin:0 0 12px; text-align:center}
+#sds-research .pub-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+#sds-research .pub-card{
+  grid-column:span 4; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  box-shadow:var(--shadow-1);
+}
+#sds-research .pub-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35)}
+#sds-research .pub-image{aspect-ratio:4/3; background-size:cover; background-position:center}
+#sds-research .pub-content{padding:12px 14px 16px; display:grid; gap:6px}
+#sds-research .pub-date{ font-size:12px; letter-spacing:.3px; color:#346; opacity:.7; }
+#sds-research .pub-title{ margin:0; font-size:clamp(15px,1.6vw,18px); }
+#sds-research .pub-desc{ margin:0; color:var(--muted); font-size:clamp(13px,1.3vw,15px); }
+@media (max-width:1024px){ #sds-research .pub-card{grid-column:span 6} }
+@media (max-width:640px){  #sds-research .pub-card{grid-column:span 12} }
 
-    #sds-research .pub-card{
-      border:1px solid var(--ring); border-radius:16px; overflow:hidden; background:#fff;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    #sds-research .pub-card:hover{
-      transform: translateY(-3px);
-      border-color: rgba(14,165,233,.32);
-      box-shadow: 0 14px 30px rgba(0,0,0,.12), 0 6px 16px rgba(0,0,0,.08);
-    }
-    #sds-research .pub-image{
-      aspect-ratio: 4 / 3;
-      background-position:center; background-size:cover; background-repeat:no-repeat;
-      transform: scale(1.02);
-      transition: transform .35s ease;
-    }
-    #sds-research .pub-card:hover .pub-image{ transform: scale(1.06); }
-    #sds-research .pub-content{ padding:12px 14px 16px; display:grid; gap:6px; }
-    #sds-research .pub-date{ font-size:12px; letter-spacing:.3px; color:#346; opacity:.7; }
-    #sds-research .pub-title{ margin:0; font-size: clamp(15px,1.6vw,18px); }
-    #sds-research .pub-desc{ margin:0; color:var(--muted); font-size:clamp(13px,1.3vw,15px); }
+/* ====== MOBILE ONLY ====== */
+@media (max-width:720px){
+  #sds-research .sv2-left{padding:16px}
+  #sds-research .sv2-panel{padding:16px}
+  #sds-research .sv2-kicker{font-size:12px; padding:6px 10px}
+  #sds-research .sv2-title{font-size:32px}
+  #sds-research .sv2-lede{font-size:14px}
+  #sds-research .sv2-cta .sv2-btn{width:100%; justify-content:center}
+  #sds-research .sv2-kpis{grid-template-columns:1fr; gap:10px}
+  #sds-research .sv2-kpi .num{font-size:26px}
+  #sds-research .sv2-right{min-height:44vh; padding:16px; margin-top:10px}
+  #sds-research .sv2-solutions{padding:0 16px}
+  #sds-research .sv2-grid{gap:14px}
+  #sds-research .pubs{padding:0 16px}
+}
+@media (max-width:420px){
+  #sds-research .sv2-title{font-size:28px}
+  #sds-research .sv2-right{min-height:40vh}
+}
 
-    /* ------------------ Reveal on scroll ------------------ */
-    #sds-research [data-animate]{ opacity:0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
-    #sds-research .show[data-animate]{ opacity:1; transform:none; }
+</style> <!-- ===== HERO (sds-agri pattern) ===== --> <div class="sv2-hero"> <!-- Left --> <div class="sv2-left"> <div class="sv2-panel"> <span class="sv2-kicker">Research &amp; Consulting</span> <h1 class="sv2-title">Pioneering Research, Policy &amp; Field Insights</h1> <p class="sv2-lede"> SDS drives sustainable development with context-sensitive methodologies across Eastern &amp; North-Eastern India— from strategic research and climate resilience to business intelligence and community impact. </p>
+    <div class="sv2-cta">
+      <a class="sv2-btn" href="#services" aria-label="Our Services">Our Services</a>
+      <a class="sv2-btn secondary" href="#publications" aria-label="Our Publications">Our Publications</a>
+    </div>
 
-    /* ------------------ Reduced motion ------------------ */
-    @media (prefers-reduced-motion:reduce){
-      #sds-research *{ animation: none !important; transition: none !important; }
-      #sds-research .slide{ opacity:1 !important; transform:none !important; }
-    }
-  </style>
-
-  <div class="wrap">
-    <!-- ================= HERO ================= -->
-    <section class="hero" aria-roledescription="carousel" aria-label="Highlights" tabindex="0">
-      <div class="slider" id="slider">
-        <!-- Slide 1 -->
-        <div class="slide active" role="group" aria-label="1 of 3"
-             style="background-image:url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1600&q=80');">
-          <div class="container">
-            <div class="slide-content">
-              <h2 class="slide-title">Pioneering Research &amp; Policy Analysis</h2>
-              <p class="slide-desc">Driving sustainable development across diverse sectors and geographies with context-sensitive methodologies.</p>
-              <a href="#services" class="btn">Our Services</a>
-            </div>
-          </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="slide" role="group" aria-label="2 of 3"
-             style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80');">
-          <div class="container">
-            <div class="slide-content">
-              <h2 class="slide-title">Rural Ecosystem Expertise</h2>
-              <p class="slide-desc">Comprehending the intricacies of rural challenges in Eastern and Northeast India.</p>
-              <a href="#publications" class="btn">Our Publications</a>
-            </div>
-          </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="slide" role="group" aria-label="3 of 3"
-             style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');">
-          <div class="container">
-            <div class="slide-content">
-              <h2 class="slide-title">Collaborating for Impact</h2>
-              <p class="slide-desc">Working with governments, multilaterals, and NGOs to drive community-centric development.</p>
-              <a href="#contact" class="btn">Get in Touch</a>
-            </div>
-          </div>
-        </div>
+    <div class="sv2-kpis" aria-label="Our Impact">
+      <div class="sv2-kpi">
+        <div class="num" data-to="150" data-suffix="+">0</div>
+        <div class="lab">Studies &amp; Assessments</div>
       </div>
-
-      <!-- Dots -->
-      <div class="slider-nav" id="sliderNav" aria-label="Slide navigation">
-        <button class="slider-dot active" aria-label="Go to slide 1"></button>
-        <button class="slider-dot" aria-label="Go to slide 2"></button>
-        <button class="slider-dot" aria-label="Go to slide 3"></button>
+      <div class="sv2-kpi">
+        <div class="num" data-to="11" data-suffix=" States">0</div>
+        <div class="lab">Regional Footprint</div>
       </div>
-    </section>
-
-    <!-- ================= SERVICES ================= -->
-    <section id="services" class="services" aria-labelledby="services-title">
-      <div class="section-title" id="services-title" data-animate>
-        <h2>Our Research &amp; Consulting Services</h2>
-        <p>We drive major initiatives across regional challenges to shape a better future—aligned with the SDGs.</p>
+      <div class="sv2-kpi">
+        <div class="num" data-to="50" data-suffix="+">0</div>
+        <div class="lab">Govt./Donor Partners</div>
       </div>
-
-      <div class="services-grid">
-        <!-- Development Impact & Communities -->
-        <article class="service-card" data-animate>
-          <div class="service-icon">
-            <!-- Animated hands -->
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <path class="dash" d="M9 32a6 6 0 0012 0V16" stroke="#2775fa" stroke-width="2"/>
-              <path class="dash" d="M31 32a6 6 0 01-12 0V16" stroke="#36cfc9" stroke-width="2"/>
-              <circle class="float" cx="20" cy="15" r="5" fill="#ffe48b"/>
-            </svg>
-          </div>
-          <div class="service-content">
-            <h3 class="service-title">Development Impact &amp; Communities</h3>
-            <p class="service-desc">Assessing needs, gaps, and opportunities to drive community-centric development programs.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-        </article>
-
-        <!-- Environment, Climate & Sustainable Livelihoods -->
-        <article class="service-card" data-animate>
-          <div class="service-icon">
-            <!-- Animated leaf -->
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <ellipse cx="20" cy="25" rx="14" ry="11" fill="#36cfc9" opacity=".32"/>
-              <path class="dash" d="M20 34c8-15 8-25-4-29" stroke="#2775fa" stroke-width="2" stroke-linecap="round"/>
-              <path class="float" d="M19 6a13 13 0 00-9 11" stroke="#37ffc6" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="service-content">
-            <h3 class="service-title">Environment, Climate &amp; Sustainable Livelihoods</h3>
-            <p class="service-desc">Promoting sustainable practices and resilience in the face of environmental challenges.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-        </article>
-
-        <!-- Strategic Research -->
-        <article class="service-card" data-animate>
-          <div class="service-icon">
-            <!-- Bars -->
-            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-              <rect class="float" x="6" y="15" width="6" height="16" rx="3" fill="#2775fa"/>
-              <rect class="float" x="16" y="10" width="6" height="21" rx="3" fill="#36cfc9"/>
-              <rect class="float" x="26" y="5"  width="6" height="26" rx="3" fill="#ffe48b"/>
-              <path class="dash" d="M6 31h26" stroke="#1d1d1d" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="service-content">
-            <h3 class="service-title">Strategic Research</h3>
-            <p class="service-desc">In-depth analysis and understanding of social and economic dynamics in rural areas.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-        </article>
-
-        <!-- Business Research -->
-        <article class="service-card" data-animate>
-          <div class="service-icon">
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-              <rect class="dash" x="9" y="14" width="24" height="18" rx="5" stroke="#2775fa" stroke-width="2"/>
-              <rect class="float" x="14" y="21" width="14" height="7" rx="2" fill="#ffe48b"/>
-              <rect class="float" x="21" y="28" width="7" height="4" rx="2" fill="#36cfc9"/>
-            </svg>
-          </div>
-          <div class="service-content">
-            <h3 class="service-title">Business Research</h3>
-            <p class="service-desc">Comprehensive market analysis and business intelligence for informed decision-making.</p>
-            <a href="#" class="btn">Learn More</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ================= PUBLICATIONS ================= -->
-    <section id="publications" class="publications" aria-labelledby="pubs-title">
-      <div class="section-title" id="pubs-title" data-animate>
-        <h2>Survey &amp; Field Research Publications</h2>
-        <p>Recent findings and publications spanning multiple development sectors.</p>
-      </div>
-
-      <div class="publications-container" id="pubs">
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1506355683712-170acf196c1c?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Organic farming"></div>
-          <div class="pub-content">
-            <span class="pub-date">2023</span>
-            <h3 class="pub-title">Organic Farming and Livelihood Promotion in the North-East</h3>
-            <p class="pub-desc">Comprehensive study on organic practices and their impact on livelihoods.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Piggery value chain"></div>
-          <div class="pub-content">
-            <span class="pub-date">2021</span>
-            <h3 class="pub-title">Piggery Value Chain in Assam</h3>
-            <p class="pub-desc">Analysis of the piggery value chain and its economic impact in Assam.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Mizo chillies"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Value Chain Study: Mizo Chillies (Mizoram)</h3>
-            <p class="pub-desc">Detailed analysis of the chilli value chain and market opportunities.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Oranges of Mizoram"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Value Chain Study: Orange of Mizoram</h3>
-            <p class="pub-desc">End-to-end mapping of the orange value chain and export readiness.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Areca nut"></div>
-          <div class="pub-content">
-            <span class="pub-date">2020</span>
-            <h3 class="pub-title">Areca Nut Value Chain (Mizoram)</h3>
-            <p class="pub-desc">Opportunities and constraints across the areca nut ecosystem.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Training manual"></div>
-          <div class="pub-content">
-            <span class="pub-date">2017</span>
-            <h3 class="pub-title">Training Manual: Basics of Livelihoods</h3>
-            <p class="pub-desc">Practical guidelines for field teams and community practitioners.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1546549036-c5c6e13c4d32?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Nutrition garden handbook"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Handbook on Nutrition Garden for Hill Areas (Mizo)</h3>
-            <p class="pub-desc">Localized guidance on homestead nutrition gardens.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1535916707207-35f97e715e1b?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Recommended practices"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Recommended Practices for Nutrition Gardens</h3>
-            <p class="pub-desc">Evidence-based practices for scale and sustainability.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Broiler farming"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Handbook on Broiler Farming (Mizo)</h3>
-            <p class="pub-desc">Production management and market linkage guidelines.</p>
-          </div>
-        </article>
-
-        <article class="pub-card" data-animate>
-          <div class="pub-image" style="background-image:url('https://images.unsplash.com/photo-1506368075683-e04d2fa1b4df?auto=format&fit=crop&w=800&q=80');" role="img" aria-label="Pig farming"></div>
-          <div class="pub-content">
-            <span class="pub-date">2019</span>
-            <h3 class="pub-title">Handbook on Pig Farming</h3>
-            <p class="pub-desc">Good practices for profitable piggery enterprises.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+    </div>
   </div>
+</div>
 
-  <!-- --------------- JS: slider + reveals (scoped) --------------- -->
-  <script>
-    (() => {
-      const host = document.getElementById('sds-research');
-      if(!host) return;
+<!-- Right (single image fits frame) -->
+<div class="sv2-right" data-equal-right>
+  <figure class="image-frame" aria-label="Research hero image">
+    <img src="static/Images/Moutain Trekking.jpg"
+         alt="Field surveys and primary data collection" fetchpriority="high" loading="eager">
+    <div class="image-scrim" aria-hidden="true"></div>
+  </figure>
+</div>
 
-      /* ---------- Slider ---------- */
-      const slides = Array.from(host.querySelectorAll('.slide'));
-      const dots   = Array.from(host.querySelectorAll('.slider-dot'));
-      let idx = 0, timer = null;
+</div> <!-- ===== SERVICES (uses the same “solutions” card style) ===== --> <div id="services" class="sv2-solutions"> <h3>Our Research &amp; Consulting Services</h3> <div class="sv2-grid"> <article class="sv2-card"> <div class="sv2-thumb"> <img loading="lazy" src="https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=1600&q=80" alt="Development Impact & Communities"/> </div> <h4>Development Impact &amp; Communities</h4> <p>Assessing needs, gaps, and opportunities to drive community-centric development programs.</p> </article>
+  <article class="sv2-card">
+    <div class="sv2-thumb">
+      <img loading="lazy" src="static/Images/rainforest farming.jpg" alt="Environment, Climate & Sustainable Livelihoods"/>
+    </div>
+    <h4>Environment, Climate &amp; Sustainable Livelihoods</h4>
+    <p>Promoting sustainable practices and resilience in the face of environmental challenges.</p>
+  </article>
 
-      const show = i => {
-        slides[idx].classList.remove('active');
-        dots[idx]?.classList.remove('active');
-        idx = (i + slides.length) % slides.length;
-        slides[idx].classList.add('active');
-        dots[idx]?.classList.add('active');
-      };
-      const next = () => show(idx + 1);
-      const goTo = i => { show(i); restart(); };
+  <article class="sv2-card">
+    <div class="sv2-thumb">
+      <img loading="lazy" src="static/Images/research 2.webp" alt="Strategic Research"/>
+    </div>
+    <h4>Strategic Research</h4>
+    <p>In-depth analysis of social and economic dynamics in rural areas for informed policy and action.</p>
+  </article>
 
-      function start(){ stop(); if(slides.length > 1) timer = setInterval(next, 5200); }
-      function stop(){ if(timer) clearInterval(timer); timer = null; }
-      function restart(){ stop(); start(); }
+  <article class="sv2-card">
+    <div class="sv2-thumb">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80" alt="Business Research"/>
+    </div>
+    <h4>Business Research</h4>
+    <p>Market analysis and business intelligence that power strategic decisions and investments.</p>
+  </article>
+</div>
 
-      dots.forEach((dot,i)=> dot.addEventListener('click', ()=> goTo(i)));
+</div> <!-- ===== PUBLICATIONS (mapped to card grid) ===== --> <div id="publications" class="pubs"> <h3>Survey &amp; Field Research Publications</h3> <div class="pub-grid"> <article class="pub-card"> <div class="pub-image" style="background-image:url('static/Images/Organic farming.jpg');" role="img" aria-label="Organic farming"></div> <div class="pub-content"> <span class="pub-date">2023</span> <h4 class="pub-title">Organic Farming and Livelihood Promotion in the North-East</h4> <p class="pub-desc">Comprehensive study on organic practices and their impact on livelihoods.</p> </div> </article>
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Piggery0.jpg');" role="img" aria-label="Piggery value chain"></div>
+    <div class="pub-content">
+      <span class="pub-date">2021</span>
+      <h4 class="pub-title">Piggery Value Chain in Assam</h4>
+      <p class="pub-desc">Analysis of the piggery value chain and its economic impact in Assam.</p>
+    </div>
+  </article>
 
-      // Pause on hover/focus
-      const hero = host.querySelector('.hero');
-      hero.addEventListener('mouseenter', stop);
-      hero.addEventListener('mouseleave', start);
-      hero.addEventListener('focusin', stop);
-      hero.addEventListener('focusout', start);
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Mizo chillies.jpg');" role="img" aria-label="Mizo chillies"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Value Chain Study: Mizo Chillies (Mizoram)</h4>
+      <p class="pub-desc">Detailed analysis of the chilli value chain and market opportunities.</p>
+    </div>
+  </article>
 
-      // Keyboard: Left/Right
-      hero.addEventListener('keydown', e=>{
-        if(e.key==='ArrowRight'){ e.preventDefault(); goTo(idx+1); }
-        if(e.key==='ArrowLeft'){ e.preventDefault(); goTo(idx-1); }
-      });
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Orange Value Chain Mizoram.jpg');" role="img" aria-label="Oranges of Mizoram"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Value Chain Study: Orange of Mizoram</h4>
+      <p class="pub-desc">End-to-end mapping of the orange value chain and export readiness.</p>
+    </div>
+  </article>
 
-      // Start/stop when visible
-      if('IntersectionObserver' in window){
-        const io=new IntersectionObserver(es=>{
-          es.forEach(e=> e.isIntersecting ? start() : stop());
-        },{threshold:.35});
-        io.observe(hero);
-      } else { start(); }
-      document.addEventListener('visibilitychange',()=> document.hidden ? stop() : start());
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/ARECA NUT MIZORAM.jpg');" role="img" aria-label="Areca nut"></div>
+    <div class="pub-content">
+      <span class="pub-date">2020</span>
+      <h4 class="pub-title">Areca Nut Value Chain (Mizoram)</h4>
+      <p class="pub-desc">Opportunities and constraints across the areca nut ecosystem.</p>
+    </div>
+  </article>
 
-      /* ---------- Reveal on scroll (services + publications + headings) ---------- */
-      const reveals = Array.from(host.querySelectorAll('[data-animate], .service-card'));
-      reveals.forEach(el=> el.classList.remove('show'));
-      if('IntersectionObserver' in window){
-        const rio = new IntersectionObserver(es=>{
-          es.forEach(e=>{
-            if(e.isIntersecting){
-              e.target.classList.add('show');
-              rio.unobserve(e.target);
-            }
-          });
-        },{threshold:.15});
-        reveals.forEach(el=> rio.observe(el));
-      } else {
-        reveals.forEach(el=> el.classList.add('show'));
-      }
-    })();
-  </script>
-</section>
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Livelihood Training Tripura.jpeg');" role="img" aria-label="Training manual"></div>
+    <div class="pub-content">
+      <span class="pub-date">2017</span>
+      <h4 class="pub-title">Training Manual: Basics of Livelihoods</h4>
+      <p class="pub-desc">Practical guidelines for field teams and community practitioners.</p>
+    </div>
+  </article>
 
-    <!--Footers-->
-    <footer>
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Nutritioin garden.jpg');" role="img" aria-label="Nutrition garden handbook"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Handbook on Nutrition Garden for Hill Areas (Mizo)</h4>
+      <p class="pub-desc">Localized guidance on homestead nutrition gardens.</p>
+    </div>
+  </article>
+
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Nutri-garden-header-image-1024x538.png');" role="img" aria-label="Recommended practices"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Recommended Practices for Nutrition Gardens</h4>
+      <p class="pub-desc">Evidence-based practices for scale and sustainability.</p>
+    </div>
+  </article>
+
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/Broilerg.jpg');" role="img" aria-label="Broiler farming"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Handbook on Broiler Farming (Mizo)</h4>
+      <p class="pub-desc">Production management and market linkage guidelines.</p>
+    </div>
+  </article>
+
+  <article class="pub-card">
+    <div class="pub-image" style="background-image:url('static/Images/pig-farm.jpg');" role="img" aria-label="Pig farming"></div>
+    <div class="pub-content">
+      <span class="pub-date">2019</span>
+      <h4 class="pub-title">Handbook on Pig Farming</h4>
+      <p class="pub-desc">Good practices for profitable piggery enterprises.</p>
+    </div>
+  </article>
+</div>
+
+</div> <!-- ===== JS (count-up, equal-height) ===== --> <script> /* KPI Count-up */ (function(){ const els = document.querySelectorAll('#sds-research .num'); if(!els.length) return; const io = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ const el = entry.target, to = +el.dataset.to || 0, suf = el.dataset.suffix || ''; const start = performance.now(), dur = 1200; const step = now=>{ const p = Math.min(1,(now-start)/dur); const v = Math.floor(to*(0.1+0.9*Math.pow(p,1.6))); el.textContent = v.toLocaleString('en-IN') + (suf?(' ' + suf):''); if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); io.unobserve(el); } }); },{threshold:.4}); els.forEach(el=> io.observe(el)); })(); /* Equal-height sync (Right = Left panel height) */ (function(){ const root = document.querySelector('#sds-research'); const leftPanel = root.querySelector('.sv2-panel'); const rightCol = root.querySelector('[data-equal-right]'); function sync(){ if (window.matchMedia('(max-width: 980px)').matches){ rightCol.style.height = '48vh'; return; } rightCol.style.height = leftPanel.offsetHeight + 'px'; } if ('ResizeObserver' in window){ new ResizeObserver(sync).observe(leftPanel); } window.addEventListener('load', sync); window.addEventListener('resize', sync); sync(); })(); </script> </section>
+<footer>
         <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
             <div class="logo-container-f">
                  <a href="{{ url_for('home') }}">
@@ -979,6 +792,7 @@ footer .footer-column h3 {
                     <ul>
 
                         <li><a href="Career.html" tabIndex="0">Join Us</a></li>
+                       
 
                     </ul>
                 </nav>
@@ -990,6 +804,8 @@ footer .footer-column h3 {
                         <li><a href="about us.html" tabIndex="0">About Us</a></li>
                         <li tabIndex="0">Sectors</li>
                         <li><a href="Research.html" tabIndex="0">Publication</a></li>
+                        <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+                         <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
                     </ul>
                 </nav>
 

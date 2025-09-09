@@ -14,668 +14,7 @@
 
     <!-- Reset + base -->
     <style>
-        :root {
-            --ink: #071016;
-            /* deep navy */
-            --sand: #FFE7CC;
-            /* warm peach/beige */
-            --rose: #FF6478;
-            /* coral */
-            --sage: #4E6357;
-            /* muted green */
-            --ink-80: #0b1216;
-            --max: 1300px;
-            --pad: clamp(16px, 2.5vw, 32px);
-            --gap: clamp(16px, 2.2vw, 28px);
-            --radius: 24px;
-        }
-
-        *,
-        *:before,
-        *:after {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-            color: #fff;
-            background: var(--ink);
-            line-height: 1.65;
-        }
-
-        img {
-            max-width: 100%;
-            display: block
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none
-        }
-
-        .container {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 var(--pad)
-        }
-
         
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px
-        }
-
-        .brand img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 12px
-        }
-
-        .brand span {
-            font-family: Anton, system-ui;
-            letter-spacing: .5px;
-            font-size: 22px;
-        }
-
-        .nav a.button {
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: #111a21;
-            border: 1px solid #1d2933;
-        }
-
-        .nav a.button:hover {
-            transform: translateY(-2px)
-        }
-
-        .nav a {
-            opacity: .9
-        }
-
-        .nav a:hover {
-            opacity: 1
-        }
-
-        /* Hero split */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            align-items: stretch;
-            min-height: 78vh;
-            border-bottom: 1px solid #1b2630;
-        }
-
-        .hero .left {
-            background: var(--ink);
-            padding: clamp(28px, 6vw, 64px) var(--pad);
-            display: grid;
-            align-content: center;
-        }
-
-        .eyebrow {
-            font-weight: 700;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: color-mix(in oklab, #fff 60%, #7aa29a);
-            font-size: 14px;
-        }
-
-        .title-xl {
-            font-family: Anton, system-ui;
-            font-size: clamp(42px, 5.5vw, 120px);
-            line-height: .9;
-            margin: .3em 0 .25em;
-            letter-spacing: 1px;
-        }
-
-        .lead {
-            font-size: clamp(16px, 1.4vw, 18px);
-            color: #d9dee2;
-            max-width: 52ch
-        }
-
-        .hero .right {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(180deg, #1b2a33, #0c1318);
-            display: grid;
-            align-items: end;
-        }
-
-        .hero .right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.05);
-            filter: saturate(1.02) contrast(1.05);
-        }
-
-        .hero-tag {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--sage);
-            color: #f3eddc;
-            padding: 24px var(--pad);
-            font-weight: 800;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-            font-size: clamp(16px, 1.3vw, 20px);
-        }
-
-        /* ========= MOBILE RESPONSIVE HERO ========= */
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                /* Stack text and image */
-                min-height: auto;
-            }
-
-            .hero .left {
-                padding: 32px 20px;
-                text-align: center;
-            }
-
-            .title-xl {
-                font-size: clamp(32px, 8vw, 64px);
-                line-height: 1.1;
-            }
-
-            .lead {
-                font-size: 16px;
-                max-width: 100%;
-                margin: 0 auto;
-            }
-
-            .hero .right {
-                height: 50vh;
-                /* Give space for image */
-            }
-
-            .hero .right img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transform: scale(1.1);
-                /* keep parallax nice */
-            }
-
-            .hero-tag {
-                font-size: 14px;
-                padding: 16px;
-                text-align: center;
-            }
-        }
-
-        /* ========= EXTRA SMALL SCREENS ========= */
-        @media (max-width: 480px) {
-            .title-xl {
-                font-size: 28px;
-            }
-
-            .lead {
-                font-size: 14px;
-            }
-
-            .hero .right {
-                height: 40vh;
-            }
-
-            .hero-tag {
-                font-size: 12px;
-                padding: 12px;
-            }
-        }
-
-
-        /* Two feature cards (Leadership / CSR) */
-        .duo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 60px var(--pad);
-            background: var(--ink);
-        }
-
-        .card {
-            display: grid;
-            grid-template-rows: auto auto 1fr;
-            overflow: hidden;
-            border-radius: 16px;
-            border: 1px solid #1a2430;
-            background: #0e151b;
-            min-height: 520px;
-            position: relative;
-            isolation: isolate;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
-        }
-
-        .card .imgwrap {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background: #0b1318;
-        }
-
-        .card .imgwrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.05);
-        }
-
-        .card .tag {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 16px var(--pad);
-            font-weight: 800;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            background: color-mix(in oklab, var(--rose) 8%, transparent);
-        }
-
-        .card .block {
-            padding: 26px var(--pad);
-            background: var(--rose);
-            color: #0a0e11;
-        }
-
-        .card .block.alt {
-            background: var(--sage);
-            color: #f2ecdf
-        }
-
-        .card h3 {
-            font-family: Anton;
-            font-size: clamp(40px, 5.8vw, 90px);
-            line-height: .9;
-            margin: 8px 0 0;
-        }
-
-        /* Alternating image + content sections */
-        .section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            align-items: center;
-            min-height: 80vh;
-            border-top: 1px solid #15202a;
-            border-bottom: 1px solid #15202a;
-        }
-
-        .section .image {
-            position: relative;
-            background: var(--sage);
-            padding: clamp(24px, 4vw, 40px);
-        }
-
-        .section .image .float {
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
-            animation: floatY 6s ease-in-out infinite;
-        }
-
-        @keyframes floatY {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-16px)
-            }
-        }
-
-        /* Floating animation */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Card styling */
-        .card {
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            animation: float 4s ease-in-out infinite;
-            /* floating */
-            transition: transform 0.3s ease;
-        }
-
-        /* Image wrapper */
-        .card .imgwrap {
-            overflow: hidden;
-            position: relative;
-            border-radius: 15px 15px 0 0;
-        }
-
-        /* Image styles */
-        .card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-            /* smooth zoom */
-        }
-
-        /* Hover zoom effect */
-        .card:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Optional tag styling */
-        .card .tag {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .section .content {
-            background: var(--ink);
-            color: #e9eef2;
-            padding: clamp(36px, 7vw, 80px) var(--pad);
-        }
-
-        .kicker {
-            font-family: Anton;
-            font-size: clamp(36px, 6vw, 96px);
-            line-height: .95;
-            letter-spacing: .5px;
-            color: var(--sand);
-            margin: 0 0 .2em;
-        }
-
-        .content p {
-            max-width: 70ch;
-            font-size: clamp(18px, 1.5vw, 22px);
-            color: #d4dbe1
-        }
-
-        /* Big statement section */
-        .statement {
-            padding: clamp(48px, 7vw, 100px) var(--pad);
-            text-align: center;
-            background: #0a0f13;
-            color: #f0f5f8;
-        }
-
-        .statement p {
-            font-size: clamp(px, 2.6vw, 40px);
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* ========= MOBILE RESPONSIVE FEATURE CARDS ========= */
-        @media (max-width: 992px) {
-            .duo {
-                grid-template-columns: 1fr;
-                /* stack cards */
-                padding: 40px 20px;
-                gap: 24px;
-            }
-
-            .card {
-                min-height: auto;
-                /* let cards adapt height */
-            }
-
-            .card h3 {
-                font-size: clamp(28px, 6vw, 48px);
-                text-align: center;
-            }
-
-            .card .block {
-                padding: 20px;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                grid-template-columns: 1fr;
-                /* stack alternating sections */
-                min-height: auto;
-            }
-
-            .section .image,
-            .section .content {
-                padding: 24px;
-                text-align: center;
-            }
-
-            .section .image .float {
-                max-width: 90%;
-                margin: 0 auto;
-            }
-
-            .kicker {
-                font-size: clamp(28px, 8vw, 40px);
-            }
-
-            .content p {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .duo {
-                padding: 20px 15px;
-                gap: 16px;
-            }
-
-            .card h3 {
-                font-size: 22px;
-                line-height: 1.2;
-            }
-
-            .card .tag {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
-
-            .kicker {
-                font-size: 22px;
-            }
-
-            .content p {
-                font-size: 14px;
-            }
-
-            .statement p {
-                font-size: 18px;
-                padding: 0 10px;
-            }
-        }
-
-        /* OUR MISSION (custom content you provided) */
-        .mission {
-            background: var(--rose);
-            color: #111318;
-            padding: clamp(60px, 8vw, 120px) var(--pad);
-        }
-
-        .mission .container {
-            max-width: 1100px
-        }
-
-        .mission .title {
-            font-family: Anton;
-            font-size: clamp(40px, 6.8vw, 110px);
-            line-height: .9;
-            margin: 0 0 .5em;
-        }
-
-        .mission p {
-            font-size: clamp(18px, 1.5vw, 22px);
-            margin: 0 0 1em
-        }
-
-        .meta {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 20px
-        }
-
-        .chip {
-            border: 1px solid rgba(0, 0, 0, .1);
-            border-radius: 999px;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, .75);
-            color: #0e1215;
-            font-weight: 600
-        }
-
-        /* Footer back-to-top */
-        .to-top {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #0f1820;
-            display: grid;
-            place-items: center;
-            border: 1px solid #1e2b36;
-            cursor: pointer;
-            z-index: 60;
-            opacity: .8;
-        }
-
-        .to-top:hover {
-            transform: translateY(-3px);
-            opacity: 1
-        }
-
-        .to-top svg {
-            width: 22px;
-            height: 22px;
-            fill: #fff
-        }
-
-        /* Scroll reveal helpers */
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            will-change: transform, opacity
-        }
-
-        .reveal.in {
-            opacity: 1;
-            transform: none;
-            transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .9s ease
-        }
-
-        .parallax {
-            transform: translateY(0);
-            will-change: transform
-        }
-
-        .business-focus {
-            background-color: #f6dcc0;
-            padding: 5rem 1rem 6rem;
-            text-align: center;
-        }
-
-        .business-focus h1 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 3rem;
-            color: #121212;
-        }
-
-        .focus-points {
-            display: inline-flex;
-            gap: 1.8rem;
-            font-weight: 500;
-            font-size: 1.05rem;
-            color: #121212;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 4rem;
-        }
-
-        .focus-points span {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .focus-points svg {
-            fill: #000;
-            width: 18px;
-            height: 18px;
-        }
-
-        .btn-touch {
-            border: 1px solid #000;
-            background: none;
-            padding: 0.8rem 2.4rem;
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.07em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            color: #121212;
-        }
-
-        .btn-touch:hover {
-            background-color: #000;
-            color: #f6dcc0;
-        }
-
-        .my-navbar nav {
-            background: #111;
-            color: white;
-        }
-
-        .my-navbar nav ul li {
-            list-style: none;
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .my-footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-
 /* ---------- LAYOUT ---------- */
 .footer-wrapper {
   background-color: #fff;
@@ -846,879 +185,12 @@ footer .footer-column h3 {
   .footer-bottom .links { justify-content: center; }
 }
 
-        /* Text reveal animation */
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Image fade + zoom animation */
-        @keyframes fadeZoom {
-            0% {
-                opacity: 0;
-                transform: scale(1.1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-
-
-        /* Apply animations */
-        .hero .eyebrow {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        .hero .title-xl {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        .hero .lead {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 1s;
-        }
-
-        .hero .right img {
-            opacity: 0;
-            animation: fadeZoom 1.5s ease forwards;
-            animation-delay: 0.8s;
-        }
-
-        /* Floating animation */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Image fade + zoom-in entrance */
-        @keyframes fadeZoom {
-            0% {
-                opacity: 0;
-                transform: scale(1.1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Text slide-up entrance */
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Entrance animations */
-        .hero .eyebrow {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        .hero .title-xl {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 0.6s;
-        }
-
-        .hero .lead {
-            opacity: 0;
-            animation: slideUp 1s ease forwards;
-            animation-delay: 1s;
-        }
-
-        .hero .right img {
-            opacity: 0;
-            animation: fadeZoom 1.5s ease forwards, float 6s ease-in-out infinite;
-            animation-delay: 0.8s, 2.3s;
-            /* float starts after fadeZoom ends */
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Section header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 0 20px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #1a73e8;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #1a73e8, #6c63ff);
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Carousel container */
-        .sdg-carousel-container {
-            position: relative;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        /* Carousel track */
-        .sdg-carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        /* SDG Card */
-        .sdg-card {
-            flex: 0 0 calc(100% / 3 - 20px);
-            margin: 0 10px;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            opacity: 0.9;
-            transform: scale(0.95);
-        }
-
-        .sdg-card.active {
-            opacity: 1;
-            transform: scale(1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .sdg-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .sdg-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .sdg-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .sdg-card:hover .sdg-image img {
-            transform: scale(1.05);
-        }
-
-        .sdg-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
-        }
-
-        .sdg-content {
-            padding: 20px;
-            position: relative;
-        }
-
-        .sdg-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            color: white;
-            border-radius: 50%;
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .sdg-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            color: #2d3748;
-            display: flex;
-            align-items: center;
-        }
-
-        .sdg-content p {
-            color: #4a5568;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        /* Navigation buttons */
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 10px;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #cbd5e0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-dot.active {
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            transform: scale(1.2);
-        }
-
-        /* Carousel controls */
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        .carousel-control {
-            pointer-events: auto;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 15px;
-        }
-
-        .carousel-control:hover {
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            color: white;
-        }
-
-        /* Responsive design */
-        @media (max-width: 992px) {
-            .sdg-card {
-                flex: 0 0 calc(100% / 2 - 20px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sdg-card {
-                flex: 0 0 calc(100% - 20px);
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .carousel-control {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        /* Animation for cards */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .sdg-card {
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        .sdg-carousel-section {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            width: 100%;
-        }
-
-        .sdg-carousel-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .sdg-section-header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 0 20px;
-        }
-
-        .sdg-section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #1a73e8;
-            position: relative;
-            display: inline-block;
-        }
-
-        .sdg-section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #1a73e8, #6c63ff);
-            border-radius: 2px;
-        }
-
-        .sdg-section-header p {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .sdg-carousel-outer {
-            position: relative;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .sdg-carousel-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        .sdg-card {
-            flex: 0 0 calc(100% / 3 - 20px);
-            margin: 0 10px;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            opacity: 0.9;
-            transform: scale(0.95);
-        }
-
-        .sdg-card.sdg-active {
-            opacity: 1;
-            transform: scale(1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .sdg-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .sdg-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .sdg-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .sdg-card:hover .sdg-image img {
-            transform: scale(1.05);
-        }
-
-        .sdg-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
-        }
-
-        .sdg-content {
-            padding: 20px;
-            position: relative;
-        }
-
-        .sdg-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            color: white;
-            border-radius: 50%;
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .sdg-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            color: #2d3748;
-            display: flex;
-            align-items: center;
-        }
-
-        .sdg-content p {
-            color: #4a5568;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        .sdg-carousel-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 10px;
-        }
-
-        .sdg-nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #cbd5e0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .sdg-nav-dot.sdg-active {
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            transform: scale(1.2);
-        }
-
-        .sdg-carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        .sdg-carousel-control {
-            pointer-events: auto;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 15px;
-        }
-
-        .sdg-carousel-control:hover {
-            background: linear-gradient(135deg, #6c63ff, #1a73e8);
-            color: white;
-        }
-
-        @media (max-width: 992px) {
-            .sdg-card {
-                flex: 0 0 calc(100% / 2 - 20px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sdg-card {
-                flex: 0 0 calc(100% - 20px);
-            }
-
-            .sdg-section-header h2 {
-                font-size: 2rem;
-            }
-
-            .sdg-carousel-control {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        @keyframes sdg-fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .sdg-card {
-            animation: sdg-fadeIn 0.6s ease forwards;
-        }
-
-        .sdg-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #6c63ff, #1a73e8);
-            width: 100%;
-            transform-origin: left;
-            transition: transform 0.1s linear;
-        }
-
-        /* Existing media queries you had */
-        @media (max-width: 992px) {
-            .sdg-card {
-                flex: 0 0 calc(50% - 20px);
-                /* 2 cards per row */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sdg-card {
-                flex: 0 0 calc(100% - 20px);
-                /* 1 card per row */
-                margin: 10px auto;
-            }
-
-            .sdg-section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .sdg-section-header p {
-                font-size: 1rem;
-                line-height: 1.4;
-            }
-
-            .sdg-carousel-control {
-                width: 40px;
-                height: 40px;
-                margin: 0 5px;
-            }
-
-            .sdg-carousel-controls {
-                top: auto;
-                bottom: -60px;
-                /* move controls below carousel */
-                transform: none;
-            }
-
-            .sdg-carousel-nav {
-                margin-top: 15px;
-                gap: 6px;
-            }
-
-            .sdg-nav-dot {
-                width: 10px;
-                height: 10px;
-            }
-        }
-
-        /* Extra small devices */
-        @media (max-width: 480px) {
-            .sdg-carousel-section {
-                padding: 40px 10px;
-            }
-
-            .sdg-section-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .sdg-section-header p {
-                font-size: 0.9rem;
-            }
-
-            .sdg-card {
-                border-radius: 12px;
-            }
-
-            .sdg-content {
-                padding: 15px;
-            }
-
-            .sdg-content h3 {
-                font-size: 1rem;
-            }
-
-            .sdg-content p {
-                font-size: 0.85rem;
-            }
-
-            .sdg-image {
-                height: 160px;
-            }
-
-            .sdg-carousel-control {
-                width: 35px;
-                height: 35px;
-            }
-        }
-        .team-section-wrapper {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #fff;
-            padding: 60px 20px;
-            width: 100%;
-        }
-
-        .team-header {
-            text-align: center;
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .team-header h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .team-header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            line-height: 1.6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .team-container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-        }
-
-        .shards-track {
-            display: flex;
-            animation: slide 15s linear infinite;
-            padding: 20px 0;
-            gap: 25px;
-        }
-
-        .shard {
-            flex: 0 0 320px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .shard:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .shard-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .shard-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .shard-role {
-            color: #ff7e5f;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .shard-summary {
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-            opacity: 0.9;
-            flex-grow: 1;
-        }
-
-        .shard-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .shard-social a {
-            color: #fff;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .shard-social a:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-        }
-
-        .team-controls {
-            margin-top: 40px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .team-controls button {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .team-controls button:hover {
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            transform: translateY(-2px);
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        .pause-animation {
-            animation-play-state: paused;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .team-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .shard {
-                flex: 0 0 280px;
-            }
-            
-            .team-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+       
         .logo-f {
   height: 75px;
 }
-/* Fill the remaining height on the "Giving Back To Communities" card */
-.duo .card .block.alt{
-  /* span from the second grid row to the last, so it occupies all leftover space */
-  grid-row: 2 / -1;
-  min-height: 100%;
-}
 
-/* (Optional) If a sliver still shows, collapse the unused third row for that card only */
-.duo .card:nth-child(2){
-  grid-template-rows: auto 1fr;
-}
 
     </style>
     
@@ -1863,7 +335,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -1993,338 +465,743 @@ footer .footer-column h3 {
       window.addEventListener('load', syncHeaderHeight);
     })();
   </script>
-</section><br><br>
+</section><br><br><br><br>
   
-    <main>
+    <!-- ABOUT: Single Section (white-bg, parallax, text animations, mobile-first) -->
+<section id="about-sds" aria-label="About SDS">
+  <style>
+     /* ------------------ Design Tokens (Light) ------------------ */
+    #about-sds{
+      --bg: #ffffff;              /* page background */
+      --ink: #0b1220;             /* primary text */
+      --muted: #475569;           /* secondary text */
+      --border: rgba(2,6,23,.10);
+      --brand: #2563eb;           /* blue-600 */
+      --brand-600:#1d4ed8;        /* blue-700 */
+      --accent:#06b6d4;           /* cyan-500 */
+      --chip:#f1f5f9;             /* pill bg */
+      --card: #ffffff;            /* cards */
+      --card-soft: #f8fafc;
+      --shadow: 0 20px 60px rgba(2,6,23,.08);
+      --radius: 18px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --container: min(1120px, 92vw);
+    }
+    /* Continuous shining animation background for Mission / Vision / Values */
+#about-sds .split {
+  position: relative;
+  overflow: hidden;
+}
 
+#about-sds .split::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(37, 99, 235, 0.08),
+    rgba(6, 182, 212, 0.12),
+    rgba(255, 255, 255, 0.05),
+    rgba(37, 99, 235, 0.08)
+  );
+  background-size: 300% 300%;
+  animation: shineFlow 12s ease-in-out infinite;
+  z-index: 0;
+}
 
-        <!-- HERO split (Left: big text, Right: hero image with tag) -->
-        <section class="hero">
-            <div class="left">
-                <div class="eyebrow">About SDS</div>
-                <h1 class="title-xl reveal">We Specialise In Helping<br>Our Customers<br>Modernise Their Business</h1>
-                <p class="lead reveal"></p>
-            </div>
-            <div class="right">
-                <!-- HERO IMAGE — replace with Screenshot (670) or your hero -->
-                <img class="parallax" data-speed="0.15" src="static/Images/jonaki mel 2.jpg" alt="Mountains hero">
-            </div>
-        </section>
+#about-sds .split .content,
+#about-sds .split .image {
+  position: relative;
+  z-index: 1; /* ensure text and image stay above */
+}
 
-        <!-- Two feature cards (Leadership / CSR) -->
-        <section class="duo container">
-            <!-- CARD 1 -->
-            <article class="card reveal">
-                <div class="imgwrap">
-                    <!-- Replace with marching band image (your Screenshot 664/665 area) -->
-                    <img class="parallax" data-speed="0.08" src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__69467.png"" alt="Leadership">
-                    <div class="tag">Leadership</div>
-                </div>
-                <div class="block">
-                    <h3>The People<br>Leading The Way</h3>
-                </div>
-            </article>
+@keyframes shineFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
+    #about-sds *{box-sizing:border-box}
+    #about-sds{background:var(--bg); color:var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; position:relative; overflow:hidden}
+    #about-sds .container{width:var(--container); margin-inline:auto}
 
+    /* ------------------ Generic Animations ------------------ */
+    #about-sds.loaded{opacity:1}
+    #about-sds{opacity:0; transition:opacity .7s var(--ease)}
+    #about-sds .reveal{opacity:0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease)}
+    #about-sds .reveal.in{opacity:1; transform:none}
+    #about-sds .stagger > *{opacity:0; transform: translateY(16px)}
+    #about-sds .stagger.in > *{animation: rise .6s var(--ease) forwards}
+    #about-sds .stagger.in > *:nth-child(1){animation-delay:.05s}
+    #about-sds .stagger.in > *:nth-child(2){animation-delay:.12s}
+    #about-sds .stagger.in > *:nth-child(3){animation-delay:.2s}
+    #about-sds .stagger.in > *:nth-child(4){animation-delay:.28s}
+    @keyframes rise{to{opacity:1; transform:none}}
 
-            <!-- CARD 2 -->
-            <article class="card reveal">
-                <div class="imgwrap">
-                    <!-- Replace with person + chicken image -->
-                    <img class="parallax" data-speed="0.08"
-                        src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__95362.jpeg" alt="CSR">
-                    <div class="tag"></div>
-                </div>
-                <div class="block alt">
-                    <h3>Giving Back To<br>Communities</h3>
-                </div>
-            </article>
-        </section>
+    /* ------------------ Utilities ------------------ */
+    #about-sds .eyebrow{letter-spacing:.08em; font-weight:600; color:var(--brand); text-transform:uppercase; font-size:.85rem}
+    #about-sds .title-xl{font-weight:900; line-height:1.05; font-size: clamp(2.2rem, 3.4vw + 1rem, 4rem); margin: .35rem 0 .5rem; color:var(--ink)}
+    #about-sds .lead{color:var(--muted); font-size: clamp(1.02rem, .7vw + .9rem, 1.2rem)}
+    #about-sds .chip{display:inline-flex; align-items:center; gap:.45rem; background:var(--chip); border:1px solid var(--border); padding:.5rem .75rem; border-radius:999px; font-size:.88rem; color:#0f172a}
+    #about-sds .chip svg{width:14px;height:14px;fill:var(--brand-600)}
 
-        <!-- YOUR MISSION (requested exact content) -->
-        <section class="mission" id="mission">
-            <div class="container">
-                <h2 class="title reveal">Our Mission</h2>
-                <p class="reveal">
-                    SDS is dedicated to providing enabling services to organizations and individuals, to create
-                    potentials
-                    that positively affect the lives of the disadvantaged sections of society. We achieve this through a
-                    team of highly qualified personnel with extensive practical experience working at the grassroots
-                    level.
-                </p>
-                <p class="reveal">
-                    Operating in 11 states across India, including all Northeast India states, Bihar, Odisha, and
-                    Karnataka,
-                    SDS serves the needs of Central and State governments, CSR agencies, not-for-profits, FPOs,
-                    individual
-                    entrepreneurs, and other organizations in the development sector.
-                </p>
-                <div class="meta reveal">
-                    <span class="chip">11 States</span>
-                    <span class="chip">Grassroots Experts</span>
-                    <span class="chip">CSR & Govt Partners</span>
-                    <span class="chip">Impact Focused</span>
-                </div>
-            </div>
-        </section>
+    /* ------------------ Section spacing ------------------ */
+    #about-sds .pad-xl{padding: clamp(2.2rem, 4vw, 4.4rem) 0}
+    #about-sds .gap-lg{display:grid; gap: clamp(1.25rem, 2.4vw, 2rem)}
 
-        <!-- OUR VISION (image left, content right) -->
-        <section class="section" id="vision">
-            <div class="image">
-                <div class="float reveal">
-                    <!-- Replace with your bee/flower image (Screenshot 666/667) -->
-                    <img src="static/Images/hero1.jpg" alt="Bee closeup">
-                </div>
-            </div>
-            <div class="content">
-                <h2 class="kicker reveal">Our Vision</h2>
-                <p class="reveal">SDS aims to be a top-tier development support organization, promoting rural
-                    livelihoods in
-                    Eastern and North-Eastern India by facilitating livelihood ecosystems. Being among the best
-                    consulting
-                    firms in the Northeast, we strive to provide our top consultancy services in every nook and corner
-                    of
-                    the region.</p>
-            </div>
-        </section>
+    /* ------------------ FULL-BLEED HERO (image edge-to-edge) ------------------ */
+    #about-sds .hero{position:relative; display:grid; place-items:center; min-height: clamp(420px, 60vh, 680px); isolation:isolate}
+    #about-sds .hero .bg{position:absolute; inset:0; overflow:hidden}
+    #about-sds .hero .bg img{width:100%; height:100%; object-fit:cover; transform: scale(1.06)}
+    #about-sds .hero .bg::after{ /* gradient scrim for text legibility */
+      content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), radial-gradient(1200px 600px at 20% 20%, rgba(37,99,235,.18), transparent 55%);
+    }
+    #about-sds .hero .overlay{position:relative; z-index:1; width:var(--container); display:grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1rem, 2.6vw, 2rem); align-items:center; color:#eef2ff}
+    #about-sds .hero .overlay .left{max-width:720px}
+    #about-sds .hero .overlay .title-xl{color:#fff}
+    #about-sds .hero .overlay .lead{color:#e2e8f0}
+    #about-sds .hero .overlay .tag{display:inline-flex; align-items:center; gap:.5rem; background: rgba(15,23,42,.6); border:1px solid rgba(255,255,255,.18); backdrop-filter: blur(8px); padding:.55rem .8rem; border-radius: 999px; font-weight:700; font-size:.85rem; color:#f8fafc; box-shadow: var(--shadow)}
+    #about-sds .hero .overlay .media{justify-self:end}
 
-        <!-- OUR VALUES (image left, content right on sand background) -->
-        <section class="section" id="values" style="background:var(--sand); color:#070b0f">
-            <div class="image" style="background:var(--sage)">
-                <div class="float reveal">
-                    <!-- Replace with your blue heart light image -->
-                    <img src="static/Images/hero2.jpg" alt="Light heart">
-                </div>
-            </div>
-            <div class="content" style="background:var(--sand); color:#0a1015">
-                <h2 class="kicker reveal" style="color:#0a1015">Our Values</h2>
-                <p class="reveal" style="color:#1a232c">
-                    SDS is committed to fostering a culture that prioritizes excellence, expertise, and community
-                    engagement. We stand for values of:
-                    <br>
-                    <b>Equity</b>- Justness, fairness, and equality of rights and opportunities.<br>
-                    <b>Integrity</b>- Alignment in thought, word and action.<br>
-                    <b>Excellence</b>- Excellence at every step for our clients and customers<br>
-                    <b>Trust</b>- Firm belief in the reliability, truth, or ability of someone or something.<br>
-                </p>
-            </div>
-        </section>
+    /* text entrance (from left) */
+    #about-sds .from-left{opacity:0; transform: translateX(-24px)}
+    #about-sds .from-left.in{opacity:1; transform:none; transition: opacity .7s var(--ease), transform .7s var(--ease)}
 
-        <!-- Big statement block -->
-        <section class="statement">
-            <div class="container">
-                <p class="reveal">
-                <h2 class="kicker reveal">Our Story</h2>
-                Founded in 2013, Sesta Development Services (SDS) is now among the top consultancy firms rendering high
-                quality services in Research and Communication, Livelihoods, Value Chain Skills, FPO Promotion,
-                Organization Development, Climate Change and Natural Resource Management.
-                Over a decade, SDS has provided customised solution to Government Organizations, CSR Agencies,
-                Corporates, Farmer Producer Organizations and NGO’s for effective planning, implementation, and review
-                of development programmes. Our strategy is built on four pillars: sustainable lives, sustainable
-                communities, sustainable markets, and sustainable growth.
-                </p>
-            </div>
-        </section>
+    /* ------------------ Feature Tiles (smaller thumbs) ------------------ */
+    #about-sds .features{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(1rem, 2.2vw, 1.6rem)}
+    #about-sds .tile{position:relative; display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center; padding:.9rem; border-radius: calc(var(--radius) + 2px); border:1px solid var(--border); background: var(--card); box-shadow: var(--shadow); transition: transform .35s var(--ease), box-shadow .35s var(--ease)}
+    #about-sds .tile:hover{transform: translateY(-3px)}
+    #about-sds .tile .thumb{width:72px; height:72px; border-radius: 14px; overflow:hidden; border:1px solid var(--border)}
+    #about-sds .tile .thumb img{width:100%; height:100%; object-fit: cover}
+    #about-sds .tile h3{margin:.1rem 0 .1rem; font-size: clamp(1.05rem, .7vw + 1rem, 1.3rem)}
+    #about-sds .tile .meta{display:inline-flex; align-items:center; gap:.4rem; font-weight:700; color:var(--brand-600); letter-spacing:.02em}
+    #about-sds .tile .meta svg{width:16px;height:16px;fill:var(--brand-600)}
 
-        <section class="business-focus">
-            <div class="container">
-                <h1>OUR SERVICES:</h1>
-                <div class="focus-points" aria-label="Business focus points with check icons">
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> FPO MANAGEMENT & DEVELOPMENT</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> RESEARCH & STUDY</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> AGRIPRENEURSHIP</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> VALUE CHAIN DEVELOPMENT</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> MARKETING</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> INSTITUTE BUILDING AND CAPACITY BUILDING(IBCB)</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg>MONITORING & EVALUATION</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg>ORGANISATION</span>
-                    <span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                            <path
-                                d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z">
-                            </path>
-                        </svg> COMMUNICATION FOR DEVELOPMENT</span>
+    /* ------------------ Split blocks (Mission / Vision / Values) ------------------ */
+    #about-sds .split{display:grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1.25rem, 3vw, 2rem); align-items:center}
+    #about-sds .split .image .frame{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background:var(--card);
+      box-shadow: var(--shadow);
 
-                </div>
+      max-width: 420px;   /* NEW: limits image frame size */
+      margin: 0 auto;     /* centers it in column */
+    }
+    #about-sds .split .image .frame img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+    }
+    #about-sds .split .content h1{margin:0 0 .35rem; font-weight:900; font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem);}    
+    #about-sds .split .content p{color:var(--muted)}
+    #about-sds .bullets{display:flex; flex-wrap:wrap; gap:.5rem}
 
-                <br>
-                <button class="btn-touch" aria-label="Get in touch button"><a href="/getintouch">GET IN TOUCH</a></button>
-            </div>
-        </section>
+    /* ------------------ Statement / Story ------------------ */
+    #about-sds .statement{background:var(--card-soft); border:1px solid var(--border); border-radius: var(--radius); padding: clamp(1rem, 2.5vw, 2rem); box-shadow: var(--shadow)}
+    #about-sds .statement h2{margin:.25rem 0 0.5rem; font-weight:900}
 
+    /* ------------------ Services Grid ------------------ */
+    #about-sds .services h3.section-title{margin:0 0 .5rem; font-weight:900; text-align:center}
+    #about-sds .focus{display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:.75rem}
+    #about-sds .focus span{display:flex; align-items:center; gap:.55rem; background:#ffffff; border:1px solid var(--border); border-radius: 14px; padding:.8rem .9rem; box-shadow: var(--shadow); transform: translateY(8px); opacity:0}
+    #about-sds .focus span.in{transform:none; opacity:1; transition: transform .45s var(--ease), opacity .45s var(--ease)}
+    #about-sds .focus svg{width:18px; height:18px; flex:0 0 auto; fill: var(--brand-600)}
 
-        <!-- Footer spacer -->
-<footer class="container" style="display:none !important; padding:60px var(--pad) 90px; color:#9fb0bf">
-  <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-    <div><span id="yr"></span></div>
-    <div></div>
+    /* CTA */
+    #about-sds .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; background:var(--brand-600); color:#fff; border:none; border-radius: 999px; padding:.85rem 1.15rem; font-weight:800; text-decoration:none; box-shadow: 0 10px 30px rgba(37,99,235,.35); transition: transform .2s var(--ease), box-shadow .2s var(--ease)}
+    #about-sds .btn:hover{transform: translateY(-1px); box-shadow: 0 16px 40px rgba(37,99,235,.45)}
+    #about-sds .btn:active{transform: translateY(0)}
+
+    /* ------------------ Responsive ------------------ */
+    @media (max-width: 980px){
+      #about-sds .hero .overlay{grid-template-columns: 1fr; text-align:left}
+      #about-sds .hero .overlay .media{justify-self:start}
+      #about-sds .features{grid-template-columns: 1fr}
+      #about-sds .split{grid-template-columns: 1fr}
+      #about-sds .focus{grid-template-columns: 1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      #about-sds, #about-sds .reveal, #about-sds .stagger > *, #about-sds .from-left, #about-sds .focus span{transition:none !important; animation:none !important; transform:none !important}
+    }
+  </style>
+
+  <!-- FULL-BLEED HERO (image spans entire width, text over image) -->
+  <header class="hero" id="hero">
+    <div class="bg" aria-hidden="true">
+      <img src="static/Images/Photo SDS Team.png" alt="Community collaboration across Northeast India">
+    </div>
+    <div class="overlay">
+      <div class="left from-left">
+        
+        <h1 class="title-xl"> Nurturing <br>Innovation,<br>Delivering Excellence</h1>
+        <p class="lead">We partner with governments, CSR agencies, FPOs, and enterprises to turn development goals into measurable outcomes—across Eastern and North-Eastern India.</p>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="container pad-xl gap-lg">
+    <!-- FEATURE TILES (smaller images) -->
+    <section class="features" id="features">
+      <article class="tile reveal">
+        <div class="thumb"><img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__69467.png" alt="Leadership"></div>
+        <div class="content">
+          <div class="meta">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>
+            Leadership
+          </div>
+          <h3>The People Leading The Way</h3>
+        </div>
+      </article>
+      <article class="tile reveal">
+        <div class="thumb"><img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__95362.jpeg" alt="Community"></div>
+        <div class="content">
+          <div class="meta">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>
+            Community
+          </div>
+          <h3>Giving Back To Communities</h3>
+        </div>
+      </article>
+    </section>
+
+    <!-- MISSION -->
+    <section class="split pad-xl" id="mission">
+      <div class="image reveal">
+        <div class="frame"><img src="static/Images/mission.png" alt="Grassroots work and field visit"></div>
+      </div>
+      <div class="content">
+        <h2 class="section-title reveal">Our Mission</h2>
+        <p class="reveal">SDS’s mission
+          is to provide
+        enabling services
+        to organisations or
+        individuals to unlock
+        potential to impact the
+        lives of the rural poor
+        and disadvantaged</p>
+
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <section class="split pad-xl" id="vision">
+      <div class="content">
+        <h2 class="section-title reveal">Our Vision</h2>
+        <p class="reveal">SDS aims to be
+a world-class
+development support
+organisation for rural
+livelihood Promotion.
+</p>
+      </div>
+      <div class="image reveal">
+        <div class="frame"><img src=""static/Images/VISION.png alt="Close-up of nature and pollination"></div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="split pad-xl" id="values">
+      <div class="image reveal">
+        <div class="frame"><img src="static/Images/values.png" alt="Light symbolizing trust and excellence"></div>
+      </div>
+      <div class="content">
+        <h2 class="section-title reveal">Our Values</h2>
+        <p class="reveal">SDS believes in cultivating and ensuring a culture that embraces a striving for excellence, expertise and reaching out to people. It uses the following values as a base on which the organization is built. A value is an inherent universal need, important to life and living, and which people strive to meet. SDS espouses and attempts to uphold the values of: 
+1.	Equity-Justness, fairness, and equality of rights and opportunities. Equity demands affirmative action towards the marginalized, disadvantaged and alienated. Such affirmative action will be reflected in SDS’s vision, mission, norms and policies. Integrity- Alignment in thought, word and action. It is also freedom from corruptive influence or motive. The staff of SDS will value commitments, not misappropriate, or knowingly misrepresent facts, and will maintain transparent and accountable systems and procedures. 
+2.	Excellence- Being extremely good at something. 
+3.	Trust- The expectation of the opportunity to function and to become, in a world that provides support and freedom. Firm belief in the reliability, truth, or ability of someone or something
+
+        </p>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="statement reveal" id="story">
+      <h2 class="section-title">Our Story</h2>
+      <p>
+        Founded in 2013, Sesta Development Services (SDS) is among the leading firms delivering high-quality services in Research & Communication, Livelihoods, Value Chain & Skills, FPO Promotion, Organization Development, Climate Change, and Natural Resource Management. Over the past decade, we have supported Government bodies, CSR agencies, corporates, FPOs, and NGOs with tailored solutions for planning, implementation, and review of development programmes—anchored on four pillars: sustainable lives, sustainable communities, sustainable markets, and sustainable growth.
+      </p>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services pad-xl">
+      <h1 class="section-title reveal">Our Services</h1>
+      <div class="focus" id="services-focus">
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>FPO MANAGEMENT & DEVELOPMENT</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>RESEARCH & STUDY</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>AGRIPRENEURSHIP</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>VALUE CHAIN DEVELOPMENT</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>MARKETING</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>INSTITUTION & CAPACITY BUILDING (IBCB)</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>MONITORING & EVALUATION</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>ORGANISATION</span>
+        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>COMMUNICATION FOR DEVELOPMENT</span>
+      </div>
+      <div style="margin-top:1rem; text-align:center"><a class="btn" href="/getintouch" aria-label="Get in touch with SDS">Get in touch</a></div>
+    </section>
   </div>
-</footer>
+
+  <!-- JS: load fade, reveal, services chip animation -->
+  <script>
+    (function(){
+      const root = document.querySelector('#about-sds');
+      if(!root) return;
+
+      window.addEventListener('load', ()=> root.classList.add('loaded'));
+
+      // Intersection-based reveals
+      const reveals = root.querySelectorAll('.reveal, .from-left');
+      const staggers = root.querySelectorAll('.stagger');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, {rootMargin:'-10% 0px -10% 0px', threshold:.1});
+      reveals.forEach(el=>io.observe(el));
+      staggers.forEach(el=>io.observe(el));
+
+      // Services chips: cascade in-view
+      const chipIO = new IntersectionObserver((entries)=>{
+        entries.forEach((e,i)=>{
+          if(e.isIntersecting){
+            const chips = e.target.querySelectorAll('span');
+            chips.forEach((c,idx)=>{
+              c.style.transitionDelay = (idx*60)+'ms';
+              c.classList.add('in');
+            });
+            chipIO.unobserve(e.target);
+          }
+        })
+      }, {threshold:.1});
+      const services = root.querySelector('#services-focus');
+      if(services) chipIO.observe(services);
+    })();
+  </script>
+</section>
+
+
+
 
         <!-- existing webpage content -->
     </main>
 
 
     <!-- SDG Carousel Section -->
-    <section class="sdg-carousel-section">
-        <div class="sdg-carousel-container">
-            <div class="sdg-section-header">
-                <h2>SDS's Commitment to the SDGs</h2>
-                <p>Our commitment to the UN 2030 agenda and a sustainable future for all drives our consultancy
-                    services. We strategically align with 7 out of the 17 SDGs, making significant impact in the region
-                    and beyond.</p>
-            </div>
+<section id="sdg-tiles-carousel" aria-label="SDS's Commitment to the SDGs">
+  <style>
+    /* ===== Tokens ===== */
+    #sdg-tiles-carousel{
+      --bg:#ffffff;            /* section background (requested white) */
+      --ink:#0b1220;
+      --muted:#475569;
+      --shadow:0 14px 40px rgba(2,6,23,.08);
+      --radius:16px;
+      --gap:16px;
+      --slide-time:5200ms;     /* autoplay timing */
+      --elev:0 8px 24px rgba(2,6,23,.06);
+      background:var(--bg);
+      color:var(--ink);
+      padding:clamp(20px,3vw,48px) 0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    #sdg-tiles-carousel *{box-sizing:border-box}
 
-            <div class="sdg-carousel-outer">
-                <div class="sdg-carousel-controls">
-                    <div class="sdg-carousel-control sdg-prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="sdg-carousel-control sdg-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
+    /* UN goal palette */
+    #sdg-tiles-carousel{
+      --sdg-1:#E5243B; --sdg-2:#DDA63A; --sdg-5:#FF3A21;
+      --sdg-10:#DD1367; --sdg-12:#BF8B2E; --sdg-15:#56C02B; --sdg-16:#00689D;
+    }
 
-                <div class="sdg-carousel-track">
-                    <!-- SDG 1 -->
-                    <div class="sdg-card sdg-active">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="No Poverty">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">1</span> NO POVERTY</h3>
-                            <p>Distributing inputs and establishing market linkages stabilized income & enhanced
-                                livelihood
-                                for over 1 lakh households.</p>
-                        </div>
-                    </div>
+    /* ===== Container & Header ===== */
+    #sdg-tiles-carousel .container{width:min(1120px,92vw);margin:0 auto}
 
-                    <!-- SDG 2 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Zero Hunger">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">2</span> ZERO HUNGER</h3>
-                            <p>Ensured food security and impacted 20,000 households through diverse commodity
-                                production.
-                            </p>
-                        </div>
-                    </div>
+    #sdg-tiles-carousel .header{
+      text-align:center;
+      margin:0 auto clamp(16px,2.2vw,24px);
+      animation:fadeIn .6s ease both;
+    }
+    /* More responsive heading + accent underline */
+#sdg-tiles-carousel .header h2{
+  margin: 0 auto 10px;   /* centers block elements */
+  font-weight: 800;
+  line-height: 1.08;
+  text-wrap: balance;
+  font-size: clamp(22px, 5vw, 40px);
+  position: relative;
+  display: block;         /* was inline-block */
+  text-align: center;     /* keeps text centered inside */
+}
 
-                    <!-- SDG 5 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Gender Equality">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">5</span> GENDER EQUALITY</h3>
-                            <p>Maa Chandika FPC mobilized 90% female members generating ₹6.5 lakh annual business.</p>
-                        </div>
-                    </div>
+    #sdg-tiles-carousel .header h2::after{
+      content:"";
+      position:absolute; left:50%; transform:translateX(-50%);
+      bottom:-8px; width:clamp(80px,20vw,220px); height:4px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#0b1220,#0b1220);
+      opacity:.12;
+    }
+    #sdg-tiles-carousel .header p{
+      margin:12px auto 0;
+      max-width:75ch;
+      color:var(--muted);
+      font-size:clamp(14px,2.2vw,16px);
+    }
 
-                    <!-- SDG 10 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Reduced Inequalities">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">10</span> REDUCED INEQUALITIES</h3>
-                            <p>Bridging rural inequality through institution building and sustainable solutions for the
-                                poor.</p>
-                        </div>
-                    </div>
+    /* ===== Carousel frame ===== */
+    #sdg-tiles-carousel .frame{
+      position:relative;
+      padding:clamp(10px,1.8vw,16px);
+      border-radius:calc(var(--radius) + 6px);
+      box-shadow:var(--shadow);
+      background:#fff; /* white inner background too */
+      overflow:hidden;
+    }
 
-                    <!-- SDG 12 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Responsible Consumption">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">12</span> RESPONSIBLE PRODUCTION</h3>
-                            <p>Enhancing sustainable patterns by empowering FPOs and local entrepreneurs.</p>
-                        </div>
-                    </div>
+    /* Arrows */
+    #sdg-tiles-carousel .controls{
+      position:absolute; inset:0;
+      display:flex; justify-content:space-between; align-items:center;
+      pointer-events:none; padding:clamp(2px,1vw,12px);
+    }
+    #sdg-tiles-carousel .control{
+      pointer-events:auto; width:44px; height:44px; border-radius:999px;
+      background:#ffffff; border:1px solid #e2e8f0; display:grid; place-items:center;
+      box-shadow:0 10px 24px rgba(2,6,23,.10);
+      cursor:pointer; transition:transform .15s ease, background .2s ease;
+    }
+    #sdg-tiles-carousel .control:hover{transform:scale(1.06)}
+    #sdg-tiles-carousel .control:active{transform:scale(.96)}
+    #sdg-tiles-carousel .control svg{width:20px; height:20px; fill:#0f172a}
+    #sdg-tiles-carousel .control:focus-visible{outline:2px solid #0f172a; outline-offset:2px}
 
-                    <!-- SDG 15 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Life on Land">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">15</span> LIFE ON LAND</h3>
-                            <p>Promoting sustainable agriculture, organic farming and climate-smart practices.</p>
-                        </div>
-                    </div>
+    /* ===== Track (multi-slide layout) ===== */
+    #sdg-tiles-carousel .track{
+      display:flex; gap:var(--gap);
+      will-change:transform;
+      transition:transform .55s cubic-bezier(.2,.8,.2,1);
+      touch-action:pan-y;
+    }
 
-                    <!-- SDG 16 -->
-                    <div class="sdg-card">
-                        <div class="sdg-progress-bar"></div>
-                        <div class="sdg-image">
-                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                                alt="Strong Institutions">
-                        </div>
-                        <div class="sdg-content">
-                            <h3><span class="sdg-number">16</span> STRONG INSTITUTIONS</h3>
-                            <p>SHGs, VOs and FPCs collectively impacted 1 lakh households through institutional
-                                development.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    /* Slides (UN tile style) */
+    #sdg-tiles-carousel .card{
+      flex:0 0 auto; width:100%; /* JS sets exact width */
+      border-radius:var(--radius); overflow:hidden; background:#fff;
+      border:1px solid #e5e7eb; display:grid; grid-template-rows:auto auto;
+      box-shadow:0 4px 18px rgba(2,6,23,.05);
+      transform:translateY(6px); opacity:0; animation:cardIn .5s .05s both;
+    }
+    #sdg-tiles-carousel .card:nth-child(2){animation-delay:.1s}
+    #sdg-tiles-carousel .card:nth-child(3){animation-delay:.15s}
+    #sdg-tiles-carousel .card:nth-child(4){animation-delay:.2s}
 
-                <div class="sdg-carousel-nav">
-                    <div class="sdg-nav-dot sdg-active" data-index="0"></div>
-                    <div class="sdg-nav-dot" data-index="1"></div>
-                    <div class="sdg-nav-dot" data-index="2"></div>
-                    <div class="sdg-nav-dot" data-index="3"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    /* Subtle lift on hover */
+    #sdg-tiles-carousel .card:hover{transform:translateY(0); box-shadow:var(--elev)}
+
+    /* Progress for the first visible tile */
+    #sdg-tiles-carousel .progress{height:3px; width:0%; background:rgba(0,0,0,.12)}
+    #sdg-tiles-carousel .card.active .progress{animation:sdgTileProgress var(--slide-time) linear forwards}
+
+    /* Tile (colored square) */
+    #sdg-tiles-carousel .tile{
+      position:relative; display:grid; place-items:center;
+      aspect-ratio:1/1; background:#eee; overflow:hidden;
+    }
+    #sdg-tiles-carousel .card[data-goal="1"] .tile{background:var(--sdg-1)}
+    #sdg-tiles-carousel .card[data-goal="2"] .tile{background:var(--sdg-2)}
+    #sdg-tiles-carousel .card[data-goal="5"] .tile{background:var(--sdg-5)}
+    #sdg-tiles-carousel .card[data-goal="10"] .tile{background:var(--sdg-10)}
+    #sdg-tiles-carousel .card[data-goal="12"] .tile{background:var(--sdg-12)}
+    #sdg-tiles-carousel .card[data-goal="15"] .tile{background:var(--sdg-15)}
+    #sdg-tiles-carousel .card[data-goal="16"] .tile{background:var(--sdg-16)}
+
+    .badge{
+      position:absolute; top:10px; left:10px;
+      background:rgba(255,255,255,.95); color:#0b1220; font-weight:800;
+      font-size:14px; letter-spacing:.5px; border-radius:8px; padding:2px 8px;
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      animation:popIn .35s ease both;
+    }
+    .icon{
+      width:64%; max-height:64%; object-fit:contain;
+      filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));
+      animation:floatY 4.5s ease-in-out infinite;
+    }
+
+    /* Meta text */
+    .meta{padding:14px 14px 16px; display:grid; gap:6px; background:#fff}
+    .meta h3{margin:0; font-size:clamp(14px,2vw,16px); letter-spacing:.2px; text-transform:uppercase}
+    .meta p{margin:0; color:var(--muted); font-size:14px; line-height:1.5}
+
+    /* Dots */
+    .dots{display:flex; justify-content:center; gap:8px; padding:14px 6px 0}
+    .dot{width:8px; height:8px; border-radius:999px; border:1px solid #cbd5e1;
+      background:#e2e8f0; cursor:pointer; transition:transform .18s, background .18s, border-color .18s}
+    .dot:hover{transform:scale(1.15)}
+    .dot.active{background:#0f172a; border-color:#0f172a}
+    .dot:focus-visible{outline:2px solid #0f172a; outline-offset:2px}
+
+    /* Animations */
+    @keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+    @keyframes cardIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(6px)}}
+    @keyframes popIn{from{opacity:0; transform:scale(.92)} to{opacity:1; transform:scale(1)}}
+    @keyframes floatY{0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)}}
+    @keyframes sdgTileProgress{from{width:0%} to{width:100%}}
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      .icon,.card,.header,.badge{animation:none !important}
+      .track{transition:none}
+    }
+  </style>
+
+  <div class="container">
+    <div class="header">
+      <h2>SDS’s Commitment to the SDGs</h2>
+      
+    </div>
+
+    <div class="frame" role="region" aria-roledescription="carousel" aria-label="SDG goals carousel">
+      <!-- Controls -->
+      <div class="controls" aria-hidden="false">
+        <button class="control prev" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="control next" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L12.17 12z"/></svg>
+        </button>
+      </div>
+
+      <!-- Track -->
+      <div class="track" role="listbox" aria-live="polite">
+        <!-- SDG 1 -->
+        <article class="card active" data-goal="1" role="option" aria-label="SDG 1 No Poverty">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 1</span>
+            <img class="icon" loading="eager"
+                 src="https://upload.wikimedia.org/wikipedia/commons/5/50/Sustainable_Development_Goal_01NoPoverty.svg"
+                 alt="SDG 1 - No Poverty icon">
+          </div>
+          <div class="meta">
+            <h3>No Poverty</h3>
+            <p>Stabilizing incomes for 1+ lakh households via inputs and market linkages.</p>
+          </div>
+        </article>
+
+        <!-- SDG 2 -->
+        <article class="card" data-goal="2" role="option" aria-label="SDG 2 Zero Hunger">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 2</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg"
+                 alt="SDG 2 - Zero Hunger icon">
+          </div>
+          <div class="meta">
+            <h3>Zero Hunger</h3>
+            <p>Food security through diversified production and last-mile extension.</p>
+          </div>
+        </article>
+
+        <!-- SDG 5 -->
+        <article class="card" data-goal="5" role="option" aria-label="SDG 5 Gender Equality">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 5</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Sustainable_Development_Goal_05GenderEquality.svg"
+                 alt="SDG 5 - Gender Equality icon">
+          </div>
+          <div class="meta">
+            <h3>Gender Equality</h3>
+            <p>Women-led FPCs and SHGs driving enterprise and assets in rural markets.</p>
+          </div>
+        </article>
+
+        <!-- SDG 10 -->
+        <article class="card" data-goal="10" role="option" aria-label="SDG 10 Reduced Inequalities">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 10</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg"
+                 alt="SDG 10 - Reduced Inequalities icon">
+          </div>
+          <div class="meta">
+            <h3>Reduced Inequalities</h3>
+            <p>Inclusive institutions and services bridging rural opportunity gaps.</p>
+          </div>
+        </article>
+
+        <!-- SDG 12 -->
+        <article class="card" data-goal="12" role="option" aria-label="SDG 12 Responsible Consumption and Production">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 12</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg"
+                 alt="SDG 12 - Responsible Consumption and Production icon">
+          </div>
+          <div class="meta">
+            <h3>Responsible Consumption</h3>
+            <p>Scaling climate-smart production and local processing with FPOs.</p>
+          </div>
+        </article>
+
+        <!-- SDG 15 -->
+        <article class="card" data-goal="15" role="option" aria-label="SDG 15 Life on Land">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 15</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg"
+                 alt="SDG 15 - Life on Land icon">
+          </div>
+          <div class="meta">
+            <h3>Life on Land</h3>
+            <p>Soil-water stewardship, agro-forestry and biodiversity mainstreaming.</p>
+          </div>
+        </article>
+
+        <!-- SDG 16 -->
+        <article class="card" data-goal="16" role="option" aria-label="SDG 16 Peace, Justice and Strong Institutions">
+          <div class="progress"></div>
+          <div class="tile">
+            <span class="badge">GOAL 16</span>
+            <img class="icon" loading="lazy"
+                 src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg"
+                 alt="SDG 16 - Peace, Justice and Strong Institutions icon">
+          </div>
+          <div class="meta">
+            <h3>Strong Institutions</h3>
+            <p>Community institutions (SHGs/VOs/FPCs) delivering accountable services.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Dots -->
+      <div class="dots" aria-label="Slide navigation"></div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const root   = document.querySelector('#sdg-tiles-carousel');
+      const frame  = root.querySelector('.frame');
+      const track  = root.querySelector('.track');
+      const cards  = Array.from(root.querySelectorAll('.card'));
+      const prev   = root.querySelector('.prev');
+      const next   = root.querySelector('.next');
+      const dotsEl = root.querySelector('.dots');
+
+      let index = 0;
+      let perView = 1;
+      let timer = null;
+      const SLIDE_MS = parseInt(getComputedStyle(root).getPropertyValue('--slide-time')) || 5200;
+
+      /* Pages are groups of "perView" cards */
+      function pagesCount(){ return Math.max(1, Math.ceil(cards.length / perView)); }
+      function computePerView(){
+        if (window.innerWidth >= 1200) return 4;
+        if (window.innerWidth >= 992)  return 3;
+        if (window.innerWidth >= 640)  return 2;
+        return 1;
+      }
+
+      function layout(){
+        perView = computePerView();
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const cardWidth = (frame.clientWidth - gap * (perView - 1)) / perView;
+        cards.forEach(c => c.style.width = cardWidth + 'px');
+        renderDots();
+        goToPage(Math.min(getCurrentPage(), pagesCount()-1), false);
+      }
+
+      function getCurrentPage(){ return Math.floor(index / perView); }
+      function goToPage(p, animate=true){
+        const pg = Math.max(0, Math.min(p, pagesCount()-1));
+        index = pg * perView;
+        translate(animate);
+        setActive();
+        resetAutoplay();
+      }
+
+      function translate(animate){
+        const first = cards[0];
+        const cardW = first.getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const offset = index * (cardW + gap);
+        track.style.transitionDuration = animate ? '.55s' : '0s';
+        track.style.transform = `translateX(${-offset}px)`;
+      }
+
+      function setActive(){
+        cards.forEach((c,i)=> c.classList.toggle('active', i === index));
+        const pg = getCurrentPage();
+        Array.from(dotsEl.children).forEach((d,i)=> d.classList.toggle('active', i===pg));
+      }
+
+      function renderDots(){
+        const count = pagesCount();
+        dotsEl.innerHTML = '';
+        for(let i=0;i<count;i++){
+          const dot = document.createElement('button');
+          dot.className = 'dot' + (i===getCurrentPage()?' active':'');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Go to page ${i+1}`);
+          dot.addEventListener('click', ()=> goToPage(i));
+          dotsEl.appendChild(dot);
+        }
+      }
+
+      function nextPage(){ goToPage((getCurrentPage()+1)%pagesCount()); }
+      function prevPage(){ goToPage((getCurrentPage()-1+pagesCount())%pagesCount()); }
+
+      /* Autoplay: automatic sliding carousel */
+      function startAutoplay(){ stopAutoplay(); timer = setInterval(nextPage, SLIDE_MS); }
+      function stopAutoplay(){ if(timer){ clearInterval(timer); timer=null; } }
+      function resetAutoplay(){ startAutoplay(); }
+
+      // Pause on hover/focus for usability
+      frame.addEventListener('mouseenter', stopAutoplay);
+      frame.addEventListener('mouseleave', startAutoplay);
+      frame.addEventListener('focusin', stopAutoplay);
+      frame.addEventListener('focusout', startAutoplay);
+
+      // Touch swipe
+      let startX=0, dx=0, swiping=false;
+      track.addEventListener('touchstart', (e)=>{ startX=e.touches[0].clientX; dx=0; swiping=true; stopAutoplay(); }, {passive:true});
+      track.addEventListener('touchmove',  (e)=>{ if(!swiping) return; dx=e.touches[0].clientX-startX; }, {passive:true});
+      track.addEventListener('touchend',   ()=>{ if(Math.abs(dx)>50){ dx<0 ? nextPage() : prevPage(); } swiping=false; startAutoplay(); });
+
+      // Keyboard controls
+      frame.tabIndex = 0;
+      frame.addEventListener('keydown', (e)=>{
+        if(e.key==='ArrowRight'){ e.preventDefault(); nextPage(); }
+        if(e.key==='ArrowLeft'){  e.preventDefault(); prevPage(); }
+      });
+
+      // Buttons
+      next.addEventListener('click', nextPage);
+      prev.addEventListener('click', prevPage);
+
+      // Init
+      layout(); setActive(); startAutoplay();
+      window.addEventListener('resize', ()=> requestAnimationFrame(layout));
+    })();
+  </script>
+</section>
+
+
+
     
 <section id="sds-team-marquee" class="sds-team-marquee" aria-label="Meet our team">
   <style>
@@ -2694,7 +1571,7 @@ footer .footer-column h3 {
           <div class="sds-tm-media"><img src="static/Images/em/Amitabh Guha Thakurata.jpg" alt="Amitabh Guha Thakurata portrait"></div>
           <div class="sds-tm-body">
             <div class="sds-tm-name">Amitabh Guha Thakurata</div>
-            <div class="sds-tm-role">Institution Building Expert (IBCB TSA - TRESP)</div>
+            <div class="sds-tm-role">IBCB TSA - TRESP</div>
             <p class="sds-tm-bio">Development is about people, participation, and lasting change.</p>
           </div>
         </article>
@@ -2909,13 +1786,15 @@ footer .footer-column h3 {
                     </ul>
                 </nav>
 
-                <nav class="footer-column" aria-labelledby="footer-contact">
-                    <h3 id="footer-contact">Company</h3>
-                    <ul>
-                        <li><a href="templates/index.html" tabIndex="0">Home</a></li>
-                        <li><a href="templates/about us.html" tabIndex="0">About Us</a></li>
-                        <li tabIndex="0">Sectors</li>
-                        <li><a href="templates/Research.html" tabIndex="0">Publication</a></li>
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+            <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
                     </ul>
                 </nav>
 
@@ -2960,235 +1839,7 @@ footer .footer-column h3 {
 
     <!-- Minimal, dependency-free scroll effects -->
     <script>
-        // Self-executing function to avoid conflicts with existing code
-        (function () {
-            // Wait for DOM to be fully loaded
-            document.addEventListener('DOMContentLoaded', function () {
-                const track = document.querySelector('.sdg-carousel-track');
-                const cards = document.querySelectorAll('.sdg-card');
-                const dots = document.querySelectorAll('.sdg-nav-dot');
-                const prevBtn = document.querySelector('.sdg-prev');
-                const nextBtn = document.querySelector('.sdg-next');
-                const progressBars = document.querySelectorAll('.sdg-progress-bar');
-
-                let cardWidth = cards[0].offsetWidth + 20;
-                let currentIndex = 0;
-                let autoSlideInterval;
-                let progressInterval;
-
-                // Function to update carousel position
-                function updateCarousel() {
-                    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-                    // Update active dot
-                    const dotIndex = Math.floor(currentIndex / (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3));
-                    dots.forEach((dot, index) => {
-                        if (index === dotIndex) {
-                            dot.classList.add('sdg-active');
-                        } else {
-                            dot.classList.remove('sdg-active');
-                        }
-                    });
-
-                    // Update active cards
-                    cards.forEach((card, index) => {
-                        if (index === currentIndex ||
-                            index === currentIndex + 1 ||
-                            index === currentIndex + 2) {
-                            card.classList.add('sdg-active');
-                        } else {
-                            card.classList.remove('sdg-active');
-                        }
-                    });
-
-                    // Reset progress bars
-                    resetProgressBars();
-                    startProgressBar();
-                }
-
-                // Next slide function
-                function nextSlide() {
-                    if (currentIndex < cards.length - (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3)) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0;
-                    }
-                    updateCarousel();
-                }
-
-                // Previous slide function
-                function prevSlide() {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                    } else {
-                        currentIndex = cards.length - (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3);
-                    }
-                    updateCarousel();
-                }
-
-                // Progress bar functions
-                function startProgressBar() {
-                    const activeCard = cards[currentIndex];
-                    const progressBar = activeCard.querySelector('.sdg-progress-bar');
-
-                    let width = 0;
-                    clearInterval(progressInterval);
-
-                    progressInterval = setInterval(() => {
-                        if (width >= 100) {
-                            clearInterval(progressInterval);
-                            nextSlide();
-                        } else {
-                            width += 0.5;
-                            progressBar.style.transform = `scaleX(${width / 100})`;
-                        }
-                    }, 20);
-                }
-
-                function resetProgressBars() {
-                    progressBars.forEach(bar => {
-                        bar.style.transform = 'scaleX(0)';
-                    });
-                }
-
-                // Set up auto sliding
-                function startAutoSlide() {
-                    autoSlideInterval = setInterval(nextSlide, 2000);
-                    startProgressBar();
-                }
-
-                // Stop auto sliding
-                function stopAutoSlide() {
-                    clearInterval(autoSlideInterval);
-                    clearInterval(progressInterval);
-                }
-
-                // Event listeners for buttons
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        stopAutoSlide();
-                        nextSlide();
-                        startAutoSlide();
-                    });
-                }
-
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        stopAutoSlide();
-                        prevSlide();
-                        startAutoSlide();
-                    });
-                }
-
-                // Event listeners for dots
-                dots.forEach(dot => {
-                    dot.addEventListener('click', function () {
-                        stopAutoSlide();
-                        currentIndex = parseInt(this.getAttribute('data-index')) * (window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3);
-                        updateCarousel();
-                        startAutoSlide();
-                    });
-                });
-
-                // Handle window resize
-                window.addEventListener('resize', function () {
-                    cardWidth = cards[0].offsetWidth + 20;
-                    updateCarousel();
-                });
-
-                // Pause auto slide when hovering over carousel
-                const carouselContainer = document.querySelector('.sdg-carousel-outer');
-                if (carouselContainer) {
-                    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
-                    carouselContainer.addEventListener('mouseleave', startAutoSlide);
-                }
-
-                // Initialize auto sliding
-                startAutoSlide();
-            });
-        })();
-        // Year
-        document.getElementById('yr').textContent = new Date().getFullYear();
-
-        // Reveal on scroll
-        const revealEls = document.querySelectorAll('.reveal');
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('in');
-                    io.unobserve(e.target);
-                }
-            })
-        }, { threshold: .12 });
-        revealEls.forEach(el => io.observe(el));
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const cards = document.querySelectorAll('.animate-card');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => {
-                card.style.animationPlayState = 'paused';
-                observer.observe(card);
-            });
-        });
-
-        // Lightweight parallax based on scroll speed factor
-        const px = document.querySelectorAll('.parallax');
-        const pxf = () => {
-            const scY = window.scrollY || window.pageYOffset;
-            px.forEach(el => {
-                const speed = parseFloat(el.dataset.speed || 0.1);
-                const rect = el.getBoundingClientRect();
-                // Only apply when in viewport
-                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
-                    const offset = (scY - (el._top || (el._top = scY + rect.top))) * speed;
-                    el.style.transform = `translateY(${offset.toFixed(1)}px) scale(1.05)`;
-                }
-            });
-            requestAnimationFrame(pxf);
-        };
-        requestAnimationFrame(pxf);
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const reveals = document.querySelectorAll(".hero .eyebrow, .hero .title-xl, .hero .lead, .hero .right img");
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = "running";
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            reveals.forEach(el => {
-                el.style.animationPlayState = "paused"; // pause until in view
-                observer.observe(el);
-            });
-        });
-
-
-        // Smooth hover lift for buttons (tiny polish)
-        document.querySelectorAll('a.button').forEach(b => {
-            b.addEventListener('mouseenter', () => b.style.transform = 'translateY(-2px)');
-            b.addEventListener('mouseleave', () => b.style.transform = 'translateY(0)');
-        });
-        document.addEventListener("DOMContentLoaded", () => {
-            const navToggle = document.querySelector(".my-navbar .nav-toggle");
-            const navMenu = document.querySelector(".my-navbar .nav-menu");
-
-            if (navToggle && navMenu) {
-                navToggle.addEventListener("click", () => {
-                    navMenu.classList.toggle("active");
-                });
-            }
-        });
+    
 
     </script>
    <script src="{{ url_for('static', filename='script.js') }}"></script>

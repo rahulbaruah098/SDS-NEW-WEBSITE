@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agriculture | SDS</title>
-    
+
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  </head>
-  <style>
+
+    <style>
 /* ---------- LAYOUT ---------- */
 .footer-wrapper {
   background-color: #fff;
@@ -178,7 +179,6 @@ footer .footer-column h3 {
   .footer-bottom .links { justify-content: center; }
 }
 
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -197,6 +197,10 @@ body {
 .beige {
   background-color: #f8e4c9;
   text-align: left;
+  /* adds top spacing / height */
+  box-sizing: border-box;
+  margin-top: 50px;
+  padding: 180px 20%;
 }
 
 .green {
@@ -259,33 +263,14 @@ body {
   transform: translateY(0);
 }
 
-
-.beige {
-  background-color: #f8e4c9;
-  text-align: left;
-  /* Black border around the whole section */
-  box-sizing: border-box;
-  margin-top: 50px;
-  /* Pushes section down */
-}
-
-.beige {
-  background-color: #f8e4c9;
-  text-align: left;
- 
-  /* Black border around the whole section */
-  box-sizing: border-box;
-  margin-top: 50px;
-  /* Pushes section down */
-  padding: 180px 20%;
-  /* More height: top/bottom 150px, sides stay same */
-}
 .logo-f {
   height: 75px;
 }
+    </style>
+  </head>
 
-  </style>
   <body>
+
 <section id="sds-navigation">
   <style>
     :root{
@@ -423,7 +408,7 @@ body {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+        
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -549,152 +534,154 @@ body {
         root.style.setProperty('--header-h', h + 'px');
       }
       syncHeaderHeight();
-      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('resize', syncHeaderHeight, { passive: true });
       window.addEventListener('load', syncHeaderHeight);
     })();
   </script>
 </section>
 
 <br><br><br>
+
 <section id="sds-agri" aria-label="Empowering Smallholder Farmers">
   <style>
-    /* ====== TOKENS ====== */
-    #sds-agri{
-      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb;
-      --brand:#0ea5e9; --brand-2:#16a34a; --radius:18px;
-      --shadow-1:0 8px 24px rgba(2,6,23,.08),0 2px 10px rgba(2,6,23,.05);
-      --shadow-2:0 14px 44px rgba(2,6,23,.10),0 4px 18px rgba(2,6,23,.06);
-      font-family: ui-sans-serif, system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
-      color:var(--ink); background:var(--bg);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{overflow-x:hidden}
+/* ====== TOKENS ====== */
+#sds-agri{
+  --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb;
+  --brand:#0ea5e9; --brand-2:#16a34a; --radius:18px;
+  --shadow-1:0 8px 24px rgba(2,6,23,.08),0 2px 10px rgba(2,6,23,.05);
+  --shadow-2:0 14px 44px rgba(2,6,23,.10),0 4px 18px rgba(2,6,23,.06);
+  font-family: ui-sans-serif, system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{overflow-x:hidden}
 
-    /* ====== HERO GRID ====== */
-    #sds-agri .sv2-hero{
-      position:relative; display:grid; isolation:isolate;
-      grid-template-columns:minmax(320px, 640px) 1fr;
-      align-items:stretch;
-      gap:0;
-    }
-    @media (max-width:980px){
-      #sds-agri .sv2-hero{grid-template-columns:1fr}
-    }
+/* ====== HERO GRID ====== */
+#sds-agri .sv2-hero{
+  position:relative; display:grid; isolation:isolate;
+  grid-template-columns:minmax(320px, 640px) 1fr;
+  align-items:stretch; gap:0;
+}
+@media (max-width:980px){
+  #sds-agri .sv2-hero{grid-template-columns:1fr}
+}
 
-    /* Left panel */
-    #sds-agri .sv2-left{display:grid; align-content:center; padding:clamp(20px,4vw,36px)}
-    #sds-agri .sv2-panel{
-      border:1px solid var(--line); border-radius:var(--radius); padding:clamp(18px,2.6vw,28px);
-      box-shadow:var(--shadow-1); background:#fff;
-    }
-    #sds-agri .sv2-kicker{
-      display:inline-flex; gap:10px; align-items:center; font-weight:700;
-      padding:6px 12px; border-radius:999px;
-      background:linear-gradient(90deg, rgba(22,163,74,.10), rgba(14,165,233,.10));
-      border:1px solid rgba(2,6,23,.10);
-    }
-    #sds-agri .sv2-title{
-      font-size:clamp(28px,4.6vw,56px); font-weight:900; line-height:1.06; letter-spacing:-.015em;
-      margin:10px 0 6px; position:relative; display:inline-block;
-    }
-    #sds-agri .sv2-title::after{
-      content:""; position:absolute; left:0; bottom:-6px; height:4px; width:0%;
-      background:linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius:2px;
-      animation:sv2-underline 1.1s .2s cubic-bezier(.2,.8,.2,1) forwards;
-    }
-    @keyframes sv2-underline{to{width:100%}}
-    #sds-agri .sv2-lede{color:var(--muted); font-size:clamp(15px,1.2vw,17px); max-width:70ch; margin-top:10px}
+/* Left panel */
+#sds-agri .sv2-left{display:grid; align-content:center; padding:clamp(20px,4vw,36px)}
+#sds-agri .sv2-panel{
+  border:1px solid var(--line); border-radius:var(--radius); padding:clamp(18px,2.6vw,28px);
+  box-shadow:var(--shadow-1); background:#fff;
+}
+#sds-agri .sv2-kicker{
+  display:inline-flex; gap:10px; align-items:center; font-weight:700;
+  padding:6px 12px; border-radius:999px;
+  background:linear-gradient(90deg, rgba(22,163,74,.10), rgba(14,165,233,.10));
+  border:1px solid rgba(2,6,23,.10);
+}
+/* Gradient heading */
+#sds-agri .sv2-title{
+  font-size:clamp(28px,4.6vw,56px); font-weight:900; line-height:1.06; letter-spacing:-.015em;
+  margin:10px 0 6px; position:relative; display:inline-block;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--brand));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  background-size:200% 100%; animation:sv2-title-shift 8s linear infinite;
+}
+@keyframes sv2-title-shift{ to{ background-position:200% 0; } }
+#sds-agri .sv2-title::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:4px; width:0%;
+  background:linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius:2px;
+  animation:sv2-underline 1.1s .2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes sv2-underline{to{width:100%}}
+#sds-agri .sv2-lede{color:var(--muted); font-size:clamp(15px,1.2vw,17px); max-width:70ch; margin-top:10px}
 
-    /* CTAs */
-    #sds-agri .sv2-cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    #sds-agri .sv2-btn{
-      appearance:none; border:0; cursor:pointer; font-weight:800;
-      padding:12px 16px; border-radius:12px; background:var(--brand); color:#fff;
-      box-shadow:var(--shadow-1); transition:transform .2s ease, filter .2s ease;
-    }
-    #sds-agri .sv2-btn:hover{transform:translateY(-2px); filter:brightness(1.05)}
-    #sds-agri .sv2-btn.secondary{background:#0b1220}
+/* CTAs */
+#sds-agri .sv2-cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+#sds-agri .sv2-btn{
+  appearance:none; border:0; cursor:pointer; font-weight:800;
+  padding:12px 16px; border-radius:12px; background:var(--brand); color:#fff;
+  box-shadow:var(--shadow-1); transition:transform .2s ease, filter .2s ease;
+}
+#sds-agri .sv2-btn:hover{transform:translateY(-2px); filter:brightness(1.05)}
+#sds-agri .sv2-btn.secondary{background:#0b1220}
 
-    /* KPIs */
-    #sds-agri .sv2-kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px}
-    #sds-agri .sv2-kpi{
-      background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px; text-align:center;
-      transition: box-shadow .2s ease, transform .2s ease; box-shadow:var(--shadow-1);
-    }
-    #sds-agri .sv2-kpi:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
-    #sds-agri .sv2-kpi .num{font-weight:900; font-size:clamp(24px,3.2vw,34px)}
-    #sds-agri .sv2-kpi .lab{color:var(--muted); font-weight:600}
-    @media (max-width:640px){ #sds-agri .sv2-kpis{grid-template-columns:1fr 1fr} }
+/* ====== KPIs (REDUCED SIZE) ====== */
+#sds-agri .sv2-kpis{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:10px; margin-top:12px;
+}
+#sds-agri .sv2-kpi{
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  padding:10px; text-align:center; box-shadow:var(--shadow-1);
+}
+#sds-agri .sv2-kpi .num{
+  font-weight:900; 
+  font-size:clamp(18px,2.4vw,26px);
+  line-height:1.1;
+}
+#sds-agri .sv2-kpi .lab{
+  color:var(--muted); font-weight:600;
+  font-size:clamp(12px,1vw,14px);
+}
+@media (max-width:640px){
+  #sds-agri .sv2-kpis{grid-template-columns:1fr 1fr}
+  #sds-agri .sv2-kpi .num{font-size:22px}
+}
 
-    /* ====== RIGHT SLIDER ====== */
-    #sds-agri .sv2-right{
-      position:relative; overflow:hidden;
-      background:#f6f7fb;
-    }
-    #sds-agri .sv2-track{
-      position:absolute; inset:0; display:flex; height:100%;
-      transform:translateX(0); transition:transform .8s cubic-bezier(.2,.7,.2,1); will-change:transform;
-      overflow:hidden;
-    }
-    #sds-agri .sv2-slide{
-      flex:0 0 100%;
-      position:relative; overflow:hidden;
-    }
-    #sds-agri .sv2-img{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
-      transform:scale(1.04); filter:saturate(1.02) brightness(.94); transition:transform 1.1s ease-out;
-      display:block;
-    }
-    #sds-agri .sv2-scrim{
-      position:absolute; inset:0; pointer-events:none;
-      background:linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.65) 18%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 55%);
-    }
-    #sds-agri .sv2-dots{
-      position:absolute; left:50%; bottom:18px; transform:translateX(-50%); display:flex; gap:8px; z-index:2;
-    }
-    #sds-agri .sv2-dot{
-      width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.7);
-      border:1px solid rgba(0,0,0,.25); cursor:pointer; transition:transform .2s, background .2s;
-    }
-    #sds-agri .sv2-dot.active{background:#fff; transform:scale(1.2)}
+/* ====== RIGHT: SINGLE IMAGE (frame; no background design) ====== */
+#sds-agri .sv2-right{
+  position:relative; background:transparent;
+  padding:clamp(20px,4vw,36px); display:grid; align-items:center;
+}
+#sds-agri .sv2-hero-image{
+  position:relative; height:100%; min-height:100%;
+  border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow-1); background:#fff; overflow:hidden;
+}
+#sds-agri .sv2-hero-image img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; display:block; filter:saturate(1.02) brightness(.96);
+}
+#sds-agri .sv2-hero-image::after{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(2,6,23,.05);
+}
 
-    /* ====== SOLUTIONS ====== */
-    #sds-agri .sv2-solutions{max-width:1200px; margin:clamp(28px,5vw,60px) auto; padding:0 clamp(18px,3vw,32px)}
-    #sds-agri .sv2-solutions h3{font-size:clamp(22px,2.4vw,32px); margin:0 0 12px; letter-spacing:-.01em}
-    #sds-agri .sv2-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
-    #sds-agri .sv2-card{
-      grid-column:span 4; background:#fff; border:1px solid var(--line); border-radius:16px;
-      box-shadow:var(--shadow-1); padding:16px; transition:transform .25s, box-shadow .25s, border-color .25s; overflow:hidden;
-    }
-    #sds-agri .sv2-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35)}
-    #sds-agri .sv2-thumb{width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin-bottom:12px}
-    #sds-agri .sv2-thumb img{width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition:transform .5s ease}
-    #sds-agri .sv2-card:hover .sv2-thumb img{transform:scale(1.06)}
-    #sds-agri .sv2-card h4{font-size:clamp(17px,1.5vw,20px); margin:2px 0 6px}
-    #sds-agri .sv2-card p{color:var(--muted); margin:0}
-    @media (max-width:1024px){ #sds-agri .sv2-card{grid-column:span 6} }
-    @media (max-width:640px){  #sds-agri .sv2-card{grid-column:span 12} }
+/* ====== SOLUTIONS ====== */
+#sds-agri .sv2-solutions{max-width:1200px; margin:clamp(28px,5vw,60px) auto; padding:0 clamp(18px,3vw,32px)}
+#sds-agri .sv2-solutions h3{font-size:clamp(22px,2.4vw,32px); margin:0 0 12px; letter-spacing:-.01em}
+#sds-agri .sv2-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+#sds-agri .sv2-card{
+  grid-column:span 4; background:#fff; border:1px solid var(--line); border-radius:16px;
+  box-shadow:var(--shadow-1); padding:16px; transition:transform .25s, box-shadow .25s, border-color .25s; overflow:hidden;
+}
+#sds-agri .sv2-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35)}
+#sds-agri .sv2-thumb{width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin-bottom:12px}
+#sds-agri .sv2-thumb img{width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition:transform .5s ease}
+#sds-agri .sv2-card:hover .sv2-thumb img{transform:scale(1.06)}
+#sds-agri .sv2-card h4{font-size:clamp(17px,1.5vw,20px); margin:2px 0 6px}
+#sds-agri .sv2-card p{color:var(--muted); margin:0}
+@media (max-width:1024px){ #sds-agri .sv2-card{grid-column:span 6} }
+@media (max-width:640px){  #sds-agri .sv2-card{grid-column:span 12} }
 
-    /* ====== MOBILE-ONLY ENHANCEMENTS (no desktop changes) ====== */
-    @media (max-width: 720px){
-      #sds-agri .sv2-left{padding:16px}
-      #sds-agri .sv2-panel{padding:16px}
-      #sds-agri .sv2-kicker{font-size:12px; padding:6px 10px}
-      #sds-agri .sv2-title{font-size:32px}
-      #sds-agri .sv2-lede{font-size:14px}
-      #sds-agri .sv2-cta .sv2-btn{width:100%; justify-content:center}
-      #sds-agri .sv2-kpis{grid-template-columns:1fr; gap:10px}
-      #sds-agri .sv2-kpi .num{font-size:26px}
-      #sds-agri .sv2-right{min-height:44vh}
-      #sds-agri .sv2-dot{width:12px; height:12px} /* easier tap targets */
-      #sds-agri .sv2-solutions{padding:0 16px}
-      #sds-agri .sv2-grid{gap:14px}
-    }
-    @media (max-width: 420px){
-      #sds-agri .sv2-title{font-size:28px}
-      #sds-agri .sv2-right{min-height:40vh}
-    }
+/* ====== MOBILE ====== */
+@media (max-width: 720px){
+  #sds-agri .sv2-left{padding:16px}
+  #sds-agri .sv2-panel{padding:16px}
+  #sds-agri .sv2-kicker{font-size:12px; padding:6px 10px}
+  #sds-agri .sv2-title{font-size:32px}
+  #sds-agri .sv2-lede{font-size:14px}
+  #sds-agri .sv2-cta .sv2-btn{width:100%; justify-content:center}
+  #sds-agri .sv2-kpis{grid-template-columns:1fr; gap:8px}
+  #sds-agri .sv2-kpi .num{font-size:20px}
+  #sds-agri .sv2-right{min-height:33vh; padding:12px}
+  #sds-agri .sv2-solutions{padding:0 16px}
+  #sds-agri .sv2-grid{gap:14px}
+}
+@media (max-width: 420px){
+  #sds-agri .sv2-title{font-size:28px}
+  #sds-agri .sv2-right{min-height:40vh}
+}
   </style>
 
   <!-- HERO -->
@@ -705,16 +692,14 @@ body {
         <span class="sv2-kicker">Empowering Smallholder Farmers</span>
         <h1 class="sv2-title">Empowering Smallholder Farmers in North-East India</h1>
         <p class="sv2-lede">
-          SDS is transforming traditional agriculture into a profitable agribusiness for smallholder farmers in North-East India.
-          Through training, capacity building, and market linkages, we enable farmers to scale operations, adopt sustainable
-          practices, and access wider markets—driving self-reliance and sectoral growth.
+          SDS is transforming traditional agriculture into a profitable agribusiness for smallholder farmers in North-East India. Through training, capacity building, and market linkages, we enable farmers to scale operations, adopt sustainable practices, and access wider markets—driving self-reliance and sectoral growth.
         </p>
-
         <div class="sv2-cta">
           <button class="sv2-btn" aria-label="Explore Programs">Explore Programs</button>
           <button class="sv2-btn secondary" aria-label="See Our Impact">See Our Impact</button>
         </div>
 
+        <!-- KPIs (reduced) -->
         <div class="sv2-kpis" aria-label="Our Impact">
           <div class="sv2-kpi">
             <div class="num" data-to="6000" data-suffix="+">0</div>
@@ -732,21 +717,16 @@ body {
       </div>
     </div>
 
-    <!-- Right (slider) -->
+    <!-- Right (single framed image; no background design behind it) -->
     <div class="sv2-right" data-equal-right>
-      <div class="sv2-track" data-track>
-        <div class="sv2-slide"><img class="sv2-img" src="{{ url_for('static', filename='Images/agri1.jpg') }}" alt="Tea gardens of the North-East" fetchpriority="high"></div>
-        <div class="sv2-slide"><img class="sv2-img" src="{{ url_for('static', filename='Images/agri2.jpg') }}" alt="Harvest with smallholders" loading="eager"></div>
-        <div class="sv2-slide"><img class="sv2-img" src="{{ url_for('static', filename='Images/agri3.jpg') }}" alt="Training and capacity building" loading="lazy"></div>
-        <div class="sv2-slide"><img class="sv2-img" src="{{ url_for('static', filename='Images/agri4.jpg') }}" alt="Green hills and fields" loading="lazy"></div>
-      </div>
-      <div class="sv2-scrim" aria-hidden="true"></div>
-      <div class="sv2-dots" aria-label="Slide navigation">
-        <button class="sv2-dot active" data-go="0" aria-label="Slide 1"></button>
-        <button class="sv2-dot" data-go="1" aria-label="Slide 2"></button>
-        <button class="sv2-dot" data-go="2" aria-label="Slide 3"></button>
-        <button class="sv2-dot" data-go="3" aria-label="Slide 4"></button>
-      </div>
+      <figure class="sv2-hero-image">
+        <a href="https://images.unsplash.com/photo-1516425640750-fab8f7db555d?q=80&w=2000&auto=format&fit=crop"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open related agriculture photo in a new tab">
+          <img class="sv2-img" src="{{ url_for('static', filename='Images/Agriculture 2.0.jpg') }}"
+               alt="Smallholder farming landscape in North-East India" loading="lazy">
+        </a>
+      </figure>
     </div>
   </div>
 
@@ -756,7 +736,9 @@ body {
     <div class="sv2-grid">
       <article class="sv2-card">
         <div class="sv2-thumb">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1600&auto=format&fit=crop" alt="Farmer training" />
+          <a href="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1600&auto=format&fit=crop" target="_blank" rel="noopener noreferrer">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" alt="Farmer training" />
+          </a>
         </div>
         <h4>Empowered Smallholders</h4>
         <p>Providing training, market access, and collective growth for small farmers.</p>
@@ -764,7 +746,9 @@ body {
 
       <article class="sv2-card">
         <div class="sv2-thumb">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?q=80&w=1600&auto=format&fit=crop" alt="Diverse crops" />
+          <a href="https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?q=80&w=1600&auto=format&fit=crop" target="_blank" rel="noopener noreferrer">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?q=80&w=800&auto=format&fit=crop" alt="Diverse crops" />
+          </a>
         </div>
         <h4>Diverse Agricultural Portfolio</h4>
         <p>Ensuring food security through diversified, nutrition-sensitive agricultural practices.</p>
@@ -772,7 +756,9 @@ body {
 
       <article class="sv2-card">
         <div class="sv2-thumb">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1600&auto=format&fit=crop" alt="Value addition and markets" />
+          <a href="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1600&auto=format&fit=crop" target="_blank" rel="noopener noreferrer">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=800&auto=format&fit=crop" alt="Value addition and markets" />
+          </a>
         </div>
         <h4>Value Addition &amp; Market Linkages</h4>
         <p>Enhancing farmer profits through product value addition and market access.</p>
@@ -781,7 +767,7 @@ body {
   </div>
 
   <script>
-    /* ====== KPI Count-up ====== */
+    /* KPI Count-up */
     (function(){
       const els = document.querySelectorAll('#sds-agri .num');
       if(!els.length) return;
@@ -793,21 +779,23 @@ body {
             const step = now=>{
               const p = Math.min(1,(now-start)/dur);
               const v = Math.floor(to*(0.1+0.9*Math.pow(p,1.6)));
-              el.textContent = v.toLocaleString('en-IN') + ' ' + suf;
+              el.textContent = v.toLocaleString('en-IN') + (suf ? ' ' + suf : '');
               if(p<1) requestAnimationFrame(step);
             };
-            requestAnimationFrame(step); io.unobserve(el);
+            requestAnimationFrame(step);
+            io.unobserve(el);
           }
         });
       },{threshold:.4});
       els.forEach(el=> io.observe(el));
     })();
 
-    /* ====== Equal-height sync (Right = Left panel) ====== */
+    /* Equal-height sync (Right = Left panel) */
     (function(){
       const root = document.querySelector('#sds-agri');
-      const leftPanel = root.querySelector('.sv2-panel');
-      const rightCol  = root.querySelector('[data-equal-right]');
+      const leftPanel = root?.querySelector('.sv2-panel');
+      const rightCol = root?.querySelector('[data-equal-right]');
+      if(!leftPanel || !rightCol) return;
 
       function sync(){
         if (window.matchMedia('(max-width: 980px)').matches){
@@ -817,62 +805,18 @@ body {
         const h = leftPanel.offsetHeight;
         rightCol.style.height = h + 'px';
       }
-
       if ('ResizeObserver' in window){
         const ro = new ResizeObserver(sync);
         ro.observe(leftPanel);
       }
       window.addEventListener('load', sync);
-      window.addEventListener('resize', sync);
+      window.addEventListener('resize', sync, { passive: true });
       sync();
-    })();
-
-    /* ====== Robust, collision-proof slider ====== */
-    (function(){
-      const root  = document.querySelector('#sds-agri');
-      const track = root.querySelector('[data-track]');
-      const slides= [...track.querySelectorAll('.sv2-slide')];
-      const dots  = [...root.querySelectorAll('.sv2-dot')];
-      let idx = 0, timer;
-
-      slides.forEach(s=>{
-        s.style.flex = '0 0 100%';
-        s.style.overflow = 'hidden';
-        const img = s.querySelector('.sv2-img');
-        img.addEventListener('error', ()=>{
-          img.src = 'https://images.unsplash.com/photo-1516425640750-fab8f7db555d?q=80&w=2000&auto=format&fit=crop';
-        }, {once:true});
-      });
-
-      function go(n){
-        idx = (n + slides.length) % slides.length;
-        track.style.transform = `translateX(-${idx*100}%)`;
-        dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
-        slides.forEach((s,i)=>{
-          const img = s.querySelector('.sv2-img');
-          img.style.transform = i===idx ? 'scale(1.06)' : 'scale(1.04)';
-        });
-      }
-      function next(){ go(idx+1); }
-      function start(){ timer = setInterval(next, 5200); }
-      function stop(){ clearInterval(timer); }
-
-      dots.forEach(d=> d.addEventListener('click', ()=>{ go(+d.dataset.go); stop(); start(); }));
-      const right = root.querySelector('.sv2-right');
-      right.addEventListener('mouseenter', stop);
-      right.addEventListener('mouseleave', start);
-
-      start(); go(0);
     })();
   </script>
 </section>
 
-
-
-
-
-
-  <!-- Footers -->
+  <!-- Footer -->
   <footer>
     <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
       <div class="logo-container-f">
@@ -894,41 +838,42 @@ body {
         <nav class="footer-column" aria-labelledby="footer-legal">
           <h3 id="footer-legal">SECTORS</h3>
           <ul>
-        <li><a href="/agricul">Agriculture</a></li>
-        <li><a href="/fish">Fishery</a></li>
-        <li><a href="/poul">Poultry</a></li>
-        <li><a href="/pig">Piggery</a></li>
+            <li><a href="/agricul">Agriculture</a></li>
+            <li><a href="/fish">Fishery</a></li>
+            <li><a href="/poul">Poultry</a></li>
+            <li><a href="/pig">Piggery</a></li>
           </ul>
         </nav>
 
         <nav class="footer-column" aria-labelledby="footer-careers">
           <h3 id="footer-careers">CAREERS</h3>
           <ul>
-            <li><a href="/career" tabIndex="0">Join Us</a></li>
+            <li><a href="/career" tabindex="0">Join Us</a></li>
           </ul>
         </nav>
 
         <nav class="footer-column" aria-labelledby="footer-contact">
           <h3 id="footer-contact">Company</h3>
           <ul>
-            <li><a href="/" tabIndex="0">Home</a></li>
-            <li><a href="/about_us" tabIndex="0">About Us</a></li>
-            <li tabIndex="0">Sectors</li>
-            <li><a href="/research" tabIndex="0">Publication</a></li>
-            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+            <li><a href="/" tabindex="0">Home</a></li>
+            <li><a href="/about_us" tabindex="0">About Us</a></li>
+            <li tabindex="0">Sectors</li>
+            <li><a href="/research" tabindex="0">Publication</a></li>
+            <li><a href="/getintouch" tabindex="0">Get in Touch</a></li>
+            <li><a href="/rfp" tabindex="0">Submit RFP</a></li>
           </ul>
         </nav>
 
         <nav class="footer-column" aria-labelledby="footer-products">
           <h3 id="footer-products">Services</h3>
           <ul>
-            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
-            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
-            <li tabIndex="0">Fishery Development</li>
-            <li tabIndex="0">Rural Finance</li>
-            <li tabIndex="0">Value Chain Development</li>
-            <li tabIndex="0">Marketing</li>
-            <li tabIndex="0">All Services</li>
+            <li><a href="{{ url_for('fpo') }}" tabindex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabindex="0">Agricultural Development</a></li>
+            <li tabindex="0">Fishery Development</li>
+            <li tabindex="0">Rural Finance</li>
+            <li tabindex="0">Value Chain Development</li>
+            <li tabindex="0">Marketing</li>
+            <li tabindex="0">All Services</li>
           </ul>
         </nav>
       </div>
@@ -950,5 +895,5 @@ body {
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-</body>
+  </body>
 </html>

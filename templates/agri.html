@@ -288,208 +288,115 @@ body {
 <section id="sds-navigation">
   <style>
     :root{
-      --header-h: 90px;
-
+      --header-h: 90px; /* default; will be synced by JS */
       /* Desktop colors */
-      --left-bg:   #3A6A61;
-      --right-bg:  #F1D9B7;
-
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
       /* Mobile colors */
-      --left-bg-mobile: #0b1119;
-      --left-link-mobile: #f5e6d3;
-      --left-line-mobile: rgba(255,255,255,.12);
-
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
       /* Shared */
-      --left-link: #f3d9bd;
-      --right-link:#222;
-      --right-link-hover:#000;
-      --line-left: rgba(255,255,255,.25);
-      --line-right: rgba(0,0,0,.22);
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
     }
-
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;}
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
 
-    /* ===== NAV SHELL fixed to the top ===== */
-    #sds-navigation{
-      position:fixed; top:0; left:0; width:100%;
-      z-index:10000;
-    }
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
 
-    /* ===== HEADER (always above overlay) ===== */
+    /* HEADER (above overlay) */
     .header{
-      position:relative;
-      z-index:10001; /* keep header above overlay */
-      height:var(--header-h);
-      background:#fff;
-      padding:0 30px;
-      display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-      border-bottom:1px solid rgba(0,0,0,.1);
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
     }
-    .logo{height:70px; display:block;}
+    .logo{ height:70px; display:block; }
 
-    /* Hamburger / Close */
-    .hamburger{
-      grid-column:3; justify-self:end;
-      position:relative; width:32px; height:24px; cursor:pointer;
-      z-index:10002; /* clickable above everything */
-      -webkit-tap-highlight-color: transparent;
-    }
-    .hamburger span{
-      position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px;
-      transition:transform .35s ease, top .35s ease, opacity .25s ease, background .3s ease;
-    }
-    .hamburger span:nth-child(1){ top:0; }
-    .hamburger span:nth-child(2){ top:10.5px; }
-    .hamburger span:nth-child(3){ top:21px; }
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
     .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
     .hamburger.active span:nth-child(2){ opacity:0; }
     .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
 
-    /* ===== OVERLAY ===== */
+    /* OVERLAY (FIXED + flush to header) */
     #overlay{
-      position:absolute;
-      top:var(--header-h); left:0; width:100%;
+      position:fixed; top:var(--header-h); left:0; width:100%;
       max-height:calc(100vh - var(--header-h));
-      z-index:1;
-      display:flex;
-      overflow-y:auto; overflow-x:hidden;
-
-      /* closed */
-      background:none;
-      opacity:0;
-      transform:translateY(-8px);
-      pointer-events:none;
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
       transition:opacity .28s ease, transform .28s ease;
-      -webkit-overflow-scrolling:touch;
-      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
     }
     #overlay.active{
       background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
-      opacity:1; transform:translateY(0);
-      pointer-events:auto;
+      opacity:1; transform:translateY(0); pointer-events:auto;
     }
 
-    /* visible close button inside overlay */
-    .close-btn{
-      position:absolute; top:10px; right:14px;
-      font-size:28px; line-height:1; color:#111;
-      background:#fff; width:36px; height:36px; border-radius:999px;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; user-select:none;
-      box-shadow:0 2px 10px rgba(0,0,0,.1);
-      z-index:3;
-    }
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
 
-    /* ===== LEFT COLUMN ===== */
-    .overlay-left{
-      position:relative; flex:1;
-      background:var(--left-bg);
-      padding:40px 24px 80px 56px;
-      display:flex; flex-direction:column;
-      min-height:100%;
-    }
-    .overlay-left::after{content:""; display:block; height:300px;}
-    .main-menu{list-style:none; margin:0; padding:0; flex:1;}
-    .main-menu li{position:relative; margin:28px 0; width:100%;}
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
     .main-menu a,.main-menu .link-btn{
-      text-decoration:none; color:var(--left-link);
-      font-weight:800; letter-spacing:.5px;
-      font-size:clamp(24px,1.1vw,40px);
-      background:none; border:none; padding:0; margin:0; cursor:pointer;
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
       padding-right:28px; position:relative;
     }
-    .main-menu li::after{
-      content:""; position:absolute; left:0; bottom:-12px; height:2px;
-      width:100%; max-width:560px; background:var(--line-left);
-    }
-    .main-menu li:last-child{margin-bottom:52px;}
-    .red-text a{color:#ff5a5a!important;}
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
     .has-panel > .link-btn::after{
-      content:"";
-      position:absolute; right:0; top:50%;
-      width:10px; height:10px;
-      border-right:3px solid currentColor; border-bottom:3px solid currentColor;
-      transform:translateY(-60%) rotate(45deg);
-      transition:transform .2s ease;
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
     }
-    .has-panel.expanded > .link-btn::after{transform:translateY(-30%) rotate(225deg);}
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
 
-    /* ===== RIGHT PANELS (desktop view) ===== */
-    .overlay-right{flex:1; background:var(--right-bg); padding:40px 36px 60px 36px; display:none;}
-    .overlay-right.open{display:block;}
-    .overlay-right h3{margin:0 0 14px; font-size:22px; color:var(--right-link);}
-    .top-rule{height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px;}
-    .overlay-right ul{list-style:none; margin:0; padding:0;}
-    .overlay-right li{margin:0 0 14px;}
-    .overlay-right a{
-      text-decoration:none; color:var(--right-link);
-      font-size:16px; font-weight:700; line-height:1.35;
-      padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right);
-      transition:color .2s ease, border-color .2s ease, opacity .2s ease;
-    }
-    .overlay-right a:hover{color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95;}
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
 
-    /* Hide the mobile panel by default (desktop/tablet) */
-    .mobile-panel{display:none;}
+    .mobile-panel{ display:none; } /* hidden on desktop */
 
-    /* ===== Mobile behavior: slide-in panel ===== */
+    /* Mobile behavior */
     @media (max-width:900px){
-      #overlay{flex-direction:column;}
-      .overlay-left{background:var(--left-bg-mobile); padding:28px 16px 40px 16px;}
-      .overlay-left::after{height:260px;}
-      .main-menu a,.main-menu .link-btn{
-        font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px;
-      }
-      .main-menu li{width:100%; margin:18px 0;}
-      .main-menu li::after{width:100%; background:var(--left-line-mobile);}
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
 
-      /* hide desktop right column entirely on mobile */
-      .overlay-right{display:none!important;}
+      .overlay-right{ display:none!important; }
 
-      /* mobile “detail” panel that replaces the list */
       .mobile-panel{
-        display:block;                 /* show only on mobile */
-        position:absolute; inset:0;    /* fill overlay-left */
-        background:var(--left-bg-mobile);
-        padding:28px 16px 40px 16px;
-        transform:translateX(100%);
-        transition:transform .28s ease;
-        overflow:auto;
-        z-index:2;                     /* above list, below close btn */
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
       }
-      .mobile-panel.open{transform:translateX(0);}
-      .mp-head{
-        display:flex; align-items:center; justify-content:space-between;
-        padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile);
-        color:#fff; font-weight:800; letter-spacing:.5px;
-      }
-      .mp-title{color:#f5e6d3; font-size:14px; opacity:.9;}
-      .mp-back{
-        display:inline-flex; align-items:center; gap:6px;
-        font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer;
-      }
-      .mp-list{list-style:none; margin:14px 0 0; padding:0;}
-      .mp-list li{margin:0; border-bottom:1px solid var(--left-line-mobile);}
-      .mp-list a{
-        display:block; padding:14px 0;
-        color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px;
-      }
-
-      .left-search-label{color:#d9c8ac; font-size:15px;}
-      .left-search-input{color:#e9dec9; max-width:60vw; font-size:15px; border-bottom-color:var(--left-line-mobile);}
-      .left-search-results{color:#cbbfa8;}
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
     }
 
-    /* Tap press-in effect */
-    .overlay-left .main-menu > li > a{display:inline-block; transition:transform .12s ease; will-change:transform;}
-    .overlay-left .main-menu > li > a:active{transform:translateX(6px);}
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
     .overlay-left .main-menu > li > a.pressed,
-    .overlay-left .main-menu > li > a:focus-visible{transform:translateX(6px);}
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
   </style>
 
-  <!-- ===== HEADER ===== -->
+  <!-- Header -->
   <header class="header" aria-label="Primary">
     <div></div>
     <div class="logo-container">
@@ -502,39 +409,31 @@ body {
     </div>
   </header>
 
-  <!-- ===== OVERLAY ===== -->
+  <!-- Overlay -->
   <nav class="overlay" id="overlay" aria-hidden="true">
     <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
 
-    <!-- LEFT MENU -->
     <div class="overlay-left" id="overlay-left">
       <ul class="main-menu" id="main-menu">
-        <li class="has-panel" data-panel="services-panel" data-title="SERVICES">
-          <button class="link-btn" type="button">SERVICES</button>
-        </li>
-        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS">
-          <button class="link-btn" type="button">SECTORS</button>
-        </li>
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
         <li><a href="/about">WHO WE ARE</a></li>
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-        <li class="red-text"><a href="/login">EMPLOYEE'S HUB</a></li>
+       
         <li>
           <div class="left-search-row">
-            <div class="left-search-dot" aria-hidden="true"></div>
-            <div class="left-search-label">Search</div>
-            <input id="left-search-input" class="left-search-input" type="text" placeholder="">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
           </div>
-          <ul id="left-search-results" class="left-search-results"></ul>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
         </li>
       </ul>
-
-      <!-- Mobile slide-in panel target -->
       <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
     </div>
 
-    <!-- RIGHT PANELS (desktop) -->
+    <!-- Right panels (desktop) -->
     <div class="overlay-right" id="services-panel">
       <h3>Our Services</h3>
       <div class="top-rule"></div>
@@ -563,6 +462,7 @@ body {
     </div>
   </nav>
 
+  <!-- Nav JS -->
   <script>
     (() => {
       const overlay   = document.getElementById('overlay');
@@ -574,8 +474,6 @@ body {
       const sectorsPanel  = document.getElementById('sectors-panel');
       const panels        = [servicesPanel, sectorsPanel];
       const mqMobile = window.matchMedia('(max-width: 900px)');
-
-      /* ---------- explicit open/close state ---------- */
       let isMenuOpen = false;
 
       function openOverlay(){
@@ -603,52 +501,23 @@ body {
       }
       function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
 
-      // Hamburger toggles (also acts as close when it's 'X')
       hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
-      hamburger.addEventListener('keydown', (e)=>{
-        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }
-      });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
 
-      // Overlay built-in close button
       overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
 
-      // Click on empty overlay background closes
-      overlay.addEventListener('click', (e)=>{
-        if(e.target === overlay) closeOverlay();
-      });
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
 
-      // Clicking header area (not the burger) closes if open
-      document.querySelector('.header')?.addEventListener('click', (e)=>{
-        if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay();
-      });
-
-      // Esc closes (or backs out of mobile subpanel first)
-      document.addEventListener('keydown',e=>{
-        if(e.key==='Escape' && isMenuOpen){
-          if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay();
-        }
-      });
-
-      // Desktop: open right column; Mobile: slide-in list
       mainMenu.addEventListener('click',e=>{
-        const btn=e.target.closest('.link-btn');
-        if(!btn)return;
-        e.preventDefault();
-        const li=btn.closest('.has-panel');
-        const panelId=li?.dataset.panel;
-        const title=li?.dataset.title || '';
-        const panel=panelId?document.getElementById(panelId):null;
-
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
         if(mqMobile.matches){
           if(!panel) return;
           const list = panel.querySelector('ul')?.cloneNode(true);
-          const head = `
-            <div class="mp-head">
-              <div class="mp-title">${title}</div>
-              <button class="mp-back" type="button" aria-label="Back">&larr; Back</button>
-            </div>`;
-          mobilePanel.innerHTML = head;
-          if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
           openMobilePanel();
         }else{
           panels.forEach(p=>p.classList.remove('open'));
@@ -657,391 +526,279 @@ body {
         }
       });
 
-      // Close overlay when a normal link is clicked (both desktop & mobile)
-      overlay.addEventListener('click', e=>{
-        const a = e.target.closest('a');
-        if(a && !a.closest('.has-panel')) closeOverlay();
-      });
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
 
-      /* ---------- mobile subpanel helpers ---------- */
-      function openMobilePanel(){
-        mainMenu.style.visibility='hidden';
-        mobilePanel.setAttribute('aria-hidden','false');
-        mobilePanel.classList.add('open');
-      }
-      function closeMobilePanel(){
-        mobilePanel.classList.remove('open');
-        mobilePanel.setAttribute('aria-hidden','true');
-        mobilePanel.innerHTML = '';       // clear content so nothing lingers
-        mainMenu.style.visibility='';
-      }
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
       function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
 
-      // Back button inside the mobile panel
-      mobilePanel.addEventListener('click', (e)=>{
-        const back = e.target.closest('.mp-back');
-        if(back){ e.preventDefault(); closeMobilePanel(); }
-      });
-
-      // If switching width while open, reset appropriately
-      mqMobile.addEventListener?.('change', ()=>{
-        closeMobilePanel();
-        panels.forEach(p=>p.classList.remove('open'));
-      });
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
     })();
   </script>
 </section>
 
-<br><br>
+<br><br><br>
 
 
   <!-- ==============================
   AGRIPRENEURSHIP (SDS) — Mobile Responsive
 ================================= -->
-<section id="sds-agripreneurship" aria-label="Agripreneurship at SDS">
-  <style>
-    /* ---------- NAMESPACE: #sds-agripreneurship ---------- */
-    #sds-agripreneurship {
-      --bg: #ffffff;
-      --ink: #111827;
-      --muted: #6b7280;
-      --panel: #f8fafc;
-      --line: #e5e7eb;
-      --accent: #ff4d6d;
-      --accent-2: #ff8c00;
-      --accent-3: #3b82f6;
-      --accent-4: #a855f7;
-      --ring: rgba(59,130,246,.2);
-      --radius-xl: 22px;
-      --shadow: 0 12px 30px rgba(17,24,39,.08), 0 4px 10px rgba(17,24,39,.06);
-      background: var(--bg);
-      color: var(--ink);
-      position: relative;
-      isolation: isolate;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    }
-
-    /* ---------- CONTAINER ---------- */
-    #sds-agripreneurship .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 56px 20px 80px;
-    }
-    @media (max-width: 640px){
-      #sds-agripreneurship .container { padding: 40px 16px 56px; }
-    }
-
-    /* ---------- HERO ---------- */
-    #sds-agripreneurship .hero {
-      display: grid; gap: 28px; align-items: center;
-      grid-template-columns: 1fr;
-      padding: 16px 0 0;
-    }
-    #sds-agripreneurship .kicker {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 6px 12px; border-radius: 999px;
-      background: linear-gradient(90deg, rgba(255,77,109,.12), rgba(59,130,246,.12));
-      color: #1f2937; font-weight: 700; letter-spacing: .35px;
-      border: 1px solid var(--line);
-      box-shadow: 0 0 0 6px var(--ring);
-    }
-    #sds-agripreneurship .kicker{
-font-size: clamp(24px, 4.2vw, 44px); /* bigger min/mid/max */
-  padding: 10px 24px;                     /* slightly taller/wider to match size */
-  letter-spacing: 0.5px;               /* optional: a hair more tracking for all-caps */
-  line-height: 1;                      /* keeps the pill tight */
+<section id="sds-agripreneurship" aria-label="Agripreneurship at SDS"> <style> /* ---------- Scoped design tokens (mirrors sds-pigs) ---------- */ #sds-agripreneurship{ --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-agripreneurship *{ box-sizing:border-box; } #sds-agripreneurship figure{ margin:0; }
+/* ============ HERO ============ */
+#sds-agripreneurship .hero{
+  min-height:88vh;
+  display:grid; grid-template-columns:1.15fr 1fr;
+  gap:clamp(16px,3vw,32px);
+  align-items:stretch;
+  padding:clamp(16px,2.5vw,28px);
 }
-    #sds-agripreneurship .title {
-      margin: 14px 0 10px;
-      font-size: clamp(28px, 5vw, 58px);
-      line-height: 1.06;
-      letter-spacing: .2px;
-      color: #0b1220;
-      text-wrap: balance;
-    }
-    #sds-agripreneurship .title-underline {
-      width: 140px; height: 4px; border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-      margin: 14px 0 0;
-      box-shadow: 0 2px 10px rgba(255,140,0,.25);
-    }
-    #sds-agripreneurship .subtitle {
-      color: var(--muted); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.8;
-      max-width: 58ch;
-    }
+@media (max-width:980px){ #sds-agripreneurship .hero{ grid-template-columns:1fr; min-height:72vh; } }
 
-    /* ---------- HERO MEDIA (floated beside intro; stacks on mobile) ---------- */
-    #sds-agripreneurship .hero-media {
-      position: relative;
-      aspect-ratio: 16/10;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-    #sds-agripreneurship .hero-media img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    #sds-agripreneurship .float-right-static {
-      float: right;
-      width: clamp(260px, 38vw, 540px);
-      max-width: 90vw;
-      margin: 6px 0 16px 22px;
-    }
-    @media (max-width: 860px){
-      #sds-agripreneurship .float-right-static{
-        float: none;
-        width: 100%;
-        max-width: 100%;
-        margin: 16px 0;
-      }
-    }
+/* Ambient background */
+#sds-agripreneurship .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh;
+  background:
+    radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+    radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+  filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+}
 
-    /* ---------- INTRO COPY ---------- */
-    #sds-agripreneurship .lead {
-      margin-top: 36px; font-size: clamp(16px, 1.8vw, 19px); color: #1f2937; line-height: 1.8;
-      max-width: 85ch;
-    }
-    #sds-agripreneurship .lead strong { color: #0b1220; }
+/* Left: copy */
+#sds-agripreneurship .hero-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+#sds-agripreneurship .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
+  color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content;
+}
+#sds-agripreneurship .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    /* ---------- PROCESS PILLS ---------- */
-    #sds-agripreneurship .process {
-      display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
-      margin: 30px 0 6px;
-      clear: both; /* ensure wrapping clears the floated media */
-    }
-    @media (max-width: 1024px){
-      #sds-agripreneurship .process { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width: 760px){
-      #sds-agripreneurship .process { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 480px){
-      #sds-agripreneurship .process { grid-template-columns: repeat(2, 1fr); }
-    }
-    #sds-agripreneurship .chip {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 999px; padding: 10px 14px;
-      text-align: center; font-size: 14px; color: var(--muted);
-      box-shadow: 0 6px 16px rgba(17,24,39,.05);
-    }
-    #sds-agripreneurship .chip:nth-child(1){border-color: rgba(255,77,109,.5)}
-    #sds-agripreneurship .chip:nth-child(2){border-color: rgba(255,140,0,.5)}
-    #sds-agripreneurship .chip:nth-child(3){border-color: rgba(59,130,246,.5)}
-    #sds-agripreneurship .chip:nth-child(4){border-color: rgba(168,85,247,.5)}
-    #sds-agripreneurship .chip:nth-child(5){border-color: rgba(255,77,109,.5)}
-    #sds-agripreneurship .chip:nth-child(6){border-color: rgba(59,130,246,.5)}
+/* Title animation */
+#sds-agripreneurship .title{
+  font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block;
+  background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:titleShift 10s linear infinite; position:relative;
+}
+#sds-agripreneurship .title::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none;
+}
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
 
-    /* ---------- FEATURE ROWS ---------- */
-    #sds-agripreneurship .features {
-      margin-top: 22px; display: grid; gap: 16px;
-    }
-    #sds-agripreneurship .feature {
-      display: grid; grid-template-columns: 64px 1fr; gap: 16px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl); padding: 18px;
-      position: relative; overflow: clip;
-      transform: translateY(14px); opacity: 0;
-      transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .7s;
-      box-shadow: var(--shadow);
-    }
-    #sds-agripreneurship .feature.reveal { transform: translateY(0); opacity: 1; }
-    #sds-agripreneurship .feature::before {
-      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(180deg, var(--accent), var(--accent-2), var(--accent-3));
-    }
-    #sds-agripreneurship .icon {
-      width: 64px; height: 64px; border-radius: 16px;
-      display: grid; place-items: center;
-      background: linear-gradient(180deg, rgba(255,77,109,.12), rgba(59,130,246,.12));
-      border: 1px solid var(--line);
-      color: #111827; font-size: 26px;
-      box-shadow: 0 0 0 6px var(--ring);
-    }
-    #sds-agripreneurship .feature h3 { margin: 2px 0 6px; color: #0b1220; font-size: 18px; }
-    #sds-agripreneurship .feature p { color: var(--muted); line-height: 1.75; font-size: 15px; }
-    @media (max-width: 480px){
-      #sds-agripreneurship .feature{ grid-template-columns:52px 1fr; padding:14px; border-radius:16px }
-      #sds-agripreneurship .icon{ width:52px; height:52px; font-size:22px; border-radius:12px; box-shadow:0 0 0 4px var(--ring) }
-      #sds-agripreneurship .feature h3{ font-size:16px }
-      #sds-agripreneurship .feature p{ font-size:14px }
-    }
+/* Scrolling info line */
+#sds-agripreneurship .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-agripreneurship .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px;
+  font-weight:600; color:#09425a; animation:ticker 16s linear infinite;
+}
+#sds-agripreneurship .scrolling-track i{ opacity:.75; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* ---------- METRICS ---------- */
-    #sds-agripreneurship .metrics {
-      margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    }
-    @media (max-width: 960px){
-      #sds-agripreneurship .metrics { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px){
-      #sds-agripreneurship .metrics { grid-template-columns: 1fr; }
-    }
-    #sds-agripreneurship .metric {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 18px; padding: 18px; text-align: center;
-      box-shadow: var(--shadow);
-      position: relative; overflow: hidden;
-    }
-    #sds-agripreneurship .metric::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent-4));
-    }
-    #sds-agripreneurship .metric .num {
-      font-weight: 800; font-size: clamp(22px, 4vw, 34px);
-      background: linear-gradient(90deg, #0b1220, #ff4d6d 45%, #3b82f6 80%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    #sds-agripreneurship .metric .label { color: var(--muted); font-size: 14px; letter-spacing:.35px }
+#sds-agripreneurship .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
 
-    /* ---------- REDUCED MOTION ---------- */
-    @media (prefers-reduced-motion: reduce){
-      #sds-agripreneurship .feature{transition:none}
-    }
-  </style>
+#sds-agripreneurship .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-agripreneurship .btn{
+  appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700;
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+#sds-agripreneurship .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+#sds-agripreneurship .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-agripreneurship .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-agripreneurship .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
 
-  <div class="container">
-    <!-- HERO (text only) -->
-    <div class="hero">
-      <div>
-        <span class="kicker">AGRIPRENEURSHIP</span>
-        <h2 class="title">From farmer collectives to market-ready enterprises</h2>
-        <div class="title-underline" aria-hidden="true"></div>
-        <p class="subtitle">
-          SDS builds strong, member-owned institutions that aggregate produce, unlock finance, and forge market linkages—
-          so smallholders capture more value and raise incomes with dignity.
-        </p>
-      </div>
-    </div>
+#sds-agripreneurship .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+#sds-agripreneurship .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+#sds-agripreneurship .stat b{ font-size:20px; display:block; }
+#sds-agripreneurship .stat span{ font-size:12px; color:var(--muted); }
 
-    <!-- STATIC HERO MEDIA floated to the right of the first paragraph -->
-    <div class="hero-media float-right-static" id="agri-pip" aria-hidden="false">
-      <img src="{{ url_for('static', filename='Images/hero2.jpg') }}" alt="Indian farmers in the field">
-    </div>
+/* Right: single image (replaces slider) */
+#sds-agripreneurship .hero-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-agripreneurship .hero-image{
+  position:relative; min-height:clamp(340px,56vh,540px);
+}
+#sds-agripreneurship .hero-image img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center center; display:block; background:#e5e7eb;
+}
+#sds-agripreneurship .hero-image::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%);
+  pointer-events:none;
+}
+#sds-agripreneurship .slide-caption{
+  position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45);
+  font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25);
+  padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px);
+}
 
-    <!-- INTRO -->
-    <p class="lead">
-      <strong>Transforming farmers into entrepreneurs is the core aim of SDS.</strong>
-      Through collectivisation, smallholders negotiate fairer prices, reduce input costs,
-      and build reliable routes to market. For over a decade, SDS has worked at the grassroots
-      to promote Farmer Producer Organisations (FPOs) and Cluster-based Business Organisations,
-      creating an enabling ecosystem for the rural poor to thrive.
-    </p>
+/* ============ CONTENT ============ */
+#sds-agripreneurship .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-agripreneurship .section-intro{ display:grid; gap:10px; }
+#sds-agripreneurship .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-agripreneurship .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
 
-    <!-- PROCESS -->
-    <div class="process" aria-label="Enterprise development process">
-      <div class="chip">Mobilise</div>
-      <div class="chip">Form FPO</div>
-      <div class="chip">Plan &amp; Finance</div>
-      <div class="chip">Aggregate &amp; Add Value</div>
-      <div class="chip">Link to Markets</div>
-      <div class="chip">Scale &amp; Govern</div>
-    </div>
+/* Info cards (6 items mapped from your features) */
+#sds-agripreneurship .cards{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+#sds-agripreneurship .card{
+  grid-column:span 6; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px;
+  box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#sds-agripreneurship .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
+#sds-agripreneurship .card h4{ margin:6px 0 6px; font-size:18px; }
+#sds-agripreneurship .card p{ margin:0; color:var(--muted); line-height:1.7; }
+#sds-agripreneurship .icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line);
+  background:linear-gradient(145deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); }
+@media (max-width:920px){ #sds-agripreneurship .card{ grid-column:span 12 } }
 
-    <!-- FEATURES -->
-    <div class="features">
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">🏛️</div>
-        <div>
-          <h3>Institution Building &amp; Compliance</h3>
-          <p>
-            Member-owned structures with bylaws, shareholder discipline, board processes, audits, and statutory filings.
-            Clear roles for the Board, CEO, and field teams ensure decisions remain transparent and farmer-first.
-          </p>
-        </div>
-      </div>
+/* Parallax tiles */
+#sds-agripreneurship .image-strip{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:8px; }
+#sds-agripreneurship .tile{
+  grid-column:span 4; position:relative; height:220px; border-radius:16px; overflow:hidden;
+  border:1px solid var(--line); background:#f8fafc; box-shadow:var(--shadow-1); transform:translateZ(0);
+}
+#sds-agripreneurship .tile img{ width:100% !important; height:100% !important; object-fit:cover; display:block; }
+#sds-agripreneurship .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
+@media (max-width:920px){ #sds-agripreneurship .tile{ grid-column:span 12; height:200px } }
 
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">🧭</div>
-        <div>
-          <h3>Business Planning &amp; Market Strategy</h3>
-          <p>
-            Bankable plans aligned to demand, with product-mix, margins, and cash-flow cycles mapped. Backward/forward
-            linkages with buyers, processors, and input firms drive predictable offtake and working-capital health.
-          </p>
-        </div>
-      </div>
+/* Divider */
+#sds-agripreneurship .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
 
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">📦</div>
-        <div>
-          <h3>Aggregation, Logistics &amp; Value Addition</h3>
-          <p>
-            Procurement SOPs, primary processing, grading, packing, and last-mile delivery—so FPOs retain more value
-            within the chain and build brand trust with consistent quality.
-          </p>
-        </div>
-      </div>
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-agripreneurship .hero{ padding:16px; gap:14px }
+  #sds-agripreneurship .kicker{ font-size:12px; padding:6px 10px }
+  #sds-agripreneurship .scrolling-track{ gap:22px }
+  #sds-agripreneurship .cta-row .btn{ width:100%; justify-content:center }
+  #sds-agripreneurship .stats{ grid-template-columns:1fr; gap:8px }
+  #sds-agripreneurship .slide-caption{ font-size:12px; padding:6px 10px }
+}
+@media (max-width:420px){
+  #sds-agripreneurship .title{ font-size:32px }
+  #sds-agripreneurship .lead{ font-size:14px }
+}
 
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">📚</div>
-        <div>
-          <h3>Capacity Building &amp; Extension</h3>
-          <p>
-            Governance, financial systems, record-keeping, and customer service training for boards, CEOs and staff.
-            Farmer field schools and peer cohorts embed good practices across clusters.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">💳</div>
-        <div>
-          <h3>Finance Access &amp; Risk Services</h3>
-          <p>
-            Credit readiness, working-capital planning, linkages to institutional finance, insurance and risk
-            mitigation—so FPOs invest and expand responsibly.
-          </p>
-        </div>
-      </div>
-
-      <div class="feature" data-reveal>
-        <div class="icon" aria-hidden="true">🌾</div>
-        <div>
-          <h3>Climate Resilience &amp; Quality Assurance</h3>
-          <p>
-            Climate-smart agronomy, traceability, and quality standards to protect livelihoods and meet market
-            and regulatory requirements—building resilience and reputation.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- METRICS -->
-    <div class="metrics" aria-label="Key highlights">
-      <div class="metric" data-reveal>
-        <div class="num">10+ Years</div>
-        <div class="label">Grassroots enterprise building</div>
-      </div>
-      <div class="metric" data-reveal>
-        <div class="num">Farmer-Owned</div>
-        <div class="label">Institutions with clear governance</div>
-      </div>
-      <div class="metric" data-reveal>
-        <div class="num">Market-Linked</div>
-        <div class="label">Demand-driven value chains</div>
-      </div>
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <!-- Left: content --> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Agripreneurship</div> <h1 class="title">From Farmer Collectives to Market-Ready Enterprises</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-people-group"></i> Institution building &amp; compliance</span>
+      <span><i class="fa-solid fa-compass-drafting"></i> Bankable plans &amp; market strategy</span>
+      <span><i class="fa-solid fa-truck-fast"></i> Aggregation, logistics &amp; value addition</span>
+      <span><i class="fa-solid fa-graduation-cap"></i> Capacity building &amp; extension</span>
+      <span><i class="fa-solid fa-coins"></i> Finance access &amp; risk services</span>
+      <span><i class="fa-solid fa-leaf"></i> Climate resilience &amp; quality assurance</span>
+      <span><i class="fa-solid fa-people-group"></i> Institution building &amp; compliance</span>
     </div>
   </div>
 
-  <script>
-    // Reveal-on-scroll for features & metrics
-    (function () {
-      const root = document.querySelector('#sds-agripreneurship');
-      if (!root) return;
-      const els = root.querySelectorAll('[data-reveal]');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('reveal'); });
-      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
-      els.forEach(el => io.observe(el));
-    })();
-  </script>
-</section>
+  <p class="lead">
+    SDS builds strong, member-owned institutions that aggregate produce, unlock finance, and forge market linkages—
+    so smallholders capture more value and raise incomes with dignity.
+  </p>
+
+  <div class="cta-row">
+    <button class="btn btn-primary"><i class="fa-solid fa-seedling"></i> Explore Programs</button>
+    <button class="btn btn-ghost"><i class="fa-regular fa-file-lines"></i> Download Brief</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>10+ Years</b><span>Grassroots enterprise building</span></div>
+    <div class="stat"><b>Farmer-Owned</b><span>Institutions with clear governance</span></div>
+    <div class="stat"><b>Market-Linked</b><span>Demand-driven value chains</span></div>
+  </div>
+</div>
+
+<!-- Right: single image (no slider) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="hero-image">
+    <!-- Replace the src below with your image path; it will auto-fit the frame -->
+    <img src="{{ url_for('static', filename='Images/agripreneurship.jpg') }}" alt="Agripreneurship at work — governance, aggregation, and capacity building" loading="eager">
+    <figcaption class="slide-caption">Agripreneurship in action</figcaption>
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> <h3>Enterprise Development — End-to-End Support</h3> <p> From mobilisation and formation to market linkage and scale, SDS handholds FPOs and rural enterprises with governance systems, finance access, and demand-led value chains. </p> </div>
+<div class="divider"></div>
+
+<div class="cards">
+  <!-- 1 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-landmark"></i></div>
+    <h4>Institution Building &amp; Compliance</h4>
+    <p>Bylaws, shareholder discipline, board processes, audits, and statutory filings keep decisions transparent and farmer-first.</p>
+  </article>
+  <!-- 2 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-clipboard-list"></i></div>
+    <h4>Business Planning &amp; Market Strategy</h4>
+    <p>Bankable plans mapped to demand—product mix, margins, and cash-flow cycles with forward/backward linkages.</p>
+  </article>
+  <!-- 3 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-box-open"></i></div>
+    <h4>Aggregation, Logistics &amp; Value Addition</h4>
+    <p>Procurement SOPs, primary processing, grading, packing, and last-mile delivery to retain more value locally.</p>
+  </article>
+  <!-- 4 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <h4>Capacity Building &amp; Extension</h4>
+    <p>Training for boards, CEOs, and field teams; farmer field schools and peer cohorts to spread good practices.</p>
+  </article>
+  <!-- 5 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-coins"></i></div>
+    <h4>Finance Access &amp; Risk Services</h4>
+    <p>Credit readiness, working capital planning, institutional finance linkages, insurance, and risk mitigation.</p>
+  </article>
+  <!-- 6 -->
+  <article class="card">
+    <div class="icon"><i class="fa-solid fa-leaf"></i></div>
+    <h4>Climate Resilience &amp; Quality Assurance</h4>
+    <p>Climate-smart agronomy, traceability, and quality standards to meet market and regulatory requirements.</p>
+  </article>
+</div>
+
+<div class="image-strip">
+  <div class="tile" data-parallax data-speed="0.10">
+    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1600&auto=format&fit=crop" alt="Board meeting and governance">
+  </div>
+  <div class="tile" data-parallax data-speed="-0.06">
+    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1600&auto=format&fit=crop" alt="Training and capacity building">
+  </div>
+  <div class="tile" data-parallax data-speed="0.08">
+    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop" alt="Aggregation and value addition workflow">
+  </div>
+</div>
+
+</div> <script> (function(){ const root = document.getElementById('sds-agripreneurship'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp = (n,min,max)=> Math.max(min, Math.min(max, n)); let ticking = false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y = window.scrollY || window.pageYOffset; els.forEach(el=>{ const speed = parseFloat(el.dataset.speed || 0.1); const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT); el.style.transform = `translateY(${shift}px)`; }); ticking = false; }); ticking = true; } } window.addEventListener('scroll', onScroll, { passive:true }); onScroll(); })(); /* Reduce Motion */ (function(){ const mq = window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track = root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); })(); </script> </section>
 
 <!-- ==============================
   Ecosystem Image (Screen-fit) — Mobile Responsive
@@ -1084,6 +841,8 @@ font-size: clamp(24px, 4.2vw, 44px); /* bigger min/mid/max */
   @media (max-width: 560px){  #ecosystem-screen-fit img{ width: 94% } }
   @media (max-width: 400px){  #ecosystem-screen-fit img{ width: 98%; border-radius: 8px } }
 </style>
+
+
 
 
   <!-- Footers -->
@@ -1130,6 +889,7 @@ font-size: clamp(24px, 4.2vw, 44px); /* bigger min/mid/max */
             <li tabIndex="0">Sectors</li>
             <li><a href="/research" tabIndex="0">Publication</a></li>
             <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+            <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
           </ul>
         </nav>
 
