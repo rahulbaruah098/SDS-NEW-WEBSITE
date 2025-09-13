@@ -1,13 +1,3 @@
-# app.py — integrated with your existing stack (Flask-Login, Bcrypt, Limiter)
-# - Supplies everything admin_dashboard.html expects:
-#     * stats, employees
-#     * attendance_logs (for CSV export widget)
-#     * company_domain (for email auto-suggest in Create form)
-# - Fixes:
-#     * create-user only uses fields present in your EmployeeProfile model
-#     * admin_delete_user uses UUID string (no int())
-#     * attendance_mark accepts either image OR simple IN/OUT form and commits
-# - Ensures ADMIN is upserted on startup
 
 from flask import (
     Flask, render_template, request, abort,

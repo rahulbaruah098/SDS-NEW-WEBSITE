@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,183 +15,194 @@
     <!-- ScrollTrigger plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-
-
         .logo-f {
             height: 75px;
         }
 
-      
         /* ---------- LAYOUT ---------- */
-.footer-wrapper {
-  background-color: #fff;
-  padding: 40px 120px 60px 120px;
+        .footer-wrapper {
+          background-color: #fff;
+          padding: 40px 120px 60px 120px;
 
-  /* left column: logo + socials (stacked), right column: nav */
-  display: grid;
-  grid-template-columns: minmax(260px, 340px) 1fr;
-  grid-template-areas:
-    "logo  cols"
-    "social cols";
-  column-gap: 80px;
-  row-gap: 20px;
+          /* left column: logo + socials (stacked), right column: nav */
+          display: grid;
+          grid-template-columns: minmax(260px, 340px) 1fr;
+          grid-template-areas:
+            "logo  cols"
+            "social cols";
+          column-gap: 80px;
+          row-gap: 20px;
 
-  align-items: start;
-}
+          align-items: start;
+        }
 
-/* place items on the grid */
-.logo-container-f { grid-area: logo; }
-.footer-left      { grid-area: social; }
-.footer-columns   { grid-area: cols; }
+        /* place items on the grid */
+        .logo-container-f { grid-area: logo; }
+        .footer-left      { grid-area: social; }
+        .footer-columns   { grid-area: cols; }
 
-/* ---------- LEFT: LOGO + SOCIAL ---------- */
-.logo-container-f {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+        /* ---------- LEFT: LOGO + SOCIAL ---------- */
+        .logo-container-f {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
 
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 6px;
-}
+        .footer-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 6px;
+        }
 
-.footer-social {
-  width: auto;
-  margin-top: 12px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-}
+        .footer-social {
+          width: auto;
+          margin-top: 12px;
+          display: flex;
+          justify-content: flex-start;
+          gap: 15px;
+        }
 
-.footer-social button {
-  background: #000;
-  border: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-.footer-social button:hover { background-color: #5a6a5c; }
+        .footer-social button {
+          background: #000;
+          border: none;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          color: #fff;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          user-select: none;
+        }
+        .footer-social button:hover { background-color: #5a6a5c; }
 
-/* ---------- RIGHT: NAV COLUMNS ---------- */
-.footer-columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 80px;
-  justify-content: flex-start;
-}
+        /* ---------- RIGHT: NAV COLUMNS ---------- */
+        .footer-columns {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 80px;
+          justify-content: flex-start;
+        }
 
-/* push the Services column (last <nav>) to the far right */
-.footer-columns .footer-column:last-child { margin-left: auto; }
+        /* push the Services column (last <nav>) to the far right */
+        .footer-columns .footer-column:last-child { margin-left: auto; }
 
-.footer-column { min-width: 120px; max-width: 180px; }
+        .footer-column { min-width: 120px; max-width: 180px; }
 
-/* ✅ Ensure headings are visible even if a global style overrides h3 color */
-footer .footer-column h3 {
-  color: #111 !important;
-  font-weight: 900;
-  font-size: 14px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #bbb;
-  padding-bottom: 4px;
-  letter-spacing: 0.035em;
-  user-select: none;
-  text-transform: uppercase; /* matches your labels */
-}
+        /* ✅ Ensure headings are visible even if a global style overrides h3 color */
+        footer .footer-column h3 {
+          color: #111 !important;
+          font-weight: 900;
+          font-size: 14px;
+          margin-bottom: 12px;
+          border-bottom: 1px solid #bbb;
+          padding-bottom: 4px;
+          letter-spacing: 0.035em;
+          user-select: none;
+          text-transform: uppercase; /* matches your labels */
+        }
 
-.footer-column ul { list-style: none; margin: 0; padding: 0; }
+        .footer-column ul { list-style: none; margin: 0; padding: 0; }
 
-.footer-column ul li {
-  margin-bottom: 12px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #111;
-  cursor: pointer;
-  user-select: none;
-  letter-spacing: 0.015em;
-  transition: color 0.3s ease;
-}
-.footer-column ul li:hover { color: #5a6a5c; }
+        .footer-column ul li {
+          margin-bottom: 12px;
+          font-weight: 400;
+          font-size: 14px;
+          color: #111;
+          cursor: pointer;
+          user-select: none;
+          letter-spacing: 0.015em;
+          transition: color 0.3s ease;
+        }
+        .footer-column ul li:hover { color: #5a6a5c; }
 
-/* links inside list items */
-.footer-column ul li a {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
-.footer-column ul li a:hover { text-decoration: underline; }
+        /* links inside list items */
+        .footer-column ul li a {
+          text-decoration: none;
+          color: inherit;
+          display: inline-block;
+        }
+        .footer-column ul li a:hover { text-decoration: underline; }
 
-/* ---------- BOTTOM BAR ---------- */
-.footer-bottom {
-  background: #fff;
-  border-top: 1px solid #ccc;
-  padding: 10px 120px;
-  font-size: 13px;
-  color: #222;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  font-weight: 600;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+        /* ---------- BOTTOM BAR ---------- */
+        .footer-bottom {
+          background: #fff;
+          border-top: 1px solid #ccc;
+          padding: 10px 120px;
+          font-size: 13px;
+          color: #222;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          user-select: none;
+          font-weight: 600;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
 
-.footer-bottom .links {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.footer-bottom .links a {
-  color: #222;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-.footer-bottom .links a:hover { color: #5a6a5c; }
-.footer-bottom .copyright { font-weight: 900; }
+        .footer-bottom .links {
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+        }
+        .footer-bottom .links a {
+          color: #222;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          cursor: pointer;
+        }
+        .footer-bottom .links a:hover { color: #5a6a5c; }
+        .footer-bottom .copyright { font-weight: 900; }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 960px) {
-  .footer-wrapper {
-    padding: 40px 50px 60px 50px;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "logo"
-      "social"
-      "cols";
-    row-gap: 28px;
-  }
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1200px) {
+          .footer-wrapper { padding: 40px 80px 60px; }
+          .footer-bottom { padding: 10px 80px; }
+        }
 
-  .footer-columns {
-    gap: 30px;
-  }
+        @media (max-width: 960px) {
+          .footer-wrapper {
+            padding: 40px 50px 60px 50px;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+              "logo"
+              "social"
+              "cols";
+            row-gap: 28px;
+          }
 
-  /* let Services stack naturally on small screens */
-  .footer-columns .footer-column:last-child { margin-left: 0; }
+          .footer-columns {
+            gap: 30px;
+          }
 
-  .footer-column { max-width: 160px; }
+          /* let Services stack naturally on small screens */
+          .footer-columns .footer-column:last-child { margin-left: 0; }
 
-  .footer-bottom {
-    padding: 10px 50px;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 12px;
-  }
-  .footer-bottom .links { justify-content: center; }
-}
+          .footer-column { max-width: 160px; }
 
+          .footer-bottom {
+            padding: 10px 50px;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+          }
+          .footer-bottom .links { justify-content: center; }
+        }
+
+        /* Extra-small devices tweaks */
+        @media (max-width: 520px) {
+          .footer-wrapper { padding: 28px 20px 44px; }
+          .footer-bottom { padding: 12px 20px; }
+          .footer-social { gap: 12px; }
+          .footer-social button { width: 40px; height: 40px; font-size: 18px; }
+          footer .footer-column h3 { font-size: 13px; }
+          .footer-column ul li { font-size: 13.5px; }
+        }
     </style>
 </head>
 
@@ -219,6 +223,9 @@ footer .footer-column h3 {
     }
     *{box-sizing:border-box;} html,body{margin:0;padding:0;}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NEW: ensure content starts below fixed header on all viewports */
+    body { padding-top: var(--header-h); }
 
     /* NAV container fixed */
     #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
@@ -314,6 +321,24 @@ footer .footer-column h3 {
     .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
     .overlay-left .main-menu > li > a.pressed,
     .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+
+    /* NEW: header responsiveness */
+    @media (max-width:740px){
+      .header{ padding: 0 16px; }
+      .logo{ height:58px; }
+      :root{ --header-h: 74px; }
+      .hamburger{ width:28px; height:22px; }
+      .hamburger span{ height:3px; }
+      .hamburger span:nth-child(2){ top:9.5px; }
+      .hamburger span:nth-child(3){ top:19px; }
+      .hamburger.active span:nth-child(1),
+      .hamburger.active span:nth-child(3){ top:9.5px; }
+    }
+
+    @media (max-width:460px){
+      .logo{ height:50px; }
+      :root{ --header-h: 66px; }
+    }
   </style>
 
   <!-- Header -->
@@ -341,7 +366,7 @@ footer .footer-column h3 {
         <li><a href="#">SOCIAL</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
-       
+
         <li>
           <div class="left-search-row">
             <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
@@ -472,6 +497,7 @@ footer .footer-column h3 {
     })();
   </script>
 </section>
+
 <section id="sds-rfp" aria-label="Request for Proposal — SDS (Sesta Development Service)">
   <style>
     /* =========================
@@ -639,6 +665,27 @@ footer .footer-column h3 {
     #sds-rfp .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
     #sds-rfp .error{ color:#b91c1c; font-size:12.5px; display:none }
     #sds-rfp .field.invalid .error{ display:block }
+
+    /* ===== Mobile-specific enhancements (additive) ===== */
+    @media (max-width: 980px){
+      #sds-rfp{ --wrap: min(740px, 94vw); padding: 24px 0 56px; }
+      #sds-rfp .aside{ border-left: 0; border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 640px){
+      #sds-rfp{ --wrap: 94vw; padding: 20px 0 48px; }
+      #sds-rfp .upload{ gap:12px; }
+      #sds-rfp .actions{ flex-direction: column; align-items: stretch; gap: 10px; }
+      #sds-rfp .primary{ width: 100%; }
+      #sds-rfp .note{ text-align: center; }
+    }
+    @media (max-width: 420px){
+      #sds-rfp .eyebrow{ font-size: 12px; padding:5px 9px; }
+      #sds-rfp h2{ font-size: 24px; }
+      #sds-rfp .sub{ font-size: 14px; }
+      #sds-rfp input, #sds-rfp select, #sds-rfp textarea{ font-size: 15px; padding: 12px 14px; }
+      #sds-rfp .label{ font-size: 12.5px; }
+      #sds-rfp .upload .btn{ padding:10px 14px; }
+    }
   </style>
 
   <div class="wrap">
@@ -872,7 +919,7 @@ footer .footer-column h3 {
           <h3 id="footer-careers">CAREERS</h3>
           <ul>
             <li><a href="/career" tabIndex="0">Join Us</a></li>
-            
+
           </ul>
         </nav>
 
