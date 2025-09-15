@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manipur Research & Mapping | SDS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+  
+    /* footer styles from before preserved */
+    .logo-f{ height:75px; }
+    .footer-wrapper{background:#fff;padding:40px 120px 60px;display:grid;grid-template-columns:minmax(260px,340px) 1fr;grid-template-areas:"logo cols" "social cols";column-gap:80px;row-gap:20px;align-items:start;}
+    .logo-container-f{grid-area:logo;display:flex;flex-direction:column;align-items:flex-start;}
+    .footer-left{grid-area:social;display:flex;flex-direction:column;align-items:flex-start;margin-top:6px;}
+    .footer-social{margin-top:12px;display:flex;gap:15px;}
+    .footer-social button{background:#000;border:none;width:34px;height:34px;border-radius:50%;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;}
+    .footer-social button:hover{background:#5a6a5c;}
+    .footer-columns{grid-area:cols;display:flex;flex-wrap:wrap;gap:80px;}
+    .footer-columns .footer-column:last-child{margin-left:auto;}
+    footer .footer-column h3{color:#111!important;font-weight:900;font-size:14px;margin-bottom:12px;border-bottom:1px solid #bbb;padding-bottom:4px;text-transform:uppercase;}
+    .footer-column{min-width:120px;max-width:180px;}
+    .footer-column ul{list-style:none;margin:0;padding:0;}
+    .footer-column ul li{margin-bottom:12px;font-size:14px;color:#111;cursor:pointer;transition:.3s;}
+    .footer-column ul li:hover{color:#5a6a5c;}
+    .footer-column ul li a{text-decoration:none;color:inherit;}
+    .footer-column ul li a:hover{text-decoration:underline;}
+    .footer-bottom{background:#fff;border-top:1px solid #ccc;padding:10px 120px;font-size:13px;color:#222;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+    .footer-bottom .links{display:flex;gap:40px;flex-wrap:wrap;}
+    .footer-bottom .links a{text-decoration:none;color:#222;transition:.3s;}
+    .footer-bottom .links a:hover{color:#5a6a5c;}
+    .footer-bottom .copyright{font-weight:900;}
+    @media(max-width:960px){
+      .footer-wrapper{padding:40px 50px 60px;grid-template-columns:1fr;grid-template-areas:"logo" "social" "cols";}
+      .footer-columns{gap:30px;}
+      .footer-columns .footer-column:last-child{margin-left:0;}
+      .footer-bottom{padding:10px 50px;flex-direction:column;text-align:center;gap:12px;}
+      .footer-bottom .links{justify-content:center;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION (kept intact) -->
+<section id="sds-navigation">
+   <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+       
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section><br><br><br><br>
+
+<section id="sds-fpo-manipur" aria-label="Research Analysis: FPO/FPC/CBBO/POPI & Cooperatives in Manipur">
+  <style>
+    /* ---------- Scoped design tokens (from sds-fpo canonical) ---------- */
+    #sds-fpo-manipur{
+      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18);
+      --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
+      background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip;
+      padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    }
+    #sds-fpo-manipur *{box-sizing:border-box}
+    #sds-fpo-manipur figure{margin:0}
+
+    /* ============ HERO (same grid) ============ */
+    #sds-fpo-manipur .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
+    @media (max-width:980px){ #sds-fpo-manipur .hero{grid-template-columns:1fr; min-height:72vh} }
+
+    /* Ambient background */
+    #sds-fpo-manipur .parallax-bg{
+      position:absolute; inset:-12% -4% auto -4%; height:42vh;
+      background:
+        radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+        radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+      filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+    }
+
+    /* Left panel (copy) */
+    #sds-fpo-manipur .hero-left{
+      z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1);
+      padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+    }
+    #sds-fpo-manipur .kicker{
+      display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
+      color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line);
+      box-shadow:0 0 0 6px var(--ring); width:max-content;
+    }
+    #sds-fpo-manipur .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
+
+    /* Title animation */
+    #sds-fpo-manipur .title{
+      font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block;
+      background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+      -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative;
+    }
+    #sds-fpo-manipur .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
+    @keyframes titleShift{ to{ background-position:200% 0; } }
+    @keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+
+    /* Scrolling info line */
+    #sds-fpo-manipur .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+    #sds-fpo-manipur .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
+    #sds-fpo-manipur .scrolling-track i{ opacity:.75; }
+    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    #sds-fpo-manipur .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
+
+    #sds-fpo-manipur .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+    #sds-fpo-manipur .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+    #sds-fpo-manipur .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+    #sds-fpo-manipur .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+    #sds-fpo-manipur .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+    #sds-fpo-manipur .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+
+    #sds-fpo-manipur .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+    #sds-fpo-manipur .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+    #sds-fpo-manipur .stat b{ font-size:20px; display:block; }
+    #sds-fpo-manipur .stat span{ font-size:12px; color:var(--muted); }
+
+    /* Right: SINGLE image */
+    #sds-fpo-manipur .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
+    #sds-fpo-manipur .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+    #sds-fpo-manipur .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
+    #sds-fpo-manipur .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
+    #sds-fpo-manipur .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
+
+    /* ============ CONTENT (mirrors canonical) ============ */
+    #sds-fpo-manipur .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+    #sds-fpo-manipur .section-intro{ display:grid; gap:10px; }
+    #sds-fpo-manipur .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+    #sds-fpo-manipur .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
+
+    /* Info cards (6 items) */
+    #sds-fpo-manipur .cards{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+    #sds-fpo-manipur .card{ grid-column:span 6; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease; }
+    #sds-fpo-manipur .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
+    #sds-fpo-manipur .card h4{ margin:6px 0 6px; font-size:18px; }
+    #sds-fpo-manipur .card p{ margin:0; color:var(--muted); line-height:1.7; }
+    #sds-fpo-manipur .icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line); background:linear-gradient(145deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); }
+    @media (max-width:920px){ #sds-fpo-manipur .card{ grid-column:span 12 } }
+
+    /* Parallax tiles */
+    #sds-fpo-manipur .image-strip{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:8px; }
+    #sds-fpo-manipur .tile{ grid-column:span 4; position:relative; height:220px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#f8fafc; box-shadow:var(--shadow-1); transform:translateZ(0); }
+    #sds-fpo-manipur .tile img{ width:100% !important; height:100% !important; object-fit:cover; display:block; }
+    #sds-fpo-manipur .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
+    @media (max-width:920px){ #sds-fpo-manipur .tile{ grid-column:span 12; height:200px } }
+
+    /* Divider */
+    #sds-fpo-manipur .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
+
+    /* Mobile tweaks */
+    @media (max-width:720px){
+      #sds-fpo-manipur .hero{ padding:16px; gap:14px }
+      #sds-fpo-manipur .kicker{ font-size:12px; padding:6px 10px }
+      #sds-fpo-manipur .scrolling-track{ gap:22px }
+      #sds-fpo-manipur .cta-row .btn{ width:100%; justify-content:center }
+      #sds-fpo-manipur .stats{ grid-template-columns:1fr; gap:8px }
+      #sds-fpo-manipur .image-frame{ min-height:46vh }
+      #sds-fpo-manipur .slide-caption{ font-size:12px; padding:6px 10px }
+    }
+    @media (max-width:420px){
+      #sds-fpo-manipur .title{ font-size:32px }
+      #sds-fpo-manipur .lead{ font-size:14px }
+      #sds-fpo-manipur .image-frame{ min-height:42vh }
+    }
+  </style>
+
+  <!-- Ambient background -->
+  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <!-- Left: content -->
+    <div class="hero-left">
+      <div class="kicker"><span class="k-dot"></span> Research & Mapping · Manipur</div>
+      <h1 class="title">Scoping the FPO–Cooperative Ecosystem in Manipur</h1>
+
+      <div class="scrolling-line" aria-hidden="true">
+        <div class="scrolling-track">
+          <span><i class="fa-solid fa-route"></i> Infrastructure gaps · hilly terrain logistics</span>
+          <span><i class="fa-solid fa-people-group"></i> Weak governance · compliance support</span>
+          <span><i class="fa-solid fa-landmark"></i> Limited credit access · collateral constraints</span>
+          <span><i class="fa-solid fa-cloud-bolt"></i> Natural disasters · resilience planning</span>
+          <span><i class="fa-solid fa-diagram-project"></i> CBBO &amp; POPI handholding</span>
+          <span><i class="fa-solid fa-chart-line"></i> Market linkage · value chain development</span>
+          <span><i class="fa-solid fa-seedling"></i> Smallholders · inclusive growth</span>
+          <span><i class="fa-solid fa-route"></i> Infrastructure gaps · hilly terrain logistics</span>
+        </div>
+      </div>
+
+      <p class="lead">
+        This study explores the growing role of FPOs and cooperatives in Manipur, where agriculture sustains
+        nearly 70% of households amid persistent constraints—poor infrastructure, market disconnects, and
+        frequent natural disasters. Through field surveys, interviews with 20 FPOs, and stakeholder
+        consultations, we map operations, assess performance, and identify systemic gaps in governance,
+        finance, and institutional support to inform policy and practice for sustainable, inclusive rural
+        development.
+      </p>
+
+      <div class="cta-row">
+        <button class="btn btn-primary"><i class="fa-regular fa-file-lines"></i> Download Project Brief</button>
+        <button class="btn btn-ghost"><i class="fa-solid fa-flask"></i> Methodology & Tools</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>20 FPOs</b><span>Interviewed across select clusters</span></div>
+        <div class="stat"><b>~70% Households</b><span>Depend on agriculture</span></div>
+        <div class="stat"><b>Ecosystem Partners</b><span>FPCs · CBBOs · POPIs · Cooperatives</span></div>
+      </div>
+    </div>
+
+    <!-- Right: SINGLE image (no slider) -->
+    <div class="hero-right" data-parallax data-speed="-0.08">
+      <figure class="image-frame" aria-label="Manipur agriculture research">
+        <img src="{{ url_for('static', filename='Images/farmer123.jpg') }}" alt="Terraced farming landscape in Manipur">
+        <figcaption class="slide-caption">Evidence-led mapping · stronger institutions</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="content">
+    <div class="section-intro">
+      <h3>Scope of Work & Strategic Focus</h3>
+      <p>
+        From scoping to strategy, the assignment covers institutional diagnostics, market linkage assessments,
+        governance and compliance review, finance–insurance access, capacity-building pathways via CBBOs/POPI,
+        and a practical roadmap to strengthen producer organizations across Manipur’s varied agro-ecologies.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cards">
+      <!-- 1: Landscape Mapping -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h4>Landscape Mapping</h4>
+        <p>Geo-tagged inventory of FPOs/FPCs/Coops with status of registration, membership, activities, and service areas.</p>
+      </article>
+
+      <!-- 2: Governance & Compliance -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h4>Governance &amp; Compliance</h4>
+        <p>Board processes, audits, by-laws, statutory filings, and institutional health checks with corrective actions.</p>
+      </article>
+
+      <!-- 3: Market & Value Chains -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-store"></i></div>
+        <h4>Market &amp; Value Chains</h4>
+        <p>Input aggregation, output marketing, primary processing, branding, and linkage with regional/national buyers.</p>
+      </article>
+
+      <!-- 4: Finance & Insurance Access -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-landmark"></i></div>
+        <h4>Finance &amp; Insurance Access</h4>
+        <p>Credit readiness, SHG/JLG linkages, PMFBY uptake, and customized financial products for working capital needs.</p>
+      </article>
+
+      <!-- 5: Capacity Building (CBBO/POPI) -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h4>Capacity Building (CBBO/POPI)</h4>
+        <p>Targeted training modules for boards, CEOs, and member farmers—technical, managerial, and digital skilling.</p>
+      </article>
+
+      <!-- 6: Policy & Institution Gaps -->
+      <article class="card">
+        <div class="icon"><i class="fa-solid fa-sitemap"></i></div>
+        <h4>Policy &amp; Institution Gaps</h4>
+        <p>Recommendations to align schemes, simplify processes, and improve convergence across departments and partners.</p>
+      </article>
+    </div>
+
+    <!-- Visual strip (optional) -->
+</div>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById('sds-fpo-manipur');
+      if(!root) return;
+
+      /* Parallax */
+      (function(){
+        const els = [...root.querySelectorAll('[data-parallax]')];
+        if(!els.length) return;
+        const MAX_SHIFT = 24;
+        const clamp = (n,min,max)=> Math.max(min, Math.min(max, n));
+        let ticking = false;
+        function onScroll(){
+          if(!ticking){
+            window.requestAnimationFrame(()=>{
+              const y = window.scrollY || window.pageYOffset;
+              els.forEach(el=>{
+                const speed = parseFloat(el.dataset.speed || 0.1);
+                const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT);
+                el.style.transform = `translateY(${shift}px)`;
+              });
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive:true });
+        onScroll();
+      })();
+
+      /* Reduce Motion */
+      (function(){
+        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+        function apply(){
+          root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)');
+          const track = root.querySelector('.scrolling-track');
+          if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; }
+        }
+        mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
+        apply();
+      })();
+    })();
+  </script>
+</section>
+
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <a href="{{ url_for('home') }}">
+          <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+        </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li><a href="/career" tabIndex="0">Join Us</a></li>
+          
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+              <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
+            <li tabIndex="0">Fishery Development</li>
+            <li tabIndex="0">Rural Finance</li>
+            <li tabIndex="0">Value Chain Development</li>
+            <li tabIndex="0">Marketing</li>
+            <li tabIndex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script> your existing footer code here -->
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

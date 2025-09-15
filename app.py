@@ -245,6 +245,14 @@ def pig():
 def rfp():
     return render_template("rfp.html")
 
+@app.route("/ingfpo")
+def ingfpo():
+    return render_template("insightsfpo.html")
+
+@app.route("/ling")
+def ling():
+    return render_template("lingos.html")
+
 
 # -----------------------------
 # Auth
