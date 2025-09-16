@@ -314,268 +314,135 @@
 
 
 
-<section id="sds-fpo-women-assam" aria-label="Women-led FPOs in Darrang & Udalguri">
-  <style>
-    /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */
-    #sds-fpo-women-assam{
-      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18);
-      --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
-      background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-    }
-    #sds-fpo-women-assam *{box-sizing:border-box}
-    #sds-fpo-women-assam figure{margin:0}
+<section id="sds-fpo-local-markets-full" aria-label="Shares, Business and Turnovers — Women-led FPOs in Darrang & Udalguri (Full)"> <style> /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */ #sds-fpo-local-markets-full{ --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-fpo-local-markets-full *{box-sizing:border-box} #sds-fpo-local-markets-full figure{margin:0}
+/* ============ HERO (same grid) ============ */
+#sds-fpo-local-markets-full .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
+@media (max-width:980px){ #sds-fpo-local-markets-full .hero{grid-template-columns:1fr; min-height:72vh} }
 
-    /* ============ HERO (same grid) ============ */
-    #sds-fpo-women-assam .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
-    @media (max-width:980px){ #sds-fpo-women-assam .hero{grid-template-columns:1fr; min-height:72vh} }
+/* Ambient background */
+#sds-fpo-local-markets-full .parallax-bg{ position:absolute; inset:-12% -4% auto -4%; height:42vh; background: radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%), radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%); filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0); }
 
-    /* Ambient background */
-    #sds-fpo-women-assam .parallax-bg{ position:absolute; inset:-12% -4% auto -4%; height:42vh; background: radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%), radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%); filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0); }
+/* Left panel (copy) */
+#sds-fpo-local-markets-full .hero-left{ z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1); padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px); }
+#sds-fpo-local-markets-full .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px; color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content; }
+#sds-fpo-local-markets-full .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    /* Left panel (copy) */
-    #sds-fpo-women-assam .hero-left{ z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1); padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px); }
-    #sds-fpo-women-assam .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px; color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content; }
-    #sds-fpo-women-assam .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
+/* Title animation */
+#sds-fpo-local-markets-full .title{ font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block; background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative; }
+#sds-fpo-local-markets-full .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
 
-    /* Title animation */
-    #sds-fpo-women-assam .title{ font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block; background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative; }
-    #sds-fpo-women-assam .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
-    @keyframes titleShift{ to{ background-position:200% 0; } }
-    @keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+/* Scrolling info line */
+#sds-fpo-local-markets-full .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-fpo-local-markets-full .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
+#sds-fpo-local-markets-full .scrolling-track i{ opacity:.75; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* Scrolling info line */
-    #sds-fpo-women-assam .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
-    #sds-fpo-women-assam .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
-    #sds-fpo-women-assam .scrolling-track i{ opacity:.75; }
-    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+#sds-fpo-local-markets-full .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
 
-    #sds-fpo-women-assam .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
+#sds-fpo-local-markets-full .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-fpo-local-markets-full .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+#sds-fpo-local-markets-full .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+#sds-fpo-local-markets-full .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-fpo-local-markets-full .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-fpo-local-markets-full .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
 
-    #sds-fpo-women-assam .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
-    #sds-fpo-women-assam .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
-    #sds-fpo-women-assam .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
-    #sds-fpo-women-assam .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
-    #sds-fpo-women-assam .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
-    #sds-fpo-women-assam .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+#sds-fpo-local-markets-full .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+#sds-fpo-local-markets-full .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+#sds-fpo-local-markets-full .stat b{ font-size:20px; display:block; }
+#sds-fpo-local-markets-full .stat span{ font-size:12px; color:var(--muted); }
 
-    #sds-fpo-women-assam .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
-    #sds-fpo-women-assam .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
-    #sds-fpo-women-assam .stat b{ font-size:20px; display:block; }
-    #sds-fpo-women-assam .stat span{ font-size:12px; color:var(--muted); }
+/* Right: SINGLE image */
+#sds-fpo-local-markets-full .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
+#sds-fpo-local-markets-full .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+#sds-fpo-local-markets-full .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
+#sds-fpo-local-markets-full .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
+#sds-fpo-local-markets-full .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
 
-    /* Right: SINGLE image */
-    #sds-fpo-women-assam .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
-    #sds-fpo-women-assam .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
-    #sds-fpo-women-assam .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
-    #sds-fpo-women-assam .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
-    #sds-fpo-women-assam .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
+/* ============ CONTENT (adds long-form features) ============ */
+#sds-fpo-local-markets-full .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-fpo-local-markets-full .section-intro{ display:grid; gap:10px; }
+#sds-fpo-local-markets-full .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-fpo-local-markets-full .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
 
-    /* ============ CONTENT ============ */
-    #sds-fpo-women-assam .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
-    #sds-fpo-women-assam .section-intro{ display:grid; gap:10px; }
-    #sds-fpo-women-assam .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
-    #sds-fpo-women-assam .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
+/* Long-form reader */
+#sds-fpo-local-markets-full .paper{ border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow-1); overflow:hidden; }
+#sds-fpo-local-markets-full .paper-toolbar{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; background:linear-gradient(#fff,#f8fafc); border-bottom:1px solid var(--line); }
+#sds-fpo-local-markets-full .paper-toolbar .controls{ display:flex; gap:8px; flex-wrap:wrap; }
+#sds-fpo-local-markets-full .pill{ border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-weight:600; background:#fff; cursor:pointer; }
+#sds-fpo-local-markets-full .pill:hover{ box-shadow:0 2px 8px rgba(2,6,23,.06); }
+#sds-fpo-local-markets-full .paper-body{ max-height:72vh; overflow:auto; padding:18px; line-height:1.75; color:#0f172a; }
+#sds-fpo-local-markets-full .paper-body p{ margin:0 0 14px; }
+#sds-fpo-local-markets-full .paper-body h4{ margin:24px 0 10px; font-size:18px; }
+#sds-fpo-local-markets-full .paper-body ul{ margin:10px 0 16px 1.2em; }
+#sds-fpo-local-markets-full .note{ color:#64748b; font-size:13px; }
 
-    #sds-fpo-women-assam .cards{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
-    #sds-fpo-women-assam .card{ grid-column:span 6; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease; }
-    #sds-fpo-women-assam .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
-    #sds-fpo-women-assam .card h4{ margin:6px 0 6px; font-size:18px; }
-    #sds-fpo-women-assam .card p{ margin:0; color:var(--muted); line-height:1.7; }
-    #sds-fpo-women-assam .icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line); background:linear-gradient(145deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); }
-    @media (max-width:920px){ #sds-fpo-women-assam .card{ grid-column:span 12 } }
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-fpo-local-markets-full .hero{ padding:16px; gap:14px }
+  #sds-fpo-local-markets-full .kicker{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .scrolling-track{ gap:22px }
+  #sds-fpo-local-markets-full .cta-row .btn{ width:100%; justify-content:center }
+  #sds-fpo-local-markets-full .stats{ grid-template-columns:1fr; gap:8px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:46vh }
+  #sds-fpo-local-markets-full .slide-caption{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .paper-body{ max-height:60vh }
+}
+@media (max-width:420px){
+  #sds-fpo-local-markets-full .title{ font-size:32px }
+  #sds-fpo-local-markets-full .lead{ font-size:14px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:42vh }
+}
 
-    #sds-fpo-women-assam .image-strip{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:8px; }
-    #sds-fpo-women-assam .tile{ grid-column:span 4; position:relative; height:220px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#f8fafc; box-shadow:var(--shadow-1); transform:translateZ(0); }
-    #sds-fpo-women-assam .tile img{ width:100% !important; height:100% !important; object-fit:cover; display:block; }
-    #sds-fpo-women-assam .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
-    @media (max-width:920px){ #sds-fpo-women-assam .tile{ grid-column:span 12; height:200px } }
-
-    #sds-fpo-women-assam .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
-
-    /* Mobile tweaks */
-    @media (max-width:720px){
-      #sds-fpo-women-assam .hero{ padding:16px; gap:14px }
-      #sds-fpo-women-assam .kicker{ font-size:12px; padding:6px 10px }
-      #sds-fpo-women-assam .scrolling-track{ gap:22px }
-      #sds-fpo-women-assam .cta-row .btn{ width:100%; justify-content:center }
-      #sds-fpo-women-assam .stats{ grid-template-columns:1fr; gap:8px }
-      #sds-fpo-women-assam .image-frame{ min-height:46vh }
-      #sds-fpo-women-assam .slide-caption{ font-size:12px; padding:6px 10px }
-    }
-    @media (max-width:420px){
-      #sds-fpo-women-assam .title{ font-size:32px }
-      #sds-fpo-women-assam .lead{ font-size:14px }
-      #sds-fpo-women-assam .image-frame{ min-height:42vh }
-    }
-  </style>
-
-  <!-- Ambient background -->
-  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
-
-  <!-- ================= HERO ================= -->
-  <div class="hero">
-    <div class="hero-left">
-      <div class="kicker"><span class="k-dot"></span> Women-led FPOs · Assam</div>
-      <h1 class="title">Shares, Business & Turnovers: The New Lingos of Women Farmers</h1>
-
-      <div class="scrolling-line" aria-hidden="true">
-        <div class="scrolling-track">
-          <span><i class="fa-solid fa-person-dress"></i> Women shareholders · women directors</span>
-          <span><i class="fa-solid fa-chart-line"></i> Turnovers rising · 28–35 lakh targets</span>
-          <span><i class="fa-solid fa-users-gear"></i> CBBO handholding · SDS</span>
-          <span><i class="fa-solid fa-location-dot"></i> Darrang & Udalguri, Assam</span>
-          <span><i class="fa-solid fa-sack-dollar"></i> Affordable agri-inputs · relief to farmers</span>
-          <span><i class="fa-solid fa-industry"></i> Processing & branding · pickles, weaving</span>
-          <span><i class="fa-solid fa-handshake-angle"></i> Market linkages · buyer-seller meets</span>
-          <span><i class="fa-solid fa-people-group"></i> Membership growth · 400 → 1000</span>
-        </div>
-      </div>
-
-      <p class="lead">
-        In the bustling daily market of Pub Mangaldai, a quiet revolution is underway. Abida Begum, Director of
-        the Darangi Women Farmers Producer Company, declares a target of <strong>₹1 crore</strong> business for the
-        upcoming financial year. Her confidence mirrors the momentum of women-led FPOs across Darrang and
-        Udalguri, where shares, business and turnover have become everyday vocabulary. Authored by
-        <em>Tirtharaj Gohain</em> (<a href="mailto:tirtharajgohain21@gmail.com">tirtharajgohain21@gmail.com</a>).
-      </p>
-
-      <div class="cta-row">
-        <button class="btn btn-primary"><i class="fa-regular fa-file-lines"></i> Read Full Story</button>
-        <button class="btn btn-ghost"><i class="fa-solid fa-user-group"></i> Meet the FPOs</button>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><b>4 FPOs</b><span>Women-led, nurtured by SDS (CBBO)</span></div>
-        <div class="stat"><b>₹28–35 Lakh</b><span>Siroheuji FPO turnover (FY 2024–25 est.)</span></div>
-        <div class="stat"><b>400 → 1000</b><span>Shareholder goal (Ujjwal Women FPC)</span></div>
-      </div>
-    </div>
-
-    <!-- Right: SINGLE image (group Indian women farmers) -->
-    <div class="hero-right" data-parallax data-speed="-0.08">
-      <figure class="image-frame" aria-label="Group of Indian women farmers in the field">
-        <img src="{{ url_for('static', filename='Images/udal2.jpg') }}" alt="Group of Indian women farmers working together in fields">
-        <figcaption class="slide-caption">Collective enterprise · women at the helm</figcaption>
-      </figure>
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Assam · Women-led FPOs</div> <h1 class="title">Shares, Business and Turnovers: The New Lingos of Women Farmers in the districts of Darrang and Udalguri</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-people-group"></i> 4 women-focused FPOs (SDS·CBBO)</span>
+      <span><i class="fa-solid fa-sack-dollar"></i> 28–35 lakh turnover (Siroheuji)</span>
+      <span><i class="fa-solid fa-seedling"></i> Rice · Maize · Mustard · Inputs</span>
     </div>
   </div>
 
-  <!-- ================= CONTENT ================= -->
-  <div class="content">
-    <div class="section-intro">
-      <h3>Context & Ecosystem</h3>
-      <p>
-        Farmer Producer Companies/Organisations (FPC/FPO) or Producer Organisations (PO) are legal entities of
-        primary producers—farmers, milk producers, fishers, weavers, artisans—where members share profits and
-        benefits. Under forms like producer companies, institutions of primary producers can also be members,
-        with a core criterion that shareholders are producers themselves (FPO, NABARD, 2015). The Central
-        Sector Scheme on <strong>Formation & Promotion of 10,000 FPOs</strong> (₹6,865 crore; 2021) is implemented
-        via IAs such as NCDC, SFAC, NAFED, NAFED, NABARD, engaging Cluster-Based Business Organisations (CBBOs) to
-        register and handhold each FPO for five years.
-      </p>
-    </div>
+  <p class="lead">
+   In the bustling daily market of Pub Mangaldai, a quiet revolution is underway. Abida Begum, Director of the Darangi Women Farmers Producer Company, declares a target of ₹1 crore business for the upcoming financial year. Her confidence mirrors the momentum of women-led FPOs across Darrang and Udalguri, where shares, business and turnover have become everyday vocabulary. Authored by Tirtharaj Gohain By <strong>Tirtharaj Gohain</strong> · <a href="mailto:tirtharajgohain21@gmail.com">tirtharajgohain21@gmail.com</a>
+  </p>
 
-    <div class="divider"></div>
+  <div class="cta-row">
+    <button class="btn btn-primary" id="expandAll"><i class="fa-solid fa-maximize"></i> Expand All</button>
+    <button class="btn btn-ghost" id="collapseAll"><i class="fa-solid fa-minimize"></i> Collapse All</button>
+  </div>
 
-    <div class="cards">
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-diagram-project"></i></div>
-        <h4>CBBO Role & ODOP</h4>
-        <p>CBBOs develop FPOs within producer clusters, leverage scale, and improve market access. ODOP clusters
-          enable specialization, processing, branding, and exports, linking at least 60% members' produce.</p>
-      </article>
+  <div class="stats">
+    <div class="stat"><b>4</b><span>FPOs nurtured by SDS</span></div>
+    <div class="stat"><b>8875</b><span>FPOs under central scheme (PIB)</span></div>
+    <div class="stat"><b>₹584 cr</b><span>Allied agri budget (Union)</span></div>
+  </div>
+</div>
 
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-person-dress"></i></div>
-        <h4>Women in Leadership</h4>
-        <p>Women are shareholders and signatory BoDs. Ujjwal Women FPC’s Marry Narzary (also a Krishi Sakhi)
-          is mobilizing women in Udalguri’s Kobirali to join, train, and grow livelihoods through FPO activity.</p>
-      </article>
+<!-- Right: SINGLE image (contextual scene) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="image-frame" aria-label="Women shareholders and FPO activities in Assam markets">
+    <img src="{{ url_for('static', filename='Images/udal2.jpg') }}" alt="Women-led FPOs in Darrang & Udalguri – shares, business and turnovers">
+    <figcaption class="slide-caption">Shareholders · Market linkages · Growth</figcaption>
+  </figure>
+</div>
 
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-tractor"></i></div>
-        <h4>Agri-Business & Inputs</h4>
-        <p>FPOs trade rice, maize, mustard; sell fertilizers and seeds at minimal margin, easing input costs for
-          farmers while building sustainable turnover.</p>
-      </article>
-
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-jar"></i></div>
-        <h4>Value Addition</h4>
-        <p>Siroheuji Women FPO processes and sells pickles under its label—generating regular income and
-          reducing members’ burdens of storage, marketing, and customer outreach.</p>
-      </article>
-
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-user-tie"></i></div>
-        <h4>Capacity & Governance</h4>
-        <p>CBBO teams train and monitor CEOs and accountants on operations, accounts, cashbooks, and MIS, while
-          sustaining member motivation and facilitating BoD business planning.</p>
-      </article>
-
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-landmark"></i></div>
-        <h4>Finance & Policy</h4>
-        <p>Credit through mainstream institutions, stronger shareholder ownership, and collectivisation of FPCs at
-          state/national level are essential, notes Parag Baruah, MD, SDS.</p>
-      </article>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section-intro">
-      <h3>Field Voices & Momentum</h3>
-      <p>
-        “<em>We have a target of one crore business for the upcoming financial year</em>,” says Abida Begum, Director of
-        Darangi Women FPC, as markets in Pub Mangaldai hum with activity. In Deuri gaon, the Swarang Women
-        Producers Co-operative—amid jujube and buckwheat fields—navigates awareness and trust challenges. Its CEO,
-        <strong>Ms. Jayanti Boro</strong>, has sought training support from <strong>Mr. Saunak Bhuyan</strong>, Program Leader, SDS.
-        SDS is empanelled to promote <strong>67 FPOs</strong> across Assam, Tripura, Manipur, Arunachal Pradesh, Mizoram,
-        Odisha, and Bihar with IAs including SFAC, NAFED, NCDC, NFDB, and TRLM.
-      </p>
-      <p>
-        CEO <strong>Dhrubojyoti Saikia</strong> of Siroheuji FPO notes that value-added products like pickles create steady,
-        manageable revenue streams. By June 2024, <strong>8,875 FPOs</strong> were registered under the central scheme (PIB),
-        and the recent Union Budget earmarked <strong>₹584 crore</strong> for agri-allied sectors—signalling a strengthening
-        environment for women shareholders and producers.
-      </p>
-    </div>
-
-    <!-- Visual strip -->
-    <div class="image-strip">
-      <div class="tile" data-parallax data-speed="0.10">
-        <!-- FIX 1: close string and remove stray dot -->
-        <img src="{{ url_for('static', filename='Images/udal1.jpg') }}" alt="Pub Mangaldai daily market scene">
-      </div>
-      <div class="tile" data-parallax data-speed="-0.06">
-        <img src="{{ url_for('static', filename='Images/udal4.jpg') }}" alt="Women processing and bottling pickles under FPO label">
-      </div>
-      <div class="tile" data-parallax data-speed="0.08">
-        <!-- FIX 2: correct duplicated path -->
-        <img src="{{ url_for('static', filename='Images/udal3.jpg') }}" alt="Automated weaving centre engaging women shareholders">
-      </div>
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> </div>
+<div class="paper">
+  <div class="paper-toolbar">
+    <div><strong>Sayanant Development Services</strong></div>
+    <div class="controls">
+      <button class="pill" id="toggleWrap">Toggle Wrap</button>
+      <button class="pill" id="jumpTop">Top</button>
+      <button class="pill" id="jumpBottom">Bottom</button>
     </div>
   </div>
 
-  <script>
-    (function(){
-      const root = document.getElementById('sds-fpo-women-assam');
-      if(!root) return;
+  <div class="paper-body" id="paperBody">
+    <article>
 
-      /* Parallax */
-      (function(){
-        const els = [...root.querySelectorAll('[data-parallax]')];
-        if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
-        let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; }}
-        window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-      })();
-
-      /* Reduce Motion */
-      (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })();
-    })();
-  </script>
-</section>
+<h2>Shares, Business and Turnovers: The New Lingos of Women Farmers in the districts of Darrang and Udalaguri</h2> <p><strong>Tirtharaj Gohain</strong><br> <a href="mailto:tirtharaj@sdsindia.in">tirtharaj@sdsindia.in</a></p> <p>In the bustling daily market of Pub Mangaldai, amidst the vibrant sights and sounds, a quiet revolution is underway. Abida Begum, Director of the Darangi Women Farmers Producer Company, speaks with an infectious enthusiasm “We have a target of one crore business for the upcoming financial year”. Her confidence, mirrored in the eyes of her fellow Board of Directors, underscores the growing impact of Farmer Producer Organizations (FPOs) in the region</p> <p>Farmer Producer Companies/Organisations (FPC/FPO) or Producer Organisation (PO) is a legal entity formed by primary producers, viz. farmers, milk producers, fishermen, weavers, rural artisans, craftsmen. A PO can be a producer company, a cooperative society or any other legal form which provides for sharing of profits/benefits among the members. In some forms like producer companies, institutions of primary producers can also become member of PO (FPO, NABARD, 2015). With one of the most essential criteria that the shareholders have to be “producers” themselves. </p> <p>FPOs are being promoted through various schemes of government and most recently is the Central Sector Scheme “Formation and Promotion of 10,000 new Farmer Producer Organizations (FPOs)” with a budget Rs. 6865 crores allocated in 2021. The scheme was implemented through Implementing Agencies (IAs) such as NCDC, SFAC, NAFED, NABARD etc, who again engage Cluster Based Business Organisations (CBBO) to aggregate, registered & provide professional handholding support to each FPO for a period of 5 years. </p> <p>The CBBOs play a vital role in developing FPOs within producer clusters, leveraging economies of scale and improving market access for members' agricultural and horticultural produce. The "One District One Product" cluster initiative further promotes specialization, enhancing processing, marketing, branding, and export opportunities. These value chain organizations within the agricultural sector are forming FPOs and facilitating market linkages for at least 60% of their members' produce. </p> <p>In the districts of Darang and Udalguri, four FPOs, nurtured by the CBBO Sayanat Development Services (SDS), stand as testaments to this transformative movement. This four FPOs consists of women farmers as shareholders and some among them acting as the BoD members with signatory authority. Marry Narzary, a Board member of the Ujjwal Women FPC and a Krishi Sakhi (a cadre promoted by ASRLM), exudes confidence when discussing their goal of increasing shareholder numbers from 400 to 1000 in the next financial year. Despite the challenges of raising awareness about FPOs, particularly among women in the Kobirali area of Udalguri district within the BTC, Marry is determined to mobilize more women to join their ranks. She believes that many women in her community, particularly younger women who spend their time idly, could significantly improve their livelihoods by becoming shareholders and actively participating in the FPO’s initiatives. Marry envisions these women engaging in the automated weaving centre provided by the district authority under the Aspirational District program, generating income for themselves and boosting the FPO's turnover.</p> <p>These FPOs which are primarily focused on agri-business are involved in buying and selling of good agri-products such as rice, maize, and mustard seeds, also sells fertilizers and paddy seeds at a minimum profit for the FPO. This provides much-needed relief to local farmers. Some shareholders of Siroheuji Women FPO in Darrang have ventured into activities like processing of pickles and are selling it under the label of their FPO. CEO Dhrubojyoti Saikia, mentioned “Products like pickles, though not much brings in a regular income for the FPO, moreover it reduces the burden of the women from the problems of storage, marketing and reaching out to customers”. Siroheuji FPO has already achieved a turnover of 28 lakhs before the 2024-25 financial year ends and expected to do a business of 35 lakhs before the year end.</p> <p>While progress is evident across these FPOs, challenges remain. The Swarang Women Producers Co-Operative Society Limited, located in Deuri gaon, faces hurdles related to awareness and trust among some members. This FPO, situated amidst acres of jujube plantations and buckwheat fields, stands out as the only one among the four with a female CEO appointed by the CBBO.</p> <p>CBBO officials provide comprehensive support to the FPOs, encompassing training and ongoing monitoring of the CEO and accountant's activities. This includes hands-on assistance with FPC operations, account management, cash book entries, and MIS, among other crucial tasks. Beyond the formal training, the CBBO also plays a vital, though often unacknowledged, role in maintaining member inspiration and motivation. Furthermore, they actively engage in business planning sessions with the Board of Directors. Recognizing the need for broader outreach, Ms. Jayanti Boro, CEO of Swarang, has requested training from Mr. Saunak Bhyuan, Program Leader of SDS, the CBBO. SDS is empanelled for the inception and promotion of a substantial 67 FPOs across multiple states, including Assam, Tripura, Manipur, Arunachal Pradesh, Mizoram, Odisha, and Bihar, working in conjunction with IAs such as SFAC, NAFED, NCDC, NFDB, and TRLM, among others. This request highlights the ongoing need for capacity building and support within the FPO ecosystem.</p> <p>“FPOs have the potential to play a crucial role in establishing market linkages for farmers and supporting the strengthening of production systems. However, credit support to FPOs through main stream financial institution, building ownership of shareholders and collectivisation of FPCs at state level and national level is much needed.” states Mr Parag Baruah, Managing Director of SDS.</p> <p>With a total of 8875 FPOs registered under the central scheme as of June 2024, according to PIB, and an additional 584 crore budget allocated for the agri-allied sector in the recent union budget, the future for farmer shareholders and producers looks promising. The dedication of women like Abida, Marry, and Jayanti, combined with the support of CBBOs and government initiatives, is paving the way for a more prosperous and empowered rural India</p> </article> </div> </div> </div> <script> (function(){ const root = document.getElementById('sds-fpo-local-markets-full'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; }} window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* Reduce Motion */ (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); /* Reader controls */ (function(){ const body = root.querySelector('#paperBody'); const expandAll = root.querySelector('#expandAll'); const collapseAll = root.querySelector('#collapseAll'); const toggleWrap = root.querySelector('#toggleWrap'); const jumpTop = root.querySelector('#jumpTop'); const jumpBottom = root.querySelector('#jumpBottom'); if(!body) return; expandAll?.addEventListener('click', ()=>{ body.style.maxHeight = 'none'; body.scrollTo({top:0, behavior:'smooth'}); }); collapseAll?.addEventListener('click', ()=>{ body.style.maxHeight = window.matchMedia('(max-width:720px)').matches ? '60vh' : '72vh'; body.scrollTo({top:0, behavior:'smooth'}); }); toggleWrap?.addEventListener('click', ()=>{ body.style.whiteSpace = body.style.whiteSpace === 'pre-wrap' ? 'normal' : 'pre-wrap'; }); jumpTop?.addEventListener('click', ()=> body.scrollTo({top:0, behavior:'smooth'})); jumpBottom?.addEventListener('click', ()=> body.scrollTo({top:body.scrollHeight, behavior:'smooth'})); })(); })(); </script> </section>
 
 
  
