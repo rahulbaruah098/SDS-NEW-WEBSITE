@@ -255,7 +255,7 @@ def ling():
 
 @app.route("/loc")
 def loc():
-    return render_template("localMarket.html")
+    return render_template("localmarket.html")
 
 @app.route("/pub")
 def pub():
