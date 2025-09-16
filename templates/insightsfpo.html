@@ -176,7 +176,8 @@
         <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
         <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
         <li><a href="/about">WHO WE ARE</a></li>
-        <li><a href="#">SOCIAL</a></li>
+        <li><a href="/ing">INSIGHTS</a></li>
+        <li><a href="/pub">PUBLICATIONS</a></li>
         <li><a href="/getintouch">GET IN TOUCH</a></li>
         <li><a href="/career">CAREERS</a></li>
        
@@ -311,280 +312,135 @@
   </script>
 </section><br><br><br><br>
 
-<section id="sds-fpo-manipur" aria-label="Research Analysis: FPO/FPC/CBBO/POPI & Cooperatives in Manipur">
-  <style>
-    /* ---------- Scoped design tokens (from sds-fpo canonical) ---------- */
-    #sds-fpo-manipur{
-      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18);
-      --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
-      background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip;
-      padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-    }
-    #sds-fpo-manipur *{box-sizing:border-box}
-    #sds-fpo-manipur figure{margin:0}
+<section id="sds-fpo-local-markets-full" aria-label="Research Analysis Scoping & Mapping: FPOs/FPCs/CBBOs/POPI/Cooperatives in Manipur (Full)"> <style> /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */ #sds-fpo-local-markets-full{ --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-fpo-local-markets-full *{box-sizing:border-box} #sds-fpo-local-markets-full figure{margin:0}
+/* ============ HERO (same grid) ============ */
+#sds-fpo-local-markets-full .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
+@media (max-width:980px){ #sds-fpo-local-markets-full .hero{grid-template-columns:1fr; min-height:72vh} }
 
-    /* ============ HERO (same grid) ============ */
-    #sds-fpo-manipur .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
-    @media (max-width:980px){ #sds-fpo-manipur .hero{grid-template-columns:1fr; min-height:72vh} }
+/* Ambient background */
+#sds-fpo-local-markets-full .parallax-bg{ position:absolute; inset:-12% -4% auto -4%; height:42vh; background: radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%), radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%); filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0); }
 
-    /* Ambient background */
-    #sds-fpo-manipur .parallax-bg{
-      position:absolute; inset:-12% -4% auto -4%; height:42vh;
-      background:
-        radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
-        radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
-      filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
-    }
+/* Left panel (copy) */
+#sds-fpo-local-markets-full .hero-left{ z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1); padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px); }
+#sds-fpo-local-markets-full .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px; color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content; }
+#sds-fpo-local-markets-full .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
 
-    /* Left panel (copy) */
-    #sds-fpo-manipur .hero-left{
-      z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1);
-      padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
-    }
-    #sds-fpo-manipur .kicker{
-      display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
-      color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line);
-      box-shadow:0 0 0 6px var(--ring); width:max-content;
-    }
-    #sds-fpo-manipur .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
+/* Title animation */
+#sds-fpo-local-markets-full .title{ font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block; background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative; }
+#sds-fpo-local-markets-full .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
 
-    /* Title animation */
-    #sds-fpo-manipur .title{
-      font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block;
-      background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
-      -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative;
-    }
-    #sds-fpo-manipur .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
-    @keyframes titleShift{ to{ background-position:200% 0; } }
-    @keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+/* Scrolling info line */
+#sds-fpo-local-markets-full .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+#sds-fpo-local-markets-full .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
+#sds-fpo-local-markets-full .scrolling-track i{ opacity:.75; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* Scrolling info line */
-    #sds-fpo-manipur .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
-    #sds-fpo-manipur .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
-    #sds-fpo-manipur .scrolling-track i{ opacity:.75; }
-    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+#sds-fpo-local-markets-full .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
 
-    #sds-fpo-manipur .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
+#sds-fpo-local-markets-full .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-fpo-local-markets-full .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+#sds-fpo-local-markets-full .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+#sds-fpo-local-markets-full .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-fpo-local-markets-full .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-fpo-local-markets-full .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
 
-    #sds-fpo-manipur .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
-    #sds-fpo-manipur .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
-    #sds-fpo-manipur .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
-    #sds-fpo-manipur .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
-    #sds-fpo-manipur .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
-    #sds-fpo-manipur .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+#sds-fpo-local-markets-full .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+#sds-fpo-local-markets-full .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+#sds-fpo-local-markets-full .stat b{ font-size:20px; display:block; }
+#sds-fpo-local-markets-full .stat span{ font-size:12px; color:var(--muted); }
 
-    #sds-fpo-manipur .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
-    #sds-fpo-manipur .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
-    #sds-fpo-manipur .stat b{ font-size:20px; display:block; }
-    #sds-fpo-manipur .stat span{ font-size:12px; color:var(--muted); }
+/* Right: SINGLE image */
+#sds-fpo-local-markets-full .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
+#sds-fpo-local-markets-full .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+#sds-fpo-local-markets-full .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
+#sds-fpo-local-markets-full .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
+#sds-fpo-local-markets-full .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
 
-    /* Right: SINGLE image */
-    #sds-fpo-manipur .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
-    #sds-fpo-manipur .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
-    #sds-fpo-manipur .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
-    #sds-fpo-manipur .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
-    #sds-fpo-manipur .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
+/* ============ CONTENT (adds long-form features) ============ */
+#sds-fpo-local-markets-full .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+#sds-fpo-local-markets-full .section-intro{ display:grid; gap:10px; }
+#sds-fpo-local-markets-full .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-fpo-local-markets-full .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
 
-    /* ============ CONTENT (mirrors canonical) ============ */
-    #sds-fpo-manipur .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
-    #sds-fpo-manipur .section-intro{ display:grid; gap:10px; }
-    #sds-fpo-manipur .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
-    #sds-fpo-manipur .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
+/* Long-form reader */
+#sds-fpo-local-markets-full .paper{ border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow-1); overflow:hidden; }
+#sds-fpo-local-markets-full .paper-toolbar{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; background:linear-gradient(#fff,#f8fafc); border-bottom:1px solid var(--line); }
+#sds-fpo-local-markets-full .paper-toolbar .controls{ display:flex; gap:8px; flex-wrap:wrap; }
+#sds-fpo-local-markets-full .pill{ border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-weight:600; background:#fff; cursor:pointer; }
+#sds-fpo-local-markets-full .pill:hover{ box-shadow:0 2px 8px rgba(2,6,23,.06); }
+#sds-fpo-local-markets-full .paper-body{ max-height:72vh; overflow:auto; padding:18px; line-height:1.75; color:#0f172a; }
+#sds-fpo-local-markets-full .paper-body p{ margin:0 0 14px; }
+#sds-fpo-local-markets-full .paper-body h4{ margin:24px 0 10px; font-size:18px; }
+#sds-fpo-local-markets-full .paper-body ul{ margin:10px 0 16px 1.2em; }
+#sds-fpo-local-markets-full .note{ color:#64748b; font-size:13px; }
 
-    /* Info cards (6 items) */
-    #sds-fpo-manipur .cards{ display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
-    #sds-fpo-manipur .card{ grid-column:span 6; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow-1); transition:transform .18s ease, box-shadow .2s ease, border-color .2s ease; }
-    #sds-fpo-manipur .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(14,165,233,.35); }
-    #sds-fpo-manipur .card h4{ margin:6px 0 6px; font-size:18px; }
-    #sds-fpo-manipur .card p{ margin:0; color:var(--muted); line-height:1.7; }
-    #sds-fpo-manipur .icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:12px; border:1px solid var(--line); background:linear-gradient(145deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); }
-    @media (max-width:920px){ #sds-fpo-manipur .card{ grid-column:span 12 } }
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-fpo-local-markets-full .hero{ padding:16px; gap:14px }
+  #sds-fpo-local-markets-full .kicker{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .scrolling-track{ gap:22px }
+  #sds-fpo-local-markets-full .cta-row .btn{ width:100%; justify-content:center }
+  #sds-fpo-local-markets-full .stats{ grid-template-columns:1fr; gap:8px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:46vh }
+  #sds-fpo-local-markets-full .slide-caption{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .paper-body{ max-height:60vh }
+}
+@media (max-width:420px){
+  #sds-fpo-local-markets-full .title{ font-size:32px }
+  #sds-fpo-local-markets-full .lead{ font-size:14px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:42vh }
+}
 
-    /* Parallax tiles */
-    #sds-fpo-manipur .image-strip{ display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:8px; }
-    #sds-fpo-manipur .tile{ grid-column:span 4; position:relative; height:220px; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#f8fafc; box-shadow:var(--shadow-1); transform:translateZ(0); }
-    #sds-fpo-manipur .tile img{ width:100% !important; height:100% !important; object-fit:cover; display:block; }
-    #sds-fpo-manipur .tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.06), transparent 50%); }
-    @media (max-width:920px){ #sds-fpo-manipur .tile{ grid-column:span 12; height:200px } }
-
-    /* Divider */
-    #sds-fpo-manipur .divider{ height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:10px 0; }
-
-    /* Mobile tweaks */
-    @media (max-width:720px){
-      #sds-fpo-manipur .hero{ padding:16px; gap:14px }
-      #sds-fpo-manipur .kicker{ font-size:12px; padding:6px 10px }
-      #sds-fpo-manipur .scrolling-track{ gap:22px }
-      #sds-fpo-manipur .cta-row .btn{ width:100%; justify-content:center }
-      #sds-fpo-manipur .stats{ grid-template-columns:1fr; gap:8px }
-      #sds-fpo-manipur .image-frame{ min-height:46vh }
-      #sds-fpo-manipur .slide-caption{ font-size:12px; padding:6px 10px }
-    }
-    @media (max-width:420px){
-      #sds-fpo-manipur .title{ font-size:32px }
-      #sds-fpo-manipur .lead{ font-size:14px }
-      #sds-fpo-manipur .image-frame{ min-height:42vh }
-    }
-  </style>
-
-  <!-- Ambient background -->
-  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
-
-  <!-- ================= HERO ================= -->
-  <div class="hero">
-    <!-- Left: content -->
-    <div class="hero-left">
-      <div class="kicker"><span class="k-dot"></span> Research & Mapping · Manipur</div>
-      <h1 class="title">Scoping the FPO–Cooperative Ecosystem in Manipur</h1>
-
-      <div class="scrolling-line" aria-hidden="true">
-        <div class="scrolling-track">
-          <span><i class="fa-solid fa-route"></i> Infrastructure gaps · hilly terrain logistics</span>
-          <span><i class="fa-solid fa-people-group"></i> Weak governance · compliance support</span>
-          <span><i class="fa-solid fa-landmark"></i> Limited credit access · collateral constraints</span>
-          <span><i class="fa-solid fa-cloud-bolt"></i> Natural disasters · resilience planning</span>
-          <span><i class="fa-solid fa-diagram-project"></i> CBBO &amp; POPI handholding</span>
-          <span><i class="fa-solid fa-chart-line"></i> Market linkage · value chain development</span>
-          <span><i class="fa-solid fa-seedling"></i> Smallholders · inclusive growth</span>
-          <span><i class="fa-solid fa-route"></i> Infrastructure gaps · hilly terrain logistics</span>
-        </div>
-      </div>
-
-      <p class="lead">
-        This study explores the growing role of FPOs and cooperatives in Manipur, where agriculture sustains
-        nearly 70% of households amid persistent constraints—poor infrastructure, market disconnects, and
-        frequent natural disasters. Through field surveys, interviews with 20 FPOs, and stakeholder
-        consultations, we map operations, assess performance, and identify systemic gaps in governance,
-        finance, and institutional support to inform policy and practice for sustainable, inclusive rural
-        development.
-      </p>
-
-      <div class="cta-row">
-        <button class="btn btn-primary"><i class="fa-regular fa-file-lines"></i> Download Project Brief</button>
-        <button class="btn btn-ghost"><i class="fa-solid fa-flask"></i> Methodology & Tools</button>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><b>20 FPOs</b><span>Interviewed across select clusters</span></div>
-        <div class="stat"><b>~70% Households</b><span>Depend on agriculture</span></div>
-        <div class="stat"><b>Ecosystem Partners</b><span>FPCs · CBBOs · POPIs · Cooperatives</span></div>
-      </div>
-    </div>
-
-    <!-- Right: SINGLE image (no slider) -->
-    <div class="hero-right" data-parallax data-speed="-0.08">
-      <figure class="image-frame" aria-label="Manipur agriculture research">
-        <img src="{{ url_for('static', filename='Images/farmer123.jpg') }}" alt="Terraced farming landscape in Manipur">
-        <figcaption class="slide-caption">Evidence-led mapping · stronger institutions</figcaption>
-      </figure>
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> Manipur · FPO Scoping & Mapping</div> <h1 class="title">Research Analysis, Scoping & Mapping in FPOs, FPCs, CBBOs, POPIs & Cooperatives in Manipur</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-people-group"></i> 20 entities studied</span>
+      <span><i class="fa-solid fa-seedling"></i> 200+ FPOs registered</span>
+      <span><i class="fa-solid fa-chart-line"></i> Governance · Finance · Markets</span>
     </div>
   </div>
 
-  <!-- ================= CONTENT ================= -->
-  <div class="content">
-    <div class="section-intro">
-      <h3>Scope of Work & Strategic Focus</h3>
-      <p>
-        From scoping to strategy, the assignment covers institutional diagnostics, market linkage assessments,
-        governance and compliance review, finance–insurance access, capacity-building pathways via CBBOs/POPI,
-        and a practical roadmap to strengthen producer organizations across Manipur’s varied agro-ecologies.
-      </p>
-    </div>
+  <p class="lead">
+    Field study by Sesta Development Services (SDS) with SELCO across Manipur—assessing operational, governance, financial, and market engagement dimensions of FPOs and cooperatives,by- Menoka Bordoloi.
+  </p>
 
-    <div class="divider"></div>
+  <div class="cta-row">
+    <button class="btn btn-primary" id="expandAll"><i class="fa-solid fa-maximize"></i> Expand All</button>
+    <button class="btn btn-ghost" id="collapseAll"><i class="fa-solid fa-minimize"></i> Collapse All</button>
+  </div>
 
-    <div class="cards">
-      <!-- 1: Landscape Mapping -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
-        <h4>Landscape Mapping</h4>
-        <p>Geo-tagged inventory of FPOs/FPCs/Coops with status of registration, membership, activities, and service areas.</p>
-      </article>
-
-      <!-- 2: Governance & Compliance -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
-        <h4>Governance &amp; Compliance</h4>
-        <p>Board processes, audits, by-laws, statutory filings, and institutional health checks with corrective actions.</p>
-      </article>
-
-      <!-- 3: Market & Value Chains -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-store"></i></div>
-        <h4>Market &amp; Value Chains</h4>
-        <p>Input aggregation, output marketing, primary processing, branding, and linkage with regional/national buyers.</p>
-      </article>
-
-      <!-- 4: Finance & Insurance Access -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-landmark"></i></div>
-        <h4>Finance &amp; Insurance Access</h4>
-        <p>Credit readiness, SHG/JLG linkages, PMFBY uptake, and customized financial products for working capital needs.</p>
-      </article>
-
-      <!-- 5: Capacity Building (CBBO/POPI) -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
-        <h4>Capacity Building (CBBO/POPI)</h4>
-        <p>Targeted training modules for boards, CEOs, and member farmers—technical, managerial, and digital skilling.</p>
-      </article>
-
-      <!-- 6: Policy & Institution Gaps -->
-      <article class="card">
-        <div class="icon"><i class="fa-solid fa-sitemap"></i></div>
-        <h4>Policy &amp; Institution Gaps</h4>
-        <p>Recommendations to align schemes, simplify processes, and improve convergence across departments and partners.</p>
-      </article>
-    </div>
-
-    <!-- Visual strip (optional) -->
+  <div class="stats">
+    <div class="stat"><b>20</b><span>FPOs & co-ops assessed</span></div>
+    <div class="stat"><b>200+</b><span>FPOs registered in Manipur</span></div>
+    <div class="stat"><b>93%</b><span>Revenues via member contributions</span></div>
+  </div>
 </div>
+
+<!-- Right: SINGLE image (contextual scene) -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="image-frame" aria-label="Manipur farming collective and market context">
+    <img src="{{ url_for('static', filename='Images/manipur33.jpg') }}" alt="Manipur FPOs/FPCs/CBBOs/POPI/Cooperatives – scoping & mapping">
+    <figcaption class="slide-caption">Collectives · Value chains · Resilience</figcaption>
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"></div>
+<div class="paper">
+  <div class="paper-toolbar">
+    <div><strong>Sayanant Development Services</strong> </div>
+    <div class="controls">
+      <button class="pill" id="toggleWrap">Toggle Wrap</button>
+      <button class="pill" id="jumpTop">Top</button>
+      <button class="pill" id="jumpBottom">Bottom</button>
+    </div>
   </div>
 
-  <script>
-    (function(){
-      const root = document.getElementById('sds-fpo-manipur');
-      if(!root) return;
+  <div class="paper-body" id="paperBody">
+    <article>
 
-      /* Parallax */
-      (function(){
-        const els = [...root.querySelectorAll('[data-parallax]')];
-        if(!els.length) return;
-        const MAX_SHIFT = 24;
-        const clamp = (n,min,max)=> Math.max(min, Math.min(max, n));
-        let ticking = false;
-        function onScroll(){
-          if(!ticking){
-            window.requestAnimationFrame(()=>{
-              const y = window.scrollY || window.pageYOffset;
-              els.forEach(el=>{
-                const speed = parseFloat(el.dataset.speed || 0.1);
-                const shift = clamp(y * speed, -MAX_SHIFT, MAX_SHIFT);
-                el.style.transform = `translateY(${shift}px)`;
-              });
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }
-        window.addEventListener('scroll', onScroll, { passive:true });
-        onScroll();
-      })();
-
-      /* Reduce Motion */
-      (function(){
-        const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-        function apply(){
-          root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)');
-          const track = root.querySelector('.scrolling-track');
-          if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; }
-        }
-        mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply);
-        apply();
-      })();
-    })();
-  </script>
-</section>
+<h2>Research Analysis Scoping and Mapping in FPO’s FPC’s, CBBO’s, POPI’s and cooperative in Manipur.</h2> <p>In Manipur community-based farming, underpinned by long-established traditions and a collective ethos, constitutes the foundational framework of agricultural livelihoods. The state’s complex topographical matrix, spanning fertile valley floors to challenging hill terrains, supports a predominantly agrarian populace whose livelihoods are intricately linked to the communal stewardship of land and natural resources. Nevertheless, this rural economy manifests persistent structural constraints, including land fragmentation, recurring ecological disturbances, limited integration into formal markets, and deficiencies in critical infrastructure, which collectively impede growth trajectories.</p> <p>In recognition of the pivotal role that these community-centric institutions play, Sesta Development Service (SDS) with SELCO, undertook a field study encompassing twenty Farmer Producer Organizations (FPOs) and cooperative entities throughout Manipur. The motivation for this empirical inquiry was to systematically dissect the operational, governance, financial, and market engagement dimensions of these grassroots collectives, which operate at the confluence of indigenous knowledge systems and contemporary institutional support. By doing so, the study aimed to elucidate the prevailing enabling factors and constraining variables that shape FPO performance and sustainability in the region.</p> <p>Farmer Producer Organizations in Manipur are progressively redefining the architectural paradigms of agricultural enterprise. They initiate channels for collective agency among smallholder and marginal farmers, facilitating aggregation of inputs, production, and market linkages. This emergent institutional landscape has been potentiated by deliberate governmental policy interventions namely, the Mission Organic Value Chain Development for the North Eastern Region (MOVCD-NER) and the Central Sector Scheme, encapsulating India’s vision for the establishment and promotion of 10,000 FPOs nationwide. Consequently, over 200 FPOs are now formally registered in Manipur, signaling a pronounced shift towards institutional formalization and sectoral strengthening.</p> <p>The genesis of these FPOs is deeply embedded within the social capital inherent in precursor formations such as Self-Help Groups (SHGs) and Farmer Interest Groups (FIGs). These foundational entities serve as incubators for pooling resources, expertise, and collective bargaining power. Insights derived from SDS and SELCO’s examination of the twenty FPOs indicate a consistent trajectory where formation is catalyzed through targeted awareness and capacity-building initiatives, often facilitated by Cluster-Based Business Organizations (CBBOs), governmental departments, and non-governmental organizations. This confluence of grassroots experience and institutional scaffolding is instrumental in advancing the organizational maturity of FPOs.</p> <p>Governance architectures within these collective entities manifest a spectrum of democratic modalities, with 45% adhering to formal democratic decision-making processes and 35% employing consensus-driven governance frameworks. Oversight mechanisms are evidenced by the scheduling of monthly board meetings in 58% of FPOs and quarterly meetings in 37%, suggesting varying levels of institutional consolidation. Membership criteria typically span the age range of 18 to 65 years, with financial accountability reinforced by 30% of organizations instituting either membership fees or shareholding requirements. However, gender inclusivity within leadership remains a domain necessitating further amplification; although women and marginalized groups participate in governance in 60% of entities, a significant 40% lack representation, and influence in leadership roles remains comparatively limited.</p> <p>Financial resource mobilization predominantly relies on internal member contributions, accounting for 93% of revenue, supplemented by government grants available to 67% of FPOs. Access to formal credit mechanisms remains suboptimal, with only a quarter of the surveyed organizations securing loans from institutional sources such as NABARD, NCDC, or via Kisan Credit Cards. This financial bottleneck constrains asset acquisition and operational scaling, as only 45% of FPOs report ownership of essential agricultural machinery and equipment, with investments ranging broadly from ₹1,000 to ₹25 lakh.</p> <p>Market engagement opportunities are multifaceted yet circumscribed. While procurement coordination and input supply functions are effectively managed by many FPOs, the domain of value addition remains underdeveloped, restricting the potential for income diversification and enhanced market differentiation. The prevalent practice of immediate produce sales at lower price points, exacerbated by intermediaries and compounded by infrastructural inadequacies such as deficient storage and logistic facilities, considerably diminishes farmers’ capacity to capture augmented value. Strengthening value chain linkages through investments in processing capabilities, cold storage, and sustainable market access emerges as a critical policy and operational imperative.</p> <p>Capacity-building programs targeting a majority of FPO members have concentrated on disseminating agronomic best practices, financial literacy, and market engagement strategies. Nonetheless, spatial disparities endure, particularly in remote and tribal localities where access to advanced technical training and exposure is limited. Tailored institutional support, sensitive to local socio-cultural contexts, remains indispensable to bridging these gaps.</p> <p>Moreover, the diversification of livelihood portfolios through allied sectors such as fisheries, poultry, and dairy is increasingly prominent within the FPO framework, contributing substantively to rural economic resilience. Realizing this sectoral expansion potential requires concerted efforts to augment technical expertise and infrastructural support.</p> <p>Institutional collaboration between government bodies and CBBOs continues to underpin FPO evolution, acting as a conduit for technical assistance, capacity building, and market facilitation. Persistent challenges relating to resource availability, coordination efficacy, and technology transfer necessitate continual innovation and policy attention.</p> <p>Looking forward, the sustainability and scalability of FPOs in Manipur are contingent upon a dual strategy: firstly, grassroots capacity building aimed at enhancing organizational governance and financial management; secondly, the establishment of robust policy frameworks encompassing financial inclusion, governance reforms, and integrated value chain development. In this synthesis, Manipur’s experience epitomizes a microcosm of broader agrarian restructuring processes, wherein collective institutional enterprise empowers individual farmers to surmount structural and systemic impediments. The strategic realignment of institutional support, innovative financing modalities, and participative governance will critically determine how effectively this latent potential translates into improved livelihoods and resilient rural economies.</p> </article> </div> </div> </div> <script> (function(){ const root = document.getElementById('sds-fpo-local-markets-full'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; }} window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* Reduce Motion */ (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); /* Reader controls */ (function(){ const body = root.querySelector('#paperBody'); const expandAll = root.querySelector('#expandAll'); const collapseAll = root.querySelector('#collapseAll'); const toggleWrap = root.querySelector('#toggleWrap'); const jumpTop = root.querySelector('#jumpTop'); const jumpBottom = root.querySelector('#jumpBottom'); if(!body) return; expandAll?.addEventListener('click', ()=>{ body.style.maxHeight = 'none'; body.scrollTo({top:0, behavior:'smooth'}); }); collapseAll?.addEventListener('click', ()=>{ body.style.maxHeight = window.matchMedia('(max-width:720px)').matches ? '60vh' : '72vh'; body.scrollTo({top:0, behavior:'smooth'}); }); toggleWrap?.addEventListener('click', ()=>{ body.style.whiteSpace = body.style.whiteSpace === 'pre-wrap' ? 'normal' : 'pre-wrap'; }); jumpTop?.addEventListener('click', ()=> body.scrollTo({top:0, behavior:'smooth'})); jumpBottom?.addEventListener('click', ()=> body.scrollTo({top:body.scrollHeight, behavior:'smooth'})); })(); })(); </script> </section>
 
   <footer>
     <div class="footer-wrapper" role="contentinfo" aria-label="Footer">

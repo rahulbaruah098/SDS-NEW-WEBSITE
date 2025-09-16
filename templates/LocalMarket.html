@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>  Local Market | SDS</title>
+     <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <style>
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+      .logo-f { height: 75px; }
+  </style>
+  <body>
+<!-- ======================= NAVIGATION (fixed) ======================= -->
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="/ing">INSIGHTS</a></li>
+        <li><a href="/pub">PUBLICATIONS</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+       
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+<br><br><br>
+<section id="sds-fpo-local-markets-full" aria-label="Local Market Development for Building Integrated Agriculture–Nutrition Pathways (Full)">
+  <style>
+    /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */
+    #sds-fpo-local-markets-full{
+      --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18);
+      --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
+      background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    }
+    #sds-fpo-local-markets-full *{box-sizing:border-box}
+    #sds-fpo-local-markets-full figure{margin:0}
+
+    /* ============ HERO (same grid) ============ */
+    #sds-fpo-local-markets-full .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px); }
+    @media (max-width:980px){ #sds-fpo-local-markets-full .hero{grid-template-columns:1fr; min-height:72vh} }
+
+    /* Ambient background */
+    #sds-fpo-local-markets-full .parallax-bg{ position:absolute; inset:-12% -4% auto -4%; height:42vh; background: radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%), radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%); filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0); }
+
+    /* Left panel (copy) */
+    #sds-fpo-local-markets-full .hero-left{ z-index:2; border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow-1); padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px); display:grid; align-content:start; gap:clamp(12px,2.2vw,20px); }
+    #sds-fpo-local-markets-full .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px; color:#063a52; background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12)); border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring); width:max-content; }
+    #sds-fpo-local-markets-full .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18); }
+
+    /* Title animation */
+    #sds-fpo-local-markets-full .title{ font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px; display:inline-block; background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:titleShift 10s linear infinite; position:relative; }
+    #sds-fpo-local-markets-full .title::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%); mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none; }
+    @keyframes titleShift{ to{ background-position:200% 0; } }
+    @keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+
+    /* Scrolling info line */
+    #sds-fpo-local-markets-full .scrolling-line{ overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa); }
+    #sds-fpo-local-markets-full .scrolling-track{ display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite; }
+    #sds-fpo-local-markets-full .scrolling-track i{ opacity:.75; }
+    @keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    #sds-fpo-local-markets-full .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
+
+    #sds-fpo-local-markets-full .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+    #sds-fpo-local-markets-full .btn{ appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+    #sds-fpo-local-markets-full .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+    #sds-fpo-local-markets-full .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+    #sds-fpo-local-markets-full .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+    #sds-fpo-local-markets-full .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+
+    #sds-fpo-local-markets-full .stats{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px; }
+    #sds-fpo-local-markets-full .stat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06); }
+    #sds-fpo-local-markets-full .stat b{ font-size:20px; display:block; }
+    #sds-fpo-local-markets-full .stat span{ font-size:12px; color:var(--muted); }
+
+    /* Right: SINGLE image */
+    #sds-fpo-local-markets-full .hero-right{ position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius); background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid; }
+    #sds-fpo-local-markets-full .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+    #sds-fpo-local-markets-full .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
+    #sds-fpo-local-markets-full .image-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.20) 100%); pointer-events:none; }
+    #sds-fpo-local-markets-full .slide-caption{ position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25); padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px); }
+
+    /* ============ CONTENT (adds long-form features) ============ */
+    #sds-fpo-local-markets-full .content{ max-width:1200px; margin:34px auto clamp(40px,6vw,80px); padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1; }
+    #sds-fpo-local-markets-full .section-intro{ display:grid; gap:10px; }
+    #sds-fpo-local-markets-full .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+    #sds-fpo-local-markets-full .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
+
+    /* Long-form reader */
+    #sds-fpo-local-markets-full .paper{ border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow-1); overflow:hidden; }
+    #sds-fpo-local-markets-full .paper-toolbar{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; background:linear-gradient(#fff,#f8fafc); border-bottom:1px solid var(--line); }
+    #sds-fpo-local-markets-full .paper-toolbar .controls{ display:flex; gap:8px; flex-wrap:wrap; }
+    #sds-fpo-local-markets-full .pill{ border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-weight:600; background:#fff; cursor:pointer; }
+    #sds-fpo-local-markets-full .pill:hover{ box-shadow:0 2px 8px rgba(2,6,23,.06); }
+    #sds-fpo-local-markets-full .paper-body{ max-height:72vh; overflow:auto; padding:18px; line-height:1.75; color:#0f172a; }
+    #sds-fpo-local-markets-full .paper-body p{ margin:0 0 14px; }
+    #sds-fpo-local-markets-full .paper-body h4{ margin:24px 0 10px; font-size:18px; }
+    #sds-fpo-local-markets-full .paper-body ul{ margin:10px 0 16px 1.2em; }
+    #sds-fpo-local-markets-full .note{ color:#64748b; font-size:13px; }
+
+    /* Mobile tweaks */
+    @media (max-width:720px){
+      #sds-fpo-local-markets-full .hero{ padding:16px; gap:14px }
+      #sds-fpo-local-markets-full .kicker{ font-size:12px; padding:6px 10px }
+      #sds-fpo-local-markets-full .scrolling-track{ gap:22px }
+      #sds-fpo-local-markets-full .cta-row .btn{ width:100%; justify-content:center }
+      #sds-fpo-local-markets-full .stats{ grid-template-columns:1fr; gap:8px }
+      #sds-fpo-local-markets-full .image-frame{ min-height:46vh }
+      #sds-fpo-local-markets-full .slide-caption{ font-size:12px; padding:6px 10px }
+      #sds-fpo-local-markets-full .paper-body{ max-height:60vh }
+    }
+    @media (max-width:420px){
+      #sds-fpo-local-markets-full .title{ font-size:32px }
+      #sds-fpo-local-markets-full .lead{ font-size:14px }
+      #sds-fpo-local-markets-full .image-frame{ min-height:42vh }
+    }
+  </style>
+
+  <!-- Ambient background -->
+  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="kicker"><span class="k-dot"></span> Local Markets · Nutrition Pathways</div>
+      <h1 class="title">Local Market Development for Building Integrated Agriculture–Nutrition Pathway for Communities</h1>
+
+      <div class="scrolling-line" aria-hidden="true">
+        <div class="scrolling-track">
+          <span><i class="fa-solid fa-bowl-food"></i> Food security · dietary diversity</span>
+          <span><i class="fa-solid fa-seedling"></i> Smallholders · short supply chains</span>
+          <span><i class="fa-solid fa-store"></i> Rural haats · retail access</span>
+        </div>
+      </div>
+
+      <p class="lead">
+        Dibyajyoti Dutta, Associate Professor, Department of Political Science, Dibrugarh University, Assam-786004<br>
+        Parag Boruah, Managing Director, Sayanant Development Services Pvt. Ltd, Guwahati-781017<br>
+        Madhusmita Chowdhury, Guwahati
+      </p>
+
+      <div class="cta-row">
+        <button class="btn btn-primary" id="expandAll"><i class="fa-solid fa-maximize"></i> Expand All</button>
+        <button class="btn btn-ghost" id="collapseAll"><i class="fa-solid fa-minimize"></i> Collapse All</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>SOFI 2021</b><span>928M severely food insecure</span></div>
+        <div class="stat"><b>GHI 2021</b><span>Conflict · climate · COVID-19</span></div>
+        <div class="stat"><b>3 A’s</b><span>Availability · Affordability · Accessibility</span></div>
+      </div>
+    </div>
+
+    <!-- Right: SINGLE image (local market scene) -->
+    <div class="hero-right" data-parallax data-speed="-0.08">
+      <figure class="image-frame" aria-label="Indian rural local market with fresh produce">
+        <img src="{{ url_for('static', filename='Images/vegetables.jpg') }}" alt="Local market scene supporting integrated agri–nutrition">
+        <figcaption class="slide-caption">Local markets · fresh food · community</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="content">
+
+
+    <div class="paper">
+      <div class="paper-toolbar">
+        <div><strong>Sayanant Development Services</strong></div>
+        <div class="controls">
+          <button class="pill" id="toggleWrap">Toggle Wrap</button>
+          <button class="pill" id="jumpTop">Top</button>
+          <button class="pill" id="jumpBottom">Bottom</button>
+        </div>
+      </div>
+      <div class="paper-body" id="paperBody">
+        <article>
+<h2>Local Market Development for Building Integrated Agriculture-Nutrition Pathway for Communities</h2>
+<p>Dibyajyoti Dutta, Associate Professor, Department of Political Science, Dibrugarh University, Assam-786004<br>
+Parag Boruah, Managing Director, Sayanant Development Services Pvt. Ltd, Guwahati-781017 <br>
+Madhusmita Chowdhury, Guwahati</p>
+<p>The State of Food Security and Nutrition in the World (SOFI), 2021 reported that close to 12 percent of the global population was severely food insecure in 2020, representing 928 million people – 148 million more than in 2019. The number of people in the world affected by hunger increased in 2020 under the shadow of the COVID-19 pandemic (FAO, 2021). Food security is a global challenge. As per the Global Hunger Index (GHI) 2021, hunger on a global scale remains serious. Among the world’s regions, Africa South of the Sahara and South Asia are the world regions with the highest hunger levels (GHI 2021, p.12). The GHI 2021 succinctly summarises that-</p>
+<p>Conflict, climate change, and the COVID-19 pandemic— three of the most powerful and toxic forces driving hunger- threaten to wipe out any progress that has been made against hunger in recent years. (GHI 2021, p.7)</p>
+<p>Such contemplations manifestly exemplify the deepening food crises grappling the world. While highlighting the impending dangers of food insecurity, the report further noted that owing to multitudes of issues food production has been severely hit. Food production is central in keeping hunger, malnutrition etc. at bay. <br>
+Why is it necessary to integrate agriculture, local market and nutrition?</p>
+<p>India attained self-sufficient food producer status way back in 1970's. Currently India is one of the largest exporters of pulses, meat, millet, dairy products etc. It has also become the largest emerging rural market in the world and the largest food retail industry.  It is the second largest producer of vegetables and fruits. Yet, it is one of the most struggling countries in terms of nutrition which raises the question that where does the lacuna lie? So far, improvement has been made in the category of export oriented cash crops, institution of agro food industries, but as of now, no progress could be achieved in the nutritional standards. Since the European countries and the USA has emerged successful to improve the condition of nutrition in their respective countries by developing local markets of the small farmers whose agricultural pattern is benevolent to both nature and human beings, it is time that we think of adopting this integration of local markets, agriculture and nutrition in India which is historically and traditionally a land of small farmers. </p>
+<p>Why Local markets?<br>
+The majority of Indian farmers sell their produce in local markets, according to the 77th round of the National Sample Survey (NSS) conducted by the National Statistical Office (NSO) (Bhattacharya, 2021)<br>
+Local markets play an important role in improving quality dietary intake. Local food markets typically involve small farmers, heterogeneous products, and short supply chains in which farmers also perform marketing functions, including storage, packaging, transportation, distribution, and advertising. Motives for “buying local” include perceived quality and freshness of local food and support for the local economy. Consumers who are willing to pay higher prices for locally produced foods place importance on product quality, nutritional value, methods of raising a product and those methods ‘effects on the environment, and support for local farmers (Martinez, 2010 p.4).<br>
+Studies reveal that in India the marketable surplus of food crops is higher than the corresponding marketable surplus in sub-Saharan Africa. In Malawi, for instance, households sold less than 10% of their production of subsistence crops such as beans, maize, sorghum, and wheat. It has been noticed that market linkages enable smallholders to consume a diverse diet through both the demand and supply sides. On the demand side, increased incomes, via enhancing households’ ability to sell part of their produce in the market, could raise their demand for a more diverse set of foods. This may reduce the role of production in dietary diversity, as higher incomes (through market sale) could enable the household to buy a diverse food basket from the market. Further, It has been observed that income from the sale of cereal crops has been associated with significantly higher DDSs (dietary diversity scores) for women in India. On the supply side, it is argued that markets can make more diverse and nutritious foods available to households, possibly across seasons. This again reduces the reliance on own production for food consumption, especially in the lean season (Pingali et.al, 2020)<br>
+Local markets are of great significance to the people especially in rural areas with inadequate transport facilities, packaging units and other resources etc. To bring development in the real sense of the term, the infrastructural bottlenecks need to be bridged and only then industries shall flourish and efficient local marketing would be possible.<br>
+Khau &amp; Mothilal (2018, p. 523) has pointed out following limitations exist in the North-eastern Indian states in the way of developing local market. In fact, these can be true for pan-India local markets. </p>
+<ul>
+<li>	Small and scattered holding.</li>
+<li>	Lack of warehousing and storage facilities (cold storage, warehouses or otherwise).</li>
+<li>	Lack of manpower in marketing</li>
+<li>	Lack of Agricultural Credit facilities</li>
+<li>	Lack of Uniformity in Grading and Standardization.</li>
+<li>	Poor Handling, Packing, Packaging, and Processing Facilities</li>
+<li>	Lack of market information</li>
+<li>	High transportation costs.</li>
+<li>	Lack of transportation facilities.</li>
+</ul>
+<p>What are the challenges for development of local markets?</p>
+<p>Barriers to local food-market entry and expansion include: capacity constraints for small farms and lack of distribution systems for moving local food into mainstream markets; limited research, education, and training for marketing local food; and uncertainties related to regulations that may affect local food production, such as food safety requirements (Mertinez et.al, 2010,p. iv). Despite the challenges, initiatives have been made by the Government to provide for the setting up of new Rural Haats and for creating basic infrastructural facilities in existing Rural Haats which provide rural communities with an accessible market to buy and sell their farm and off-farm produce.</p>
+<p>Why are Sustainable or integrated agriculture and local market development important in India? <br>
+By local market we mean small compact trading zones where people of a single geographical area sharing cultural, habitual, and  linguistic homogeneity buy and sell food that have been produced locally by small, marginal farmers in field or family farms.  In India, 742 million people reside in rural areas   and the majority of them are engaged in agriculture. Small farmers contribute 51% agricultural outputs with 46% of operated land and a much higher share of 50% in high value crops. For instance, although Bihar is not much advanced in agriculture like Punjab, Bihar farmers earn Rs. 4,236 per hectare per month than the Punjab farmers who earn Rs.3448 per hectare per month.   The reason is crop diversification which is much less in Punjab. While only 11% area of Punjab cultivates diverse crops; Bihar’s numerics stands at 35%. Again, while 0.39 hectares of Bihar constitutes agricultural land, Punjab's share is 3.62 hectares.   This is why small scale production should not be neglected by referring to the fact that it contributes only 13% to the GDP with 44% of the workforce. Moreover the results of a report on Assam, published during the late 1990’s also hold true to the overall agricultural scenario of India. For instance, in Assam, there were a total of 1237 rural or unregulated markets compared to only 67 urban or regulated markets.  </p>
+<p>The small village farmers lose 10% of their profits due to the difference between the market price and the price which the trade agents of the urban wholesalers offer them. Since there is no village go-down and refrigerating storehouses to retain their products to sell them in off seasons and since there is no availability of transportation and communication channels at a lower price to bring a huge amount of their produce to urban markets; they become bound to sell them right at their field to the traders. Although contractual production is seen as a viable option for the small farmers due to guaranteed advance payments,  the case of Assam and other Northeastern states reveal that farmers lose a huge chunk of profit since the wholesalers sell them at a much higher price in the urban markets.  Large number of co-operative marketing societies exists in Assam but they do not handle the procurement of agricultural products.  In the absence of credit mechanism in the rural areas and a distrusted relationship between the farmers and bank agencies make the village moneylenders still a very strong agent controlling the lives of small farmers.  Although there are organizations at both  Indian and regional level like National Agricultural Marketing Cooperative Federation, Agricultural and Processed Food Export Development Authority, Northeastern Agricultural Marketing Corporation etc. to supervise the farmer's production at village  level but the overall condition of the small farmers is still negative across the country making them the most vulnerable section in terms of food and nutrition security although they themselves produce food.  Data from the Centre for Monitoring the Indian Economy (CMIE) show that even after nearly the last two decades of relatively high production in India; sixty percent of the average consumer's expenditures are made on food and energy to cook it.  It reveals two facts; prices of food commodities are high enough to cause the majority of the Indian population to spend more than half of their income on it and the majority of the population is still working under an inadequate wage regime which does not allow them to spend  much on anything else other than food. The important fact is that although seventy percent Indians depend exclusively on 'market' (mainstream) for procuring food,  physical access to which is relatively good in most of the rural India; those foods do not provide a nutritious diet.  In order to change this scenario along with changing the country's nutritional status, the study argues; small sized local food markets at places where production takes place provides an alternative opportunity.  This is why local market is recognized as the 'alternative food economy' which has the capacity to solve both the economy and the diet.  Rural sociologists and economists of Europe were the first to define that this alternative economy emerges around local production of fresh food using traditional and artisan processing methods supplying to a new category of farmers who motivated by ethical and health concerns rather than price. </p>
+<p>The Soil Association of Europe defined the sustainable local food economy as "A system of producing, processing, and trading primarily of organic and sustainable forms of food ...where physical and economic activity is largely contained and controlled within the locality or region where it is produced."  </p>
+<p>Indian small farmers are suffering constant pressure since they need to compete against the big agribusiness sector who most often buy raw materials from the big farmers of developed agricultural states of India like Punjab, Haryana, western Uttar Pradesh etc.  Moreover due to the expensive nature of transportation, they cannot attend the urban market as have been discussed above. This is why every state of India should adopt market strategies centered on the small farmers and their cultivation patches. Every district should be divided into definite groups of villages based on their geographical proximity, nature and extent of their production, food habit and  connectivity and then at least two or three or even more if the conditions allow, small market centers at a convenient place where farmers of all the surrounding villages can come; should be established. A market area does not necessarily require to be like that of urban market complexes.  Thatch, which is organic and grows naturally in most of rural India, woods, bamboos etc. should be employed to build the structure by maintaining proper hygiene and those materials should always come from nearby areas which will further strengthen the rural economy. Establishing markets within market will eliminate or reduce the cost of transporting the products to distant markets which will further lessen the price of the articles. Those village peoples who do not cultivate and need to go to urban markets to buy at higher prices, will then find articles at a comparatively cheap price since the local market would reduce the urgency of immediate sell to the traders at an unfair price to protect the produce from getting damaged. It will reduce the price hierarchies which emerge due those traders or middle agents.  Hence the Foundation for Local Food Initiatives states, "the advantages of a local (market) are community development, access to fresh produce, and producer ownership of product/process….it encompasses three dimensions of sustainability: the environment, economy and society, local markets always promote local development…". </p>
+<p>It is expected that the local market would lessen the influence of the village moneylenders since the pressure to produce more to feed the entire nation would be reduced which would otherwise force the farmers to spend more on production.  Moreover, less competition would also lessen the cost of production because there would be no need for intense and fast growth and hence there would be reduction in buying chemical fertilizers, high yielding and genetically engineered seeds, pesticides etc. </p>
+<p>Not only that, when farmers directly sell their products to the customers; a healthy relationship builds up between them which allow the buyers to understand the hardships, struggles under which the small farmers cultivate and they also get direct information about how the article has been produced, what methods have been used or the buyers also get the opportunity to visit cultivation patches since local markets are usually expected to be near the cultivation fields. On the other hand, such direct communication helps the farmers to understand the needs of the buyers more accurately. Thus, local markets are based on wider community involvement and interactions which is 'more open and flexible than the hierarchies but not as loose and impersonal' as existing in the mainstream regulated markets. </p>
+<p>The Covid-19 pandemic has altered the economic scenario of the world much dramatically along with people's perception of market and commodity security. The pandemic has questioned the logic of transport of food from thousands of miles away and added security concern to it. In this context, when many of the big food companies have fallen down, a new scope for the small growers who sell to the local retail shopkeepers or at local-zonal markets has emerged.  <br>
+What are 3A’s and how it can be achieved? </p>
+<p>After the Green Revolution, India has become self-sufficient in grain production and the fourth largest oilseed exporting economy next to the USA, China and Brazil.  Similarly in the production of other grains too, India fared well with surplus production. However, an increase in national production does not mean that availability of food has increased in the country because a large portion of that production may be stored for export.  Exporting food to the foreign countries has always remained a priority in Indian economic planning rather than developing local village level market systems. For example regarding the North-East  India; economic development planning always  focuses on exporting the produced grains to neighbouring countries like Myanmar,  Bhutan, Bangladesh,  Nepal, Vietnam, Laos or other such southeast Asian  countries under grand planning like the Act East Policy, BIMST-EC or Bangladesh, India, Myanmar, Sri Lanka, Thailand Economic Cooperation,  Bay of Bengal Initiative for Multi Sectoral Technical and Economic Cooperation,  SAARC, ASEAN Free Trade Area etc.   Availability of food; thus is a huge problem in India due to its excessively export oriented agribusiness market. Food availability has different meanings and aspects which range from supplying food to the needy people; to the economic condition of those people who cannot purchase food due to huge gaps between their income and food prices. Thus, while availability of food is a concern in India; we shall have to  keep in mind the following factors: </p>
+<ul>
+<li>	Availability: The Food Security Summit of the UN, 1974, stated that food availability is basically about supplying food which is affected by fluctuations in production and prices.  In Indian context by the term supply we mean supply from the Government's agencies (under food welfare schemes) and in order to supply to the people, there must be convenient transportation and communication systems which are not expensive because expensive transportation increases the prices of food. Moreover, the transport system must be improved in rural areas of India so that government granaries can be established in villages themselves rather than establishing them in urban areas. Village granaries would help the people to directly procure food. Storing of the food grains is a great obstacle in the process of food availability. FAO predicts that 1.3 billion tonnes of foods are globally wasted due to storage problems  and India witnesses nearly 4.6-15.9% of wastage of fruits and vegetables, 5.2% of inland fish, 10.5% of marine fish, 2.7% of meat and 6.7% of poultry meat due to the same problem.  Annually India loses 12-16 million metric tons of food grain during the post harvest which is an amount according to the World Bank, that can feed one third of the poor people  in India.  9.5% of the total pulse production is wasted in the country due to this problem.  Thus, efficient management in the post harvest stage is very critical to achieve nutrition security and maximizing returns to the farmers for their production. Not only that, food loss is equivalent to 6-10% of human generated greenhouse gas emissions including methane. Annual emissions of Co2 due to global food waste are 4.4 billion tons.   Still, as has been discussed in the previous sections, the majority of small farmers are bound to sell their products to the middle men or trade agents because they lack all weather convenient cold storehouses. Currently there are two schemes in India to provide financial assistance to the farmers to set up cold storage; the first is 'The Mission for Integrated Development for Horticulture' (MIDH) under the agriculture ministry and the second is Pradhan Mantri Krishi Sampada Yojana (PMKSY) under the ministry of food processing industries. Since 2014-15; a total of 1104 cold storages have been established across the country with a total capacity of 48.34 lakh MT under the MIDH.  On the other hand, under the PMKSY, 208 storage facilities with a capacity of 5.3 lakh ton have been constructed. Yet there is a shortfall of 126 lakhs tons of storage capacity.  Moreover, the location of those facilities is disproportionately distributed. Majority of them are in Uttar Pradesh,  Gujarat, Punjab,  Haryana etc. which are advanced states in terms of modern agriculture. States of Eastern, Northeast or central India finds a lack of facilities. Besides, India produces fruits and vegetables upto 300 million tonnes; which is 18% of the total agricultural production yet the storage facilities are basically reserved for single commodities like potatoes, oranges, apples, grapes etc. which are largely exported within the different regions of India along with exporting abroad. For example, out of about 7645 cold storages in India, 68% of their capacity is devoted to potato and only 38% to multi commodity utilization.   Again, 33% of all the storages across the country, is concentrated in Uttar Pradesh alone which is primarily used for potato. To further intensify the scenario, 95% of the current cold storages are owned by the private sector, 3% by cooperatives and 2% by the public sector undertakings.  This reveals the critical condition under which the small farmers produce.  </li>
+<li>	Again, as has been stated above; fluctuations in both production and price influence availability of food. Regarding production, it is important to note that it should not be reserved for export exclusively. No doubt a country cannot disengage itself from economic activities like export, but its intensity and extent should be minimized so that the men and money power which are devoted can be diverted to food welfare programs which are of utmost necessity. Regarding price control, it is important on the part of the government to reduce transportation cost, control the pricing strategy of the agribusiness sector and the supermarkets. There must be tax and duties concessions to the small farmers and increasing the amount of expenditure in small farming sectors so that farmers themselves sell their products at village markets at lower prices. Creation of retail shops at villages is very essential in this regard. There are many villages in India which lack retail shops due to which those areas are recognized as food deserts.  </li>
+<li>	Affordability: With the price system of agricultural production; not only availability but also another crucial factor 'affordability' of food is linked. Affordability is people's capacity to purchase food, so it is linked with employment, income or wages rate etc. Concentration of wealth in the hands of a few impacts the aspect of affordability. Without people's capacity to purchase, production or availability alone cannot solve the problems of nutrition security. For example, due to the low purchasing power of the people; India is still a demand constrained economy, that is; despite high production, per capita food supply is low due people's inability to buy. It has created the problem of a huge 'buffer stock'.  Buffer stock is a condition when a huge amount of food grain strategy gets damaged due to no demand in the market. FCI data show that 3000 tonnes of food grain rotted in 2015-16 at granaries. During 2014-15, the situation was more negative and a total 19,000 tonnes of food grain got spoiled.   According to Ravellion, the majority of the rural people including the poorest villagers with small farm holdings in India relies exclusively upon the market for acquisition of food and is known as the net consumers of food.  According to the NSSO report 2011-12, the majority of rural Indians live in densely populated areas and in close proximity to food markets. For 80.5-95.7% of fruits and vegetables and for more than 70% of staple foods like rice and wheat; rural people rely on the market.  Thus, physical accessibility to market is wholesome in India but it does not ensure nutrition. It has been found that among staple foods; rice and wheat of coarse quality like Bajra, are most often chosen by the rural population due to their cheaper price compared to other varieties. In a similar way, people buy pulses more frequently to fulfill the need of protein than buying meat, fish or egg because these are expensive foods. Although flesh food offers more micronutrients and protein, only 0.02% of rural people opt for these foods.  Eggs are cheaper than poultry yet only in 0.01% cases people buy them.   63.3% or 527.4 million of the Indian population could not afford CoRD (Least Cost Recommended Diet) even after spending 100% of their income on food. Their income was 20% below the standard of least cost recommended diet.  According to a survey conducted by independent researchers, if $ 3.64 had been recognized as the poverty line in India in 2011; 76.2% of the rural population could not have afforded CoRD and 634.8 million of them could have saved only $ 0.60 a day for non food expenditure but as India adopted a different framework to determine the poverty line, number of people without food affordability appeared less than it.  Importantly, these estimates of Indian population without affordability to nutritionally recommend a diet are much higher than the World Bank had hinted.  How people's income directly impacts their nutrition is also revealed by the fact that during the seasons when prices for grain goes up, people buy less or do not buy at all and when the prices go down, demand rises. For instance, prices for fruits rise by 20% in India during June-July than in January causing least demand in the market.  </li>
+<li>	However, no doubt these measures help people to reduce hunger for the time being, yet they do not seem to have long term solutions to solve this structural problem. Such schemes turn poor people into mere beneficiaries; dependent on the administrative wing for their fundamental needs. This is why such measures should be taken as intermediary measures and not as long term solutions. Contrary to turning the village folk dependent; they should be organized to cultivate, process, and sell commodities at local markets for the establishment of which, the Government should adopt a new agricultural policy with the active involvement of the farming communities themselves. In construction of market complexes, granaries, storehouses or warehouses, organization of shops, road construction for smooth transportation in villages etc. which create market allied economic activities, those people should be employed. In rearing the livestock, excavating pools for fisheries, collecting fodder to feed the animal, preparing organic manure and collecting biodegradable articles, keeping villages and market complexes clean etc. should be converted to payable jobs. It is expected that creation of local markets would lead to several other economic activities which turn the village people of the Farming communities into capable of affording their own food with economic security. This is why, USA has emphasized much upon the concept of 'community food security' where underlying social, economic and institutional factors that affect the quantity and quality of available food and its affordability relative to the sufficiency of financial resources available to achieve it within a community is studied.   The report on community food security in the USA emphasises that food assistance programs directed toward feeding the needy community should adopt active involvement of the community itself in cultivating, processing, organizing and selling the food as a policy, it creates job opportunities, community development, farmland production, direct marketing and economic viability.  In order to increase affordability, policies like community gardens, farmer's market, food buying cooperatives etc. should be adopted because they provide economic stability to the small farmers and high quality foods in lower prices to the people because these foods do not need to compete for export market which reduces the necessity it use chemical fertilisers, insecticides or artificial and hybrid seeds to grow fast and expected to be subsidized by governments. As further means to increase affordability of small farming communities, D. Beihler suggests that farm to school initiative (that is the tasks producing and transporting the food intended to feed at  the schools located within the community's area should be done by the community members themselves. It would provide them economic security), training the rural youths in such activities; for which in India we have KVK, is also important in this regard.  </li>
+<li>	Accessibility: By accessibility spatial distance is meant which people need to travel to purchase or avail their food.   Accessibility is important in food or nutrition security because if the transportation expenses to buy food are higher, it impacts the common people's ability to purchase food negatively. It is in this context that establishing retail shops at village level is becoming important. It has been discussed in the previous chapter that the concept of local food and market supports selling locally produced food at the retail shops. It has already been pointed out that the majority of the Indian villages have accessibility to retail shops. According to A. T. Kearney report, India is ranked fifth most attractive emerging retail market in the world and ranked second in Global Retail Development Index of thirty developing countries.  The country possesses twelve million retail outlets which is highest in terms of retail shops density in the world.  Indian rural retail industry was about to grow from Rs.35,000 crores in 2004-05 to 109,000 crores by 2010. Rural retail industry in India is in fact one of fastest growing industries in the world of investment. Till 2006; 97% of the retail sector was dominated by unorganized shops but thenceforth the organized retail shops under big capitalist houses started to grow by 49.53% per annum. The major retail industries which have stabilized their hold over rural India are: Tata group, RPG group, Reliance, AV Birla Group, DCM Shriram Consolidated Ltd., Piramal's, Pantaloon, K. Raheja Group, Landmark Group, Adhar, Godrej Group, E-Choupal and Choupal Sagar, Triveni Khushali Bazar etc. From the analysis of this trend of including rural areas into the jurisdiction of retail industries controlled from the metropolitans, it can be concluded that most often do not generate economic opportunities, nutrition security although many of the companies have adopted some specific schemes to provide opportunities to the rural population. Gaon Chalo initiative of Tata Tea, Shakti of HLL group to facilitate self help groups of rural women etc. but market oriented approaches hamper the real progress of the people and they turn into mere consumers. To assist the people of grassroots, local markets should be emphasized more and since there already exist the Market Committees under the APMC act to regulate the rural retail market in India, it should be put to work with necessary modifications as has been discussed. Moreover, it would be more beneficial on the part of village folk if panchayats, block development agencies, the district, state and national level small farmer's training agencies, rural development ministries help the rural people to establish their own retail shops where they could sell their own products. However, besides necessary training and start-up loans at moderately levied interest rates; certain preconditions like processing, packaging, storing, grading etc. which are known as value added post harvest activities must be improved in these regions. The growing concern for 'vocal for local' has suggested and popularised the traditional methods of packaging, storing  processing etc. which  vary from region to region and Indian villages should also be encouraged to make use of their own traditional knowledge.  </li>
+</ul>
+<p>Can local markets help increase opportunities for employment? <br>
+Development of the rural sector to support the local economy and create opportunities for the long run needs attention of the Government.  Agro industries have the potential to provide employment for the rural people not only in farming but also off farming activities such as handling, packaging, processing, transporting and marketing of food and agricultural products. These industries have significant impact on economic development and poverty reduction in both rural and urban areas (Sylvia et.al, 2009). In order to improve the economic conditions of the rural people, it is essential to make optimum utilization of the local resources to build the local markets. 
+<h3>Reference -</h3>   
+<li>V. Dhanya,  Avdesh Kumar Shukla and Rishabh Kumar, "Food Processing in India: Challenges and Potentials", RBI Bulletin, March 2020, pp.27-41; retrieved from: https://rbidocs.rbi.org.in/docs/Bulletin/PDFs/02AR_1103207BF5BBAA459047E49DADA63E325BD95.PDF</li><br>
+<li>Virgenie Amilien, Georgina Holt, Karen Montegne and Isabelle Techoueyers, Local food in Europe: ESF Exploratory Workshop: A workshop about European Local Food System and their meanings in XXI st century Europe, https://doi.org/10.4000/aof.498  </li><br>
+<li>Gabey Goth, "Redefining Rural Market in India", Opinion, 11.12.2019 https://www.warc.com/newsandopinion/opinion/redefining-rural-marketing-in-india/en-gb/3346</li>
+Future of Indian Agriculture and Small Farmers: Role of Policy, Regulation and Farmer Agency", Down to Earth, https://www.downtoearth.org.in/blog/agriculture/future-of-indian-agriculture-and-small-farmers-role-of-policy-regulation-and-farmer-agency-75325 <br>
+Ibid.<br></li>
+<li>Rural Marketing System in the Northeastern States: Problems, Diagnosis and Strategy Perspective (Study under the supervision of the Planning Commission). https://niti.gov.in/planningcommission.gov.in/docs/reports/sereport/ser/study_rulemark.pdf, accessed on 21.01.2021 <br></li>
+Future of Indian Agriculture and Small Farmers.<br>
+Rural Marketing System in the Northeastern States.<br>
+Ibid. <br>
+<li>G. D. M. Ravallion, "Farm Productivity and Rural Poverty in India", 1998 in FCND discussion paper, retrieved from: https://mospi.nic.in/sites/default/files/publication_report_565_26june2015.pdf. <br></li>
+T. Marsden, "Food Matters and the Matters of Good: Towards a New Food Governance?", Socilogia Ruralis, Vol.40, No.1 (2000), pp.20-9. <br>
+Quoted in Holt, "Local Foods and Local Markets".<br>
+<li>Vandana Shiva, Staying Alive: Women, Ecology and Development (New Delhi: Kali for Women, 1989). <br></li>
+<li>Flair, "The Local Food Sector: Its Size and Potential", Food and Local Agriculture Information Resources Flair, UK. <br></li>
+<li>K.  Morgan and J. Murdoch, "Organic vs. Conventional Agriculture: Knowledge, Power and Innovation in the Food Chain", Geoforum, Vol.31, No.2 (2000), pp.159-173. <br></li>
+<li>Gouranga Patra and Prithviraj Bose, June 26, 2020; https://adamsuniversity.ac.in/vocal-for-local-a-cutting-edge-opportunity-for'market-development-of-small-farms/. <br></li>
+<li>Emika K. Kyndiah, "Oilseed Production and Productivity - Its Problems and Prospects in North-East India", p.55. <br></li>
+<li>Milil and Tanzim Surani, "Issues of Food Security in India: Availability, Accessibility and Affordability", p.115. <br></li>
+<li>Roshan Saha and Soumya Bhowmick, "Enhancing Trade and Development in India's Northeast", Special Report No.147 (June 17, 2021), Kolkata: Observer Research Foundation and "The Comprehensive Master Plan for Testing the Export Potentiality of Northeastern States", prepared by The Sadhguru Management Consultant Pvt. Ltd., Hyderabad, 2017. <br></li>
+"Official Concept of Food Security, UN, 1975, Report of the world food Conference; Rome 5-16th November, retrieved from: http://www.fao.org/3/y4671e/y4671e06.htm <br></li>
+<li>J. Gustavsson, C. Cederberg, U. Sonesson, R. Van Otterdisk, and A. May beck, "Global Food Losses and Food Wastes: Extent, Causes and prevention", Rome Conference of FAO, UN., cited in Minakshi Chakraborty, "Cold Storage In India: Challenge and Prospects", Agriculture & Food: E- New Settler; Rural and Agri Economist of Mahindra and Mahindra Group, Vol.2, No.10, pp.458-60. <br></li>
+World Food India Report, 2017, cited in Ibid, p.458. <br></li>
+<li>S. D. Deshpande and  G. Singh, "Long Term Storage Structures in Pulses", National Symposium on Pulses for Sustainable Agriculture and Nutritional Security, Indian Institute of Pulses Research, New Delhi, 2001, pp.17-19. <br></li>
+<li>Jean C. Buzby and Jeffry Hyman, "Total and per Capita Value of Food Loss in US", Food Policy, Vol.37, pp.561-570. <br></li>
+<li>Chakraborty, "Cold Storage in India", p.459. Ibid, p.459. Ibid."Rural Hunger and Access to Healthy Food Overview", Rural Health Information Hub, retrieved from: https://www.ruralhealthinfo.org/topics/food-and-hunger <br>
+Biswajit Dhar, lecture at the centre for economic studies and planning school of social sciences at JNU, cited in Milil and Surani, p.115.Ibid. <br>G. D. M. Ravallion, "Farm Productivity and Rural Poverty in India", FCND discussion paper, retrived from: http://mospi.nic.in/sites/default/files/publication_report/report_562_26june2015.pdf <br>
+Cited in Ibid. <br></li>
+Kalyani Raghnathan and Anna Henceforth, "Affordability of Nutritious Diets in Rural India", Food Policy, Vol.99 (February 2021), retrieved from: https://doi.org/10.1016/j.foodpol.2020.101982 Ibid. Ibid. <br></li>
+Barbara Cohen, "Community Food Security Assessment Toolkit", Economic Research Service, IQ Solutions, retrieved from: https://www.uc.edu/cdc/urban_database/food_resources/community_food_security_assessment_USDA.pdf <br>
+Ibid, p.2. <br>
+<li>H. Joseph, ed. Community Food Security: A Concept, Design and Implementation, 1997, cited in Ibid, p.8.
+"Introduction to Food Access, Food Security and Food Insecure Conditions", InTeGrate, retrieved from: https://serc.carleton.edu/integrate/teaching_materials/food_supply/students_materials/1068 <br>
+R. Hari Haran and Samita Mahapatra, "Retailing in India: Issues and Challenges", Conference paper, National Conference on "FDI 2013: Issues and Prospects" at Sinhgad Institute of Management Vadgaon (BK), Pune 41, 17th-19th January, 2013. <br>
+Parmpal Singh and Parminder Singh, "Retailing in Rural India '', International Conference on Recent Innovation in Science, Agriculture, Engineering and Management; University college of Computer Applications, Guru Kashi University Bathinda, Punjab; 20th November, 2017. <br>
+</p></li>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById('sds-fpo-local-markets-full');
+      if(!root) return;
+
+      /* Parallax */
+      (function(){
+        const els = [...root.querySelectorAll('[data-parallax]')];
+        if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+        let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; }}
+        window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+      })();
+
+      /* Reduce Motion */
+      (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })();
+
+      /* Reader controls */
+      (function(){
+        const body = root.querySelector('#paperBody');
+        const expandAll = root.querySelector('#expandAll');
+        const collapseAll = root.querySelector('#collapseAll');
+        const toggleWrap = root.querySelector('#toggleWrap');
+        const jumpTop = root.querySelector('#jumpTop');
+        const jumpBottom = root.querySelector('#jumpBottom');
+        if(!body) return;
+        expandAll?.addEventListener('click', ()=>{ body.style.maxHeight = 'none'; body.scrollTo({top:0, behavior:'smooth'}); });
+        collapseAll?.addEventListener('click', ()=>{ body.style.maxHeight = window.matchMedia('(max-width:720px)').matches ? '60vh' : '72vh'; body.scrollTo({top:0, behavior:'smooth'}); });
+        toggleWrap?.addEventListener('click', ()=>{ body.style.whiteSpace = body.style.whiteSpace === 'pre-wrap' ? 'normal' : 'pre-wrap'; });
+        jumpTop?.addEventListener('click', ()=> body.scrollTo({top:0, behavior:'smooth'}));
+        jumpBottom?.addEventListener('click', ()=> body.scrollTo({top:body.scrollHeight, behavior:'smooth'}));
+      })();
+    })();
+  </script>
+</section>
+
+
+
+
+    <!-- Footers -->
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <a href="{{ url_for('home') }}">
+          <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+        </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li><a href="/career" tabIndex="0">Join Us</a></li>
+          
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+              <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
+            <li tabIndex="0">Fishery Development</li>
+            <li tabIndex="0">Rural Finance</li>
+            <li tabIndex="0">Value Chain Development</li>
+            <li tabIndex="0">Marketing</li>
+            <li tabIndex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

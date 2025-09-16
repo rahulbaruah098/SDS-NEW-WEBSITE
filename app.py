@@ -253,6 +253,18 @@ def ingfpo():
 def ling():
     return render_template("lingos.html")
 
+@app.route("/loc")
+def loc():
+    return render_template("localMarket.html")
+
+@app.route("/pub")
+def pub():
+    return render_template("publication.html")
+
+@app.route("/ing")
+def ing():
+    return render_template("insights.html")
+
 
 # -----------------------------
 # Auth
