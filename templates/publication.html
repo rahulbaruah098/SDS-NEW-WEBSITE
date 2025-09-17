@@ -488,7 +488,6 @@ footer .footer-column h3 {
 </section>
 
 
-
 <section id="sds-flipbook" aria-label="Flipbook Viewer">
   <style>
     #sds-flipbook {
@@ -500,31 +499,78 @@ footer .footer-column h3 {
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 20px 0;
+      padding: 0;
+      margin: 0;
       box-sizing: border-box;
     }
+
+    /* Flipbook iframe */
     #sds-flipbook iframe {
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
     }
+
     /* Heading styles */
     #sds-flipbook h2 {
       font-size: 28px;
       font-weight: 900;
       text-transform: uppercase;
       text-align: center;
-      margin: 0 0 16px;
+      margin: 10px 0 14px;
       background: linear-gradient(90deg, #ff7e5f, #feb47b, #4facfe, #00f2fe);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: gradientShift 6s ease infinite;
+      z-index: 10;
+      position: relative;
     }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+      #sds-flipbook {
+        height: auto;
+        min-height: 100svh;
+        justify-content: flex-start;
+      }
+      #sds-flipbook h2 {
+        font-size: clamp(18px, 5.5vw, 22px);
+        margin: 8px 0 12px;
+        line-height: 1.2;
+      }
+      #sds-flipbook iframe {
+        width: 100vw;     /* force full width */
+        height: 88vh;     /* take almost full height */
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+      #sds-flipbook iframe {
+        width: 100vw;
+        height: 85vh;
+      }
+    }
+
+    /* iOS Safari safe area */
+    @supports (-webkit-touch-callout: none) {
+      @media (max-width: 768px) {
+        #sds-flipbook { min-height: -webkit-fill-available; }
+      }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      #sds-flipbook h2 { animation: none; }
     }
   </style>
 
@@ -533,11 +579,430 @@ footer .footer-column h3 {
 
   <!-- Flipbook iframe -->
   <iframe 
-    src="https://www.teachany.com/tools/flipbook-maker/preview/VWHJganlPk0fD39OF44Ui" 
+    src="https://online.flippingbook.com/view/278749980/" 
     allowfullscreen
     title="SDS Flipbook">
   </iframe>
 </section>
+
+
+<section id="sds-pdf-download" aria-label="Download PDF">
+  <style>
+    /* ================== Scoped Tokens ================== */
+    #sds-pdf-download{
+      --wrap:max(62ch, min(1180px,92vw));
+      --bg: #0b0f14;
+      --ink:#e7edf5;
+      --muted:#9fb0c7;
+      --brand:#5eead4;
+      --brand-2:#60a5fa;
+      --accent:#f472b6;
+      --line:rgba(255,255,255,.12);
+      --card:rgba(255,255,255,.06);
+      --ring:rgba(96,165,250,.28);
+      --radius:20px;
+      --shadow-1: 0 24px 60px rgba(0,0,0,.50), 0 2px 10px rgba(0,0,0,.25);
+      --shadow-2: 0 10px 30px rgba(94,234,212,.18), 0 6px 18px rgba(96,165,250,.15);
+      --grad-anim: linear-gradient(90deg, var(--brand), var(--brand-2), var(--accent), var(--brand)) 0 0 / 300% 100% no-repeat;
+      position:relative; isolation:isolate; color:var(--ink); background:var(--bg);
+      padding:clamp(56px,8vw,96px) 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif;
+      overflow:clip;
+    }
+    /* ================== Ambient Background ================== */
+    #sds-pdf-download .ambient{
+      position:absolute; inset:-20% -10% auto -10%; height:140%;
+      background:
+        radial-gradient(600px 300px at 15% 20%, rgba(96,165,250,.18), transparent 60%),
+        radial-gradient(500px 260px at 85% 30%, rgba(94,234,212,.18), transparent 60%),
+        radial-gradient(800px 420px at 50% 85%, rgba(244,114,182,.14), transparent 65%);
+      filter:saturate(110%) blur(10px);
+      z-index:-2; pointer-events:none;
+      animation: floatAmbient 16s ease-in-out infinite;
+    }
+    @keyframes floatAmbient{ 50%{ transform: translateY(-2%) } }
+
+    /* Floating shards */
+    #sds-pdf-download .shard{
+      position:absolute; width:42vmin; height:42vmin; border-radius:50%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.08), transparent);
+      filter: blur(20px); mix-blend-mode: screen; pointer-events:none; z-index:-1;
+      transform: translate3d(0,0,0);
+      animation: drift 22s ease-in-out infinite;
+    }
+    #sds-pdf-download .s1{ top:10%; left:-6%; animation-delay: -3s; }
+    #sds-pdf-download .s2{ top:60%; right:-8%; animation-delay: -9s;}
+    #sds-pdf-download .s3{ top:20%; right:12%; width:30vmin; height:30vmin; animation-delay:-15s;}
+    @keyframes drift { 50% { transform: translate3d(0,-20px,0) rotate(6deg) } }
+
+    /* ================== Layout ================== */
+    #sds-pdf-download .wrap{ width:var(--wrap); margin:0 auto; padding:0 2vw; }
+    #sds-pdf-download .head{
+      text-align:center; margin-bottom: clamp(22px,4vw,36px);
+    }
+    #sds-pdf-download .eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 12px; border-radius:999px; font-weight:600; letter-spacing:.2px;
+      background: linear-gradient( to right, rgba(94,234,212,.12), rgba(96,165,250,.12) );
+      border:1px solid var(--line); color:var(--muted);
+    }
+    #sds-pdf-download h2{
+      margin:14px 0 0; font-size: clamp(28px, 4.6vw, 48px); line-height:1.06; font-weight:900;
+      background: var(--grad-anim); -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation: hueShift 10s linear infinite;
+      text-wrap: balance;
+    }
+    @keyframes hueShift { 0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%} }
+
+    /* ================== Card ================== */
+    #sds-pdf-download .card{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(18px,3vw,28px);
+      background: linear-gradient( to bottom right, rgba(255,255,255,.06), rgba(255,255,255,.03) );
+      border:1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow-1), var(--shadow-2);
+      padding: clamp(18px,3vw,28px); position:relative; overflow:hidden;
+      will-change: transform;
+      transform-style: preserve-3d;
+    }
+    @media (max-width: 980px){
+      #sds-pdf-download .card{ grid-template-columns: 1fr; }
+    }
+    #sds-pdf-download .poster{
+      position:relative; border-radius: calc(var(--radius) - 6px); overflow:hidden; border:1px solid var(--line);
+      aspect-ratio: 16 / 10; background: #0f1620;
+    }
+    #sds-pdf-download .poster img{
+      width:100%; height:100%; object-fit:cover; display:block; transform: scale(1.02);
+      transition: transform .6s ease;
+    }
+    #sds-pdf-download .poster::after{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(60% 80% at 30% 20%, rgba(255,255,255,.10), transparent 60%);
+      mix-blend-mode: overlay; pointer-events:none;
+    }
+    #sds-pdf-download .meta{
+      display:flex; flex-direction:column; gap:16px; justify-content:center;
+    }
+    #sds-pdf-download .title{
+      font-size: clamp(18px,2.2vw,26px); font-weight: 800; letter-spacing:.2px; line-height:1.2;
+    }
+    #sds-pdf-download .details{
+      display:flex; flex-wrap:wrap; gap:10px 14px; color:var(--muted); font-size: 14px;
+    }
+    #sds-pdf-download .pill{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.06); border:1px solid var(--line);
+    }
+
+    /* ================== Buttons ================== */
+    #sds-pdf-download .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:6px; }
+    #sds-pdf-download .btn{
+      --p:12px; --r:14px;
+      appearance:none; border:none; cursor:pointer; user-select:none;
+      display:inline-flex; align-items:center; gap:10px; font-weight:800;
+      padding: var(--p) clamp(16px,2.6vw,22px); border-radius: var(--r);
+      transition: transform .1s ease, box-shadow .2s ease, background .3s ease;
+      outline: none; position:relative; overflow:hidden;
+    }
+    #sds-pdf-download .btn:active{ transform: translateY(1px) }
+    #sds-pdf-download .btn-primary{
+      background: linear-gradient( to right, var(--brand-2), var(--brand) );
+      color:#041014; box-shadow: 0 10px 30px rgba(96,165,250,.35), inset 0 -8px 18px rgba(255,255,255,.18);
+    }
+    #sds-pdf-download .btn-primary .pulse{
+      position:absolute; inset: -20%; border-radius:50%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.24), transparent 55%);
+      animation: pulse 2.6s ease-out infinite; pointer-events:none; mix-blend-mode: overlay;
+    }
+    @keyframes pulse{ 0%{ transform: scale(.6); opacity:.7 } 80%{ transform: scale(1.3); opacity:0 } 100%{ opacity:0 } }
+    #sds-pdf-download .btn-ghost{
+      background: transparent; color: var(--ink); border:1px solid var(--line);
+    }
+    #sds-pdf-download .btn:hover{ box-shadow: 0 16px 44px rgba(94,234,212,.2) }
+
+    /* Ripple effect */
+    #sds-pdf-download .btn .ripple{
+      position:absolute; border-radius:50%; transform: scale(0); opacity:.55;
+      background: rgba(255,255,255,.6); animation: ripple .6s ease-out forwards; pointer-events:none;
+    }
+    @keyframes ripple{ to{ transform: scale(8); opacity:0 } }
+
+    /* ================== Utilities ================== */
+    #sds-pdf-download .row{ display:flex; align-items:center; gap:10px; }
+    #sds-pdf-download .muted{ color:var(--muted); font-size:14px; }
+    #sds-pdf-download .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: rgba(255,255,255,.06); border:1px solid var(--line); padding: 2px 6px; border-radius: 6px; font-size:.9em;
+    }
+    #sds-pdf-download .ring{ box-shadow: 0 0 0 8px var(--ring); }
+
+    /* Tilt hint line */
+    #sds-pdf-download .card::before{
+      content:""; position:absolute; inset:auto 6% 0 6%; height:1px; background:linear-gradient( to right, transparent, rgba(255,255,255,.35), transparent );
+      opacity:.35;
+    }
+
+    /* ================== Reduced Motion & Dark/Light ================== */
+    @media (prefers-reduced-motion: reduce){
+      #sds-pdf-download *{ animation: none !important; transition-duration: .01ms !important; }
+    }
+    @media (prefers-color-scheme: light){
+      #sds-pdf-download{ --bg:#f7fafc; --ink:#0f172a; --muted:#475569; --line:rgba(0,0,0,.10); --card:rgba(255,255,255,.75); }
+      #sds-pdf-download .poster{ background:#fff; }
+      #sds-pdf-download .btn-primary{ color:#06141a; }
+    }
+
+    /* ================== Mobile Enhancements ================== */
+    @media (max-width: 640px){
+      #sds-pdf-download{ padding: 44px 0; }
+      #sds-pdf-download .wrap{ width:min(100%, 96vw); padding:0 3.5vw; }
+      #sds-pdf-download h2{ font-size: clamp(22px, 7vw, 30px); }
+      #sds-pdf-download .card{ padding:18px; gap:16px; }
+      #sds-pdf-download .poster{ aspect-ratio: 4 / 5; }           /* bigger/taller cover on phones */
+      #sds-pdf-download .title{ font-size: clamp(18px, 5vw, 22px); }
+      #sds-pdf-download .details{ font-size: 13px; gap:8px 10px; }
+      #sds-pdf-download .pill{ padding:7px 10px; }
+      #sds-pdf-download .actions{ flex-direction: column; gap:10px; }
+      #sds-pdf-download .btn{ width:100%; justify-content:center; padding:14px 16px; }
+      #sds-pdf-download .ambient{ filter: blur(8px); }            /* slightly lighter effects on mobile */
+      #sds-pdf-download .shard{ width:56vmin; height:56vmin; }    /* scale ambience to viewport */
+      #sds-pdf-download .kbd{ font-size:.85em; }
+    }
+  </style>
+
+  <!-- Ambient layers -->
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="shard s1" aria-hidden="true"></div>
+  <div class="shard s2" aria-hidden="true"></div>
+  <div class="shard s3" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" aria-hidden="true">
+        <!-- tiny sparkle icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3l1.6 3.9L17.5 8.5 14 11.1l.9 4.2L12 13.7 9.1 15.3 10 11.1 6.5 8.5l3.9-1.6L12 3z" stroke="currentColor" stroke-opacity=".8"/>
+        </svg>
+        Instant PDF Download
+      </span>
+      <h2>Grab Your Report in a Click</h2>
+    </div>
+
+    <div class="card" id="pdfCard" tabindex="0" aria-describedby="pdfHelp">
+      <!-- Poster / preview -->
+      <figure class="poster" aria-label="PDF cover preview">
+        <img src="static/Images/jonakicover.jpg" alt="Cover preview of Your PDF Title">
+      </figure>
+
+      <!-- Meta + Actions -->
+      <div class="meta">
+        <div class="title" id="pdfTitle">Jonaki-Annual Report 2024-2025</div>
+
+        <div class="details" id="pdfDetails">
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h9l3 3v13H6z" stroke="currentColor"/></svg> <span id="pdfType">PDF • Portable Document</span></span>
+          <span class="pill" id="sizePill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="currentColor"/></svg> <span id="pdfSize">Size: fetching…</span></span>
+          <span class="pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor"/></svg> <span id="pageHint">Good for printing</span></span>
+        </div>
+
+        <div class="actions">
+          <!-- Primary Download -->
+          <a id="downloadBtn" class="btn btn-primary" href="static/Jonaki.pdf" download>
+            <span class="pulse" aria-hidden="true"></span>
+            <!-- download icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Download PDF
+          </a>
+
+          <!-- Quick View -->
+          <a class="btn btn-ghost" href="static/Jonaki.pdf" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6zm8-3.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5z" stroke="currentColor"/></svg>
+            Open in Browser
+          </a>
+
+          <!-- Copy Link -->
+          <button id="copyBtn" class="btn btn-ghost" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9h9a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3zm0 0V7a3 3 0 0 1 3-3h6" stroke="currentColor"/></svg>
+            Copy Link
+          </button>
+
+          <!-- QR -->
+          <button id="qrBtn" class="btn btn-ghost" type="button" aria-controls="qrPanel" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM16 13h2v2h-2zM19 16h2v5h-5v-2h3z" stroke="currentColor"/></svg>
+            Show QR
+          </button>
+        </div>
+
+        <div id="qrPanel" class="muted" hidden>
+          <div class="row" style="gap:14px; margin-top:8px;">
+            <svg id="qrSvg" width="108" height="108" role="img" aria-label="QR code to download on mobile"></svg>
+            <div>
+              Scan on your phone to download.
+              <div style="margin-top:8px;">Or press <span class="kbd">Ctrl</span> + <span class="kbd">S</span> after opening.</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pdfHelp" class="muted" style="margin-top:6px;">
+           <span class="kbd"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const pdfUrl = "static/Jonaki.pdf";             // <-- replace with your PDF path
+      const posterAlt = "Cover preview of Your PDF Title";
+
+      const sizeEl = document.getElementById("pdfSize");
+      const sizePill = document.getElementById("sizePill");
+      const posterImg = document.querySelector("#sds-pdf-download .poster img");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const copyBtn = document.getElementById("copyBtn");
+      const qrBtn = document.getElementById("qrBtn");
+      const qrPanel = document.getElementById("qrPanel");
+      const qrSvg = document.getElementById("qrSvg");
+      const card = document.getElementById("pdfCard");
+
+      // Wire URLs + alts
+      downloadBtn.href = pdfUrl;
+      posterImg.alt = posterAlt;
+
+      // HEAD to get file size (CORS permitting)
+      try{
+        fetch(pdfUrl, { method:"HEAD" })
+          .then(res => {
+            const len = res.headers.get("content-length");
+            if(!len){ throw 0; }
+            const pretty = humanFileSize(+len);
+            sizeEl.textContent = "Size: " + pretty;
+          })
+          .catch(_ => {
+            sizeEl.textContent = "Size: unknown";
+            sizePill.title = "Could not read Content-Length (CORS or server config).";
+          });
+      }catch(_){ sizeEl.textContent = "Size: unknown"; }
+
+      // Copy link
+      copyBtn.addEventListener("click", (e)=>{
+        addRipple(e);
+        const absolute = new URL(pdfUrl, location.href).href;
+        navigator.clipboard.writeText(absolute).then(()=>{
+          toast("Link copied!");
+        }).catch(()=>{
+          toast("Copy failed");
+        });
+      });
+
+      // QR toggle + draw (simple tiny QR, not full spec – works for most URLs)
+      let qrDrawn=false;
+      qrBtn.addEventListener("click", (e)=>{
+        addRipple(e);
+        const expanded = qrBtn.getAttribute("aria-expanded")==="true";
+        qrBtn.setAttribute("aria-expanded", !expanded);
+        qrPanel.hidden = expanded;
+        if(!qrDrawn){ drawMiniQR(qrSvg, new URL(pdfUrl, location.href).href); qrDrawn=true; }
+      });
+
+      // Ripple helper
+      function addRipple(e){
+        const btn = e.currentTarget;
+        const r = document.createElement("span");
+        r.className = "ripple";
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        const s = Math.max(rect.width, rect.height);
+        Object.assign(r.style, { left:(x - s/2)+"px", top:(y - s/2)+"px", width:s+"px", height:s+"px" });
+        btn.appendChild(r);
+        r.addEventListener("animationend", ()=> r.remove(), { once:true });
+      }
+
+      // Simple toast
+      let toastEl;
+      function toast(msg){
+        if(!toastEl){
+          toastEl = document.createElement("div");
+          toastEl.style.cssText = "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(15,23,42,.9);color:#e7edf5;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:999999;font:600 14px/1.2 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial";
+          document.body.appendChild(toastEl);
+        }
+        toastEl.textContent = msg;
+        toastEl.style.opacity = "0";
+        toastEl.animate([{opacity:0, transform:"translate(-50%, 10px)"},{opacity:1, transform:"translate(-50%, 0)"}], {duration:150, fill:"forwards"});
+        setTimeout(()=> toastEl.animate([{opacity:1},{opacity:0}], {duration:250, fill:"forwards"}), 1200);
+      }
+
+      // Human file size
+      function humanFileSize(bytes){
+        const thresh = 1024;
+        if(Math.abs(bytes) < thresh) return bytes + ' B';
+        const units = ['KB','MB','GB','TB'];
+        let u = -1;
+        do { bytes /= thresh; ++u; } while(Math.abs(bytes) >= thresh && u < units.length - 1);
+        return bytes.toFixed(1)+' '+units[u];
+      }
+
+      // Minimal QR (not a full algorithm; encodes URL into a deterministic grid-like pattern)
+      function drawMiniQR(svg, text){
+        const size = 108, cells = 29; // pseudo-QR grid
+        svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+        svg.innerHTML = "";
+        const cellSize = size / cells;
+        const hash = pseudoHash(text);
+        for(let y=0;y<cells;y++){
+          for(let x=0;x<cells;x++){
+            const on = ((hash[(x+y*cells)%hash.length].charCodeAt(0) + x*y + x + y) % 7) < 3;
+            if(on || isFinder(x,y,cells)){
+              const r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+              r.setAttribute("x", (x*cellSize).toFixed(2));
+              r.setAttribute("y", (y*cellSize).toFixed(2));
+              r.setAttribute("width", Math.ceil(cellSize));
+              r.setAttribute("height", Math.ceil(cellSize));
+              r.setAttribute("fill", "#0f172a");
+              r.setAttribute("opacity", isFinder(x,y,cells)? "1" : ".9");
+              svg.appendChild(r);
+            }
+          }
+        }
+        // backdrop
+        const bg = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        bg.setAttribute("x","0"); bg.setAttribute("y","0");
+        bg.setAttribute("width", size); bg.setAttribute("height", size);
+        bg.setAttribute("fill", "white"); bg.setAttribute("opacity",".92");
+        svg.insertBefore(bg, svg.firstChild);
+      }
+      function pseudoHash(s){ let h=""; for(let i=0;i<s.length;i++) h+=String.fromCharCode(33 + ((s.charCodeAt(i)+i*17)%90)); return h; }
+      function isFinder(x,y,n){
+        const p = (cx,cy)=> x>=cx && y>=cy && x<cx+7 && y<cy+7 &&
+          ( (x===cx||x===cx+6||y===cy||y===cy+6) || (x>cx+1&&x<cx+5&&y>cy+1&&y<cy+5) );
+        return p(1,1)||p(n-8,1)||p(1,n-8);
+      }
+
+      // Card tilt (mouse)
+      const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(!prefersReduce){
+        let rAF=null;
+        card.addEventListener("mousemove", (e)=>{
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rx = (y - .5) * 6;  // rotateX
+          const ry = (x - .5) * -8; // rotateY
+          if(rAF) cancelAnimationFrame(rAF);
+          rAF = requestAnimationFrame(()=>{
+            card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+          });
+        });
+        ["mouseleave","blur"].forEach(ev=> card.addEventListener(ev, ()=>{
+          card.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+        }));
+        // focus ring
+        card.addEventListener("focus", ()=> card.classList.add("ring"));
+        card.addEventListener("blur", ()=> card.classList.remove("ring"));
+      }
+    })();
+  </script>
+</section>
+
+
 
 
 

@@ -265,6 +265,11 @@ def pub():
 def ing():
     return render_template("insights.html")
 
+@app.route("/muga")
+def muga():
+    return render_template("muga.html")
+
+
 
 # -----------------------------
 # Auth
