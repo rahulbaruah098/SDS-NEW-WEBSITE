@@ -742,7 +742,122 @@ body {
     <article>
 
 <h2>Unlocking the Potential of Backyard Poultry in Northeast India</h2> <p><strong>Jogen Kalita</strong></p> <p>Small-scale, sustainable models of livestock rearing have the power to transform rural livelihoods. One such model, backyard poultry farming, has long been an important source of nutrition and income for families across India. In the North Eastern Region (NER), it serves as a subsidiary source of livelihood for thousands of households, providing both eggs and meat while complementing agricultural activities.</p> <p>Data from the 20th Livestock Census (2019) illustrates the remarkable growth of backyard poultry in the region. Assam alone recorded 15.6 million backyard chickens, a sharp rise of 64% from 2012 levels. The other six northeastern states also witnessed a 36.6% increase in backyard poultry. This growth demonstrates not only the increasing popularity of poultry raised in natural environments but also the rising consumer preference for healthier, more sustainable sources of food.</p> <p>Despite this impressive growth, market demand continues to outpace supply. Backyard poultry meat commands a premium price of up to Rs. 550/kg in urban markets, underscoring the vast untapped potential. At the same time, consumers are increasingly turning to backyard poultry as a safer option in the wake of concerns around antimicrobial resistance (AMR) in commercial poultry systems.</p> <hr> <h3>Current Practices and Identified Gaps</h3> <p>Most rural households in the NER continue to use traditional practices for rearing poultry. While these approaches are time-tested, they often result in high chick mortality (70–80%) due to gaps in:</p> <ul> <li>Egg fertility testing (candling) before natural incubation</li> <li>Balanced male-to-female ratios in mother units</li> <li>Adequate chick brooding and housing facilities</li> <li>Proper nutrition, vaccination, and hygiene practices</li> </ul> <p>As a result, households tend to limit themselves to small flocks of 15–20 birds, seeing poultry as a marginal activity rather than a profitable enterprise.</p> <hr> <h3>Transforming Backyard Poultry into a Profitable Business</h3> <p>Through our experience working with communities, we have identified scalable models that can convert backyard poultry into a reliable income stream while retaining its natural, sustainable character:</p> <!-- You can extend here with your model specifics, images, or tables as needed --> </article> </div> </div> </div> <script> (function(){ const root = document.getElementById('sds-fpo-local-markets-full'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; } } window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* Reduce Motion */ (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply); apply(); })(); /* Reader controls */ (function(){ const body = root.querySelector('#paperBody'); const expandAll = root.querySelector('#expandAll'); const collapseAll = root.querySelector('#collapseAll'); const toggleWrap = root.querySelector('#toggleWrap'); const jumpTop = root.querySelector('#jumpTop'); const jumpBottom = root.querySelector('#jumpBottom'); if(!body) return; expandAll?.addEventListener('click', ()=>{ body.style.maxHeight = 'none'; body.scrollTo({top:0, behavior:'smooth'}); }); collapseAll?.addEventListener('click', ()=>{ body.style.maxHeight = window.matchMedia('(max-width:720px)').matches ? '60vh' : '72vh'; body.scrollTo({top:0, behavior:'smooth'}); }); toggleWrap?.addEventListener('click', ()=>{ body.style.whiteSpace = body.style.whiteSpace === 'pre-wrap' ? 'normal' : 'pre-wrap'; }); jumpTop?.addEventListener('click', ()=> body.scrollTo({top:0, behavior:'smooth'})); jumpBottom?.addEventListener('click', ()=> body.scrollTo({top:body.scrollHeight, behavior:'smooth'})); })(); })(); </script> </section>
-  <!-- Footers -->
+ 
+
+<section id="sds-related-insights" aria-label="More Insights You May Like">
+  <style>
+    /* ===== Scoped Styles: Related Insights ===== */
+    #sds-related-insights{
+      --bg:#0f172a;        /* deep ink */
+      --ink:#e6eef7;       /* light text */
+      --muted:#9fb0c7;     /* secondary text */
+      --brand:#0ea5e9;     /* cyan */
+      --brand-2:#16a34a;   /* green */
+      --line:rgba(255,255,255,.12);
+      --radius:18px;
+      --wrap:max(62ch, min(1180px,92vw));
+
+      background:
+        radial-gradient(1200px 380px at 15% 30%, rgba(14,165,233,.10), transparent 60%),
+        radial-gradient(1200px 380px at 85% 65%, rgba(22,163,74,.10), transparent 60%),
+        #0b1119;
+      color:var(--ink);
+      padding: clamp(36px,6vw,72px) 0;
+      position: relative;
+      isolation:isolate;
+      overflow: clip;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    }
+    #sds-related-insights .wrap{
+      width: min(var(--wrap), 100%);
+      margin: 0 auto;
+      padding: 0 clamp(16px, 3vw, 28px);
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: clamp(14px, 2.6vw, 24px);
+      align-items: center;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(2,6,23,.35), 0 4px 10px rgba(2,6,23,.25);
+      padding: clamp(18px, 3vw, 28px);
+    }
+    #sds-related-insights .copy h2{
+      margin:0 0 6px;
+      font-size: clamp(22px, 3.4vw, 32px);
+      line-height:1.1;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      background: linear-gradient(90deg, #e6eef7, var(--brand) 40%, var(--brand-2) 80%, #e6eef7);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: sds-ri-shift 9s linear infinite;
+    }
+    #sds-related-insights .copy p{
+      margin:0;
+      color: var(--muted);
+      font-size: clamp(14px, 1.4vw, 16px);
+      line-height: 1.65;
+    }
+    #sds-related-insights .cta{
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color:#fff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 16px 44px rgba(2,6,23,.28), 0 6px 18px rgba(14,165,233,.18);
+      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+      white-space: nowrap;
+    }
+    #sds-related-insights .cta:hover{
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 22px 60px rgba(2,6,23,.36), 0 10px 26px rgba(34,197,94,.20);
+    }
+    #sds-related-insights .cta i{opacity:.9}
+
+    @media (max-width: 820px){
+      #sds-related-insights .wrap{
+        grid-template-columns: 1fr;
+      }
+      #sds-related-insights .cta{
+        justify-self: start;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    @keyframes sds-ri-shift { to { background-position: 200% 0; } }
+  </style>
+
+  <div class="wrap">
+    <div class="copy">
+      <h2>You might be intrested in this</h2>
+      <p>
+        Explore data-driven articles, project learnings, and policy explainers on agriculture,
+        livelihoods, and rural development from across Northeast India.
+      </p>
+    </div>
+
+    <!-- Link to your Insights listing page -->
+    <a class="cta" href="/fishery" aria-label="Explore other insights on SDS">
+      Building Climate-Resilient Fisheries in Northeast India
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+
+
+<!-- Footers -->
   <footer>
     <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
       <div class="logo-container-f">
