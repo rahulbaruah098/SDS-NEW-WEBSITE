@@ -269,6 +269,26 @@ def ing():
 def muga():
     return render_template("muga.html")
 
+@app.route("/jog")
+def jog():
+    return render_template("jogenp.html")
+
+@app.route("/fishery")
+def fishery():
+    return render_template("fisheriesm.html")
+
+@app.route("/far")
+def far():
+    return render_template("farhan.html")
+
+@app.route("/tir")
+def tir():
+    return render_template("tirtha.html")
+
+
+
+
+
 
 
 # -----------------------------
