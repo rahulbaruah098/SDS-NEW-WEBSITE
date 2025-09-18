@@ -1,0 +1,689 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>  Insights | SDS</title>
+     <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <style>
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+      .logo-f { height: 75px; }
+  </style>
+  <body>
+<!-- ======================= NAVIGATION (fixed) ======================= -->
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="/ing">INSIGHTS</a></li>
+        <li><a href="/pub">PUBLICATIONS</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+       
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+ <br><br><br>
+
+
+
+<section id="sds-fpo-local-markets-full" aria-label="Aid, Grants, and CSR Funds in Social Development">
+  <style>
+    /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */
+    #sds-fpo-local-markets-full{
+      --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb;
+      --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18);
+      --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10),
+      0 2px 6px rgba(2,6,23,.06);
+      --shadow-2:0 16px 44px rgba(2,6,23,.12),
+      0 4px 10px rgba(2,6,23,.06);
+      background:var(--bg); color:var(--ink); position:relative; isolation:isolate;
+      overflow:clip; padding-bottom:72px;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    }
+    #sds-fpo-local-markets-full *{box-sizing:border-box}
+    #sds-fpo-local-markets-full figure{margin:0}
+
+    .hero{ min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr;
+      gap:clamp(16px,3vw,32px); align-items:stretch; padding:clamp(16px,2.5vw,28px);}
+    @media(max-width:980px){.hero{grid-template-columns:1fr; min-height:72vh}}
+    .parallax-bg{ position:absolute; inset:-12% -4% auto -4%; height:42vh;
+      background:radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+      radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+      filter:blur(6px); z-index:0; pointer-events:none;}
+    .hero-left{ z-index:2; border:1px solid var(--line); border-radius:var(--radius);
+      background:#fff; box-shadow:var(--shadow-1); padding:clamp(18px,2.6vw,28px);
+      display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);}
+    .kicker{ display:inline-flex; align-items:center; gap:10px; padding:6px 12px;
+      border-radius:999px; font-weight:700; color:#063a52;
+      background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+      border:1px solid var(--line);}
+    .k-dot{ width:8px; height:8px; border-radius:50%; background:var(--brand);}
+    .title{ font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800;
+      background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:titleShift 10s linear infinite;}
+    @keyframes titleShift{to{background-position:200% 0}}
+    .scrolling-line{overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:#fafafa;}
+    .scrolling-track{display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a; animation:ticker 16s linear infinite;}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px);}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{border:none; border-radius:14px; padding:12px 18px; font-weight:700; display:inline-flex; align-items:center; gap:10px; cursor:pointer;}
+    .btn-primary{color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e);}
+    .btn-ghost{color:#0f172a; background:#fff; border:1px solid var(--line);}
+    .stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px;}
+    .stat{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; box-shadow:0 6px 16px rgba(2,6,23,.06);}
+    .stat b{font-size:20px; display:block}
+    .stat span{font-size:12px; color:var(--muted);}
+    .hero-right{border:1px solid var(--line); border-radius:var(--radius); overflow:clip;}
+   /* replace these rules */
+.image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+ .image-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; background:#e5e7eb; display:block; }
+    .slide-caption{position:absolute; left:16px; bottom:16px; color:#fff; background:rgba(0,0,0,.3); padding:8px 12px; border-radius:12px;}
+    .content{max-width:1200px; margin:34px auto; padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px;}
+    .section-intro h3{font-size:clamp(22px,3.4vw,34px)}
+    .note{color:#64748b; font-size:13px;}
+    .paper{border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow-1); overflow:hidden;}
+    .paper-toolbar{display:flex; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--line);}
+    .controls{display:flex; gap:8px;}
+    .pill{border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-weight:600; background:#fff; cursor:pointer;}
+    .paper-body{max-height:72vh; overflow:auto; padding:18px; line-height:1.75;}
+  </style>
+
+  <div class="parallax-bg" data-parallax data-speed="0.3"></div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="kicker"><span class="k-dot"></span> Aid · CSR · Panchayati Raj</div>
+      <h1 class="title">How Aid, Grants, and CSR Funds Drive Social Development in India</h1>
+      <div class="scrolling-line"><div class="scrolling-track">
+        <span>₹2.6 lakh crore social funds</span><span>CSR India 2023–24</span><span>Panchayati Raj led planning</span>
+      </div></div>
+      <p class="lead">By <strong>Tirtharaj Gohain</strong></p>
+      <div class="cta-row">
+        <button class="btn btn-primary" id="expandAll">Expand All</button>
+        <button class="btn btn-ghost" id="collapseAll">Collapse All</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>₹1.03L cr</b><span>External Aid (2023–24)</span></div>
+        <div class="stat"><b>₹1.31L cr</b><span>Philanthropic Grants</span></div>
+        <div class="stat"><b>₹34,909 cr</b><span>CSR Expenditure</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <figure class="image-frame">
+        <img src="{{ url_for('static', filename='Images/innertirthada.jpg') }}" alt="Funds for social development in India">
+        <figcaption class="slide-caption">Aid · CSR · Grants powering social development</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section-intro">
+
+    </div>
+    <div class="paper">
+      <div class="paper-toolbar">
+        <div><strong>Sayanant Development Services</strong></div>
+        <div class="controls">
+          <button class="pill" id="toggleWrap">Toggle Wrap</button>
+          <button class="pill" id="jumpTop">Top</button>
+          <button class="pill" id="jumpBottom">Bottom</button>
+        </div>
+      </div>
+      <div class="paper-body" id="paperBody">
+        <article>
+<h2>How Aid, Grants, and CSR Funds Drive Social Development in India | Grassroots Planning with Panchayati Raj</h2>
+<p><em>By Tirtharaj Gohain</em></p>
+<p>Today India is not short of funds for social development. In the financial year 2023–24 alone, a staggering amount of money was contributed by three major streams of development financing—foreign aid, NGO grants, and Corporate Social Responsibility (CSR) funds. The Union government’s receipts show external aid inflows worth about ₹1.03 lakh crore, Bain & Dasra’s India Philanthropy Report 2025 estimates ₹1.31 lakh crore in philanthropic grants, and data from the Ministry of Corporate Affairs records ₹34,909 crore of CSR expenditure. Together, this represents more than ₹2.6 lakh crore for rural development and social impact projects outside of regular government welfare budgets. These numbers highlight India’s growing commitment to social welfare, sustainable development, and inclusive growth.
+Despite this unprecedented flow of development funds in India, persistent challenges remain. Malnutrition rates are high, rural schools continue to face learning gaps, and public health centres are under-equipped. Clearly, funding alone does not guarantee social impact. What matters most is how this money is planned, allocated, and implemented at the grassroots level.
+Historically, foreign aid to India from multilateral and bilateral partners like the World Bank, Asian Development Bank, and JICA has supported infrastructure, irrigation, and climate-smart agriculture. Philanthropic grants in India, provided by foundations, family offices, and individual donors, are increasingly targeting education, nutrition, and women’s empowerment. Meanwhile, CSR projects in India, mandated under the Companies Act, 2013, have become a unique form of social financing. MCA’s National CSR Portal confirms that companies spent nearly ₹35,000 crore in FY 2023–24 on areas such as sanitation, renewable energy, skill development, and tribal welfare.
+The challenge is that most of these projects are still designed top-down. CSR boards often select projects aligned with company values, international aid agencies come with their frameworks, and philanthropists have their own priorities. Communities—the supposed beneficiaries—are often consulted only at the end. This top-down approach creates mismatches between what is funded and what is truly needed.
+The way forward is through grassroots planning and participatory development. India already has the institutional mechanism: the Panchayati Raj Institutions (PRIs), established by the 73rd Constitutional Amendment. PRIs are democratically elected bodies closest to citizens, with both legitimacy and accountability. When PRIs lead planning, CSR funding, NGO grants, and aid projects can converge into a single Village Development Plan (VDP). This avoids duplication, maximizes efficiency, and ensures that rural development funds are spent on community priorities.
+The tools for such community-led development planning exist. Participatory Rural Appraisal (PRA) techniques—social mapping, resource mapping, seasonal calendars, and focus group discussions—help villagers identify their own needs. Rapid Rural Appraisal (RRA) allows planners to capture quick insights through interviews and transect walks. Used together, PRA and RRA ensure that investments in rural development projects in India are evidence-based and community-driven.
+
+Take a common example: a company wants to use its CSR fund to build classrooms. A PRA exercise may reveal that the real barriers to schooling are poor toilets and lack of midday meals. Redirecting CSR money toward sanitation and nutrition would keep children in school, improving both attendance and learning outcomes. Similarly, an aid-funded irrigation tank can be paired with a philanthropic grant to train women’s self-help groups in water management, and CSR funds can support solar pumps or storage. The synergy of aid, CSR, and grants in India is what creates sustainable impact.
+This kind of convergence of social sector funds requires structured dialogue. Some states have already set up District CSR Cells or online CSR exchanges that connect companies with eligible projects. But the real breakthrough will come when PRIs, government officials, NGOs, and corporates sit together at block and district forums to align projects with the Sustainable Development Goals (SDGs). In this partnership, CSOs and NGOs in India serve as facilitators: trusted by communities, skilled in participatory methods, and experienced in making marginalized voices heard. Corporates bring money and technology, governments provide policy frameworks and scale, while PRIs anchor projects with accountability.
+For this ecosystem to create genuine impact, a few principles must be followed. First, funds must converge rather than scatter—every rupee of aid, every CSR project, and every NGO grant should reinforce a single local plan. Second, corporates and donors must think in multi-year horizons, since development outcomes cannot be achieved in a single funding cycle. Third, capacity building should be prioritized, because without trained committees and empowered local leaders, assets quickly deteriorate. Fourth, equity must be designed from the start—ensuring women’s participation, tribal inclusion, and disability-friendly infrastructure. And finally, outcomes must matter more than outputs. Success should be measured not by how many schools are built, but by how many children actually stay in school; not by how many irrigation tanks are dug, but by how much crop productivity improves.
+India is entering a decisive moment. External assistance remains steady, philanthropic giving in India is rising, and CSR has become a normalized part of corporate culture. The volume of social development funding in India will only grow. But unless these resources are channelled through participatory rural planning and PRI-led governance, they risk becoming reports on paper rather than transformation on the ground.
+The opportunity is historic. With over ₹2.6 lakh crore of social-purpose capital in FY 2023–24 alone, India has the resources to turn rupees into results. By empowering Panchayati Raj Institutions, embracing Participatory Rural Appraisal, and building consensus between governments, corporates, and civil society, the country can ensure that every classroom built, every irrigation tank constructed, and every health centre upgraded is not just a statistic but a step toward inclusive, sustainable, and community-owned development.
+</p>
+
+
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const root=document.getElementById('sds-fpo-local-markets-full');
+      const body=root.querySelector('#paperBody');
+      const expand=root.querySelector('#expandAll');
+      const collapse=root.querySelector('#collapseAll');
+      const toggle=root.querySelector('#toggleWrap');
+      const jumpTop=root.querySelector('#jumpTop');
+      const jumpBottom=root.querySelector('#jumpBottom');
+      expand?.addEventListener('click',()=>{body.style.maxHeight='none'; body.scrollTo({top:0,behavior:'smooth'});});
+      collapse?.addEventListener('click',()=>{body.style.maxHeight=window.matchMedia('(max-width:720px)').matches?'60vh':'72vh'; body.scrollTo({top:0,behavior:'smooth'});});
+      toggle?.addEventListener('click',()=>{body.style.whiteSpace=body.style.whiteSpace==='pre-wrap'?'normal':'pre-wrap';});
+      jumpTop?.addEventListener('click',()=>body.scrollTo({top:0,behavior:'smooth'}));
+      jumpBottom?.addEventListener('click',()=>body.scrollTo({top:body.scrollHeight,behavior:'smooth'}));
+    })();
+  </script>
+</section>
+
+
+  <!-- Footers -->
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <a href="{{ url_for('home') }}">
+          <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+        </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li><a href="/career" tabIndex="0">Join Us</a></li>
+           
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
+            <li tabIndex="0">Fishery Development</li>
+            <li tabIndex="0">Rural Finance</li>
+            <li tabIndex="0">Value Chain Development</li>
+            <li tabIndex="0">Marketing</li>
+            <li tabIndex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

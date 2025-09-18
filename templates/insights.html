@@ -454,6 +454,370 @@ footer .footer-column h3 {
 
 <br><br><br>
   
+<section id="sds-insights" aria-label="Sayanant Insights">
+  <style>
+    /* =========================
+       Sayanant Insights (Scoped)
+       ========================= */
+    #sds-insights{
+      --wrap: min(1180px, 94vw);
+      --bg:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb;
+      --brand:#0ea5e9; --brand-2:#16a34a; --accent:#f472b6; --ring:rgba(14,165,233,.18);
+      --radius:18px;
+      --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06);
+      --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06);
+      background: var(--bg); color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif;
+      position: relative; isolation: isolate; overflow: clip;
+      padding: clamp(40px, 6vw, 84px) 0 72px;
+    }
+    #sds-insights .wrap{ width: var(--wrap); margin: 0 auto; }
+
+    /* Ambient gradient veil */
+    #sds-insights::before{
+      content:""; position:absolute; inset:-20% -10% auto -10%; height: 280px;
+      background: radial-gradient(1200px 240px at 50% 0%,
+        color-mix(in oklab, var(--brand) 28%, transparent) 10%, transparent 60%);
+      pointer-events:none; z-index:0; filter: blur(12px);
+    }
+
+    /* Heading */
+    #sds-insights .head{ display:grid; gap:18px; place-items:center; text-align:center; margin-bottom: 18px; }
+    #sds-insights .eyebrow{ font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); }
+    #sds-insights h2{
+      font-size: clamp(28px, 4vw, 44px); line-height: 1.08; font-weight: 900; margin:0;
+      background: linear-gradient(90deg, var(--brand), var(--accent), var(--brand-2), var(--brand));
+      background-size: 200% 100%;
+      -webkit-background-clip:text; background-clip:text; color: transparent;
+      animation: sds-sheen 8s linear infinite;
+    }
+    @keyframes sds-sheen{ 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+    #sds-insights .sub{ color: var(--muted); max-width: 70ch; }
+
+    /* Toolbar */
+    #sds-insights .bar{
+      display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
+      background:#fff; border:1px solid var(--line); border-radius: calc(var(--radius) + 6px);
+      padding: 12px; box-shadow: var(--shadow-1); margin: 26px 0 20px; position: relative; z-index:1;
+    }
+    #sds-insights .left, #sds-insights .right{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    #sds-insights .search{
+      display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line);
+      border-radius: 12px; padding: 10px 12px; min-width: min(420px, 90vw);
+      box-shadow: 0 1px 0 rgba(2,6,23,.03);
+    }
+    #sds-insights .search input{ border:0; outline:0; width:100%; font-size:14px; color:var(--ink); background:transparent; }
+    #sds-insights .search .ico{ color: var(--muted); }
+
+    #sds-insights .chips{ display:flex; gap:8px; flex-wrap:wrap; }
+    #sds-insights .chip{
+      --chip-bg:#f8fafc; --chip-ink:#0f172a;
+      display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:999px;
+      padding:8px 12px; font-size:12px; color:var(--chip-ink); background:var(--chip-bg); cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    #sds-insights .chip[data-active="true"]{
+      background: color-mix(in oklab, var(--brand) 12%, #ecfeff);
+      border-color: color-mix(in oklab, var(--brand) 46%, var(--line));
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    #sds-insights .chip:hover{ transform: translateY(-1px); }
+    #sds-insights select{ border:1px solid var(--line); border-radius:12px; padding:10px 12px; font-size:14px; background:#fff; color:var(--ink); }
+
+    /* Grid & Cards */
+    #sds-insights .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+    #sds-insights .card{
+      grid-column: span 4; background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+      overflow:hidden; box-shadow: var(--shadow-1); display:flex; flex-direction:column; min-height:100%;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    @media (max-width:1024px){ #sds-insights .card{ grid-column: span 6; } }
+    @media (max-width:640px){ #sds-insights .card{ grid-column: span 12; } }
+    #sds-insights .media{ aspect-ratio:16/9; width:100%; background:#0b1220; position:relative; overflow:hidden; }
+    #sds-insights .media img{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.001); transition: transform .35s ease; }
+    #sds-insights .card:hover .media img{ transform: scale(1.04); }
+    #sds-insights .body{ padding:16px 16px 12px; display:flex; flex-direction:column; gap:10px; }
+    #sds-insights .tags{ display:flex; gap:6px; flex-wrap:wrap; }
+    #sds-insights .tag{ font-size:11px; letter-spacing:.04em; text-transform:uppercase; background:#f1f5f9; color:#0f172a; padding:6px 8px; border-radius:999px; border:1px solid var(--line); }
+    #sds-insights .title{ font-weight:800; font-size: clamp(16px, 2vw, 20px); line-height:1.22; }
+    #sds-insights .excerpt{ color:var(--muted); font-size:14px; }
+    #sds-insights .meta{ display:flex; gap:12px; align-items:center; color:var(--muted); font-size:12px; }
+    #sds-insights .meta .dot{ width:4px; height:4px; border-radius:999px; background: currentColor; opacity:.6; }
+    #sds-insights .foot{ padding:12px 16px 16px; margin-top:auto; display:flex; justify-content:space-between; align-items:center; }
+    #sds-insights .btn{
+      display:inline-flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:12px; padding:10px 12px;
+      background:#fff; color:var(--ink); font-weight:600; font-size:14px; text-decoration:none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+    #sds-insights .btn:hover{ transform: translateY(-1px); border-color: color-mix(in oklab, var(--brand) 44%, var(--line)); box-shadow: 0 10px 22px rgba(2,6,23,.12); background: linear-gradient(0deg, #fff, #f8fafc); }
+
+    /* States */
+    #sds-insights .empty{ text-align:center; color:var(--muted); padding:28px 0 10px; }
+    #sds-insights .load-wrap{ display:flex; justify-content:center; margin-top:18px; }
+    #sds-insights .load-more{ border:1px solid var(--line); border-radius:999px; padding:12px 18px; background:#fff; cursor:pointer; font-weight:700; }
+    #sds-insights .error{ margin:16px 0; border:1px solid #fecaca; background:#fff1f2; color:#7f1d1d; border-radius:12px; padding:10px 12px; display:none; }
+    @media (prefers-reduced-motion: reduce){ #sds-insights *{ animation: none !important; transition: none !important; } }
+  </style>
+
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Knowledge • Stories • Research</div>
+      <h2>Insights from the Sayanant Ecosystem</h2>
+      <p class="sub">Deep dives from field practice to policy—agripreneurship, climate-smart agriculture, FPOs, IBCB, local markets, fisheries and more.</p>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="bar" role="region" aria-label="Insights controls">
+      <div class="left">
+        <div class="search" role="search">
+          <span class="ico" aria-hidden="true">🔎</span>
+          <input id="insights-search" type="search" placeholder="Search insights, authors, tags…" autocomplete="off" />
+        </div>
+        <div class="chips" id="insight-chips" aria-label="Filter by tag"></div>
+      </div>
+      <div class="right">
+        <label for="insights-sort" class="visually-hidden">Sort</label>
+        <select id="insights-sort" aria-label="Sort insights">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+          <option value="title">Title A→Z</option>
+          <option value="read">Shortest read</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Error banner (shown if JSON fails) -->
+    <div id="insights-error" class="error"></div>
+
+    <!-- Grid -->
+    <div class="grid" id="insights-grid" aria-live="polite"></div>
+    <div class="empty" id="insights-empty" hidden>No results. Try a different tag or search.</div>
+    <div class="load-wrap"><button class="load-more" id="insights-load">Load more</button></div>
+  </div>
+
+  <!-- =========
+       Data Model — you can add unlimited items here
+       ========= -->
+  <script type="application/json" id="insights-data">
+  {
+    "items": [
+      {
+        "title": "Local Market Development for Building Integrated Agriculture-Nutrition Pathway for Communities",
+        "excerpt": "The State of Food Security and Nutrition in the World (SOFI), 2021 reported that close to 12 percent of the global population was severely food insecure in 2020, representing 928 million people,....",
+        "cover": "static/Images/northeastern.jpg",
+        "href": "/loc",
+        "date": "2025-09-14",
+        "read_min": 7,
+        "tags": ["Agri-nutrition", "FPO", "Markets"],
+        "author": "SDS Insights"
+      },
+      {
+        "title": "Unlocking the Potential of Backyard Poultry in Northeast India",
+        "excerpt": "Backyard poultry as a practice is where poultry is raised in a family's backyard for production of both meat and eggs. In the North Eastern Region, backyard poultry farming is the subsidiary source of income for rural households",
+        "cover": "static/Images/pultryj.jpg",
+        "href": "/jog",
+        "date": "2025-09-15",
+        "read_min": 6,
+        "tags": ["Poultry", "Livelihoods", "CBOs"],
+        "author": "SDS Insights"
+      },
+      {
+        "title": "Golden Threads of Assam: Safeguarding Muga Silk and Rural Heritage in a Changing Climate",
+        "excerpt": "Assam possesses a rich heritage of weaving that has been intricately woven into its social and cultural fabric for centuries. Among the region’s textiles, endemic Muga silk has long held a prominent position...",
+        "cover": "static/Images/Muga1.png",
+        "href": "/muga",
+        "date": "2025-09-15",
+        "read_min": 8,
+        "tags": ["Textiles", "Climate", "Livelihoods"],
+        "author": "SDS Insights"
+      },
+      {
+        "title": "The New Lingos of Women Farmers in the districts of Darrang and Udalaguri",
+        "excerpt": "In the bustling daily market of Pub Mangaldai, amidst the vibrant sights and sounds, a quiet revolution is underway.",
+        "cover": "static/Images/udal4.jpg",
+        "href": "/ling",
+        "date": "2025-05-16",
+        "read_min": 9,
+        "tags": ["Livelihoods", "Governance"],
+        "author": "SDS Insights"
+      },
+      { 
+        "title": "RESEARCH ANALYSIS FOR SCOPING AND MAPPING IN FPO’S",
+        "excerpt": "Research findings on key success factors for Farmer Producer Organizations based on our 342 managed FPOs.",
+        "cover": "static/Images/manipur22.jpeg",
+        "href": "/ingfpo",
+        "date": "2025-07-12",
+        "read_min": 9,
+        "tags": ["FPO","Livelihoods", "Governance"],
+        "author": "SDS Insights"
+      },
+      { 
+        "title": "Building Climate-Resilient Fisheries in Northeast India",
+        "excerpt": "Northeast India stands at a crossroads. Home to some of the richest freshwater ecosystems in the country—floodplains, beels, ponds, rivers, and reservoirs—the region’s inland fisheries sustain the diets and livelihoods of millions. ",
+        "cover": "static/Images/net.png",
+        "href": "/fishery",
+        "date": "2025-09-15",
+        "read_min": 8,
+        "tags": ["Fisheries","Livelihoods", "Climate"],
+        "author": "SDS Insights"
+      }
+      ,
+      { 
+        "title": "The Importance of Reliable Data in Farmers’ Development",
+        "excerpt": "In today’s world, where policies and decisions increasingly depend on data, the reliability of the information collected has become critically important. Nowhere is this more evident than in agriculture. ",
+        "cover": "static/Images/Coverf.jpg",
+        "href": "/far",
+        "date": "2025-09-15",
+        "read_min": 8,
+        "tags": ["Reliable Data","Fisheries","Livelihoods", "Poultry", "Piggery","Cattle","Agriculture", "Horticulture"],
+        "author": "SDS Insights"
+      }
+      ,
+      { 
+        "title": "How Aid, Grants, and CSR Funds Drive Social Development in India | Grassroots Planning with Panchayati Raj",
+        "excerpt": "Today India is not short of funds for social development. In the financial year 2023–24 alone, a staggering amount of money was contributed by three major streams of development financing—foreign aid, NGO grants, and Corporate Social Responsibility (CSR) funds. ",
+        "cover": "static/Images/tirthada.jpg",
+        "href": "/tir",
+        "date": "2025-09-15",
+        "read_min": 8,
+        "tags": ["Social development in India","NGO grants in India","Panchayati Raj Institutions", "Rural development funds India",],
+        "author": "SDS Insights"
+      }
+    ],
+    "pageSize": 6
+  }
+  </script>
+
+  <!-- =========
+       Behavior (tolerant JSON + never-blank UI)
+       ========= -->
+  <script>
+    (function(){
+      const dataEl = document.getElementById('insights-data');
+      const grid = document.getElementById('insights-grid');
+      const chipsWrap = document.getElementById('insight-chips');
+      const searchEl = document.getElementById('insights-search');
+      const sortEl = document.getElementById('insights-sort');
+      const emptyEl = document.getElementById('insights-empty');
+      const loadBtn = document.getElementById('insights-load');
+      const errEl = document.getElementById('insights-error');
+
+      const state = { all: [], view: [], page: 1, pageSize: 6, q: '', tag: null, sort: 'new' };
+
+      // Tolerant JSON parser: fixes trailing commas + shows inline error if still broken
+      const tolerantParse = (el) => {
+        const raw = (el.textContent || '').trim();
+        try { return JSON.parse(raw); }
+        catch(e1){
+          try {
+            const relaxed = raw
+              .replace(/,\s*}/g, '}')   // trailing commas in objects
+              .replace(/,\s*]/g, ']');  // trailing commas in arrays
+            return JSON.parse(relaxed);
+          } catch(e2){
+            errEl.style.display = 'block';
+            errEl.textContent = 'Could not read Insights data (JSON error). Showing 0 items. Tip: check for missing commas between objects.';
+            console.warn('Insights JSON parse failed:', e1, e2);
+            return { items: [], pageSize: 6 };
+          }
+        }
+      };
+
+      const fmtDate = (iso)=> new Date(iso + 'T00:00:00');
+      const uniq = (arr)=> [...new Set(arr)];
+      const norm = (s)=> (s||'').toLowerCase().trim();
+
+      const cardHTML = (it)=> {
+        const date = fmtDate(it.date);
+        const pretty = isNaN(date) ? '' : date.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+        const tags = (it.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
+        return `
+        <article class="card" data-tags="${(it.tags||[]).map(norm).join(',')}">
+          <a class="media" href="${it.href}" aria-label="${it.title}">
+            <img loading="lazy" decoding="async" src="${it.cover}" alt="${it.title}">
+          </a>
+          <div class="body">
+            <div class="tags">${tags}</div>
+            <h3 class="title"><a href="${it.href}" style="color:inherit; text-decoration:none;">${it.title}</a></h3>
+            <p class="excerpt">${it.excerpt}</p>
+            <div class="meta">
+              ${pretty ? `<span>${pretty}</span><span class="dot"></span>` : ``}
+              <span>${it.read_min||'–'} min read</span>
+              <span class="dot"></span>
+              <span>${it.author || 'Sayanant Group'}</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn" href="${it.href}">Read Insight →</a>
+            <div class="tags" aria-hidden="true">${(it.tags||[]).slice(0,1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        </article>`;
+      };
+
+      const renderChips = (allItems)=>{
+        const tags = uniq(allItems.flatMap(i => i.tags || [])).sort((a,b)=>a.localeCompare(b));
+        const anyChip = `<button class="chip" data-tag="" data-active="true">All</button>`;
+        const chips = tags.map(t=>`<button class="chip" data-tag="${t}">${t}</button>`).join('');
+        chipsWrap.innerHTML = anyChip + chips;
+        chipsWrap.onclick = (e)=>{
+          const btn = e.target.closest('.chip'); if(!btn) return;
+          [...chipsWrap.querySelectorAll('.chip')].forEach(c=>c.dataset.active = "false");
+          btn.dataset.active = "true";
+          state.tag = btn.dataset.tag || null;
+          state.page = 1; update();
+        };
+      };
+
+      const computeView = ()=>{
+        let items = [...state.all];
+        if(state.tag){ const t = norm(state.tag); items = items.filter(i => (i.tags||[]).map(norm).includes(t)); }
+        if(state.q){
+          const q = norm(state.q);
+          items = items.filter(i =>
+            norm(i.title).includes(q) || norm(i.excerpt).includes(q) ||
+            norm(i.author||'').includes(q) || (i.tags||[]).some(t => norm(t).includes(q))
+          );
+        }
+        if(state.sort === 'new') items.sort((a,b)=> fmtDate(b.date) - fmtDate(a.date));
+        else if(state.sort === 'old') items.sort((a,b)=> fmtDate(a.date) - fmtDate(b.date));
+        else if(state.sort === 'title') items.sort((a,b)=> a.title.localeCompare(b.title));
+        else if(state.sort === 'read') items.sort((a,b)=> (a.read_min||999) - (b.read_min||999));
+        return items;
+      };
+
+      const renderGrid = ()=>{
+        const max = state.page * state.pageSize;
+        const slice = state.view.slice(0, max);
+        grid.innerHTML = slice.map(cardHTML).join('');
+        emptyEl.hidden = slice.length > 0;
+        loadBtn.hidden = state.view.length <= max;
+      };
+
+      const update = ()=>{ state.view = computeView(); renderGrid(); };
+
+      // Init
+      (function boot(){
+        const parsed = tolerantParse(dataEl);
+        state.all = Array.isArray(parsed.items) ? parsed.items : [];
+        state.pageSize = parsed.pageSize || state.pageSize;
+        renderChips(state.all);
+        update();
+      })();
+
+      // Events
+      searchEl.addEventListener('input', (e)=>{ state.q = e.target.value; state.page = 1; update(); });
+      sortEl.addEventListener('change', (e)=>{ state.sort = e.target.value; state.page = 1; update(); });
+      loadBtn.addEventListener('click', ()=>{ state.page += 1; renderGrid(); });
+
+      // A11y helper
+      const vh = document.createElement('style');
+      vh.textContent = `.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px;}`;
+      document.head.appendChild(vh);
+    })();
+  </script>
+</section>
+
+
   
   <!-- Footers -->
   <footer>

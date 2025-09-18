@@ -579,7 +579,7 @@ footer .footer-column h3 {
 
   <!-- Flipbook iframe -->
   <iframe 
-    src="https://online.flippingbook.com/view/278749980/" 
+    src="https://online.flippingbook.com/view/996488119/" 
     allowfullscreen
     title="SDS Flipbook">
   </iframe>
@@ -1005,7 +1005,102 @@ footer .footer-column h3 {
 
 
 
+<section id="sds-flipbook" aria-label="Flipbook Viewer">
+  <style>
+    #sds-flipbook {
+      width: 100%;
+      height: 100vh;  /* full screen height */
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
 
+    /* Flipbook iframe */
+    #sds-flipbook iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Heading styles */
+    #sds-flipbook h2 {
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 10px 0 14px;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b, #4facfe, #00f2fe);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s ease infinite;
+      z-index: 10;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+      #sds-flipbook {
+        height: auto;
+        min-height: 100svh;
+        justify-content: flex-start;
+      }
+      #sds-flipbook h2 {
+        font-size: clamp(18px, 5.5vw, 22px);
+        margin: 8px 0 12px;
+        line-height: 1.2;
+      }
+      #sds-flipbook iframe {
+        width: 100vw;     /* force full width */
+        height: 88vh;     /* take almost full height */
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+      #sds-flipbook iframe {
+        width: 100vw;
+        height: 85vh;
+      }
+    }
+
+    /* iOS Safari safe area */
+    @supports (-webkit-touch-callout: none) {
+      @media (max-width: 768px) {
+        #sds-flipbook { min-height: -webkit-fill-available; }
+      }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      #sds-flipbook h2 { animation: none; }
+    }
+  </style>
+
+  <!-- Heading -->
+  <h2>SDS DECADE REPORT</h2>
+
+  <!-- Flipbook iframe -->
+  <iframe 
+    src="https://online.flippingbook.com/view/996448222/" 
+    allowfullscreen
+    title="SDS Flipbook">
+  </iframe>
+</section>
 
   
   
