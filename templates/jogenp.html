@@ -747,95 +747,103 @@ body {
 <section id="sds-related-insights" aria-label="More Insights You May Like">
   <style>
     /* ===== Scoped Styles: Related Insights ===== */
-    #sds-related-insights{
-      --bg:#0f172a;        /* deep ink */
-      --ink:#e6eef7;       /* light text */
-      --muted:#9fb0c7;     /* secondary text */
-      --brand:#0ea5e9;     /* cyan */
-      --brand-2:#16a34a;   /* green */
-      --line:rgba(255,255,255,.12);
-      --radius:18px;
-      --wrap:max(62ch, min(1180px,92vw));
+   #sds-related-insights{
+  --bg:#f9fafb;          /* light neutral */
+  --ink:#0f172a;         /* dark text */
+  --muted:#475569;       /* subtle text */
+  --brand:#0ea5e9;       /* cyan */
+  --brand-2:#16a34a;     /* green */
+  --line:rgba(0,0,0,.08);
+  --radius:18px;
+  --wrap:max(62ch, min(1180px,92vw));
 
-      background:
-        radial-gradient(1200px 380px at 15% 30%, rgba(14,165,233,.10), transparent 60%),
-        radial-gradient(1200px 380px at 85% 65%, rgba(22,163,74,.10), transparent 60%),
-        #0b1119;
-      color:var(--ink);
-      padding: clamp(36px,6vw,72px) 0;
-      position: relative;
-      isolation:isolate;
-      overflow: clip;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-    }
-    #sds-related-insights .wrap{
-      width: min(var(--wrap), 100%);
-      margin: 0 auto;
-      padding: 0 clamp(16px, 3vw, 28px);
-      display: grid;
-      grid-template-columns: 1.2fr auto;
-      gap: clamp(14px, 2.6vw, 24px);
-      align-items: center;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border-radius: var(--radius);
-      box-shadow: 0 16px 44px rgba(2,6,23,.35), 0 4px 10px rgba(2,6,23,.25);
-      padding: clamp(18px, 3vw, 28px);
-    }
-    #sds-related-insights .copy h2{
-      margin:0 0 6px;
-      font-size: clamp(22px, 3.4vw, 32px);
-      line-height:1.1;
-      font-weight: 900;
-      letter-spacing: -0.3px;
-      background: linear-gradient(90deg, #e6eef7, var(--brand) 40%, var(--brand-2) 80%, #e6eef7);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: sds-ri-shift 9s linear infinite;
-    }
-    #sds-related-insights .copy p{
-      margin:0;
-      color: var(--muted);
-      font-size: clamp(14px, 1.4vw, 16px);
-      line-height: 1.65;
-    }
-    #sds-related-insights .cta{
-      justify-self: end;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2));
-      color:#fff;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 16px 44px rgba(2,6,23,.28), 0 6px 18px rgba(14,165,233,.18);
-      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
-      white-space: nowrap;
-    }
-    #sds-related-insights .cta:hover{
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 22px 60px rgba(2,6,23,.36), 0 10px 26px rgba(34,197,94,.20);
-    }
-    #sds-related-insights .cta i{opacity:.9}
+  background:
+    radial-gradient(1200px 380px at 15% 30%, rgba(14,165,233,.12), transparent 60%),
+    radial-gradient(1200px 380px at 85% 65%, rgba(22,163,74,.12), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  padding: clamp(36px,6vw,72px) 0;
+  position: relative;
+  isolation:isolate;
+  overflow: clip;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
 
-    @media (max-width: 820px){
-      #sds-related-insights .wrap{
-        grid-template-columns: 1fr;
-      }
-      #sds-related-insights .cta{
-        justify-self: start;
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-      }
-    }
+#sds-related-insights .wrap{
+  width: min(var(--wrap), 100%);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 28px);
+  display: grid;
+  grid-template-columns: 1.2fr auto;
+  gap: clamp(14px, 2.6vw, 24px);
+  align-items: center;
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
+  border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.08);
+  padding: clamp(18px, 3vw, 28px);
+}
 
-    @keyframes sds-ri-shift { to { background-position: 200% 0; } }
+#sds-related-insights .copy h2{
+  margin:0 0 6px;
+  font-size: clamp(22px, 3.4vw, 32px);
+  line-height:1.1;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  background: linear-gradient(90deg, #0f172a, var(--brand) 40%, var(--brand-2) 80%, #0f172a);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sds-ri-shift 9s linear infinite;
+}
+
+#sds-related-insights .copy p{
+  margin:0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.65;
+}
+
+#sds-related-insights .cta{
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  color:#fff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 16px 44px rgba(2,6,23,.18), 0 6px 18px rgba(14,165,233,.15);
+  transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+  white-space: nowrap;
+}
+
+#sds-related-insights .cta:hover{
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(2,6,23,.20), 0 10px 24px rgba(34,197,94,.16);
+}
+
+#sds-related-insights .cta i{opacity:.9}
+
+@media (max-width: 820px){
+  #sds-related-insights .wrap{
+    grid-template-columns: 1fr;
+  }
+  #sds-related-insights .cta{
+    justify-self: start;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@keyframes sds-ri-shift { 
+  to { background-position: 200% 0; } 
+}
   </style>
 
   <div class="wrap">

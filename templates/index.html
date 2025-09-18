@@ -747,63 +747,47 @@
 
 <!-- Solutions Section -->
 <!-- Solutions Section (Updated) -->
+<!-- Solutions Section (Professional, light background, no animated backdrop) -->
 <section id="sds-services" class="solutions-section" aria-label="Explore Our Services">
   <style>
     /* ===============================
-       Scoped tokens & background
+       Scoped tokens (calm, professional)
        =============================== */
     #sds-services{
       --wrap: min(1180px, 94vw);
-      --ink:#0f172a;
-      --muted:#475569;
-      --card:#ffffff;
-      --line:rgba(15,23,42,.10);
-      --ring:rgba(14,165,233,.18);
+
+      /* Ink + surfaces */
+      --ink:#0b1324;           /* crisp text */
+      --muted:#596781;         /* secondary text */
+      --card:#ffffff;          /* card surface */
+      --line:#e6eaf0;          /* light border */
+
+      /* Brand accents */
+      --accent-1:#0ea5e9;      /* cyan */
+      --accent-2:#16a34a;      /* green */
+      --ring:rgba(14,165,233,.22);
+
+      /* Radii & shadows */
       --radius:18px;
-      --shadow-1: 0 16px 44px rgba(2,6,23,.10), 0 4px 10px rgba(2,6,23,.06);
-      --shadow-2: 0 22px 60px rgba(2,6,23,.14), 0 6px 16px rgba(2,6,23,.08);
-      --accent-1:#0ea5e9; /* cyan */
-      --accent-2:#16a34a; /* green */
+      --shadow-1: 0 10px 26px rgba(2,6,23,.06), 0 2px 8px rgba(2,6,23,.04);
+      --shadow-2: 0 18px 48px rgba(2,6,23,.10), 0 6px 16px rgba(2,6,23,.08);
 
       position: relative;
       isolation: isolate;
       overflow: clip;
-      padding: clamp(60px, 8vw, 110px) 0;
+      padding: clamp(56px, 7vw, 104px) 0;
       color: var(--ink);
-      background:
-        radial-gradient(1200px 500px at 10% 0%, rgba(14,165,233,.12), transparent 60%),
-        radial-gradient(900px 420px at 90% 10%, rgba(22,163,74,.12), transparent 60%),
-        conic-gradient(from 210deg at 50% 0%, rgba(14,165,233,.08), rgba(22,163,74,.08), rgba(14,165,233,.08));
+
+      /* Light, static background (no animation, no textures) */
+      background: linear-gradient(180deg, #f8fbff 0%, #f9fdf9 100%);
     }
 
-    /* subtle grid lines */
-    #sds-services::before{
-      content:"";
-      position:absolute; inset:0; z-index:-1;
-      background:
-        linear-gradient(to right, rgba(15,23,42,.06) 1px, transparent 1px) 0 0 / 28px 28px,
-        linear-gradient(to bottom, rgba(15,23,42,.06) 1px, transparent 1px) 0 0 / 28px 28px;
-      mask: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
-    }
-
-    /* floating ambient blobs */
-    #sds-services .blob{
-      position:absolute; width:520px; height:520px; border-radius:999px; filter: blur(60px);
-      opacity:.35; z-index:-1; mix-blend:multiply;
-      animation: drift 18s ease-in-out infinite;
-    }
-    #sds-services .blob.b1{ top:-160px; left:-120px; background:radial-gradient(circle at 30% 30%, #5eead4, transparent 60%); }
-    #sds-services .blob.b2{ top:-120px; right:-160px; background:radial-gradient(circle at 70% 40%, #93c5fd, transparent 65%); animation-delay: .6s; }
-    #sds-services .blob.b3{ bottom:-200px; left:40%; background:radial-gradient(circle at 50% 50%, #86efac, transparent 60%); animation-delay: 1.2s; }
-
-    @keyframes drift{
-      0%,100%{ transform: translateY(0) scale(1); }
-      50%{ transform: translateY(-20px) scale(1.03); }
-    }
+    /* Remove any previous textures/overlays */
+    #sds-services::before{ content:none; }
 
     /* Section header */
     #sds-services .wrap{ width:var(--wrap); margin:0 auto; }
-    #sds-services .section-header{ text-align:center; margin-bottom: clamp(28px, 4vw, 44px); }
+    #sds-services .section-header{ text-align:center; margin-bottom: clamp(26px, 4vw, 42px); }
     #sds-services .section-title{
       font-weight: 900;
       font-size: clamp(26px, 4.2vw, 42px);
@@ -814,11 +798,10 @@
       background: linear-gradient(92deg, var(--accent-1), var(--accent-2));
       -webkit-background-clip:text; background-clip:text; color:transparent;
       display:inline-block;
-      animation: hue 12s linear infinite;
+      /* No hue-rotate animation: keep it calm & corporate */
     }
-    @keyframes hue { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
     #sds-services .section-subtitle{
-      max-width: 58ch; margin: 10px auto 0; color: var(--muted);
+      max-width: 62ch; margin: 12px auto 0; color: var(--muted);
       font-size: clamp(14px, 1.2vw, 16px);
     }
 
@@ -838,75 +821,79 @@
     /* Card */
     #sds-services .solution-card{
       position: relative;
-      background: color-mix(in oklab, #fff 92%, #f8fafc);
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 22px 20px 18px;
       box-shadow: var(--shadow-1);
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease, outline-color .18s ease;
       overflow: hidden;
+      outline: 0 solid transparent;
     }
-    #sds-services .solution-card::after{
-      /* animated top light sweep */
-      content:""; position:absolute; inset:-1px -1px auto -1px; height: 38%;
-      background: linear-gradient(180deg, rgba(255,255,255,.7), transparent);
-      opacity:.55; pointer-events:none;
-    }
+    /* Remove glossy sheen */
+    #sds-services .solution-card::after{ content:none; }
+
     #sds-services .solution-card:hover{
-      transform: translateY(-6px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow-2);
-      border-color: rgba(14,165,233,.35);
+      border-color: rgba(14,165,233,.26);
       background:#ffffff;
     }
+    #sds-services .solution-card:focus-within{
+      outline: 3px solid var(--ring);
+      outline-offset: 0;
+    }
 
-    /* Icon pill (uses your per-card gradient from data) */
+    /* Icon pill */
     #sds-services .solution-icon{
-      width: 56px; height: 56px; border-radius: 14px;
-      display:grid; place-items:center; font-size: 26px;
-      color:#fff; box-shadow: 0 10px 22px rgba(2,6,23,.10) inset;
+      width: 58px; height: 58px; border-radius: 14px;
+      display:grid; place-items:center; font-size: 26px; color:#fff;
       margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 10px 22px rgba(2,6,23,.08) inset, 0 6px 14px rgba(2,6,23,.06);
     }
 
     #sds-services .solution-title{
       font-size: 18px; font-weight: 800; line-height: 1.25; margin: 0 0 8px;
+      letter-spacing:.2px; color:#0b1324;
     }
     #sds-services .solution-description{
-      color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0 0 16px;
-      min-height: 3.2em; /* keeps heights tidy across cards */
+      color: var(--muted); font-size: 14px; line-height: 1.65; margin: 0 0 16px;
+      min-height: 3.2em; /* tidy heights across cards */
     }
 
+    /* CTA */
     #sds-services .learn-more{
       display:inline-flex; align-items:center; gap:8px;
       color: #0f766e; font-weight: 700; text-decoration: none; font-size: 14px;
-      border:1px solid rgba(15,118,110,.25); padding:8px 12px; border-radius: 999px;
+      border:1px solid rgba(14,165,233,.26);
+      padding:8px 12px; border-radius: 999px;
       background: linear-gradient(180deg, rgba(14,165,233,.10), rgba(22,163,74,.08));
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease, color .16s ease;
     }
     #sds-services .learn-more:hover{
       transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(2,6,23,.08);
-      border-color: rgba(15,118,110,.4);
-      background: linear-gradient(180deg, rgba(14,165,233,.16), rgba(22,163,74,.12));
+      box-shadow: 0 10px 18px rgba(2,6,23,.07);
+      border-color: rgba(14,165,233,.38);
+      background: linear-gradient(180deg, rgba(14,165,233,.14), rgba(22,163,74,.12));
+      color:#0b4f48;
     }
     #sds-services .learn-more svg{ width: 16px; height: 16px; }
 
-    /* Reveal animation (safe w/ reduced motion) */
+    /* Calmer reveal animation (kept; background has no animation) */
     @keyframes rise {
-      from { opacity: 0; transform: translateY(18px) scale(.98); }
+      from { opacity: 0; transform: translateY(12px) scale(.995); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
     @media (prefers-reduced-motion: no-preference){
       #sds-services .solution-card{ opacity: 0; }
       #sds-services .solution-card.visible{
-        animation: rise .55s cubic-bezier(.2,.7,.2,1) forwards;
+        animation: rise .42s cubic-bezier(.2,.7,.2,1) forwards;
       }
     }
   </style>
 
-  <!-- Ambient blobs -->
-  <div class="blob b1" aria-hidden="true"></div>
-  <div class="blob b2" aria-hidden="true"></div>
-  <div class="blob b3" aria-hidden="true"></div>
+  <!-- No ambient blobs / no animated backdrop -->
 
   <div class="wrap">
     <div class="section-header">
@@ -918,16 +905,14 @@
       </p>
     </div>
 
-    <!-- Keep the same class so your existing generateSolutions() still works -->
+    <!-- Your generator still targets this container -->
     <div class="solutions-grid" aria-live="polite"></div>
   </div>
 
   <script>
     (function(){
-      // If your existing generateSolutions() already fills .solutions-grid, we only add reveal-on-view.
-      // But if it's missing for any reason, we render from window.solutions here, safely.
+      /* Structure & logic unchanged; only visuals updated. */
       const grid = document.querySelector('#sds-services .solutions-grid');
-
       function hasChildren(el){ return el && el.children && el.children.length > 0; }
 
       function renderFromGlobal(){
@@ -952,10 +937,8 @@
         });
       }
 
-      // If nothing else has populated it, render now.
       if (!hasChildren(grid)) renderFromGlobal();
 
-      // Reveal on intersection
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReduced && 'IntersectionObserver' in window){
         const io = new IntersectionObserver((entries, obs) => {
@@ -972,6 +955,9 @@
     })();
   </script>
 </section>
+
+
+
 
 
 <section id="sds-outreach" aria-label="SDS Cumulative Outreach">
