@@ -285,6 +285,11 @@ def far():
 def tir():
     return render_template("tirtha.html")
 
+@app.route("/hra")
+def hra():
+    return render_template("hra.html")
+
+
 
 
 

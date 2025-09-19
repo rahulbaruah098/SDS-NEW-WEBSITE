@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>  Insights | SDS</title>
+     <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <style>
+/* ---------- LAYOUT ---------- */
+.footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+      .logo-f { height: 75px; }
+  </style>
+  <body>
+<!-- ======================= NAVIGATION (fixed) ======================= -->
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="/ing">INSIGHTS</a></li>
+        <li><a href="/pub">PUBLICATIONS</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+       
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>  
+  <br><br><br>
+
+  <section id="sds-fpo-local-markets-full" aria-label="Navigating HR Challenges in FPO Ecosystem (Full)"> <style> /* ---------- Scoped design tokens (canonical sds-fpo) ---------- */ #sds-fpo-local-markets-full{ --bg:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e5e7eb; --brand:#0ea5e9; --brand-2:#16a34a; --ring:rgba(14,165,233,.18); --radius:18px; --shadow-1:0 12px 28px rgba(2,6,23,.10), 0 2px 6px rgba(2,6,23,.06); --shadow-2:0 16px 44px rgba(2,6,23,.12), 0 4px 10px rgba(2,6,23,.06); background:var(--bg); color:var(--ink); position:relative; isolation:isolate; overflow:clip; padding-bottom:72px; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; } #sds-fpo-local-markets-full *{box-sizing:border-box} #sds-fpo-local-markets-full figure{margin:0}
+/* ============ HERO (same grid) ============ */
+#sds-fpo-local-markets-full .hero{
+  min-height:88vh; display:grid; grid-template-columns:1.15fr 1fr;
+  gap:clamp(16px,3vw,32px); align-items:stretch;
+  padding:clamp(16px,2.5vw,28px);
+}
+@media (max-width:980px){
+  #sds-fpo-local-markets-full .hero{grid-template-columns:1fr; min-height:72vh}
+}
+
+/* Ambient background */
+#sds-fpo-local-markets-full .parallax-bg{
+  position:absolute; inset:-12% -4% auto -4%; height:42vh;
+  background:
+    radial-gradient(1100px 320px at 16% 40%, rgba(14,165,233,.10), transparent 60%),
+    radial-gradient(1100px 320px at 84% 28%, rgba(22,163,74,.10), transparent 60%);
+  filter:blur(6px); z-index:0; pointer-events:none; transform:translateY(0);
+}
+
+/* Left panel (copy) */
+#sds-fpo-local-markets-full .hero-left{
+  z-index:2; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; box-shadow:var(--shadow-1);
+  padding:clamp(18px,2.6vw,28px) clamp(18px,2.6vw,32px);
+  display:grid; align-content:start; gap:clamp(12px,2.2vw,20px);
+}
+#sds-fpo-local-markets-full .kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:6px 12px; border-radius:999px; font-weight:700; letter-spacing:.3px;
+  color:#063a52;
+  background:linear-gradient(90deg, rgba(14,165,233,.12), rgba(22,163,74,.12));
+  border:1px solid var(--line); box-shadow:0 0 0 6px var(--ring);
+  width:max-content;
+}
+#sds-fpo-local-markets-full .k-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--brand); box-shadow:0 0 0 4px rgba(14,165,233,.18);
+}
+
+/* Title animation */
+#sds-fpo-local-markets-full .title{
+  font-size:clamp(28px,4.8vw,54px); line-height:1.06; font-weight:800; letter-spacing:-.5px;
+  display:inline-block;
+  background:linear-gradient(90deg,#0f172a,var(--brand) 35%,var(--brand-2) 70%,#0f172a 100%) 0 0/200% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:titleShift 10s linear infinite; position:relative;
+}
+#sds-fpo-local-markets-full .title::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(120deg,transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  mix-blend-mode:overlay; animation:sheen 3.6s ease-in-out infinite; pointer-events:none;
+}
+@keyframes titleShift{ to{ background-position:200% 0; } }
+@keyframes sheen{ 0%{transform:translateX(-120%)} 50%{transform:translateX(0)} 100%{transform:translateX(120%)} }
+
+/* Scrolling info line */
+#sds-fpo-local-markets-full .scrolling-line{
+  overflow:hidden; border:1px dashed var(--line); border-radius:10px; background:linear-gradient(#fff,#fafafa);
+}
+#sds-fpo-local-markets-full .scrolling-track{
+  display:flex; gap:40px; white-space:nowrap; padding:10px 16px; font-weight:600; color:#09425a;
+  animation:ticker 16s linear infinite;
+}
+#sds-fpo-local-markets-full .scrolling-track i{ opacity:.75; }
+@keyframes ticker{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+#sds-fpo-local-markets-full .lead{ color:var(--muted); line-height:1.65; font-size:clamp(15px,1.35vw,17px); }
+
+#sds-fpo-local-markets-full .cta-row{ display:flex; flex-wrap:wrap; gap:12px; }
+#sds-fpo-local-markets-full .btn{
+  appearance:none; border:none; border-radius:14px; padding:12px 18px; font-weight:700;
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+#sds-fpo-local-markets-full .btn-primary{ color:#fff; background:linear-gradient(90deg,var(--brand),#22c55e); box-shadow:var(--shadow-2); }
+#sds-fpo-local-markets-full .btn-primary:hover{ transform:translateY(-2px) scale(1.01); }
+#sds-fpo-local-markets-full .btn-ghost{ color:#0f172a; background:#fff; border:1px solid var(--line); }
+#sds-fpo-local-markets-full .btn-ghost:hover{ box-shadow:var(--shadow-1); transform:translateY(-1px); }
+
+#sds-fpo-local-markets-full .stats{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:6px;
+}
+#sds-fpo-local-markets-full .stat{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px;
+  box-shadow:0 6px 16px rgba(2,6,23,.06);
+}
+#sds-fpo-local-markets-full .stat b{ font-size:20px; display:block; }
+#sds-fpo-local-markets-full .stat span{ font-size:12px; color:var(--muted); }
+
+/* Right: SINGLE image */
+#sds-fpo-local-markets-full .hero-right{
+  position:relative; z-index:1; border:1px solid var(--line); border-radius:var(--radius);
+  background:#f8fafc; box-shadow:var(--shadow-2); overflow:clip; display:grid;
+}
+#sds-fpo-local-markets-full .image-frame{ position:relative; height:100%; min-height:clamp(340px,56vh,540px); overflow:hidden; }
+#sds-fpo-local-markets-full .image-frame img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center;
+  background:#e5e7eb; display:block;
+}
+#sds-fpo-local-markets-full .image-frame::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,0) 35%, rgba(0,0,0,.25) 100%);
+  pointer-events:none;
+}
+#sds-fpo-local-markets-full .slide-caption{
+  position:absolute; left:16px; bottom:16px; z-index:3; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45);
+  font-weight:700; letter-spacing:.2px; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.25);
+  padding:8px 12px; border-radius:12px; backdrop-filter:blur(4px);
+}
+
+/* ============ CONTENT (adds long-form features) ============ */
+#sds-fpo-local-markets-full .content{
+  max-width:1200px; margin:34px auto clamp(40px,6vw,80px);
+  padding:0 clamp(16px,2.6vw,28px); display:grid; gap:26px; position:relative; z-index:1;
+}
+#sds-fpo-local-markets-full .section-intro{ display:grid; gap:10px; }
+#sds-fpo-local-markets-full .section-intro h3{ margin:0; font-size:clamp(22px,3.4vw,34px); letter-spacing:-.3px; }
+#sds-fpo-local-markets-full .section-intro p{ margin:0; color:var(--muted); line-height:1.75; }
+
+/* Long-form reader (“paper”) */
+#sds-fpo-local-markets-full .paper{
+  border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:var(--shadow-1); overflow:hidden;
+}
+#sds-fpo-local-markets-full .paper-toolbar{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;
+  padding:12px 14px; background:linear-gradient(#fff,#f8fafc); border-bottom:1px solid var(--line);
+}
+#sds-fpo-local-markets-full .paper-toolbar .controls{ display:flex; gap:8px; flex-wrap:wrap; }
+#sds-fpo-local-markets-full .pill{
+  border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-weight:600; background:#fff; cursor:pointer;
+}
+#sds-fpo-local-markets-full .pill:hover{ box-shadow:0 2px 8px rgba(2,6,23,.06); }
+#sds-fpo-local-markets-full .paper-body{
+  max-height:72vh; overflow:auto; padding:18px; line-height:1.75; color:#0f172a;
+}
+#sds-fpo-local-markets-full .paper-body p{ margin:0 0 14px; }
+#sds-fpo-local-markets-full .paper-body h2, 
+#sds-fpo-local-markets-full .paper-body h3, 
+#sds-fpo-local-markets-full .paper-body h4{ margin:24px 0 10px; }
+#sds-fpo-local-markets-full .paper-body ul{ margin:10px 0 16px 1.2em; }
+#sds-fpo-local-markets-full .note{ color:#64748b; font-size:13px; }
+
+/* Uploaded images inside document */
+#sds-fpo-local-markets-full .doc-images{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:12px; margin:10px 0 6px;
+}
+#sds-fpo-local-markets-full .doc-images figure{
+  border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fafafa;
+  box-shadow:0 6px 16px rgba(2,6,23,.04);
+}
+#sds-fpo-local-markets-full .doc-images img{ width:100%; height:160px; object-fit:cover; display:block; }
+#sds-fpo-local-markets-full .doc-images figcaption{
+  padding:8px 10px; font-size:12px; color:var(--muted); background:#fff;
+}
+
+/* Mobile tweaks */
+@media (max-width:720px){
+  #sds-fpo-local-markets-full .hero{ padding:16px; gap:14px }
+  #sds-fpo-local-markets-full .kicker{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .scrolling-track{ gap:22px }
+  #sds-fpo-local-markets-full .cta-row .btn{ width:100%; justify-content:center }
+  #sds-fpo-local-markets-full .stats{ grid-template-columns:1fr; gap:8px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:46vh }
+  #sds-fpo-local-markets-full .slide-caption{ font-size:12px; padding:6px 10px }
+  #sds-fpo-local-markets-full .paper-body{ max-height:60vh }
+}
+@media (max-width:420px){
+  #sds-fpo-local-markets-full .title{ font-size:32px }
+  #sds-fpo-local-markets-full .lead{ font-size:14px }
+  #sds-fpo-local-markets-full .image-frame{ min-height:42vh }
+}
+
+</style> <!-- Ambient background --> <div class="parallax-bg" data-parallax data-speed="0.3"></div> <!-- ================= HERO ================= --> <div class="hero"> <div class="hero-left"> <div class="kicker"><span class="k-dot"></span> FPOs · Human Resources</div> <h1 class="title">Navigating HR Challenges in the FPO Ecosystem</h1>
+  <div class="scrolling-line" aria-hidden="true">
+    <div class="scrolling-track">
+      <span><i class="fa-solid fa-people-group"></i> Leadership &amp; staffing</span>
+      <span><i class="fa-solid fa-briefcase"></i> Recruitment &amp; retention</span>
+      <span><i class="fa-solid fa-chart-line"></i> Capacity · incentives · performance</span>
+    </div>
+  </div>
+
+  <p class="lead">
+    HR systems determine whether finance and policy translate into outcomes. This brief surfaces the constraints and practical fixes across leadership, staffing, incentives, gender inclusion, and governance. by - Richa Moni Gogoi <Strong>Associate(HR)</Strong>
+  </p>
+
+  <div class="cta-row">
+    <button class="btn btn-primary" id="expandAll"><i class="fa-solid fa-maximize"></i> Expand All</button>
+    <button class="btn btn-ghost" id="collapseAll"><i class="fa-solid fa-minimize"></i> Collapse All</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>42k+</b><span>Registered FPOs in India</span></div>
+    <div class="stat"><b>10–15%</b><span>Estimated financially sustainable</span></div>
+    <div class="stat"><b>60%+</b><span>Without full-time CEOs/professionals</span></div>
+  </div>
+</div>
+
+<!-- Right: SINGLE image -->
+<div class="hero-right" data-parallax data-speed="-0.08">
+  <figure class="image-frame" aria-label="FPO HR and capacity-building session">
+    <!-- Replace the src with your actual image path -->
+    <img src="{{ url_for('static', filename='Images/innerhr2.png') }}" alt="FPO team meeting about HR, recruitment and governance">
+    <figcaption class="slide-caption">Professional teams · Inclusive leadership · Stronger FPOs</figcaption>
+  </figure>
+</div>
+
+</div> <!-- ================= CONTENT ================= --> <div class="content"> <div class="section-intro"> </div>
+<div class="paper">
+  <div class="paper-toolbar">
+    <div><strong>Sayanant Development Services</strong></div>
+    <div class="controls">
+      <button class="pill" id="toggleWrap">Toggle Wrap</button>
+      <button class="pill" id="jumpTop">Top</button>
+      <button class="pill" id="jumpBottom">Bottom</button>
+     
+    </div>
+  </div>
+
+  <div class="paper-body" id="paperBody">
+    <article>
+      <center> <h2>Navigating HR Challenges in FPO Ecosystem</h2></center>
+
+      <!-- Uploaded images will appear here -->
+      <div class="doc-images" id="docImages" aria-live="polite"></div>
+
+      <!-- ======= YOUR PROVIDED CONTENT (verbatim) ======= -->
+       <center><img src="static/Images/gro.png" alt="" width="50%" height="50%"></center>
+      <p>While most literature on FPOs concentrates on finance, marketing, and infrastructure, the human resource dimension—who leads the organization, how professionals are recruited and retained, and how capacity is built—has received relatively little emphasis. That’s one of the greatest gaps in these efforts — particularly since the right leadership and staffing translate financial and policy support into meaningful outcomes. Most FPOs operate with low member equity and inadequate working capital, making it difficult to recruit and retain appropriate employees. According to NABARD studies, more than 60 percent of FPOs do not have full-time CEOs or professionals, so leadership is in the hands of farmer-directors who, while committed, may lack the managerial expertise needed to navigate compliance, market negotiations, and growth strategies. 
+    HR systems are affected directly by financial constraints. Because many organizations cannot afford competitive salaries or sustained training programs, they must rely on temporary, project-based staff. It also detracts from continuity, preventing the establishment of professional cultures within an organization. Marketing challenges compound the problem. Farmers often lack access to real-time price information, storage facilities, and reliable buyers. The lack of market information is a common limiting factor cited by study after study, including by ICAR and NABARD, as one of the most frequent problems of FPOs. In that context, the requirement for professional marketing managers that negotiate contracts, and accept build value chains, and secure buyers is essential. However, with limited funds, most FPOs are forced to depend on directors or local leaders with limited exposure to formal markets, which diminishes their leverage to drive negotiation and sustainability of competitive advantage. </p>
+
+ <center><img src="static/Images/hr22.png" alt="" width="50%" height="50%"></center>
+      <p>HR in FPOs is additionally complicated by policy and institutional arrangements. Although government support has been substantial — from equity grants to credit guarantee schemes — the regulatory environment is complicated. The registration requirements differ by state, compliance standards are heavy, and scheme-based support is often temporary. For the FPO leaders, a lot of their energy goes to paperwork and compliance rather than business development. The temporary nature of government schemes also undermines job security for professionals, making it difficult to retain skilled staff in rural areas where alternative career opportunities are scarce.</p>
+
+      <p>Socio-cultural factors add yet more complexity. FPOs do not exist as economic aggregates, but rather as integrated systems of local communities in which hierarchies, norms, and cultural dynamics influence decision-making. Women, for instance, are a considerable proportion of the agricultural workforce yet underrepresented in leadership at most FPOs. FAO reports underscore the importance of women in agricultural collectives, but their participation in governance often remains symbolic. When professional managers are hired from outside the local community, there is also the issue of mistrust, creating tensions between participatory governance and professional expertise. Low literacy levels combined with poor digital skills and overreliance on local customs also shape HR decisions and how organizational roles are implemented.</p>
+
+ <center><img src="static/Images/hr33.png" alt="" width="50%" height="50%"></center>
+
+      <p>Robust research approaches are required to understand HR in FPOs, that incorporate both numbers and narratives. The best way forward is through a mixed-methods approach — quantitative surveys and qualitative interviews. Having geographic or commodity based stratified sampling ensures representation, while survey tools can ascertain how staffing levels link to performance measures like turnover or member satisfaction. Statistical methods, for example Garrett’s ranking method, enable constraints prioritization, or regression analysis to evaluate the association of HR investments (e.g., training hours, staff retention) to organizational outcomes (e.g., revenue per member). Simultaneously, semi-structured interviews can illuminate issues of trust, leadership, gender inclusion and local governance that are often hidden from the numerical datasets. Such methodological rigor guarantees that HR challenges are not anecdotal, but are systematically understood.</p>
+
+      <p>Findings from existing evaluations support these challenges with empirical evidence. They stress the severity of the situation. The country has over 42,000 registered FPOs; but studies show only ten to 15 percent have achieved financial sustainability. Staffing is one of the weakest areas, with most organizations lacking permanent CEOs or professionals. While financial and marketing restrictions dominate, governance and socio-cultural barriers significantly shape the usage and management of human capital as well. These insights highlight that HR cannot be handled in a vacuum; it is interwoven with every other aspect of the ecosystem.</p>
+
+
+       <center><img src="static/Images/hr44.png" alt="" width="50%" height="50%"></center>
+      <p>For FPOs to better their HR department, a multi-part strategy is necessary. Innovative paid forms of compensation can combine modest pay with performance-based incentives, which can include profit-sharing or margins on procurement, thus making jobs financially attractive even under tight budgets. Fellow FPOs at nearby firms also might want to try a concept of shared work, or employ accountants, marketing people, or technical specialists, in partnership together--for which their costs decrease but still maintain professionalism. Capacity building actions have to be accompanied by accountability measures so that there can be assessment of training programs based on measurable outcomes such as greater price realization or better member participation. Digital HR systems, which are based on basic mobile apps, are convenient yet can make attendance, maintenance and monitoring easier, and without imposing undue administrative overhead. Gender-sensitive policies, such as quotas for female leaders, flexible labor options or programmatic digital literacy initiatives, inclusivity and organizational inclusiveness, can be enhanced and institutional legitimacy enhanced. Finally, policy advocacy is strong. If governments can subsidize infrastructure and credit, HR can also be supported directly with wage subsidies, HR development grants, or rural fellowship programs bringing trained professionals to the sector for longer terms.</p>
+
+      <p>For FPOs to better their HR department, a multi-part strategy is necessary. Innovative paid forms of compensation can combine modest pay with performance-based incentives, which can include profit-sharing or margins on procurement, thus making jobs financially attractive even under tight budgets. Fellow FPOs at nearby firms also might want to try a concept of shared work, or employ accountants, marketing people, or technical specialists, in partnership together--for which their costs decrease but still maintain professionalism. Capacity building actions have to be accompanied by accountability measures so that there can be assessment of training programs based on measurable outcomes such as greater price realization or better member participation. Digital HR systems, which are based on basic mobile apps, are convenient yet can make attendance, maintenance and monitoring easier, and without imposing undue administrative overhead. Gender-sensitive policies, such as quotas for female leaders, flexible labor options or programmatic digital literacy initiatives, inclusivity and organizational inclusiveness, can be enhanced and institutional legitimacy enhanced. Finally, policy advocacy is strong. If governments can subsidize infrastructure and credit, HR can also be supported directly with wage subsidies, HR development grants, or rural fellowship programs bringing trained professionals to the sector for longer terms.</p>
+      <!-- ======= END PROVIDED CONTENT ======= -->
+    </article>
+  </div>
+</div>
+
+</div> <script> (function(){ const root = document.getElementById('sds-fpo-local-markets-full'); if(!root) return; /* Parallax */ (function(){ const els = [...root.querySelectorAll('[data-parallax]')]; if(!els.length) return; const MAX_SHIFT = 24; const clamp=(n,min,max)=>Math.max(min,Math.min(max,n)); let ticking=false; function onScroll(){ if(!ticking){ window.requestAnimationFrame(()=>{ const y=window.scrollY||window.pageYOffset; els.forEach(el=>{ const speed=parseFloat(el.dataset.speed||0.1); const shift=clamp(y*speed,-MAX_SHIFT,MAX_SHIFT); el.style.transform=`translateY(${shift}px)`; }); ticking=false; }); ticking=true; } } window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); })(); /* Reduce Motion */ (function(){ const mq=window.matchMedia('(prefers-reduced-motion: reduce)'); function apply(){ root.style.setProperty('--ring', mq.matches ? 'transparent' : 'rgba(14,165,233,.18)'); const track=root.querySelector('.scrolling-track'); if(track){ track.style.animationPlayState = mq.matches ? 'paused' : 'running'; } } if(mq.addEventListener){ mq.addEventListener('change', apply); } else { mq.addListener(apply); } apply(); })(); /* Reader controls */ (function(){ const body = root.querySelector('#paperBody'); const expandAll = root.querySelector('#expandAll'); const collapseAll = root.querySelector('#collapseAll'); const toggleWrap = root.querySelector('#toggleWrap'); const jumpTop = root.querySelector('#jumpTop'); const jumpBottom = root.querySelector('#jumpBottom'); if(!body) return; expandAll?.addEventListener('click', ()=>{ body.style.maxHeight = 'none'; body.scrollTo({top:0, behavior:'smooth'}); }); collapseAll?.addEventListener('click', ()=>{ body.style.maxHeight = window.matchMedia('(max-width:720px)').matches ? '60vh' : '72vh'; body.scrollTo({top:0, behavior:'smooth'}); }); toggleWrap?.addEventListener('click', ()=>{ body.style.whiteSpace = body.style.whiteSpace === 'pre-wrap' ? 'normal' : 'pre-wrap'; }); jumpTop?.addEventListener('click', ()=> body.scrollTo({top:0, behavior:'smooth'})); jumpBottom?.addEventListener('click', ()=> body.scrollTo({top:body.scrollHeight, behavior:'smooth'})); })(); /* Document image uploader (client-side previews) */ (function(){ const input = root.querySelector('#docImageInput'); const grid = root.querySelector('#docImages'); if(!input || !grid) return; input.addEventListener('change', (e)=>{ const files = Array.from(e.target.files || []); if(!files.length) return; files.forEach(file=>{ const url = URL.createObjectURL(file); const fig = document.createElement('figure'); const img = document.createElement('img'); const cap = document.createElement('figcaption'); img.src = url; img.alt = file.name; cap.textContent = file.name; fig.appendChild(img); fig.appendChild(cap); grid.appendChild(fig); }); // Reset input to allow re-uploading the same file names again input.value = ''; }); })(); })(); </script> </section>
+
+
+  
+  
+  
+  
+  
+  
+  
+  <!-- Footers -->
+  <footer>
+    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+        <a href="{{ url_for('home') }}">
+          <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+        </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+        <div class="footer-social" aria-label="Social media links">
+          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+        <nav class="footer-column" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">SECTORS</h3>
+          <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-careers">
+          <h3 id="footer-careers">CAREERS</h3>
+          <ul>
+            <li><a href="/career" tabIndex="0">Join Us</a></li>
+           
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-contact">
+          <h3 id="footer-contact">Company</h3>
+          <ul>
+            <li><a href="/" tabIndex="0">Home</a></li>
+            <li><a href="/about_us" tabIndex="0">About Us</a></li>
+            <li tabIndex="0">Sectors</li>
+            <li><a href="/research" tabIndex="0">Publication</a></li>
+            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
+             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-labelledby="footer-products">
+          <h3 id="footer-products">Services</h3>
+          <ul>
+            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
+            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
+            <li tabIndex="0">Fishery Development</li>
+            <li tabIndex="0">Rural Finance</li>
+            <li tabIndex="0">Value Chain Development</li>
+            <li tabIndex="0">Marketing</li>
+            <li tabIndex="0">All Services</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+        <a href="#" tabindex="0">Code of Conduct</a>
+        <a href="#" tabindex="0">Privacy Policy</a>
+        <a href="#" tabindex="0">Terms of Service</a>
+        <a href="#" tabindex="0">Sitemap</a>
+        <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
