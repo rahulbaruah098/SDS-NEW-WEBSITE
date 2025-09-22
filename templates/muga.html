@@ -707,83 +707,82 @@ footer .footer-column h3 {
 
 
 
-  <!-- Footers -->
-  <footer>
-    <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+<!-- Footers -->
+<footer>
+  <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
       <div class="logo-container-f">
-        <a href="{{ url_for('home') }}">
-          <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
-        </a>
+           <a href="{{ url_for('home') }}">
+              <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+          </a>
       </div>
       <div class="footer-left" aria-label="Company branding and partner logos">
-        <div class="footer-social" aria-label="Social media links">
-          <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
-          <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
-          <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
-          <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
-          <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
-        </div>
+          <div class="footer-social" aria-label="Social media links">
+              <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+              <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+              <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+              <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+              <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+          </div>
       </div>
 
       <div class="footer-columns" aria-label="Footer navigation">
-        <nav class="footer-column" aria-labelledby="footer-legal">
-          <h3 id="footer-legal">SECTORS</h3>
-          <ul>
-        <li><a href="/agricul">Agriculture</a></li>
-        <li><a href="/fish">Fishery</a></li>
-        <li><a href="/poul">Poultry</a></li>
-        <li><a href="/pig">Piggery</a></li>
-          </ul>
-        </nav>
+          <nav class="footer-column" aria-labelledby="footer-legal">
+              <h3 id="footer-legal">SECTORS</h3>
+              <ul>
+                <li><a href="/agricul">Agriculture</a></li>
+                <li><a href="/fish">Fishery</a></li>
+                <li><a href="/poul">Poultry</a></li>
+                <li><a href="/pig">Piggery</a></li>
+              </ul>
+          </nav>
 
-        <nav class="footer-column" aria-labelledby="footer-careers">
-          <h3 id="footer-careers">CAREERS</h3>
-          <ul>
-            <li><a href="/career" tabIndex="0">Join Us</a></li>
-           
-          </ul>
-        </nav>
+          <nav class="footer-column" aria-labelledby="footer-careers">
+              <h3 id="footer-careers">CAREERS</h3>
+              <ul>
+                  <li><a href="/career" tabindex="0">Join Us</a></li>
+              </ul>
+          </nav>
 
-        <nav class="footer-column" aria-labelledby="footer-contact">
-          <h3 id="footer-contact">Company</h3>
-          <ul>
-            <li><a href="/" tabIndex="0">Home</a></li>
-            <li><a href="/about_us" tabIndex="0">About Us</a></li>
-            <li tabIndex="0">Sectors</li>
-            <li><a href="/research" tabIndex="0">Publication</a></li>
-            <li><a href="/getintouch" tabIndex="0">Get in Touch</a></li>
-             <li><a href="/rfp" tabIndex="0">Submit RFP</a></li>
-          </ul>
-        </nav>
+          <nav class="footer-column" aria-labelledby="footer-contact">
+              <h3 id="footer-contact">Company</h3>
+              <ul>
+                  <li><a href="/" tabindex="0">Home</a></li>
+                  <li><a href="/about" tabindex="0">About Us</a></li>
+                  <li><a href="/ing" tabindex="0">Insights</li>
+                  <li><a href="/pub" tabindex="0">Publication</a></li>
+                  <li><a href="/getintouch" tabindex="0">Get in Touch</a></li>
+                  <li><a href="/rfp" tabindex="0">Submit RFP</a></li>
+              </ul>
+          </nav>
 
-        <nav class="footer-column" aria-labelledby="footer-products">
-          <h3 id="footer-products">Services</h3>
-          <ul>
-            <li><a href="{{ url_for('fpo') }}" tabIndex="0">FPO Management</a></li>
-            <li><a href="{{ url_for('agri') }}" tabIndex="0">Agricultural Development</a></li>
-            <li tabIndex="0">Fishery Development</li>
-            <li tabIndex="0">Rural Finance</li>
-            <li tabIndex="0">Value Chain Development</li>
-            <li tabIndex="0">Marketing</li>
-            <li tabIndex="0">All Services</li>
-          </ul>
-        </nav>
+          <nav class="footer-column" aria-labelledby="footer-products">
+              <h3 id="footer-products">Services</h3>
+              <ul>
+                  <li><a href="{{ url_for('fpo') }}" tabindex="0">FPO Management</a></li>
+                  <li><a href="{{ url_for('agricul') }}" tabindex="0">Agricultural Development</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Fishery Development</a></li>
+                  <li><a href="{{ url_for('com') }}" tabindex="0">Communication</a></li>
+                  <li><a href="{{ url_for('value') }}" tabindex="0">Value Chain Development</a></li>
+                  <li><a href="{{ url_for('mark') }}" tabindex="0">Marketing</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Agripreneurship</a></li>
+              </ul>
+          </nav>
       </div>
-    </div>
+  </div>
 
-    <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+  <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
       <div class="links">
-        <a href="#" tabindex="0">Code of Conduct</a>
-        <a href="#" tabindex="0">Privacy Policy</a>
-        <a href="#" tabindex="0">Terms of Service</a>
-        <a href="#" tabindex="0">Sitemap</a>
-        <a href="#" tabindex="0">Accessibility</a>
+          <a href="#" tabindex="0">Code of Conduct</a>
+          <a href="#" tabindex="0">Privacy Policy</a>
+          <a href="#" tabindex="0">Terms of Service</a>
+          <a href="#" tabindex="0">Sitemap</a>
+          <a href="#" tabindex="0">Accessibility</a>
       </div>
       <div class="copyright">
-        © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+          © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
       </div>
-    </div>
-  </footer>
+  </div>
+</footer>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
