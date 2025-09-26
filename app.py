@@ -289,6 +289,10 @@ def tir():
 def hra():
     return render_template("hra.html")
 
+@app.route("/meno")
+def meno():
+    return render_template("menoka.html")
+
 
 
 
