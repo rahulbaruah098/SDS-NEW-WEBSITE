@@ -486,104 +486,168 @@ footer .footer-column h3 {
 
   <h2>PUBLICATIONS</h2>
 </section>
+<!-- ===================== PUBLICATION FLIPBOOK ===================== -->
+<!-- === Flipbook ONLY (drop-in) === -->
+<section id="flipbook-section" style="padding:0;background:#0b1119;color:#fff;">
+  <div style="max-width:1600px;margin:0 auto;text-align:center;">
+    <h2 style="margin:0;padding:30px 0;font-weight:700;">Annual Report 2024-2025</h2>
 
+    <!-- Flipbook stage (centered) -->
+    <div id="flipbook-stage"
+         style="width:100%;height:calc(100vh - 150px);margin:0 auto;
+                background:#0f172a;box-shadow:inset 0 0 60px rgba(0,0,0,.4);
+                display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <div id="flipbook"></div>
+    </div>
 
-<section id="sds-flipbook" aria-label="Flipbook Viewer">
-  <style>
-    #sds-flipbook {
-      width: 100%;
-      height: 100vh;  /* full screen height */
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
+    <div style="margin:12px 0;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">
+      <button id="prevBtn" style="padding:10px 20px;border-radius:8px;font-weight:600;">◀ Prev</button>
+      <button id="nextBtn" style="padding:10px 20px;border-radius:8px;font-weight:600;">Next ▶</button>
+    </div>
 
-    /* Flipbook iframe */
-    #sds-flipbook iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    /* Heading styles */
-    #sds-flipbook h2 {
-      font-size: 28px;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-align: center;
-      margin: 10px 0 14px;
-      background: linear-gradient(90deg, #ff7e5f, #feb47b, #4facfe, #00f2fe);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
-      z-index: 10;
-      position: relative;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* ===== Mobile ===== */
-    @media (max-width: 768px) {
-      #sds-flipbook {
-        height: auto;
-        min-height: 100svh;
-        justify-content: flex-start;
-      }
-      #sds-flipbook h2 {
-        font-size: clamp(18px, 5.5vw, 22px);
-        margin: 8px 0 12px;
-        line-height: 1.2;
-      }
-      #sds-flipbook iframe {
-        width: 100vw;     /* force full width */
-        height: 88vh;     /* take almost full height */
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      #sds-flipbook iframe {
-        width: 100vw;
-        height: 85vh;
-      }
-    }
-
-    /* iOS Safari safe area */
-    @supports (-webkit-touch-callout: none) {
-      @media (max-width: 768px) {
-        #sds-flipbook { min-height: -webkit-fill-available; }
-      }
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      #sds-flipbook h2 { animation: none; }
-    }
-  </style>
-
-  <!-- Heading -->
-  <h2>JONAKI ANNUAL REPORT 2024-2025</h2>
-
-  <!-- Flipbook iframe -->
-  <iframe 
-    src="https://online.flippingbook.com/view/800781579/" 
-    allowfullscreen
-    title="SDS Flipbook">
-  </iframe>
+    <div id="fb-status" style="margin-top:10px;color:#93c5fd;font-weight:600;"></div>
+  </div>
 </section>
+
+<!-- ✅ Libraries (unchanged versions) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/css/page-flip.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+<script>
+window.addEventListener("load", async () => {
+  const pdfPath = "{{ url_for('static', filename='pdfs/Jonaki.pdf') }}";
+  const stage   = document.getElementById("flipbook-stage");
+  const host    = document.getElementById("flipbook");
+  const status  = document.getElementById("fb-status");
+  const pdfjsLib = window['pdfjs-dist/build/pdf'];
+  if (!pdfjsLib) { status.textContent = "⚠️ PDF.js failed to load."; return; }
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+
+  // Helpers to keep the book responsive, centered and crisp
+  function computeTargetSize(ratio){
+    const sw = stage.clientWidth;
+    const sh = stage.clientHeight;
+    const isSingle = sw < 900; // single page on narrow screens
+
+    // Gutter/inner padding to avoid touching edges
+    const pad = Math.max(12, Math.min(sw, sh) * 0.02);
+
+    // Available area for one page
+    const availW = isSingle ? (sw - pad*2) : (sw/2 - pad*2);
+    const availH = sh - pad*2;
+
+    // Fit by ratio without cropping
+    let pageW = Math.min(availW, availH / ratio);
+    let pageH = pageW * ratio;
+
+    // Safety clamps
+    pageW = Math.max(280, Math.floor(pageW));
+    pageH = Math.max(360, Math.floor(pageH));
+
+    return { pageW, pageH, isSingle };
+  }
+
+  try {
+    status.textContent = "Loading PDF…";
+    const res = await fetch(pdfPath);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const bytes = await res.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+
+    // Determine natural page ratio from first page
+    const first = await pdf.getPage(1);
+    const baseViewport = first.getViewport({ scale: 1 });
+    const ratio = baseViewport.height / baseViewport.width;
+
+    // Compute target size for CRISP rendering (account for DPI)
+    const dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1)); // cap to avoid huge memory
+    const { pageW, pageH } = computeTargetSize(ratio);
+    // Render at device pixels (CSS px * DPR) so text is sharp even on high-DPI
+    const renderScale = Math.min(
+      3, // hard cap for safety
+      (pageW * dpr) / baseViewport.width
+    );
+
+    status.textContent = "Rendering pages…";
+
+    // Render all pages to <img> at high resolution
+    const pages = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: renderScale });
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d", { alpha:false, willReadFrequently:true });
+      canvas.width  = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const img = document.createElement("img");
+      img.src = canvas.toDataURL("image/png"); // no compression
+      img.alt = "Page " + i;
+      // Fill container without distortion (no stretching)
+      img.style.cssText = "width:100%;height:100%;object-fit:contain;display:block;image-rendering:auto;";
+
+      const div = document.createElement("div");
+      div.className = "page";
+      // White paper, centered
+      div.style.cssText = "background:#fff;width:100%;height:100%;display:flex;align-items:center;justify-content:center;";
+      div.appendChild(img);
+      pages.push(div);
+    }
+
+    // Build PageFlip
+    const flip = new St.PageFlip(host, {
+      width:  pageW,
+      height: pageH,
+      showCover: false,
+      usePortrait: true,
+      mobileScrollSupport: true,
+      useMouseEvents: true,
+      maxShadowOpacity: 0.35,
+      flippingTime: 700
+    });
+    flip.loadFromHTML(pages);
+
+    // Navigation
+    document.getElementById("prevBtn").onclick = () => flip.flipPrev();
+    document.getElementById("nextBtn").onclick = () => flip.flipNext();
+
+    // Keep centered & responsive (no re-render needed; images are already high-res)
+    function resizeFlip(){
+      const { pageW: w, pageH: h } = computeTargetSize(ratio);
+      flip.update({ width: w, height: h });
+    }
+    window.addEventListener("resize", resizeFlip, { passive:true });
+    resizeFlip();
+
+    status.textContent = "";
+  } catch (err) {
+    console.error("Flipbook Error:", err);
+    status.textContent = "⚠️ Failed to load flipbook. Check console.";
+  }
+});
+</script>
+
+<style>
+/* Small tweaks for mobile */
+@media (max-width: 900px) {
+  #flipbook-stage { height: calc(100vh - 140px); }
+  #flipbook-section h2 { font-size: 1.25rem; }
+}
+@media (max-width: 520px) {
+  #flipbook-stage { height: calc(100vh - 130px); }
+  button { font-size: 0.9rem; padding: 8px 16px; }
+}
+</style>
+
+
+
+
+
+<!-- =================== /PUBLICATION FLIPBOOK =================== -->
+
 
 
 <section id="sds-pdf-download" aria-label="Download PDF">
@@ -1005,102 +1069,8 @@ footer .footer-column h3 {
 
 
 
-<section id="sds-flipbook" aria-label="Flipbook Viewer">
-  <style>
-    #sds-flipbook {
-      width: 100%;
-      height: 100vh;  /* full screen height */
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
 
-    /* Flipbook iframe */
-    #sds-flipbook iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
 
-    /* Heading styles */
-    #sds-flipbook h2 {
-      font-size: 28px;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-align: center;
-      margin: 10px 0 14px;
-      background: linear-gradient(90deg, #ff7e5f, #feb47b, #4facfe, #00f2fe);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
-      z-index: 10;
-      position: relative;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* ===== Mobile ===== */
-    @media (max-width: 768px) {
-      #sds-flipbook {
-        height: auto;
-        min-height: 100svh;
-        justify-content: flex-start;
-      }
-      #sds-flipbook h2 {
-        font-size: clamp(18px, 5.5vw, 22px);
-        margin: 8px 0 12px;
-        line-height: 1.2;
-      }
-      #sds-flipbook iframe {
-        width: 100vw;     /* force full width */
-        height: 88vh;     /* take almost full height */
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      #sds-flipbook iframe {
-        width: 100vw;
-        height: 85vh;
-      }
-    }
-
-    /* iOS Safari safe area */
-    @supports (-webkit-touch-callout: none) {
-      @media (max-width: 768px) {
-        #sds-flipbook { min-height: -webkit-fill-available; }
-      }
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      #sds-flipbook h2 { animation: none; }
-    }
-  </style>
-
-  <!-- Heading -->
-  <h2>SDS DECADE REPORT</h2>
-
-  <!-- Flipbook iframe -->
-  <iframe 
-    src="https://online.flippingbook.com/view/996448222/" 
-    allowfullscreen
-    title="SDS Flipbook">
-  </iframe>
-</section>
 
   
   

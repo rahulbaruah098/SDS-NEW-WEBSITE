@@ -552,6 +552,8 @@ with app.app_context():
         ))
         db.session.commit()
         print(f"[UPSERT] Admin created → {admin_email_env}")
+        
+        
 
 
 if __name__ == "__main__":
