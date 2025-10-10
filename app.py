@@ -293,6 +293,9 @@ def hra():
 def meno():
     return render_template("menoka.html")
 
+@app.route("/bd")
+def bd():
+    return render_template("bd.html")
 
 
 
