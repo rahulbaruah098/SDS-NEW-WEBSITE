@@ -1348,6 +1348,220 @@
 
 
 
+<!-- Solutions Section -->
+<!-- Solutions Section (Updated) -->
+<!-- Solutions Section (Professional, light background, no animated backdrop) -->
+<section id="sds-services" class="solutions-section" aria-label="Explore Our Services">
+  <style>
+    /* ===============================
+       Scoped tokens (calm, professional)
+       =============================== */
+    #sds-services{
+      --wrap: min(1180px, 94vw);
+
+      /* Ink + surfaces */
+      --ink:#0b1324;           /* crisp text */
+      --muted:#596781;         /* secondary text */
+      --card:#ffffff;          /* card surface */
+      --line:#e6eaf0;          /* light border */
+
+      /* Brand accents */
+      --accent-1:#0ea5e9;      /* cyan */
+      --accent-2:#16a34a;      /* green */
+      --ring:rgba(14,165,233,.22);
+
+      /* Radii & shadows */
+      --radius:18px;
+      --shadow-1: 0 10px 26px rgba(2,6,23,.06), 0 2px 8px rgba(2,6,23,.04);
+      --shadow-2: 0 18px 48px rgba(2,6,23,.10), 0 6px 16px rgba(2,6,23,.08);
+
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      padding: clamp(56px, 7vw, 104px) 0;
+      color: var(--ink);
+
+      /* Light, static background (no animation, no textures) */
+      background: linear-gradient(180deg, #f8fbff 0%, #f9fdf9 100%);
+    }
+
+    /* Remove any previous textures/overlays */
+    #sds-services::before{ content:none; }
+
+    /* Section header */
+    #sds-services .wrap{ width:var(--wrap); margin:0 auto; }
+    #sds-services .section-header{ text-align:center; margin-bottom: clamp(26px, 4vw, 42px); }
+    #sds-services .section-title{
+      font-weight: 900;
+      font-size: clamp(26px, 4.2vw, 42px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+    }
+    #sds-services .section-title .gradient{
+      background: linear-gradient(92deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      display:inline-block;
+      /* No hue-rotate animation: keep it calm & corporate */
+    }
+    #sds-services .section-subtitle{
+      max-width: 62ch; margin: 12px auto 0; color: var(--muted);
+      font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    /* Grid */
+    #sds-services .solutions-grid{
+      width: var(--wrap); margin: 0 auto;
+      display: grid; gap: clamp(16px, 2vw, 24px);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px){
+      #sds-services .solutions-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px){
+      #sds-services .solutions-grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Card */
+    #sds-services .solution-card{
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 20px 18px;
+      box-shadow: var(--shadow-1);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease, outline-color .18s ease;
+      overflow: hidden;
+      outline: 0 solid transparent;
+    }
+    /* Remove glossy sheen */
+    #sds-services .solution-card::after{ content:none; }
+
+    #sds-services .solution-card:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-2);
+      border-color: rgba(14,165,233,.26);
+      background:#ffffff;
+    }
+    #sds-services .solution-card:focus-within{
+      outline: 3px solid var(--ring);
+      outline-offset: 0;
+    }
+
+    /* Icon pill */
+    #sds-services .solution-icon{
+      width: 58px; height: 58px; border-radius: 14px;
+      display:grid; place-items:center; font-size: 26px; color:#fff;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 10px 22px rgba(2,6,23,.08) inset, 0 6px 14px rgba(2,6,23,.06);
+    }
+
+    #sds-services .solution-title{
+      font-size: 18px; font-weight: 800; line-height: 1.25; margin: 0 0 8px;
+      letter-spacing:.2px; color:#0b1324;
+    }
+    #sds-services .solution-description{
+      color: var(--muted); font-size: 14px; line-height: 1.65; margin: 0 0 16px;
+      min-height: 3.2em; /* tidy heights across cards */
+    }
+
+    /* CTA */
+    #sds-services .learn-more{
+      display:inline-flex; align-items:center; gap:8px;
+      color: #0f766e; font-weight: 700; text-decoration: none; font-size: 14px;
+      border:1px solid rgba(14,165,233,.26);
+      padding:8px 12px; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(14,165,233,.10), rgba(22,163,74,.08));
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease, color .16s ease;
+    }
+    #sds-services .learn-more:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(2,6,23,.07);
+      border-color: rgba(14,165,233,.38);
+      background: linear-gradient(180deg, rgba(14,165,233,.14), rgba(22,163,74,.12));
+      color:#0b4f48;
+    }
+    #sds-services .learn-more svg{ width: 16px; height: 16px; }
+
+    /* Calmer reveal animation (kept; background has no animation) */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px) scale(.995); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @media (prefers-reduced-motion: no-preference){
+      #sds-services .solution-card{ opacity: 0; }
+      #sds-services .solution-card.visible{
+        animation: rise .42s cubic-bezier(.2,.7,.2,1) forwards;
+      }
+    }
+  </style>
+
+  <!-- No ambient blobs / no animated backdrop -->
+
+  <div class="wrap">
+    <div class="section-header">
+      <h2 class="section-title">
+        Explore Our <span class="gradient">Services</span>
+      </h2>
+      <p class="section-subtitle">
+        Innovative approaches to agricultural development and community empowerment.
+      </p>
+    </div>
+
+    <!-- Your generator still targets this container -->
+    <div class="solutions-grid" aria-live="polite"></div>
+  </div>
+
+  <script>
+    (function(){
+      /* Structure & logic unchanged; only visuals updated. */
+      const grid = document.querySelector('#sds-services .solutions-grid');
+      function hasChildren(el){ return el && el.children && el.children.length > 0; }
+
+      function renderFromGlobal(){
+        const data = (window.solutions || []).slice(0, 9);
+        grid.innerHTML = "";
+        data.forEach((s, i) => {
+          const card = document.createElement('div');
+          card.className = 'solution-card';
+          card.style.animationDelay = `${i * 70}ms`;
+          card.innerHTML = `
+            <div class="solution-icon" style="${s.color || ''}">${s.icon || '✨'}</div>
+            <h3 class="solution-title">${s.title || ''}</h3>
+            <p class="solution-description">${s.description || ''}</p>
+            <a class="learn-more" href="${s.link || '#'}">
+              Learn more
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      if (!hasChildren(grid)) renderFromGlobal();
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced && 'IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(e => {
+            if (e.isIntersecting){
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: .18, rootMargin: '0px 0px -6% 0px' });
+
+        grid.querySelectorAll('.solution-card').forEach(c => io.observe(c));
+      }
+    })();
+  </script>
+</section>
+
+
+
+
 
 <section id="sds-outreach" aria-label="SDS Cumulative Outreach">
   <style>
