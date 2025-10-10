@@ -1145,28 +1145,36 @@
 <!-- === JOB VACANCY POPUP === -->
 <section id="job-popup-section">
   <style>
-    /* Popup base overlay */
+    /* Prevent background scroll when popup is open */
+    html.no-scroll, body.no-scroll { overflow: hidden; height: 100%; }
+
+    /* Overlay */
     #job-popup-overlay {
       position: fixed;
       inset: 0;
+      /* Safe-area padding so the close button & header never hide under the notch/browser UI */
+      padding:
+        max(16px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(16px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
       background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
+      display: none;                /* set to flex in JS */
+      align-items: flex-start;      /* start at top on mobile */
       justify-content: center;
-      z-index: 9999;
+      z-index: 10020;
       backdrop-filter: blur(6px);
       animation: fadeIn 0.4s ease forwards;
+      /* If popup is taller than the screen, allow the OVERLAY to scroll */
+      overflow-y: auto;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
     /* Popup container */
     #job-popup {
       background: #fff;
-      width: min(800px, 90%);
+      width: min(800px, 100%);
       border-radius: 14px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
       overflow: hidden;
@@ -1175,23 +1183,23 @@
       position: relative;
       font-family: "Inter", system-ui, sans-serif;
       animation: slideUp 0.4s ease forwards;
+      /* The CRITICAL bits: limit height to dynamic viewport and make the POPUP scroll */
+      max-height: calc(100dvh - 32px);
+      overflow: auto;
     }
 
-    @keyframes slideUp {
-      from {transform: translateY(30px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
+    @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
 
     /* Close button */
     #job-popup .close-btn {
-      position: absolute;
-      top: 14px;
-      right: 14px;
+      position: sticky; /* stays visible while scrolling the popup */
+      top: 12px;
+      margin-left: auto;
       background: #000;
       color: #fff;
       border: none;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -1199,21 +1207,22 @@
       line-height: 32px;
       text-align: center;
       transition: 0.2s;
+      z-index: 2;
+      display: block;
     }
+    #job-popup .close-btn:hover { background:#444 }
 
-    #job-popup .close-btn:hover { background: #444; }
-
-    /* Left side text */
+    /* Left column */
     #job-popup .left {
       padding: 40px 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       color: #111;
+      min-width: 0;
     }
-
     #job-popup .left h1 {
-      font-size: 54px;
+      font-size: clamp(28px, 8vw, 54px);
       line-height: 1;
       font-weight: 900;
       text-transform: uppercase;
@@ -1222,27 +1231,22 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     #job-popup .left h2 {
-      font-size: 54px;
+      font-size: clamp(28px, 8vw, 54px);
       line-height: 1;
       font-weight: 900;
       text-transform: uppercase;
       color: #007cf0;
       margin: 0 0 10px;
     }
-
     #job-popup .left p {
       font-size: 16px;
       color: #333;
       margin: 10px 0 6px;
     }
+    #job-popup .left strong { font-weight: 700; }
 
-    #job-popup .left strong {
-      font-weight: 700;
-    }
-
-    /* CTA Button */
+    /* CTA */
     #job-popup .cta {
       margin-top: 20px;
       background: linear-gradient(90deg, #00dfd8, #007cf0);
@@ -1253,118 +1257,52 @@
       border-radius: 50px;
       font-size: 15px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform .2s ease;
       width: fit-content;
     }
+    #job-popup .cta:hover { transform: scale(1.05); }
 
-    #job-popup .cta:hover {
-      transform: scale(1.05);
-    }
-
-    /* Right image side */
+    /* Right column (image) */
     #job-popup .right {
       position: relative;
       background: #f9f9f9;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 0;
     }
-
     #job-popup .right img {
       max-width: 80%;
       height: auto;
       border-radius: 10px;
       transform: rotate(-5deg);
-      transition: 0.4s ease;
+      transition: .4s ease;
     }
-
-    #job-popup .right img:hover {
-      transform: rotate(0deg) scale(1.05);
-    }
-
-    /* Banner Section */
-    #job-banner {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      margin-top: 20px;
-      border-radius: 16px;
-    }
-
-    #job-banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    #job-banner:hover img {
-      transform: scale(1.05);
-    }
-
-    #job-banner .banner-content {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.35);
-      color: #fff;
-      font-family: "Inter", system-ui, sans-serif;
-      transition: background 0.3s ease;
-    }
-
-    #job-banner:hover .banner-content {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    #job-banner h3 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    #job-banner .banner-btn {
-      background: #007cf0;
-      color: #fff;
-      border: none;
-      font-size: 16px;
-      padding: 12px 28px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    #job-banner .banner-btn:hover {
-      background: #00b8ff;
-      transform: scale(1.05);
-    }
+    #job-popup .right img:hover { transform: rotate(0deg) scale(1.05); }
 
     /* Responsive */
     @media (max-width: 768px) {
       #job-popup {
         grid-template-columns: 1fr;
+        /* keep the same height lock */
+        max-height: calc(100svh - 32px); /* svh for Safari */
       }
-      #job-popup .left, #job-popup .right {
-        padding: 20px;
-      }
-      #job-popup .left h1, #job-popup .left h2 {
-        font-size: 42px;
-      }
-      #job-banner h3 {
-        font-size: 22px;
-      }
+      #job-popup .left, #job-popup .right { padding: 24px; }
+      #job-popup .left { text-align: center; }
+      #job-popup .cta { margin: 16px auto 0; }
+      #job-popup .right img { max-width: 92%; transform: none; }
+    }
+
+    @media (max-width: 420px) {
+      #job-popup .left p { font-size: 15px; }
+      #job-popup .cta { font-size: 14px; padding: 10px 22px; }
     }
   </style>
 
   <!-- Popup -->
-  <div id="job-popup-overlay">
-    <div id="job-popup">
-      <button class="close-btn" onclick="closeJobPopup()">×</button>
+  <div id="job-popup-overlay" aria-hidden="true">
+    <div id="job-popup" role="dialog" aria-modal="true" aria-label="Job openings">
+      <button class="close-btn" onclick="closeJobPopup()" aria-label="Close">×</button>
 
       <div class="left">
         <h1>GET</h1>
@@ -1375,33 +1313,31 @@
       </div>
 
       <div class="right">
-       <img src="{{ url_for('static', filename='Images/banner.jpg') }}" alt="Job Opening Poster">
+        <img src="{{ url_for('static', filename='Images/banner.jpg') }}" alt="Job Opening Poster">
       </div>
     </div>
   </div>
 
-  <!-- Banner Section -->
-  <div id="job-banner">
-    <img src="static/images/banner-job.jpg" alt="Career Banner">
-    <div class="banner-content">
-      <h3>Explore Your Next Opportunity</h3>
-      <button class="banner-btn" onclick="window.location.href='/careers'">Explore & Apply →</button>
-    </div>
-  </div>
-
   <script>
-    function closeJobPopup() {
-      document.getElementById("job-popup-overlay").style.display = "none";
+    function openJobPopup() {
+      const overlay = document.getElementById("job-popup-overlay");
+      overlay.style.display = "flex";
+      document.documentElement.classList.add("no-scroll");
+      document.body.classList.add("no-scroll");
     }
-
-    // Auto show popup after delay
+    function closeJobPopup() {
+      const overlay = document.getElementById("job-popup-overlay");
+      overlay.style.display = "none";
+      document.documentElement.classList.remove("no-scroll");
+      document.body.classList.remove("no-scroll");
+    }
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("job-popup-overlay").style.display = "flex";
-      }, 800); // 0.8s delay
+      setTimeout(openJobPopup, 800); // show after 0.8s
     });
   </script>
 </section>
+
+
 
 
 <!-- Solutions Section -->
