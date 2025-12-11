@@ -297,6 +297,10 @@ def meno():
 def bd():
     return render_template("bd.html")
 
+@app.route("/it")
+def it():
+    return render_template("it.html")
+
 
 
 # -----------------------------

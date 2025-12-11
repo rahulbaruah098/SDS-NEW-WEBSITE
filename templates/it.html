@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SDS – IT Consulting Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <!-- Headline fallback font (close to Negaro Bold) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (for generic icons only, not tech logos) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQ9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <style>
+    :root {
+      --sds-bg: #eef1f8;
+      --sds-surface: #ffffff;
+      --sds-ink: #020617;
+      --sds-muted: #6b7280;
+      --sds-line: #e5e7eb;
+      --sds-brand: #1d4ed8;
+      --sds-brand-soft: #dbeafe;
+      --sds-accent: #f97316;
+      --sds-radius-card: 26px;
+      --sds-shadow-soft: 0 22px 70px rgba(15, 23, 42, 0.16);
+      --sds-shadow-light: 0 10px 30px rgba(15, 23, 42, 0.09);
+      --sds-transition-fast: 180ms ease-out;
+      --sds-transition-med: 260ms ease-out;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--sds-bg);
+      color: var(--sds-ink);
+    }
+
+    /* Headline family – will use Negaro Bold if you load it locally */
+    h1, h2, h3,
+    .sds-block-title,
+    .sds-offer-title,
+    .sds-hero-title {
+      font-family: "Negaro Bold", "Bebas Neue", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==== SECTION WRAPPER ==== */
+    #sds-it-portfolio {
+      position: relative;
+      overflow: hidden;
+      padding: 96px 16px 120px;
+      background:
+        radial-gradient(circle at 0% 0%, #f9fafb 0, #e5edff 45%, #e2e8f0 100%);
+      isolation: isolate;
+    }
+
+    #sds-it-portfolio .sds-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==== ANIMATED BACKGROUND ==== */
+    .sds-bg-veil {
+      position: absolute;
+      inset: -60px -40px;
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.12) 0, transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+      animation: sdsVeilDrift 24s linear infinite alternate;
+      z-index: 0;
+    }
+
+    .sds-bg-grid {
+      position: absolute;
+      inset: -80px -40px;
+      background-image: linear-gradient(to right, rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(148, 163, 184, 0.16) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: 0.18;
+      mix-blend-mode: soft-light;
+      animation: sdsGridSlide 40s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes sdsVeilDrift {
+      0% { transform: translate3d(-10px, 0, 0); }
+      50% { transform: translate3d(5px, 10px, 0); }
+      100% { transform: translate3d(-12px, -6px, 0); }
+    }
+
+    @keyframes sdsGridSlide {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-40px, -30px, 0); }
+    }
+
+    .sds-orb {
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.4;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    .sds-orb--blue {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle at 30% 0%, #93c5fd 0, transparent 60%);
+      top: -80px;
+      right: -120px;
+    }
+
+    .sds-orb--green {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle at 10% 80%, #a7f3d0 0, transparent 60%);
+      bottom: -120px;
+      left: -120px;
+    }
+
+    [data-parallax] { will-change: transform; }
+
+    /* ==== HERO – modern classic banner ==== */
+    .sds-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.1fr);
+      gap: 42px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .sds-hero-left {
+      position: relative;
+      padding: 18px 18px 22px 0;
+    }
+
+    .sds-hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(239, 246, 255, 0.95);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #1d4ed8;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.16);
+    }
+
+    .sds-hero-title {
+      font-size: clamp(42px, 5.4vw, 60px);
+      line-height: 1.03;
+      margin: 0 0 14px;
+    }
+
+    .sds-hero-subtitle {
+      font-size: 16px;
+      color: var(--sds-muted);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+
+    .sds-hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .sds-pill {
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(255, 255, 255, 0.96);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sds-muted);
+    }
+
+    .sds-hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sds-btn-primary,
+    .sds-btn-ghost {
+      border-radius: 999px;
+      padding: 11px 24px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      transition:
+        transform var(--sds-transition-fast),
+        box-shadow var(--sds-transition-fast),
+        background var(--sds-transition-fast),
+        color var(--sds-transition-fast);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .sds-btn-primary {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: #f9fafb;
+      box-shadow: 0 20px 45px rgba(37, 99, 235, 0.45);
+    }
+
+    .sds-btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(37, 99, 235, 0.55);
+    }
+
+    .sds-btn-ghost {
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--sds-ink);
+      border: 1px solid var(--sds-line);
+      box-shadow: 0 10px 30px rgba(148, 163, 184, 0.18);
+    }
+
+    .sds-btn-ghost:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, 0.6);
+    }
+
+    .sds-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12px;
+      color: var(--sds-muted);
+      align-items: center;
+    }
+
+    .sds-dot {
+      width: 4px;
+      height: 4px;
+      background: #9ca3af;
+      border-radius: 999px;
+    }
+
+    /* RIGHT HERO VISUAL – new design */
+    .sds-hero-right {
+      position: relative;
+      min-height: 280px;
+      max-width: 500px;
+      margin-inline: auto;
+    }
+
+    .sds-hero-visual {
+      position: relative;
+      border-radius: var(--sds-radius-card);
+      padding: 14px;
+      background: radial-gradient(circle at 0 0, #1f2937 0, #020617 60%);
+      overflow: hidden;
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.65);
+    }
+
+    .sds-hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(96, 165, 250, 0.32), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.26), transparent 60%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .sds-hero-visual-main {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .sds-hero-visual-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 500ms ease-out;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    .sds-hero-visual-main:hover .sds-hero-visual-img {
+      transform: scale(1.07);
+    }
+
+    .sds-hero-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px 16px;
+      color: #e5e7eb;
+      font-size: 12px;
+    }
+
+    .sds-hero-visual-caption {
+      font-size: 12px;
+      color: #cbd5f5;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sds-hero-visual-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .sds-hero-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .sds-hero-stat-pill {
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sds-hero-stat-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+    }
+
+    .sds-hero-float-card {
+      position: absolute;
+      right: -4px;
+      bottom: -6px;
+      transform: translateY(0);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--sds-muted);
+      box-shadow: var(--sds-shadow-light);
+      backdrop-filter: blur(12px);
+      animation: sdsFloat 4s ease-in-out infinite;
+    }
+
+    .sds-hero-float-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: conic-gradient(from 210deg, #2563eb, #4f46e5, #22c55e, #2563eb);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sds-hero-float-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .sds-hero-float-value {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    @keyframes sdsFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ==== TECH STRIP (animated language + stack logos) ==== */
+    .sds-tech-strip {
+      margin: 40px auto 32px;
+      text-align: center;
+    }
+
+    .sds-tech-strip h3 {
+      font-size: 30px;
+      margin: 0 0 8px;
+    }
+
+    .sds-tech-strip p {
+      font-size: 14px;
+      color: var(--sds-muted);
+      margin: 0 0 16px;
+    }
+
+    .sds-tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    @keyframes sdsTechFloat {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .sds-tech-card {
+      min-width: 96px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #111827;
+      animation: sdsTechFloat 7s ease-in-out infinite;
+      transition:
+        transform var(--sds-transition-med),
+        box-shadow var(--sds-transition-med),
+        border-color var(--sds-transition-med);
+    }
+
+    /* stagger */
+    .sds-tech-card:nth-child(2){ animation-delay:0.4s; }
+    .sds-tech-card:nth-child(3){ animation-delay:0.8s; }
+    .sds-tech-card:nth-child(4){ animation-delay:1.2s; }
+    .sds-tech-card:nth-child(5){ animation-delay:1.6s; }
+    .sds-tech-card:nth-child(6){ animation-delay:2.0s; }
+    .sds-tech-card:nth-child(7){ animation-delay:2.4s; }
+    .sds-tech-card:nth-child(8){ animation-delay:2.8s; }
+    .sds-tech-card:nth-child(9){ animation-delay:3.2s; }
+    .sds-tech-card:nth-child(10){ animation-delay:3.6s; }
+    .sds-tech-card:nth-child(11){ animation-delay:4.0s; }
+    .sds-tech-card:nth-child(12){ animation-delay:4.4s; }
+    .sds-tech-card:nth-child(13){ animation-delay:4.8s; }
+    .sds-tech-card:nth-child(14){ animation-delay:5.2s; }
+    .sds-tech-card:nth-child(15){ animation-delay:5.6s; }
+    .sds-tech-card:nth-child(16){ animation-delay:6.0s; }
+
+    .sds-tech-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(15,23,42,0.25));
+    }
+
+    .sds-tech-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      border-color: rgba(37, 99, 235, 0.6);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+    }
+
+    /* ==== IT IMAGE GALLERY ==== */
+    .sds-it-gallery {
+      margin: 12px auto 40px;
+    }
+
+    .sds-it-gallery-row {
+      display:grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .sds-it-img-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      box-shadow:0 18px 60px rgba(15,23,42,0.16);
+    }
+    .sds-it-img-card img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.02);
+      transition:transform 500ms ease-out;
+    }
+    .sds-it-img-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(15,23,42,0.85),transparent 55%);
+      display:flex;
+      align-items:flex-end;
+      padding:12px 14px;
+      color:#f9fafb;
+      font-size:13px;
+    }
+    .sds-it-img-card:hover img{
+      transform:scale(1.08);
+    }
+
+    /* ==== SUBNAV ==== */
+    .sds-subnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--sds-muted);
+    }
+
+    .sds-subnav-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+      scrollbar-width: thin;
+    }
+
+    .sds-subnav-scroll::-webkit-scrollbar { height: 4px; }
+    .sds-subnav-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.7);
+      border-radius: 999px;
+    }
+
+    .sds-subnav-pill {
+      border-radius: 999px;
+      padding: 7px 14px;
+      border: 1px solid transparent;
+      background: rgba(249, 250, 251, 0.96);
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--sds-muted);
+      cursor: pointer;
+      transition:
+        background var(--sds-transition-med),
+        color var(--sds-transition-med),
+        transform var(--sds-transition-med),
+        border-color var(--sds-transition-med),
+        box-shadow var(--sds-transition-med);
+      white-space: nowrap;
+    }
+
+    .sds-subnav-pill.active {
+      background: var(--sds-brand-soft);
+      border-color: rgba(37, 99, 235, 0.6);
+      color: #1d4ed8;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* ==== GENERIC BLOCK CARD ==== */
+    .sds-block {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: var(--sds-radius-card);
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--sds-shadow-light);
+      padding: 28px 26px 26px;
+      margin-bottom: 26px;
+    }
+
+    .sds-block-heading {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sds-block-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .sds-block-title {
+      font-size: 32px;
+      color: #111827;
+    }
+
+    /* ==== WHAT WE OFFER ==== */
+    .sds-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .sds-offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .sds-offer-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @keyframes sdsOfferFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .sds-offer-card {
+      position: relative;
+      padding: 20px 18px 18px;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      transition:
+        transform var(--sds-transition-med),
+        box-shadow var(--sds-transition-med),
+        border-color var(--sds-transition-med);
+      animation: sdsOfferFloat 9s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .sds-offer-card:nth-child(2){ animation-delay:1s; }
+    .sds-offer-card:nth-child(3){ animation-delay:2s; }
+    .sds-offer-card:nth-child(4){ animation-delay:3s; }
+    .sds-offer-card:nth-child(5){ animation-delay:4s; }
+    .sds-offer-card:nth-child(6){ animation-delay:5s; }
+
+    .sds-offer-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(37, 99, 235, 0.5);
+      box-shadow: 0 26px 80px rgba(15, 23, 42, 0.18);
+    }
+
+    .sds-offer-media{
+      margin: -6px -6px 18px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .sds-offer-media img{
+      width:100%;
+      height:130px;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.03);
+      transition:transform 400ms ease-out;
+    }
+    .sds-offer-card:hover .sds-offer-media img{
+      transform:scale(1.08);
+    }
+
+    /* square icon above images – hidden as requested */
+    .sds-offer-icon-wrap {
+      display: none;
+    }
+
+    .sds-offer-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .sds-offer-text {
+      font-size: 15px;
+      color: var(--sds-muted);
+      line-height: 1.7;
+    }
+
+    /* ==== CORE CAPABILITIES ==== */
+    .sds-two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .sds-chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .sds-chip {
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: #eef2ff;
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #1f2937;
+    }
+
+    /* NEW: core gallery images for "How We Build & Run Systems" */
+    .sds-core-gallery {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sds-core-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(15, 23, 42, 0.14);
+    }
+
+    .sds-core-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 450ms ease-out;
+    }
+
+    .sds-core-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .sds-core-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 55%);
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 11px;
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .sds-core-overlay strong {
+      font-size: 12px;
+    }
+
+    /* ==== DIGITAL SOLUTIONS ==== */
+    .sds-solution-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .sds-solution-tag {
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      background: var(--sds-surface);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      color: var(--sds-muted);
+    }
+
+    /* ==== VALUE WE DELIVER ==== */
+    .sds-value-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .sds-value-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sds-value-card {
+      border-radius: 14px;
+      padding: 10px 11px;
+      background: #dcfce7;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      font-size: 14px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: #14532d;
+    }
+
+    .sds-value-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sds-value-visual {
+      position: relative;
+    }
+
+    .sds-value-img-card {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      height: 100%;
+      min-height: 190px;
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
+    }
+
+    .sds-value-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.03);
+      transition: transform 500ms ease-out;
+    }
+
+    .sds-value-img-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .sds-value-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px;
+      color: #f9fafb;
+      font-size: 12px;
+    }
+
+    .sds-value-img-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    /* ==== TECHNOLOGY STACK ==== */
+    .sds-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .sds-stack-block {
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      background: var(--sds-surface);
+      font-size: 13px;
+    }
+
+    .sds-stack-label {
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sds-stack-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .sds-stack-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid var(--sds-line);
+    }
+
+    /* ==== REVEAL (scroll effect for every section) ==== */
+    .sds-reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(0.98);
+      transition:
+        opacity 520ms ease-out,
+        transform 520ms ease-out;
+    }
+
+    .sds-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ==== RESPONSIVE ==== */
+    @media (max-width: 1100px) {
+      .sds-hero {
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      #sds-it-portfolio { padding: 78px 16px 96px; }
+      .sds-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+      }
+      .sds-hero-right {
+        order: -1;
+        max-width: 540px;
+        width: 100%;
+      }
+      .sds-hero-left {
+        padding: 0;
+      }
+      .sds-block { padding: 24px 18px; }
+      .sds-it-gallery-row { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .sds-value-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .sds-two-col { grid-template-columns: minmax(0, 1fr); }
+      .sds-value-row { grid-template-columns: minmax(0, 1fr); }
+      .sds-stack-grid { grid-template-columns: minmax(0, 1fr); }
+      .sds-hero-title { font-size: 32px; }
+      .sds-hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .sds-hero-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .sds-it-gallery-row { grid-template-columns: minmax(0,1fr); }
+      .sds-core-gallery { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .sds-block-title { font-size: 26px; }
+      .sds-tech-card { min-width: 85px; padding-inline: 12px; }
+      .sds-hero-title { font-size: 28px; }
+      .sds-hero-kicker {
+        letter-spacing: 0.14em;
+      }
+    }
+
+    .footer-wrapper {
+  background-color: #fff;
+  padding: 40px 120px 60px 120px;
+
+  /* left column: logo + socials (stacked), right column: nav */
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  grid-template-areas:
+    "logo  cols"
+    "social cols";
+  column-gap: 80px;
+  row-gap: 20px;
+
+  align-items: start;
+}
+
+/* place items on the grid */
+.logo-container-f { grid-area: logo; }
+.footer-left      { grid-area: social; }
+.footer-columns   { grid-area: cols; }
+
+/* ---------- LEFT: LOGO + SOCIAL ---------- */
+.logo-container-f {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.footer-social {
+  width: auto;
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.footer-social button {
+  background: #000;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+.footer-social button:hover { background-color: #5a6a5c; }
+
+/* ---------- RIGHT: NAV COLUMNS ---------- */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: flex-start;
+}
+
+/* push the Services column (last <nav>) to the far right */
+.footer-columns .footer-column:last-child { margin-left: auto; }
+
+.footer-column { min-width: 120px; max-width: 180px; }
+
+/* ✅ Ensure headings are visible even if a global style overrides h3 color */
+footer .footer-column h3 {
+  color: #111 !important;
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+  letter-spacing: 0.035em;
+  user-select: none;
+  text-transform: uppercase; /* matches your labels */
+}
+
+.footer-column ul { list-style: none; margin: 0; padding: 0; }
+
+.footer-column ul li {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.015em;
+  transition: color 0.3s ease;
+}
+.footer-column ul li:hover { color: #5a6a5c; }
+
+/* links inside list items */
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.footer-column ul li a:hover { text-decoration: underline; }
+
+/* ---------- BOTTOM BAR ---------- */
+.footer-bottom {
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 10px 120px;
+  font-size: 13px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-bottom .links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-bottom .links a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footer-bottom .links a:hover { color: #5a6a5c; }
+.footer-bottom .copyright { font-weight: 900; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "social"
+      "cols";
+    row-gap: 28px;
+  }
+
+  .footer-columns {
+    gap: 30px;
+  }
+
+  /* let Services stack naturally on small screens */
+  .footer-columns .footer-column:last-child { margin-left: 0; }
+
+  .footer-column { max-width: 160px; }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-bottom .links { justify-content: center; }
+}
+
+
+/* Responsive */
+@media (max-width: 960px) {
+  .footer-wrapper {
+    padding: 40px 50px 60px 50px;
+  }
+
+  .footer-left {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .footer-columns {
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .footer-column {
+    max-width: 130px;
+  }
+
+  .footer-bottom {
+    padding: 10px 50px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-bottom .links {
+    justify-content: center;
+  }
+}
+
+/* the new footer css*/
+.footer-column ul li a {
+  text-decoration: none;
+  color: inherit;
+  /* Matches the li text color */
+  display: inline-block;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+  /* Optional hover effect */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.section {
+  padding: 80px 10%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+/* Section Colors */
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+}
+
+.green {
+  background-color: #456254;
+  color: #f8e4c9;
+}
+
+.white {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #0d1219;
+}
+
+/* Text Styles */
+.small-title {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.big-title {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.paragraph {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.paragraph.black {
+  color: #000;
+}
+
+/* Button */
+.apply-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: 1px solid #f8e4c9;
+  color: #f8e4c9;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: #f8e4c9;
+  color: #0d1219;
+}
+
+/* Animation class */
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+  /* Black border around the whole section */
+  box-sizing: border-box;
+  margin-top: 50px;
+  /* Pushes section down */
+}
+
+.beige {
+  background-color: #f8e4c9;
+  text-align: left;
+ 
+  /* Black border around the whole section */
+  box-sizing: border-box;
+  margin-top: 50px;
+  /* Pushes section down */
+  padding: 180px 20%;
+  /* More height: top/bottom 150px, sides stay same */
+}
+.logo-f {
+  height: 75px;
+}
+  </style>
+</head>
+<body>
+
+<section id="sds-navigation">
+  <style>
+    :root{
+      --header-h: 90px; /* default; will be synced by JS */
+      /* Desktop colors */
+      --left-bg:#3A6A61; --right-bg:#F1D9B7;
+      /* Mobile colors */
+      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
+      /* Shared */
+      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
+      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+
+    /* NAV container fixed */
+    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
+
+    /* HEADER (above overlay) */
+    .header{
+      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .logo{ height:70px; display:block; }
+
+    /* Hamburger */
+    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
+    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
+    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
+    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity:0; }
+    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
+
+    /* OVERLAY (FIXED + flush to header) */
+    #overlay{
+      position:fixed; top:var(--header-h); left:0; width:100%;
+      max-height:calc(100vh - var(--header-h));
+      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
+      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
+      transition:opacity .28s ease, transform .28s ease;
+      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    }
+    #overlay.active{
+      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+      opacity:1; transform:translateY(0); pointer-events:auto;
+    }
+
+    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
+      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
+
+    /* LEFT COLUMN */
+    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
+    .overlay-left::after{ content:""; display:block; height:300px; }
+    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
+    .main-menu li{ position:relative; margin:28px 0; width:100%; }
+    .main-menu a,.main-menu .link-btn{
+      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
+      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
+      padding-right:28px; position:relative;
+    }
+    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
+    .main-menu li:last-child{ margin-bottom:52px; }
+    .red-text a{ color:#ff5a5a!important; }
+    .has-panel > .link-btn::after{
+      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
+    }
+    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
+
+    /* RIGHT column (desktop) */
+    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
+    .overlay-right.open{ display:block; }
+    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
+    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
+    .overlay-right ul{ list-style:none; margin:0; padding:0; }
+    .overlay-right li{ margin:0 0 14px; }
+    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
+    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
+
+    .mobile-panel{ display:none; } /* hidden on desktop */
+
+    /* Mobile behavior */
+    @media (max-width:900px){
+      #overlay{ flex-direction:column; }
+      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
+      .overlay-left::after{ height:260px; }
+      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
+      .main-menu li{ margin:18px 0; }
+      .main-menu li::after{ background:var(--left-line-mobile); }
+
+      .overlay-right{ display:none!important; }
+
+      .mobile-panel{
+        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
+        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+      }
+      .mobile-panel.open{ transform:translateX(0); }
+      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
+      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
+      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
+      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
+      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
+      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
+    }
+
+    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
+    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
+    .overlay-left .main-menu > li > a.pressed,
+    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
+  </style>
+
+  <!-- Header -->
+  <header class="header" aria-label="Primary">
+    <div></div>
+    <div class="logo-container">
+      <a href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
+
+    <div class="overlay-left" id="overlay-left">
+      <ul class="main-menu" id="main-menu">
+        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+        <li><a href="/about">WHO WE ARE</a></li>
+        <li><a href="/ing">INSIGHTS</a></li>
+        <li><a href="/pub">PUBLICATIONS</a></li>
+        <li><a href="/getintouch">GET IN TOUCH</a></li>
+        <li><a href="/career">CAREERS</a></li>
+     
+        <li>
+          <div class="left-search-row">
+            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+          </div>
+          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+        </li>
+      </ul>
+      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
+    </div>
+
+    <!-- Right panels (desktop) -->
+    <div class="overlay-right" id="services-panel">
+      <h3>Our Services</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/fpo">FPO Management & Development</a></li>
+        <li><a href="/it">IT Consulting Services</a></li>
+        <li><a href="/research">Research & Studies</a></li>
+        <li><a href="/agri">Agripreneurship</a></li>
+        <li><a href="/value">Value Chain Development</a></li>
+        <li><a href="/mark">Marketing</a></li>
+        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
+        <li><a href="/mon">Monitoring & Evaluation</a></li>
+        <li><a href="/org">Organisation Development</a></li>
+        <li><a href="/com">Communication for Development</a></li>
+      </ul>
+    </div>
+
+    <div class="overlay-right" id="sectors-panel">
+      <h3>Our Sectors</h3>
+      <div class="top-rule"></div>
+      <ul>
+        <li><a href="/agricul">Agriculture</a></li>
+        <li><a href="/fish">Fishery</a></li>
+        <li><a href="/poul">Poultry</a></li>
+        <li><a href="/pig">Piggery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nav JS -->
+  <script>
+    (() => {
+      const overlay   = document.getElementById('overlay');
+      const overlayClose = document.getElementById('overlayClose');
+      const hamburger = document.getElementById('hamburger');
+      const mainMenu  = document.getElementById('main-menu');
+      const mobilePanel = document.getElementById('mobile-panel');
+      const servicesPanel = document.getElementById('services-panel');
+      const sectorsPanel  = document.getElementById('sectors-panel');
+      const panels        = [servicesPanel, sectorsPanel];
+      const mqMobile = window.matchMedia('(max-width: 900px)');
+      let isMenuOpen = false;
+
+      function openOverlay(){
+        if (isMenuOpen) return;
+        isMenuOpen = true;
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        hamburger.classList.add('active');
+        hamburger.setAttribute('aria-expanded','true');
+        hamburger.setAttribute('aria-label','Close menu');
+      }
+      function closeOverlay(){
+        if (!isMenuOpen) return;
+        isMenuOpen = false;
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        panels.forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+        closeMobilePanel();
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        hamburger.setAttribute('aria-label','Open menu');
+      }
+      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
+
+      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+
+      overlayClose.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+
+      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+
+      mainMenu.addEventListener('click',e=>{
+        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
+        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
+        if(mqMobile.matches){
+          if(!panel) return;
+          const list = panel.querySelector('ul')?.cloneNode(true);
+          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
+          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+          openMobilePanel();
+        }else{
+          panels.forEach(p=>p.classList.remove('open'));
+          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
+          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+        }
+      });
+
+      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+
+      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
+      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
+      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
+      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
+      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
+    })();
+  </script>
+
+  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
+  <script>
+    (()=>{
+      const root = document.documentElement;
+      const header = document.querySelector('#sds-navigation .header');
+      function syncHeaderHeight(){
+        if(!header) return;
+        const h = Math.round(header.getBoundingClientRect().height);
+        root.style.setProperty('--header-h', h + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      window.addEventListener('load', syncHeaderHeight);
+    })();
+  </script>
+</section>
+
+
+<section id="sds-it-portfolio">
+  <!-- Background (now also parallax) -->
+  <div class="sds-bg-veil" data-parallax data-parallax-speed="0.05"></div>
+  <div class="sds-bg-grid" data-parallax data-parallax-speed="0.02"></div>
+  <div class="sds-orb sds-orb--blue" data-parallax data-parallax-speed="0.25"></div>
+  <div class="sds-orb sds-orb--green" data-parallax data-parallax-speed="-0.18"></div>
+
+  <div class="sds-shell">
+    <!-- HERO -->
+    <div class="sds-hero sds-reveal">
+      <div class="sds-hero-left">
+        <div class="sds-hero-kicker">
+          <i class="fa-solid fa-shield-heart"></i>
+          IT CONSULTING SERVICES — SDS
+        </div>
+
+        <h1 class="sds-hero-title">
+          Transforming Organizations Through Technology, Innovation &amp; Human-Centered Design
+        </h1>
+
+        <p class="sds-hero-subtitle">
+Sayanant Development Services (SDS) delivers comprehensive IT consulting and digital transformation services designed to accelerate institutional efficiency, transparency, and innovation. We partner with NGOs, enterprises, FPOs, government missions, and mission-driven organizations to architect robust, scalable, and secure technology solutions tailored to complex field realities. Our capabilities include full-stack engineering, cloud-native architectures, enterprise MIS/ERP platforms, AI-powered automation, cyber-security hardening, systems integration, mobile and web experience design, and advanced analytics. Driven by a human-centered approach and engineering excellence, SDS empowers organizations to modernize processes, enhance governance, strengthen data-driven decision-making, and achieve sustainable digital maturity.
+        </p>
+
+        <div class="sds-hero-tags">
+          <span class="sds-pill"><i class="fa-solid fa-diagram-project"></i> Full-Stack Engineering</span>
+          <span class="sds-pill"><i class="fa-solid fa-cloud-arrow-up"></i> AWS &amp; Cloud</span>
+          <span class="sds-pill"><i class="fa-solid fa-robot"></i> AI-Based Automation</span>
+          <span class="sds-pill"><i class="fa-solid fa-shield-halved"></i> Cyber-security</span>
+        </div>
+
+        <div class="sds-hero-ctas">
+<a href="{{ url_for('getintouch') }}" class="sds-btn-primary">
+    <i class="fa-solid fa-paper-plane"></i> Schedule a tech call
+</a>
+          <a href="#sds-it-portfolio-offer" class="sds-btn-ghost">
+            <i class="fa-solid fa-code-branch"></i> View capabilities
+          </a>
+        </div>
+
+        <div class="sds-hero-meta">
+          <span>Web · Mobile · MIS/ERP · Dashboards · AI/ML · Cloud · Security</span>
+          <span class="sds-dot"></span>
+          <span>Practical, robust &amp; future-ready systems for real-world programs.</span>
+        </div>
+      </div>
+
+      <!-- Hero visual: modern banner -->
+      <div class="sds-hero-right">
+        <div class="sds-hero-visual" data-parallax data-parallax-speed="-0.15">
+          <div class="sds-hero-visual-main">
+            <img
+              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80"
+              alt="Team working on dashboards"
+              class="sds-hero-visual-img"
+            />
+            <div class="sds-hero-visual-overlay">
+              <div class="sds-hero-visual-title">Unified dashboards &amp; mission-critical MIS</div>
+              <div class="sds-hero-visual-caption">
+                <i class="fa-solid fa-circle-check"></i>
+                Live KPIs · Project tracking · Field-to-board reporting
+              </div>
+              <div class="sds-hero-stats-row">
+                <div class="sds-hero-stat-pill">
+                  <span class="sds-hero-stat-dot"></span>
+                  <span><strong>99.9%</strong> uptime target</span>
+                </div>
+                <div class="sds-hero-stat-pill">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span><strong>Real-time</strong> analytics</span>
+                </div>
+                <div class="sds-hero-stat-pill">
+                  <i class="fa-solid fa-users"></i>
+                  <span><strong>Multi-role</strong> access control</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sds-hero-float-card">
+          <div class="sds-hero-float-avatar">
+            <div class="sds-hero-float-avatar-inner">SDS</div>
+          </div>
+          <div>
+            <div class="sds-hero-float-value">Real-time dashboards</div>
+            <div>Productivity · Transparency · Future-ready systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECHNOLOGIES ROW (Python first + extra tools) -->
+    <div class="sds-tech-strip sds-reveal">
+      <h3>TECHNOLOGIES WE WORK WITH</h3>
+      <p>Modern, reliable tools across mobile, web, backend, cloud and AI.</p>
+      <div class="sds-tech-row">
+        <!-- Python FIRST -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+          <span>Python</span>
+        </div>
+        <!-- React -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React logo">
+          <span>React</span>
+        </div>
+
+            <!-- HTML -->
+    <div class="sds-tech-card">
+      <img class="sds-tech-logo"
+           src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+      <span>HTML</span>
+    </div>
+
+    <!-- CSS -->
+    <div class="sds-tech-card">
+      <img class="sds-tech-logo"
+           src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+      <span>CSS</span>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="sds-tech-card">
+      <img class="sds-tech-logo"
+           src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+      <span>JavaScript</span>
+    </div>
+
+        <!-- Node -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js logo">
+          <span>Node.js</span>
+        </div>
+        <!-- Angular -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular logo">
+          <span>Angular</span>
+        </div>
+        <!-- iOS -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="iOS logo">
+          <span>iOS</span>
+        </div>
+        <!-- Android -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android logo">
+          <span>Android</span>
+        </div>
+        <!-- Java -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo">
+          <span>Java</span>
+        </div>
+        <!-- Flutter -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter logo">
+          <span>Flutter</span>
+        </div>
+        <!-- WordPress -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress logo">
+          <span>WordPress</span>
+        </div>
+        <!-- MongoDB -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB logo">
+          <span>MongoDB</span>
+        </div>
+        <!-- MySQL -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL logo">
+          <span>MySQL</span>
+        </div>
+        <!-- AWS -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo"
+     src="{{ url_for('static', filename='Images/download.png') }}"
+     alt="AWS logo">
+
+          <span>AWS</span>
+        </div>
+        <!-- Hostinger -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://assets.streamlinehq.com/image/private/w_34,h_34,ar_1/f_auto/v1/icons/logos/hostinger-fmuhvgr37dia4fht66h4kb.png/hostinger-qlefdkghljsdttvj5z5nr.png" alt="Hostinger logo">
+          <span>Hostinger</span>
+        </div>
+        <!-- Bootstrap -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap logo">
+          <span>Bootstrap</span>
+        </div>
+        <!-- Deep Learning (TensorFlow) -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow logo">
+          <span>Deep&nbsp;Learning</span>
+        </div>
+        <!-- Machine Learning & AI (Scikit) -->
+        <div class="sds-tech-card">
+          <img class="sds-tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn logo">
+          <span>ML &amp; AI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT IMAGES GALLERY -->
+    <div class="sds-it-gallery sds-reveal">
+      <div class="sds-it-gallery-row">
+        <div class="sds-it-img-card">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Dashboard on laptop" />
+          <div class="sds-it-img-overlay">Real-time MIS dashboards for projects and programs.</div>
+        </div>
+        <div class="sds-it-img-card">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="Team working on product" />
+          <div class="sds-it-img-overlay">Cross-functional engineering &amp; design teams at work.</div>
+        </div>
+        <div class="sds-it-img-card">
+          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=900&q=80" alt="Cloud servers" />
+          <div class="sds-it-img-overlay">Cloud-native, secure infrastructure for your systems.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBNAV -->
+    <div class="sds-subnav sds-reveal">
+      <div class="sds-subnav-scroll" id="sdsSubnavScroll">
+        <button class="sds-subnav-pill active" data-target="#sds-it-portfolio-offer">
+          <i class="fa-solid fa-grip"></i> What we offer
+        </button>
+        <button class="sds-subnav-pill" data-target="#sds-it-portfolio-core">
+          <i class="fa-solid fa-brain"></i> Core capabilities
+        </button>
+        <button class="sds-subnav-pill" data-target="#sds-it-portfolio-solutions">
+          <i class="fa-solid fa-diagram-project"></i> Digital solutions
+        </button>
+        <button class="sds-subnav-pill" data-target="#sds-it-portfolio-value">
+          <i class="fa-solid fa-chart-line"></i> Value delivered
+        </button>
+        <button class="sds-subnav-pill" data-target="#sds-it-portfolio-stack">
+          <i class="fa-solid fa-layer-group"></i> Technology stack
+        </button>
+      </div>
+      <div>Scroll &amp; tap to jump to sections</div>
+    </div>
+
+    <!-- SECTION 1: WHAT WE OFFER -->
+    <div class="sds-block sds-reveal" id="sds-it-portfolio-offer">
+      <div class="sds-block-heading">
+        <div class="sds-block-kicker">WHY CHOOSE SDS</div>
+        <div class="sds-block-title">What We Offer</div>
+      </div>
+
+      <div class="sds-offer-grid">
+        <!-- Web Dev -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=900&q=80" alt="Web development" />
+          </div>
+          <div class="sds-offer-title">Web Development Services</div>
+          <div class="sds-offer-text">
+            Custom websites (corporate, NGO, e-commerce, portals) with modern UI/UX and
+            full-stack web applications with scalable backend architecture.
+            SEO-optimized, mobile-responsive, high-performance sites with secure payment
+            gateway integration, admin dashboards, user management and workflow automation
+            tools, plus ongoing maintenance and optimisation.
+          </div>
+        </div>
+
+        <!-- Mobile Apps -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80" alt="Mobile apps" />
+          </div>
+          <div class="sds-offer-title">Mobile App Development</div>
+          <div class="sds-offer-text">
+            Android &amp; iOS apps (hybrid and native) for customers, field staff and
+            program teams — including data collection and beneficiary-facing apps.
+            Real-time sync with central MIS, offline-first features for low-network
+            locations and smart push notifications for workflows and alerts.
+          </div>
+        </div>
+
+        <!-- MIS / ERP -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80" alt="MIS & ERP systems" />
+          </div>
+          <div class="sds-offer-title">MIS, ERP &amp; Enterprise Systems</div>
+          <div class="sds-offer-text">
+            MIS for agriculture, livelihood, education, health and governance built on
+            domain-driven design and robust data models. ERP modules — HRMS, payroll,
+            inventory, finance and CRM — with data automation, approval workflows and
+            multi-role dashboards for leadership, donors and field teams.
+          </div>
+        </div>
+
+        <!-- AI & Automation -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="AI & automation" />
+          </div>
+          <div class="sds-offer-title">AI &amp; Automation</div>
+          <div class="sds-offer-text">
+            Predictive analytics, advisory tools and chatbots using NLP and computer vision
+            integrated with your MIS and data. Automation of routine workflows, reminders
+            and risk flags so teams can focus on decision-making instead of manual follow-up.
+          </div>
+        </div>
+
+        <!-- Cloud -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80" alt="Cloud infrastructure" />
+          </div>
+          <div class="sds-offer-title">AWS &amp; Cloud Infrastructure</div>
+          <div class="sds-offer-text">
+            AWS setup, configuration and deployment with SSL, firewalls, automated backups,
+            monitoring and cost optimisation. Nginx, Gunicorn, Docker pipelines and CI/CD
+            for stable, repeatable deployments and minimal downtime for mission-critical systems.
+          </div>
+        </div>
+
+        <!-- SEO+Branding+Security+AMC -->
+        <div class="sds-offer-card">
+          <div class="sds-offer-media">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Branding & SEO" />
+          </div>
+          <div class="sds-offer-title">SEO, Branding, Security &amp; AMC</div>
+          <div class="sds-offer-text">
+            SEO strategy, branding assets and UI/UX design systems aligned with your
+            organization’s identity. Secure authentication, RBAC, server hardening and
+            data security protocols. SMS/OTP, payment gateways, API integrations and
+            email automation, with documentation, training, helpdesk support and AMC.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: CORE CAPABILITIES -->
+    <div class="sds-block sds-reveal" id="sds-it-portfolio-core">
+      <div class="sds-block-heading">
+        <div class="sds-block-kicker">2 · CORE CAPABILITIES</div>
+        <div class="sds-block-title">How We Build &amp; Run Systems</div>
+      </div>
+
+      <div class="sds-two-col">
+        <div>
+          <strong>Engineering &amp; Design</strong>
+          <div class="sds-chip-group">
+            <span class="sds-chip"><i class="fa-solid fa-code"></i> Full-Stack Development</span>
+            <span class="sds-chip"><i class="fa-solid fa-swatchbook"></i> UI/UX Design</span>
+            <span class="sds-chip"><i class="fa-solid fa-network-wired"></i> REST API Architecture</span>
+          </div>
+        </div>
+        <div>
+          <strong>Data &amp; Cloud</strong>
+          <div class="sds-chip-group">
+            <span class="sds-chip"><i class="fa-solid fa-database"></i> SQL &amp; NoSQL DB Design</span>
+            <span class="sds-chip"><i class="fa-solid fa-rocket"></i> Performance Optimisation</span>
+            <span class="sds-chip"><i class="fa-solid fa-server"></i> Linux Server Administration</span>
+            <span class="sds-chip"><i class="fa-solid fa-gears"></i> Cloud DevOps &amp; CI/CD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sds-two-col" style="margin-top:18px;">
+        <div>
+          <strong>AI/ML &amp; Insights</strong>
+          <div class="sds-chip-group">
+            <span class="sds-chip"><i class="fa-solid fa-brain"></i> AI/ML Development &amp; Deployment</span>
+            <span class="sds-chip"><i class="fa-solid fa-chart-simple"></i> Advanced Analytics Dashboards</span>
+            <span class="sds-chip"><i class="fa-solid fa-eye"></i> NLP &amp; Computer Vision</span>
+          </div>
+        </div>
+        <div>
+          <strong>Security &amp; Automation</strong>
+          <div class="sds-chip-group">
+            <span class="sds-chip"><i class="fa-solid fa-shield-halved"></i> Secure System Architecture</span>
+            <span class="sds-chip"><i class="fa-solid fa-arrows-rotate"></i> Workflow Automation</span>
+            <span class="sds-chip"><i class="fa-solid fa-circle-nodes"></i> Technology Integrations</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW image strip for this section -->
+      <div class="sds-core-gallery">
+        <div class="sds-core-card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80" alt="Team sprint planning" />
+          <div class="sds-core-overlay">
+            <div><strong>Agile delivery</strong><br/>Sprint-based builds with frequent demos.</div>
+          </div>
+        </div>
+        <div class="sds-core-card">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="Collaborative design" />
+          <div class="sds-core-overlay">
+            <div><strong>Co-design with teams</strong><br/>Engineers, program teams &amp; leadership together.</div>
+          </div>
+        </div>
+        <div class="sds-core-card">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Data center" />
+          <div class="sds-core-overlay">
+            <div><strong>Reliable infrastructure</strong><br/>Hardened servers, backups and monitoring.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: DIGITAL SOLUTIONS WE BUILD -->
+    <div class="sds-block sds-reveal" id="sds-it-portfolio-solutions">
+      <div class="sds-block-heading">
+        <div class="sds-block-kicker">3 · DIGITAL SOLUTIONS WE BUILD</div>
+        <div class="sds-block-title">Built for Programs, FPOs &amp; Institutions</div>
+      </div>
+      <p style="font-size:15px;color:var(--sds-muted);margin-bottom:10px;">
+        SDS designs digital solutions aligned to field realities and program logframes:
+      </p>
+      <div class="sds-solution-tags">
+        <span class="sds-solution-tag">MIS systems for agriculture &amp; livelihood</span>
+        <span class="sds-solution-tag">Education &amp; health MIS platforms</span>
+        <span class="sds-solution-tag">Governance &amp; program monitoring systems</span>
+        <span class="sds-solution-tag">HRMS &amp; payroll systems</span>
+        <span class="sds-solution-tag">Field &amp; mobile data collection platforms</span>
+        <span class="sds-solution-tag">FPO &amp; producer-owned digital systems</span>
+        <span class="sds-solution-tag">Donor &amp; impact dashboards</span>
+        <span class="sds-solution-tag">E-commerce &amp; marketplace solutions</span>
+        <span class="sds-solution-tag">AI-based advisory &amp; decision-support tools</span>
+      </div>
+    </div>
+
+    <!-- SECTION 4: VALUE WE DELIVER -->
+    <div class="sds-block sds-reveal" id="sds-it-portfolio-value">
+      <div class="sds-block-heading">
+        <div class="sds-block-kicker">4 · VALUE WE DELIVER</div>
+        <div class="sds-block-title">Beyond Software – Real Outcomes</div>
+      </div>
+
+      <div class="sds-value-layout">
+        <div class="sds-value-row">
+          <div class="sds-value-card">
+            <div class="sds-value-icon">
+              <i class="fa-solid fa-gauge-high" style="font-size:11px;color:#16a34a;"></i>
+            </div>
+            <div>
+              <strong>Productivity &amp; Accuracy</strong><br/>
+              Reduce manual work, human error and duplication through integrated workflows,
+              approvals and automation.
+            </div>
+          </div>
+          <div class="sds-value-card">
+            <div class="sds-value-icon">
+              <i class="fa-solid fa-eye" style="font-size:11px;color:#16a34a;"></i>
+            </div>
+            <div>
+              <strong>Transparency &amp; Governance</strong><br/>
+              Multi-role dashboards that give teams, management and donors a single source of truth.
+            </div>
+          </div>
+          <div class="sds-value-card">
+            <div class="sds-value-icon">
+              <i class="fa-solid fa-scale-balanced" style="font-size:11px;color:#16a34a;"></i>
+            </div>
+            <div>
+              <strong>Scalability &amp; Cost Efficiency</strong><br/>
+              Cloud-native infrastructure, optimized databases and automation that reduce recurring
+              operational costs.
+            </div>
+          </div>
+          <div class="sds-value-card">
+            <div class="sds-value-icon">
+              <i class="fa-solid fa-forward" style="font-size:11px;color:#16a34a;"></i>
+            </div>
+            <div>
+              <strong>Future-Readiness with AI</strong><br/>
+              AI-integrated systems that keep organizations ahead — from predictive analytics to
+              smart assistants.
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW visual for "Beyond Software – Real Outcomes" -->
+        <div class="sds-value-visual">
+          <div class="sds-value-img-card">
+            <img
+              src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80"
+              alt="People reviewing analytics"
+            />
+            <div class="sds-value-img-overlay">
+              <div class="sds-value-img-title">From data to decisions</div>
+              <div>
+                Leadership, field teams and partners use shared dashboards, not scattered files —
+                turning information into action and measurable outcomes.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: TECHNOLOGY STACK -->
+    <div class="sds-block sds-reveal" id="sds-it-portfolio-stack">
+      <div class="sds-block-heading">
+        <div class="sds-block-kicker">5 · TECHNOLOGY STACK</div>
+        <div class="sds-block-title">Modern, Open-Source, Battle-Tested</div>
+      </div>
+
+      <div class="sds-stack-grid">
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-display"></i> Frontend
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">HTML</span>
+            <span class="sds-stack-pill">CSS</span>
+            <span class="sds-stack-pill">JavaScript</span>
+            <span class="sds-stack-pill">Bootstrap</span>
+            <span class="sds-stack-pill">Tailwind CSS</span>
+            <span class="sds-stack-pill">React.js</span>
+          </div>
+        </div>
+
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-terminal"></i> Backend
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">Python Flask</span>
+            <span class="sds-stack-pill">Django</span>
+            <span class="sds-stack-pill">PHP</span>
+            <span class="sds-stack-pill">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-database"></i> Databases
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">MongoDB</span>
+            <span class="sds-stack-pill">MySQL</span>
+            <span class="sds-stack-pill">SQLite</span>
+          </div>
+        </div>
+
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Cloud &amp; DevOps
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">AWS</span>
+            <span class="sds-stack-pill">Nginx</span>
+            <span class="sds-stack-pill">Gunicorn</span>
+            <span class="sds-stack-pill">Docker</span>
+            <span class="sds-stack-pill">CI/CD Pipelines</span>
+            <span class="sds-stack-pill">Linux</span>
+          </div>
+        </div>
+
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-brain"></i> AI / ML
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">TensorFlow</span>
+            <span class="sds-stack-pill">Scikit-learn</span>
+            <span class="sds-stack-pill">NLP</span>
+            <span class="sds-stack-pill">Computer Vision</span>
+          </div>
+        </div>
+
+        <div class="sds-stack-block">
+          <div class="sds-stack-label">
+            <i class="fa-solid fa-toolbox"></i> Tools
+          </div>
+          <div class="sds-stack-items">
+            <span class="sds-stack-pill">Figma</span>
+            <span class="sds-stack-pill">Postman</span>
+            <span class="sds-stack-pill">Supervisord</span>
+            <span class="sds-stack-pill">Cron</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
+      <div class="logo-container-f">
+           <a href="{{ url_for('home') }}">
+              <img src="static/Images/logo.png" alt="SDS Logo" class="logo-f">
+          </a>
+      </div>
+      <div class="footer-left" aria-label="Company branding and partner logos">
+          <div class="footer-social" aria-label="Social media links">
+              <button aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+              <button aria-label="Twitter" tabindex="0"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+              <button aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></button>
+              <button aria-label="YouTube" tabindex="0"><i class="fab fa-youtube" aria-hidden="true"></i></button>
+              <button aria-label="Instagram" tabindex="0"><i class="fab fa-instagram" aria-hidden="true"></i></button>
+          </div>
+      </div>
+
+      <div class="footer-columns" aria-label="Footer navigation">
+          <nav class="footer-column" aria-labelledby="footer-legal">
+              <h3 id="footer-legal">SECTORS</h3>
+              <ul>
+                <li><a href="/agricul">Agriculture</a></li>
+                <li><a href="/fish">Fishery</a></li>
+                <li><a href="/poul">Poultry</a></li>
+                <li><a href="/pig">Piggery</a></li>
+              </ul>
+          </nav>
+
+          <nav class="footer-column" aria-labelledby="footer-careers">
+              <h3 id="footer-careers">CAREERS</h3>
+              <ul>
+                  <li><a href="/career" tabindex="0">Join Us</a></li>
+              </ul>
+          </nav>
+
+          <nav class="footer-column" aria-labelledby="footer-contact">
+              <h3 id="footer-contact">Company</h3>
+              <ul>
+                  <li><a href="/" tabindex="0">Home</a></li>
+                  <li><a href="/about" tabindex="0">About Us</a></li>
+                  <li><a href="/ing" tabindex="0">Insights</li>
+                  <li><a href="/pub" tabindex="0">Publication</a></li>
+                  <li><a href="/getintouch" tabindex="0">Get in Touch</a></li>
+                  <li><a href="/rfp" tabindex="0">Submit RFP</a></li>
+              </ul>
+          </nav>
+
+          <nav class="footer-column" aria-labelledby="footer-products">
+              <h3 id="footer-products">Services</h3>
+              <ul>
+                  <li><a href="{{ url_for('fpo') }}" tabindex="0">FPO Management</a></li>
+                  <li><a href="{{ url_for('agricul') }}" tabindex="0">Agricultural Development</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Fishery Development</a></li>
+                  <li><a href="{{ url_for('com') }}" tabindex="0">Communication</a></li>
+                  <li><a href="{{ url_for('value') }}" tabindex="0">Value Chain Development</a></li>
+                  <li><a href="{{ url_for('mark') }}" tabindex="0">Marketing</a></li>
+                  <li><a href="{{ url_for('agri') }}" tabindex="0">Agripreneurship</a></li>
+              </ul>
+          </nav>
+      </div>
+  </div>
+
+  <div class="footer-bottom" role="contentinfo" aria-label="Footer bottom legal and policies">
+      <div class="links">
+          <a href="#" tabindex="0">Code of Conduct</a>
+          <a href="#" tabindex="0">Privacy Policy</a>
+          <a href="#" tabindex="0">Terms of Service</a>
+          <a href="#" tabindex="0">Sitemap</a>
+          <a href="#" tabindex="0">Accessibility</a>
+      </div>
+      <div class="copyright">
+          © 2025 <strong>SDS.</strong> - Sayanant Group. All Rights Reserved.
+      </div>
+  </div>
+</footer>
+
+
+<script>
+  // PARALLAX
+  (function () {
+    const parallaxEls = document.querySelectorAll("[data-parallax]");
+    if (!parallaxEls.length) return;
+
+    let latestY = window.scrollY;
+    let ticking = false;
+
+    function updateParallax() {
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.getAttribute("data-parallax-speed")) || 0.15;
+        const offset = latestY * speed;
+        el.style.transform = `translate3d(0, ${offset}px, 0)`;
+      });
+      ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      latestY = window.scrollY || window.pageYOffset;
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
+    updateParallax();
+  })();
+
+  // REVEAL (scroll effect)
+  (function () {
+    const revealEls = document.querySelectorAll(".sds-reveal");
+    if (!("IntersectionObserver" in window) || !revealEls.length) {
+      revealEls.forEach(el => el.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+  })();
+
+  // SUBNAV SCROLL
+  (function () {
+    const subnav = document.getElementById("sdsSubnavScroll");
+    if (!subnav) return;
+    const pills = subnav.querySelectorAll(".sds-subnav-pill");
+
+    pills.forEach(pill => {
+      pill.addEventListener("click", e => {
+        e.preventDefault();
+        const targetSelector = pill.getAttribute("data-target");
+        const target = targetSelector ? document.querySelector(targetSelector) : null;
+        if (target) {
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY - 90,
+            behavior: "smooth"
+          });
+        }
+        pills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

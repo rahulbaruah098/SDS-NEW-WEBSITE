@@ -854,7 +854,8 @@ window.addEventListener("load", async () => {
     <div class="card" id="pdfCard" tabindex="0" aria-describedby="pdfHelp">
       <!-- Poster / preview -->
       <figure class="poster" aria-label="PDF cover preview">
-        <img src="static/Images/jonakicover.jpg" alt="Cover preview of Your PDF Title">
+        <img src="{{ url_for('static', filename='Images/jonakicover.jpg') }}"
+     alt="Cover preview of Jonaki Annual Report 2024–2025">
       </figure>
 
       <!-- Meta + Actions -->
@@ -869,7 +870,11 @@ window.addEventListener("load", async () => {
 
         <div class="actions">
           <!-- Primary Download -->
-          <a id="downloadBtn" class="btn btn-primary" href="static/Jonaki.pdf" download>
+          <a id="downloadBtn"
+   class="btn btn-primary"
+   href="{{ url_for('static', filename='pdfs/Jonaki.pdf') }}"
+   download>
+
             <span class="pulse" aria-hidden="true"></span>
             <!-- download icon -->
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -877,7 +882,10 @@ window.addEventListener("load", async () => {
           </a>
 
           <!-- Quick View -->
-          <a class="btn btn-ghost" href="static/Jonaki.pdf" target="_blank" rel="noopener">
+          <a class="btn btn-ghost"
+   href="{{ url_for('static', filename='pdfs/Jonaki.pdf') }}"
+   target="_blank" rel="noopener">
+
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6zm8-3.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5z" stroke="currentColor"/></svg>
             Open in Browser
           </a>
@@ -914,7 +922,8 @@ window.addEventListener("load", async () => {
 
   <script>
     (function(){
-      const pdfUrl = "static/Jonaki.pdf";             // <-- replace with your PDF path
+      const pdfUrl = "{{ url_for('static', filename='pdfs/Jonaki.pdf') }}";
+           // <-- replace with your PDF path
       const posterAlt = "Cover preview of Your PDF Title";
 
       const sizeEl = document.getElementById("pdfSize");
