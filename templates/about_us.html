@@ -2,19 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SDS — Who We Are</title>
-     <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SDS — Who We Are</title>
+  <link rel="shortcut icon" href="static/Images/logo2.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Fonts (bold condensed for headlines + clean sans for body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Reset + base -->
-    <style>
+  <style>
         
 /* ---------- LAYOUT ---------- */
 .footer-wrapper {
@@ -194,1234 +190,2820 @@ footer .footer-column h3 {
 
 
     </style>
-    
 
 </head>
 
 <body>
 
-<section id="sds-navigation">
-  <style>
-    :root{
-      --header-h: 90px; /* default; will be synced by JS */
-      /* Desktop colors */
-      --left-bg:#3A6A61; --right-bg:#F1D9B7;
-      /* Mobile colors */
-      --left-bg-mobile:#0b1119; --left-link-mobile:#f5e6d3; --left-line-mobile:rgba(255,255,255,.12);
-      /* Shared */
-      --left-link:#f3d9bd; --right-link:#222; --right-link-hover:#000;
-      --line-left:rgba(255,255,255,.25); --line-right:rgba(0,0,0,.22);
-    }
-    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
-
-    /* NAV container fixed */
-    #sds-navigation{ position:fixed; top:0; left:0; width:100%; z-index:10000; }
-
-    /* HEADER (above overlay) */
-    .header{
-      position:relative; z-index:10001; height:var(--header-h); background:#fff; padding:0 30px;
-      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,.1);
-    }
-    .logo{ height:70px; display:block; }
-
-    /* Hamburger */
-    .hamburger{ grid-column:3; justify-self:end; width:32px; height:24px; cursor:pointer; position:relative; z-index:10002; -webkit-tap-highlight-color:transparent; }
-    .hamburger span{ position:absolute; left:0; right:0; height:3px; background:#111; border-radius:2px; transition:transform .35s, top .35s, opacity .25s, background .3s; }
-    .hamburger span:nth-child(1){ top:0; } .hamburger span:nth-child(2){ top:10.5px; } .hamburger span:nth-child(3){ top:21px; }
-    .hamburger.active span:nth-child(1){ top:10.5px; transform:rotate(45deg); }
-    .hamburger.active span:nth-child(2){ opacity:0; }
-    .hamburger.active span:nth-child(3){ top:10.5px; transform:rotate(-45deg); }
-
-    /* OVERLAY (FIXED + flush to header) */
-    #overlay{
-      position:fixed; top:var(--header-h); left:0; width:100%;
-      max-height:calc(100vh - var(--header-h));
-      z-index:1; display:flex; overflow-y:auto; overflow-x:hidden;
-      background:none; opacity:0; transform:translateY(-8px); pointer-events:none;
-      transition:opacity .28s ease, transform .28s ease;
-      -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
-    }
-    #overlay.active{
-      background:linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
-      opacity:1; transform:translateY(0); pointer-events:auto;
-    }
-
-    .close-btn{ position:absolute; top:10px; right:14px; font-size:28px; line-height:1; color:#111; background:#fff;
-      width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
-      cursor:pointer; user-select:none; box-shadow:0 2px 10px rgba(0,0,0,.1); z-index:3; }
-
-    /* LEFT COLUMN */
-    .overlay-left{ position:relative; flex:1; background:var(--left-bg); padding:40px 24px 80px 56px; display:flex; flex-direction:column; min-height:100%; }
-    .overlay-left::after{ content:""; display:block; height:300px; }
-    .main-menu{ list-style:none; margin:0; padding:0; flex:1; }
-    .main-menu li{ position:relative; margin:28px 0; width:100%; }
-    .main-menu a,.main-menu .link-btn{
-      text-decoration:none; color:var(--left-link); font-weight:800; letter-spacing:.5px;
-      font-size:clamp(24px,1.1vw,40px); background:none; border:none; padding:0; margin:0; cursor:pointer;
-      padding-right:28px; position:relative;
-    }
-    .main-menu li::after{ content:""; position:absolute; left:0; bottom:-12px; height:2px; width:100%; max-width:560px; background:var(--line-left); }
-    .main-menu li:last-child{ margin-bottom:52px; }
-    .red-text a{ color:#ff5a5a!important; }
-    .has-panel > .link-btn::after{
-      content:""; position:absolute; right:0; top:50%; width:10px; height:10px; border-right:3px solid currentColor; border-bottom:3px solid currentColor; transform:translateY(-60%) rotate(45deg); transition:transform .2s;
-    }
-    .has-panel.expanded > .link-btn::after{ transform:translateY(-30%) rotate(225deg); }
-
-    /* RIGHT column (desktop) */
-    .overlay-right{ flex:1; background:var(--right-bg); padding:40px 36px 60px; display:none; }
-    .overlay-right.open{ display:block; }
-    .overlay-right h3{ margin:0 0 14px; font-size:22px; color:var(--right-link); }
-    .top-rule{ height:1px; background:var(--line-right); opacity:.6; margin:0 0 18px; }
-    .overlay-right ul{ list-style:none; margin:0; padding:0; }
-    .overlay-right li{ margin:0 0 14px; }
-    .overlay-right a{ text-decoration:none; color:var(--right-link); font-size:16px; font-weight:700; line-height:1.35; padding-bottom:8px; display:block; border-bottom:2px solid var(--line-right); transition:color .2s, border-color .2s, opacity .2s; }
-    .overlay-right a:hover{ color:var(--right-link-hover); border-color:rgba(0,0,0,.35); opacity:.95; }
-
-    .mobile-panel{ display:none; } /* hidden on desktop */
-
-    /* Mobile behavior */
-    @media (max-width:900px){
-      #overlay{ flex-direction:column; }
-      .overlay-left{ background:var(--left-bg-mobile); padding:16px 16px 40px; }
-      .overlay-left::after{ height:260px; }
-      .main-menu a,.main-menu .link-btn{ font-size:18px; font-weight:800; color:var(--left-link-mobile); letter-spacing:.6px; }
-      .main-menu li{ margin:18px 0; }
-      .main-menu li::after{ background:var(--left-line-mobile); }
-
-      .overlay-right{ display:none!important; }
-
-      .mobile-panel{
-        display:block; position:absolute; inset:0; background:var(--left-bg-mobile); padding:28px 16px 40px;
-        transform:translateX(100%); transition:transform .28s ease; overflow:auto; z-index:2;
+  <!-- ===================== NAVIGATION (UNCHANGED - DO NOT TOUCH layout; JS made WebView-safe) ===================== -->
+  <section id="sds-navigation">
+    <style>
+      :root {
+        --header-h: 90px;
+        --left-bg: #3A6A61;
+        --right-bg: #F1D9B7;
+        --left-bg-mobile: #0b1119;
+        --left-link-mobile: #f5e6d3;
+        --left-line-mobile: rgba(255, 255, 255, .12);
+        --left-link: #f3d9bd;
+        --right-link: #222;
+        --right-link-hover: #000;
+        --line-left: rgba(255, 255, 255, .25);
+        --line-right: rgba(0, 0, 0, .22);
       }
-      .mobile-panel.open{ transform:translateX(0); }
-      .mp-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 0 14px; border-bottom:1px solid var(--left-line-mobile); color:#fff; font-weight:800; letter-spacing:.5px; }
-      .mp-title{ color:#f5e6d3; font-size:14px; opacity:.9; }
-      .mp-back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#f5e6d3; opacity:.9; background:none; border:0; cursor:pointer; }
-      .mp-list{ list-style:none; margin:14px 0 0; padding:0; }
-      .mp-list li{ border-bottom:1px solid var(--left-line-mobile); }
-      .mp-list a{ display:block; padding:14px 0; color:#f5e6d3; text-decoration:none; font-weight:700; font-size:14px; }
-    }
 
-    .overlay-left .main-menu > li > a{ display:inline-block; transition:transform .12s ease; }
-    .overlay-left .main-menu > li > a:active{ transform:translateX(6px); }
-    .overlay-left .main-menu > li > a.pressed,
-    .overlay-left .main-menu > li > a:focus-visible{ transform:translateX(6px); }
-  </style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
 
-  <!-- Header -->
-  <header class="header" aria-label="Primary">
-    <div></div>
-    <div class="logo-container">
-      <a href="{{ url_for('home') }}">
-        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
-      </a>
-    </div>
-    <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </header>
+      #sds-navigation { position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; }
 
-  <!-- Overlay -->
-  <nav class="overlay" id="overlay" aria-hidden="true">
-    <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
-
-    <div class="overlay-left" id="overlay-left">
-      <ul class="main-menu" id="main-menu">
-        <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
-        <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
-        <li><a href="/about">WHO WE ARE</a></li>
-        <li><a href="/ing">INSIGHTS</a></li>
-        <li><a href="/pub">PUBLICATIONS</a></li>
-        <li><a href="/getintouch">GET IN TOUCH</a></li>
-        <li><a href="/career">CAREERS</a></li>
-        
-        <li>
-          <div class="left-search-row">
-            <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
-            <input id="left-search-input" class="left-search-input" type="text" placeholder="" style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
-          </div>
-          <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
-        </li>
-      </ul>
-      <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
-    </div>
-
-    <!-- Right panels (desktop) -->
-    <div class="overlay-right" id="services-panel">
-      <h3>Our Services</h3>
-      <div class="top-rule"></div>
-      <ul>
-        <li><a href="/fpo">FPO Management & Development</a></li>
-        <li><a href="/research">Research & Studies</a></li>
-        <li><a href="/agri">Agripreneurship</a></li>
-        <li><a href="/value">Value Chain Development</a></li>
-        <li><a href="/mark">Marketing</a></li>
-        <li><a href="/ibcb">Institute Building & Capacity Building (IBCB)</a></li>
-        <li><a href="/mon">Monitoring & Evaluation</a></li>
-        <li><a href="/org">Organisation Development</a></li>
-        <li><a href="/com">Communication for Development</a></li>
-      </ul>
-    </div>
-
-    <div class="overlay-right" id="sectors-panel">
-      <h3>Our Sectors</h3>
-      <div class="top-rule"></div>
-      <ul>
-        <li><a href="/agricul">Agriculture</a></li>
-        <li><a href="/fish">Fishery</a></li>
-        <li><a href="/poul">Poultry</a></li>
-        <li><a href="/pig">Piggery</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Nav JS -->
-  <script>
-    (() => {
-      const overlay   = document.getElementById('overlay');
-      const overlayClose = document.getElementById('overlayClose');
-      const hamburger = document.getElementById('hamburger');
-      const mainMenu  = document.getElementById('main-menu');
-      const mobilePanel = document.getElementById('mobile-panel');
-      const servicesPanel = document.getElementById('services-panel');
-      const sectorsPanel  = document.getElementById('sectors-panel');
-      const panels        = [servicesPanel, sectorsPanel];
-      const mqMobile = window.matchMedia('(max-width: 900px)');
-      let isMenuOpen = false;
-
-      function openOverlay(){
-        if (isMenuOpen) return;
-        isMenuOpen = true;
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden','false');
-        document.body.style.overflow='hidden';
-        hamburger.classList.add('active');
-        hamburger.setAttribute('aria-expanded','true');
-        hamburger.setAttribute('aria-label','Close menu');
+      .header {
+        position: relative;
+        z-index: 10001;
+        height: var(--header-h);
+        background: #fff;
+        padding: 0 30px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
       }
-      function closeOverlay(){
-        if (!isMenuOpen) return;
-        isMenuOpen = false;
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden','true');
-        document.body.style.overflow='';
-        panels.forEach(p=>p.classList.remove('open'));
-        document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
-        closeMobilePanel();
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded','false');
-        hamburger.setAttribute('aria-label','Open menu');
+
+      .logo { height: 70px; display: block; }
+
+      .hamburger {
+        grid-column: 3;
+        justify-self: end;
+        width: 32px;
+        height: 24px;
+        cursor: pointer;
+        position: relative;
+        z-index: 10002;
+        -webkit-tap-highlight-color: transparent;
       }
-      function toggleMenu(){ isMenuOpen ? closeOverlay() : openOverlay(); }
 
-      hamburger.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
-      hamburger.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggleMenu(); }});
+      .hamburger span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #111;
+        border-radius: 2px;
+        transition: transform .35s, top .35s, opacity .25s, background .3s;
+      }
 
-      overlayClose.addEventListener('click', closeOverlay);
-      overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
-      document.querySelector('.header')?.addEventListener('click', (e)=>{ if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay(); });
+      .hamburger span:nth-child(1) { top: 0; }
+      .hamburger span:nth-child(2) { top: 10.5px; }
+      .hamburger span:nth-child(3) { top: 21px; }
 
-      document.addEventListener('keydown',e=>{ if(e.key==='Escape' && isMenuOpen){ if(isMobilePanelOpen()) closeMobilePanel(); else closeOverlay(); }});
+      .hamburger.active span:nth-child(1) { top: 10.5px; transform: rotate(45deg); }
+      .hamburger.active span:nth-child(2) { opacity: 0; }
+      .hamburger.active span:nth-child(3) { top: 10.5px; transform: rotate(-45deg); }
 
-      mainMenu.addEventListener('click',e=>{
-        const btn=e.target.closest('.link-btn'); if(!btn) return; e.preventDefault();
-        const li=btn.closest('.has-panel'); const panelId=li?.dataset.panel; const title=li?.dataset.title||''; const panel=panelId?document.getElementById(panelId):null;
-        if(mqMobile.matches){
-          if(!panel) return;
-          const list = panel.querySelector('ul')?.cloneNode(true);
-          const head = `<div class="mp-head"><div class="mp-title">${title}</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>`;
-          mobilePanel.innerHTML = head; if(list){ list.classList.add('mp-list'); mobilePanel.appendChild(list); }
-          openMobilePanel();
-        }else{
-          panels.forEach(p=>p.classList.remove('open'));
-          document.querySelectorAll('.has-panel').forEach(x=>x.classList.remove('expanded'));
-          if(panel){ panel.classList.add('open'); li.classList.add('expanded'); }
+      #overlay {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        width: 100%;
+        max-height: calc(100vh - var(--header-h));
+        z-index: 1;
+        display: flex;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: none;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity .28s ease, transform .28s ease;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+
+      #overlay.active {
+        background: linear-gradient(90deg, var(--left-bg) 50%, var(--right-bg) 50%);
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        font-size: 28px;
+        line-height: 1;
+        color: #111;
+        background: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        z-index: 3;
+      }
+
+      .overlay-left {
+        position: relative;
+        flex: 1;
+        background: var(--left-bg);
+        padding: 40px 24px 80px 56px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+
+      .overlay-left::after { content: ""; display: block; height: 300px; }
+
+      .main-menu { list-style: none; margin: 0; padding: 0; flex: 1; }
+
+      .main-menu li { position: relative; margin: 28px 0; width: 100%; }
+
+      .main-menu a, .main-menu .link-btn {
+        text-decoration: none;
+        color: var(--left-link);
+        font-weight: 800;
+        letter-spacing: .5px;
+        font-size: clamp(24px, 1.1vw, 40px);
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        padding-right: 28px;
+        position: relative;
+      }
+
+      .main-menu li::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -12px;
+        height: 2px;
+        width: 100%;
+        max-width: 560px;
+        background: var(--line-left);
+      }
+
+      .main-menu li:last-child { margin-bottom: 52px; }
+
+      .red-text a { color: #ff5a5a !important; }
+
+      .has-panel>.link-btn::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border-right: 3px solid currentColor;
+        border-bottom: 3px solid currentColor;
+        transform: translateY(-60%) rotate(45deg);
+        transition: transform .2s;
+      }
+
+      .has-panel.expanded>.link-btn::after { transform: translateY(-30%) rotate(225deg); }
+
+      .overlay-right {
+        flex: 1;
+        background: var(--right-bg);
+        padding: 40px 36px 60px;
+        display: none;
+      }
+
+      .overlay-right.open { display: block; }
+
+      .overlay-right h3 {
+        margin: 0 0 14px;
+        font-size: 22px;
+        color: var(--right-link);
+        border: 0;
+        padding: 0;
+      }
+
+      .top-rule {
+        height: 1px;
+        background: var(--line-right);
+        opacity: .6;
+        margin: 0 0 18px;
+      }
+
+      .overlay-right ul { list-style: none; margin: 0; padding: 0; }
+      .overlay-right li { margin: 0 0 14px; }
+
+      .overlay-right a {
+        text-decoration: none;
+        color: var(--right-link);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.35;
+        padding-bottom: 8px;
+        display: block;
+        border-bottom: 2px solid var(--line-right);
+        transition: color .2s, border-color .2s, opacity .2s;
+      }
+
+      .overlay-right a:hover {
+        color: var(--right-link-hover);
+        border-color: rgba(0, 0, 0, .35);
+        opacity: .95;
+      }
+
+      .mobile-panel { display: none; }
+
+      @media (max-width:900px) {
+        #overlay { flex-direction: column; }
+
+        .overlay-left {
+          background: var(--left-bg-mobile);
+          padding: 16px 16px 40px;
         }
-      });
 
-      overlay.addEventListener('click', e=>{ const a=e.target.closest('a'); if(a && !a.closest('.has-panel')) closeOverlay(); });
+        .overlay-left::after { height: 260px; }
 
-      function openMobilePanel(){ mainMenu.style.visibility='hidden'; mobilePanel.setAttribute('aria-hidden','false'); mobilePanel.classList.add('open'); }
-      function closeMobilePanel(){ mobilePanel.classList.remove('open'); mobilePanel.setAttribute('aria-hidden','true'); mobilePanel.innerHTML=''; mainMenu.style.visibility=''; }
-      function isMobilePanelOpen(){ return mobilePanel.classList.contains('open'); }
-      mobilePanel.addEventListener('click', (e)=>{ const back=e.target.closest('.mp-back'); if(back){ e.preventDefault(); closeMobilePanel(); }});
-      mqMobile.addEventListener?.('change', ()=>{ closeMobilePanel(); panels.forEach(p=>p.classList.remove('open')); });
-    })();
-  </script>
+        .main-menu a, .main-menu .link-btn {
+          font-size: 18px;
+          font-weight: 800;
+          color: var(--left-link-mobile);
+          letter-spacing: .6px;
+        }
 
-  <!-- Sync CSS var --header-h to real header height (prevents gaps) -->
-  <script>
-    (()=>{
-      const root = document.documentElement;
-      const header = document.querySelector('#sds-navigation .header');
-      function syncHeaderHeight(){
-        if(!header) return;
-        const h = Math.round(header.getBoundingClientRect().height);
-        root.style.setProperty('--header-h', h + 'px');
+        .main-menu li { margin: 18px 0; }
+        .main-menu li::after { background: var(--left-line-mobile); }
+
+        .overlay-right { display: none !important; }
+
+        .mobile-panel {
+          display: block;
+          position: absolute;
+          inset: 0;
+          background: var(--left-bg-mobile);
+          padding: 28px 16px 40px;
+          transform: translateX(100%);
+          transition: transform .28s ease;
+          overflow: auto;
+          z-index: 2;
+        }
+
+        .mobile-panel.open { transform: translateX(0); }
+
+        .mp-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 0 14px;
+          border-bottom: 1px solid var(--left-line-mobile);
+          color: #fff;
+          font-weight: 800;
+          letter-spacing: .5px;
+        }
+
+        .mp-title { color: #f5e6d3f8; font-size: 14px; opacity: .9; }
+
+        .mp-back {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 14px;
+          color: #f5e6d3;
+          opacity: .9;
+          background: none;
+          border: 0;
+          cursor: pointer;
+        }
+
+        .mp-list { list-style: none; margin: 14px 0 0; padding: 0; }
+        .mp-list li { border-bottom: 1px solid var(--left-line-mobile); }
+
+        .mp-list a {
+          display: block;
+          padding: 14px 0;
+          color: #f5e6d3;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 14px;
+        }
       }
-      syncHeaderHeight();
-      window.addEventListener('resize', syncHeaderHeight);
-      window.addEventListener('load', syncHeaderHeight);
-    })();
-  </script>
-</section><br><br><br><br>
-  
-    <!-- ABOUT: Single Section (white-bg, parallax, text animations, mobile-first) -->
-<section id="about-sds" aria-label="About SDS">
-  <style>
-     /* ------------------ Design Tokens (Light) ------------------ */
-    #about-sds{
-      --bg: #ffffff;              /* page background */
-      --ink: #0b1220;             /* primary text */
-      --muted: #475569;           /* secondary text */
-      --border: rgba(2,6,23,.10);
-      --brand: #2563eb;           /* blue-600 */
-      --brand-600:#1d4ed8;        /* blue-700 */
-      --accent:#06b6d4;           /* cyan-500 */
-      --chip:#f1f5f9;             /* pill bg */
-      --card: #ffffff;            /* cards */
-      --card-soft: #f8fafc;
-      --shadow: 0 20px 60px rgba(2,6,23,.08);
-      --radius: 18px;
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --container: min(1120px, 92vw);
-    }
-    /* Continuous shining animation background for Mission / Vision / Values */
-#about-sds .split {
-  position: relative;
-  overflow: hidden;
-}
 
-#about-sds .split::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(37, 99, 235, 0.08),
-    rgba(6, 182, 212, 0.12),
-    rgba(255, 255, 255, 0.05),
-    rgba(37, 99, 235, 0.08)
-  );
-  background-size: 300% 300%;
-  animation: shineFlow 12s ease-in-out infinite;
-  z-index: 0;
-}
+      .overlay-left .main-menu>li>a { display: inline-block; transition: transform .12s ease; }
+      .overlay-left .main-menu>li>a:active { transform: translateX(6px); }
+      .overlay-left .main-menu>li>a.pressed,
+      .overlay-left .main-menu>li>a:focus-visible { transform: translateX(6px); }
+    </style>
 
-#about-sds .split .content,
-#about-sds .split .image {
-  position: relative;
-  z-index: 1; /* ensure text and image stay above */
-}
+    <header class="header" aria-label="Primary">
+      <div></div>
+      <div class="logo-container">
+        <a href="{{ url_for('home') }}">
+          <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="SDS Logo" class="logo">
+        </a>
+      </div>
+      <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
 
-@keyframes shineFlow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    <nav class="overlay" id="overlay" aria-hidden="true">
+      <div class="close-btn" id="overlayClose" aria-label="Close menu" role="button">&times;</div>
 
-    #about-sds *{box-sizing:border-box}
-    #about-sds{background:var(--bg); color:var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; position:relative; overflow:hidden}
-    #about-sds .container{width:var(--container); margin-inline:auto}
+      <div class="overlay-left" id="overlay-left">
+        <ul class="main-menu" id="main-menu">
+          <li class="has-panel" data-panel="services-panel" data-title="SERVICES"><button class="link-btn" type="button">SERVICES</button></li>
+          <li class="has-panel" data-panel="sectors-panel" data-title="SECTORS"><button class="link-btn" type="button">SECTORS</button></li>
+          <li><a href="/about">WHO WE ARE</a></li>
+          <li><a href="/ing">INSIGHTS</a></li>
+          <li><a href="/pub">PUBLICATIONS</a></li>
+          <li><a href="/getintouch">GET IN TOUCH</a></li>
+          <li><a href="/career">CAREERS</a></li>
 
-    /* ------------------ Generic Animations ------------------ */
-    #about-sds.loaded{opacity:1}
-    #about-sds{opacity:0; transition:opacity .7s var(--ease)}
-    #about-sds .reveal{opacity:0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease)}
-    #about-sds .reveal.in{opacity:1; transform:none}
-    #about-sds .stagger > *{opacity:0; transform: translateY(16px)}
-    #about-sds .stagger.in > *{animation: rise .6s var(--ease) forwards}
-    #about-sds .stagger.in > *:nth-child(1){animation-delay:.05s}
-    #about-sds .stagger.in > *:nth-child(2){animation-delay:.12s}
-    #about-sds .stagger.in > *:nth-child(3){animation-delay:.2s}
-    #about-sds .stagger.in > *:nth-child(4){animation-delay:.28s}
-    @keyframes rise{to{opacity:1; transform:none}}
-
-    /* ------------------ Utilities ------------------ */
-    #about-sds .eyebrow{letter-spacing:.08em; font-weight:600; color:var(--brand); text-transform:uppercase; font-size:.85rem}
-    #about-sds .title-xl{font-weight:900; line-height:1.05; font-size: clamp(2.2rem, 3.4vw + 1rem, 4rem); margin: .35rem 0 .5rem; color:var(--ink)}
-    #about-sds .lead{color:var(--muted); font-size: clamp(1.02rem, .7vw + .9rem, 1.2rem)}
-    #about-sds .chip{display:inline-flex; align-items:center; gap:.45rem; background:var(--chip); border:1px solid var(--border); padding:.5rem .75rem; border-radius:999px; font-size:.88rem; color:#0f172a}
-    #about-sds .chip svg{width:14px;height:14px;fill:var(--brand-600)}
-
-    /* ------------------ Section spacing ------------------ */
-    #about-sds .pad-xl{padding: clamp(2.2rem, 4vw, 4.4rem) 0}
-    #about-sds .gap-lg{display:grid; gap: clamp(1.25rem, 2.4vw, 2rem)}
-
-    /* ------------------ FULL-BLEED HERO (image edge-to-edge) ------------------ */
-    #about-sds .hero{position:relative; display:grid; place-items:center; min-height: clamp(420px, 60vh, 680px); isolation:isolate}
-    #about-sds .hero .bg{position:absolute; inset:0; overflow:hidden}
-    #about-sds .hero .bg img{width:100%; height:100%; object-fit:cover; transform: scale(1.06)}
-    #about-sds .hero .bg::after{ /* gradient scrim for text legibility */
-      content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)), radial-gradient(1200px 600px at 20% 20%, rgba(37,99,235,.18), transparent 55%);
-    }
-    #about-sds .hero .overlay{position:relative; z-index:1; width:var(--container); display:grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1rem, 2.6vw, 2rem); align-items:center; color:#eef2ff}
-    #about-sds .hero .overlay .left{max-width:720px}
-    #about-sds .hero .overlay .title-xl{color:#fff}
-    #about-sds .hero .overlay .lead{color:#e2e8f0}
-    #about-sds .hero .overlay .tag{display:inline-flex; align-items:center; gap:.5rem; background: rgba(15,23,42,.6); border:1px solid rgba(255,255,255,.18); backdrop-filter: blur(8px); padding:.55rem .8rem; border-radius: 999px; font-weight:700; font-size:.85rem; color:#f8fafc; box-shadow: var(--shadow)}
-    #about-sds .hero .overlay .media{justify-self:end}
-
-    /* text entrance (from left) */
-    #about-sds .from-left{opacity:0; transform: translateX(-24px)}
-    #about-sds .from-left.in{opacity:1; transform:none; transition: opacity .7s var(--ease), transform .7s var(--ease)}
-
-    /* ------------------ Feature Tiles (smaller thumbs) ------------------ */
-    #about-sds .features{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(1rem, 2.2vw, 1.6rem)}
-    #about-sds .tile{position:relative; display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center; padding:.9rem; border-radius: calc(var(--radius) + 2px); border:1px solid var(--border); background: var(--card); box-shadow: var(--shadow); transition: transform .35s var(--ease), box-shadow .35s var(--ease)}
-    #about-sds .tile:hover{transform: translateY(-3px)}
-    #about-sds .tile .thumb{width:72px; height:72px; border-radius: 14px; overflow:hidden; border:1px solid var(--border)}
-    #about-sds .tile .thumb img{width:100%; height:100%; object-fit: cover}
-    #about-sds .tile h3{margin:.1rem 0 .1rem; font-size: clamp(1.05rem, .7vw + 1rem, 1.3rem)}
-    #about-sds .tile .meta{display:inline-flex; align-items:center; gap:.4rem; font-weight:700; color:var(--brand-600); letter-spacing:.02em}
-    #about-sds .tile .meta svg{width:16px;height:16px;fill:var(--brand-600)}
-
-    /* ------------------ Split blocks (Mission / Vision / Values) ------------------ */
-    #about-sds .split{display:grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1.25rem, 3vw, 2rem); align-items:center}
-    #about-sds .split .image .frame{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      overflow:hidden;
-      background:var(--card);
-      box-shadow: var(--shadow);
-
-      max-width: 420px;   /* NEW: limits image frame size */
-      margin: 0 auto;     /* centers it in column */
-    }
-    #about-sds .split .image .frame img{
-      width:100%;
-      height:auto;
-      display:block;
-      object-fit: cover;
-      aspect-ratio: 4/3;
-    }
-    #about-sds .split .content h1{margin:0 0 .35rem; font-weight:900; font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem);}    
-    #about-sds .split .content p{color:var(--muted)}
-    #about-sds .bullets{display:flex; flex-wrap:wrap; gap:.5rem}
-
-    /* ------------------ Statement / Story ------------------ */
-    #about-sds .statement{background:var(--card-soft); border:1px solid var(--border); border-radius: var(--radius); padding: clamp(1rem, 2.5vw, 2rem); box-shadow: var(--shadow)}
-    #about-sds .statement h2{margin:.25rem 0 0.5rem; font-weight:900}
-
-    /* ------------------ Services Grid ------------------ */
-    #about-sds .services h3.section-title{margin:0 0 .5rem; font-weight:900; text-align:center}
-    #about-sds .focus{display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:.75rem}
-    #about-sds .focus span{display:flex; align-items:center; gap:.55rem; background:#ffffff; border:1px solid var(--border); border-radius: 14px; padding:.8rem .9rem; box-shadow: var(--shadow); transform: translateY(8px); opacity:0}
-    #about-sds .focus span.in{transform:none; opacity:1; transition: transform .45s var(--ease), opacity .45s var(--ease)}
-    #about-sds .focus svg{width:18px; height:18px; flex:0 0 auto; fill: var(--brand-600)}
-
-    /* CTA */
-    #about-sds .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; background:var(--brand-600); color:#fff; border:none; border-radius: 999px; padding:.85rem 1.15rem; font-weight:800; text-decoration:none; box-shadow: 0 10px 30px rgba(37,99,235,.35); transition: transform .2s var(--ease), box-shadow .2s var(--ease)}
-    #about-sds .btn:hover{transform: translateY(-1px); box-shadow: 0 16px 40px rgba(37,99,235,.45)}
-    #about-sds .btn:active{transform: translateY(0)}
-
-    /* ------------------ Responsive ------------------ */
-    @media (max-width: 980px){
-      #about-sds .hero .overlay{grid-template-columns: 1fr; text-align:left}
-      #about-sds .hero .overlay .media{justify-self:start}
-      #about-sds .features{grid-template-columns: 1fr}
-      #about-sds .split{grid-template-columns: 1fr}
-      #about-sds .focus{grid-template-columns: 1fr}
-    }
-    @media (prefers-reduced-motion: reduce){
-      #about-sds, #about-sds .reveal, #about-sds .stagger > *, #about-sds .from-left, #about-sds .focus span{transition:none !important; animation:none !important; transform:none !important}
-    }
-  </style>
-
-  <!-- FULL-BLEED HERO (image spans entire width, text over image) -->
-  <header class="hero" id="hero">
-    <div class="bg" aria-hidden="true">
-      <img src="static/Images/Photo.png" alt="Community collaboration across Northeast India">
-    </div>
-    <div class="overlay">
-      <div class="left from-left">
-        
-        <h1 class="title-xl"> Nurturing <br>Innovation,<br>Delivering Excellence</h1>
-        <p class="lead">We partner with governments, CSR agencies, FPOs, and enterprises to turn development goals into measurable outcomes—across Eastern and North-Eastern India.</p>
+          <li>
+            <div class="left-search-row">
+              <div class="left-search-label" style="color:#d9c8ac; font-size:15px;">Search</div>
+              <input id="left-search-input" class="left-search-input" type="text" placeholder=""
+                style="background:none;border:none;border-bottom:1px solid rgba(255,255,255,.2); color:#e9dec9; padding:6px 4px; outline:none;">
+            </div>
+            <ul id="left-search-results" class="left-search-results" style="list-style:none;margin:8px 0 0;padding:0;color:#cbbfa8;"></ul>
+          </li>
+        </ul>
+        <div class="mobile-panel" id="mobile-panel" aria-hidden="true"></div>
       </div>
 
-    </div>
-  </header>
-
-  <div class="container pad-xl gap-lg">
-    <!-- FEATURE TILES (smaller images) -->
-    <section class="features" id="features">
-      <article class="tile reveal">
-        <div class="thumb"><img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__69467.png" alt="Leadership"></div>
-        <div class="content">
-          <div class="meta">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>
-            Leadership
-          </div>
-          <h3>The People Leading The Way</h3>
-        </div>
-      </article>
-      <article class="tile reveal">
-        <div class="thumb"><img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__95362.jpeg" alt="Community"></div>
-        <div class="content">
-          <div class="meta">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>
-            Community
-          </div>
-          <h3>Giving Back To Communities</h3>
-        </div>
-      </article>
-    </section>
-
-    <!-- MISSION -->
-    <section class="split pad-xl" id="mission">
-      <div class="image reveal">
-        <div class="frame"><img src="static/Images/mission.png" alt="Grassroots work and field visit"></div>
+      <div class="overlay-right" id="services-panel">
+        <h3>Our Services</h3>
+        <div class="top-rule"></div>
+        <ul>
+          <li><a href="/fpo">FPO Management & Development</a></li>
+          <li><a href="/research">Research & Study</a></li>
+          <li><a href="/agri">Agripreneurship</a></li>
+          <li><a href="/value">Value Chain Development</a></li>
+          <li><a href="/mark">Marketing</a></li>
+          <li><a href="/ibcb">Institution Building & Capacity Building (IBCB)</a></li>
+          <li><a href="/mon">Monitoring & Evaluation</a></li>
+          <li><a href="/org">Organisation Development</a></li>
+          <li><a href="/com">Communication for Development</a></li>
+        </ul>
       </div>
-      <div class="content">
-        <h2 class="section-title reveal">Our Mission</h2>
-        <p class="reveal">SDS’s mission
-          is to provide
-        enabling services
-        to organisations or
-        individuals to unlock
-        potential to impact the
-        lives of the rural poor
-        and disadvantaged</p>
 
+      <div class="overlay-right" id="sectors-panel">
+        <h3>Our Sectors</h3>
+        <div class="top-rule"></div>
+        <ul>
+          <li><a href="/agricul">Agriculture</a></li>
+          <li><a href="/fish">Fishery</a></li>
+          <li><a href="/poul">Poultry</a></li>
+          <li><a href="/pig">Piggery</a></li>
+        </ul>
       </div>
-    </section>
+    </nav>
 
-    <!-- VISION -->
-    <section class="split pad-xl" id="vision">
-      <div class="content">
-        <h2 class="section-title reveal">Our Vision</h2>
-        <p class="reveal">SDS aims to be
-a world-class
-development support
-organisation for rural
-livelihood Promotion.
-</p>
-      </div>
-      <div class="image reveal">
-        <div class="frame"><img src="static/Images/VISION.png" alt=" alt="Close-up of nature and pollination"></div>
-      </div>
-    </section>
+    <!-- NAVIGATION JS (WebView-safe: removed optional chaining) -->
+    <script>
+      (function () {
+        var overlay = document.getElementById('overlay');
+        var overlayClose = document.getElementById('overlayClose');
+        var hamburger = document.getElementById('hamburger');
+        var mainMenu = document.getElementById('main-menu');
+        var mobilePanel = document.getElementById('mobile-panel');
+        var servicesPanel = document.getElementById('services-panel');
+        var sectorsPanel = document.getElementById('sectors-panel');
+        var panels = [servicesPanel, sectorsPanel];
+        var mqMobile = window.matchMedia('(max-width: 900px)');
+        var isMenuOpen = false;
 
-    <!-- VALUES -->
-    <section class="split pad-xl" id="values">
-      <div class="image reveal">
-        <div class="frame"><img src="static/Images/values.png" alt="Light symbolizing trust and excellence"></div>
-      </div>
-      <div class="content">
-        <h2 class="section-title reveal">Our Values</h2>
-        <p class="reveal">SDS believes in cultivating and ensuring a culture that embraces a striving for excellence, expertise and reaching out to people. It uses the following values as a base on which the organization is built. A value is an inherent universal need, important to life and living, and which people strive to meet. SDS espouses and attempts to uphold the values of: 
-1.	Equity-Justness, fairness, and equality of rights and opportunities. Equity demands affirmative action towards the marginalized, disadvantaged and alienated. Such affirmative action will be reflected in SDS’s vision, mission, norms and policies. Integrity- Alignment in thought, word and action. It is also freedom from corruptive influence or motive. The staff of SDS will value commitments, not misappropriate, or knowingly misrepresent facts, and will maintain transparent and accountable systems and procedures. 
-2.	Excellence- Being extremely good at something. 
-3.	Trust- The expectation of the opportunity to function and to become, in a world that provides support and freedom. Firm belief in the reliability, truth, or ability of someone or something
+        function openOverlay() {
+          if (isMenuOpen) return;
+          isMenuOpen = true;
+          overlay.classList.add('active');
+          overlay.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          hamburger.classList.add('active');
+          hamburger.setAttribute('aria-expanded', 'true');
+          hamburger.setAttribute('aria-label', 'Close menu');
+        }
 
-        </p>
-      </div>
-    </section>
+        function closeMobilePanel() {
+          mobilePanel.classList.remove('open');
+          mobilePanel.setAttribute('aria-hidden', 'true');
+          mobilePanel.innerHTML = '';
+          mainMenu.style.visibility = '';
+        }
 
-    <!-- STORY -->
-    <section class="statement reveal" id="story">
-      <h2 class="section-title">Our Story</h2>
-      <p>
-        Founded in 2013, Sesta Development Services (SDS) is among the leading firms delivering high-quality services in Research & Communication, Livelihoods, Value Chain & Skills, FPO Promotion, Organization Development, Climate Change, and Natural Resource Management. Over the past decade, we have supported Government bodies, CSR agencies, corporates, FPOs, and NGOs with tailored solutions for planning, implementation, and review of development programmes—anchored on four pillars: sustainable lives, sustainable communities, sustainable markets, and sustainable growth.
-      </p>
-    </section>
+        function closeOverlay() {
+          if (!isMenuOpen) return;
+          isMenuOpen = false;
+          overlay.classList.remove('active');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          for (var i = 0; i < panels.length; i++) panels[i].classList.remove('open');
 
-    <!-- SERVICES -->
-    <section class="services pad-xl">
-      <h1 class="section-title reveal">Our Services</h1>
-      <div class="focus" id="services-focus">
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>FPO MANAGEMENT & DEVELOPMENT</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>RESEARCH & STUDY</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>AGRIPRENEURSHIP</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>VALUE CHAIN DEVELOPMENT</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>MARKETING</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>INSTITUTION & CAPACITY BUILDING (IBCB)</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>MONITORING & EVALUATION</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>ORGANISATION</span>
-        <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.00016 10.8002L3.20016 8.00016L2.26683 8.9335L6.00016 12.6668L14.0002 4.66683L13.0668 3.7335L6.00016 10.8002Z"></path></svg>COMMUNICATION FOR DEVELOPMENT</span>
-      </div>
-      <div style="margin-top:1rem; text-align:center"><a class="btn" href="/getintouch" aria-label="Get in touch with SDS">Get in touch</a></div>
-    </section>
-  </div>
+          var hasPanels = document.querySelectorAll('.has-panel');
+          for (var j = 0; j < hasPanels.length; j++) hasPanels[j].classList.remove('expanded');
 
-  <!-- JS: load fade, reveal, services chip animation -->
-  <script>
-    (function(){
-      const root = document.querySelector('#about-sds');
-      if(!root) return;
+          closeMobilePanel();
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open menu');
+        }
 
-      window.addEventListener('load', ()=> root.classList.add('loaded'));
+        function toggleMenu() { isMenuOpen ? closeOverlay() : openOverlay(); }
 
-      // Intersection-based reveals
-      const reveals = root.querySelectorAll('.reveal, .from-left');
-      const staggers = root.querySelectorAll('.stagger');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-            io.unobserve(e.target);
+        hamburger.addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
+        hamburger.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); toggleMenu(); }
+        });
+
+        overlayClose.addEventListener('click', closeOverlay);
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) closeOverlay(); });
+
+        var headerEl = document.querySelector('.header');
+        if (headerEl) {
+          headerEl.addEventListener('click', function (e) {
+            if (isMenuOpen && !e.target.closest('#hamburger')) closeOverlay();
+          });
+        }
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && isMenuOpen) {
+            if (mobilePanel.classList.contains('open')) closeMobilePanel();
+            else closeOverlay();
           }
         });
-      }, {rootMargin:'-10% 0px -10% 0px', threshold:.1});
-      reveals.forEach(el=>io.observe(el));
-      staggers.forEach(el=>io.observe(el));
 
-      // Services chips: cascade in-view
-      const chipIO = new IntersectionObserver((entries)=>{
-        entries.forEach((e,i)=>{
-          if(e.isIntersecting){
-            const chips = e.target.querySelectorAll('span');
-            chips.forEach((c,idx)=>{
-              c.style.transitionDelay = (idx*60)+'ms';
-              c.classList.add('in');
-            });
-            chipIO.unobserve(e.target);
+        function openMobilePanel() {
+          mainMenu.style.visibility = 'hidden';
+          mobilePanel.setAttribute('aria-hidden', 'false');
+          mobilePanel.classList.add('open');
+        }
+
+        mainMenu.addEventListener('click', function (e) {
+          var btn = e.target.closest('.link-btn');
+          if (!btn) return;
+          e.preventDefault();
+
+          var li = btn.closest('.has-panel');
+          if (!li) return;
+
+          var panelId = (li.dataset && li.dataset.panel) ? li.dataset.panel : '';
+          var title = (li.dataset && li.dataset.title) ? li.dataset.title : '';
+          var panel = panelId ? document.getElementById(panelId) : null;
+
+          if (mqMobile.matches) {
+            if (!panel) return;
+
+            var ul = panel.querySelector('ul');
+            var list = ul ? ul.cloneNode(true) : null;
+
+            var head = '<div class="mp-head"><div class="mp-title">' + title +
+              '</div><button class="mp-back" type="button" aria-label="Back">&larr; Back</button></div>';
+
+            mobilePanel.innerHTML = head;
+            if (list) { list.classList.add('mp-list'); mobilePanel.appendChild(list); }
+            openMobilePanel();
+          } else {
+            for (var i = 0; i < panels.length; i++) panels[i].classList.remove('open');
+
+            var all = document.querySelectorAll('.has-panel');
+            for (var j = 0; j < all.length; j++) all[j].classList.remove('expanded');
+
+            if (panel) { panel.classList.add('open'); li.classList.add('expanded'); }
           }
-        })
-      }, {threshold:.1});
-      const services = root.querySelector('#services-focus');
-      if(services) chipIO.observe(services);
-    })();
-  </script>
-</section>
+        });
 
+        overlay.addEventListener('click', function (e) {
+          var a = e.target.closest('a');
+          if (a && !a.closest('.has-panel')) closeOverlay();
+        });
 
+        mobilePanel.addEventListener('click', function (e) {
+          var back = e.target.closest('.mp-back');
+          if (back) { e.preventDefault(); closeMobilePanel(); }
+        });
 
+        function onMqChange() {
+          closeMobilePanel();
+          for (var i = 0; i < panels.length; i++) panels[i].classList.remove('open');
+        }
 
-        <!-- existing webpage content -->
-    </main>
+        if (mqMobile.addEventListener) mqMobile.addEventListener('change', onMqChange);
+        else if (mqMobile.addListener) mqMobile.addListener(onMqChange);
+      })();
+    </script>
 
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var header = document.querySelector('#sds-navigation .header');
+        function syncHeaderHeight() {
+          if (!header) return;
+          var h = Math.round(header.getBoundingClientRect().height);
+          root.style.setProperty('--header-h', h + 'px');
+        }
+        syncHeaderHeight();
+        window.addEventListener('resize', syncHeaderHeight);
+        window.addEventListener('load', syncHeaderHeight);
+      })();
+    </script>
+  </section>
 
-    <!-- SDG Carousel Section -->
-<section id="sdg-tiles-carousel" aria-label="SDS's Commitment to the SDGs">
-  <style>
-    /* ===== Tokens ===== */
-    #sdg-tiles-carousel{
-      --bg:#ffffff;            /* section background (requested white) */
-      --ink:#0b1220;
-      --muted:#475569;
-      --shadow:0 14px 40px rgba(2,6,23,.08);
-      --radius:16px;
-      --gap:16px;
-      --slide-time:5200ms;     /* autoplay timing */
-      --elev:0 8px 24px rgba(2,6,23,.06);
-      background:var(--bg);
-      color:var(--ink);
-      padding:clamp(20px,3vw,48px) 0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-    #sdg-tiles-carousel *{box-sizing:border-box}
+  <!-- ===================== ABOUT PAGE (UPDATED FIXES + WebView-safe JS + Services links) ===================== -->
+  <section id="about-sds" aria-label="About SDS">
+    <style>
+      #about-sds {
+        --bg: #ffffff;
+        --ink: #0b1220;
+        --muted: #475569;
+        --border: rgba(2, 6, 23, .14);
+        --shadow: 0 18px 60px rgba(2, 6, 23, .10);
+        --shadow-soft: 0 12px 36px rgba(2, 6, 23, .08);
+        --radius: 18px;
+        --container: min(1120px, 92vw);
 
-    /* UN goal palette */
-    #sdg-tiles-carousel{
-      --sdg-1:#E5243B; --sdg-2:#DDA63A; --sdg-5:#FF3A21;
-      --sdg-10:#DD1367; --sdg-12:#BF8B2E; --sdg-15:#56C02B; --sdg-16:#00689D;
-    }
+        --accent: #38bdf8;
+        --accent-rgb: 56 189 248;
 
-    /* ===== Container & Header ===== */
-    #sdg-tiles-carousel .container{width:min(1120px,92vw);margin:0 auto}
-
-    #sdg-tiles-carousel .header{
-      text-align:center;
-      margin:0 auto clamp(16px,2.2vw,24px);
-      animation:fadeIn .6s ease both;
-    }
-    /* More responsive heading + accent underline */
-#sdg-tiles-carousel .header h2{
-  margin: 0 auto 10px;   /* centers block elements */
-  font-weight: 800;
-  line-height: 1.08;
-  text-wrap: balance;
-  font-size: clamp(22px, 5vw, 40px);
-  position: relative;
-  display: block;         /* was inline-block */
-  text-align: center;     /* keeps text centered inside */
-}
-
-    #sdg-tiles-carousel .header h2::after{
-      content:"";
-      position:absolute; left:50%; transform:translateX(-50%);
-      bottom:-8px; width:clamp(80px,20vw,220px); height:4px;
-      border-radius:999px;
-      background:linear-gradient(90deg,#0b1220,#0b1220);
-      opacity:.12;
-    }
-    #sdg-tiles-carousel .header p{
-      margin:12px auto 0;
-      max-width:75ch;
-      color:var(--muted);
-      font-size:clamp(14px,2.2vw,16px);
-    }
-
-    /* ===== Carousel frame ===== */
-    #sdg-tiles-carousel .frame{
-      position:relative;
-      padding:clamp(10px,1.8vw,16px);
-      border-radius:calc(var(--radius) + 6px);
-      box-shadow:var(--shadow);
-      background:#fff; /* white inner background too */
-      overflow:hidden;
-    }
-
-    /* Arrows */
-    #sdg-tiles-carousel .controls{
-      position:absolute; inset:0;
-      display:flex; justify-content:space-between; align-items:center;
-      pointer-events:none; padding:clamp(2px,1vw,12px);
-    }
-    #sdg-tiles-carousel .control{
-      pointer-events:auto; width:44px; height:44px; border-radius:999px;
-      background:#ffffff; border:1px solid #e2e8f0; display:grid; place-items:center;
-      box-shadow:0 10px 24px rgba(2,6,23,.10);
-      cursor:pointer; transition:transform .15s ease, background .2s ease;
-    }
-    #sdg-tiles-carousel .control:hover{transform:scale(1.06)}
-    #sdg-tiles-carousel .control:active{transform:scale(.96)}
-    #sdg-tiles-carousel .control svg{width:20px; height:20px; fill:#0f172a}
-    #sdg-tiles-carousel .control:focus-visible{outline:2px solid #0f172a; outline-offset:2px}
-
-    /* ===== Track (multi-slide layout) ===== */
-    #sdg-tiles-carousel .track{
-      display:flex; gap:var(--gap);
-      will-change:transform;
-      transition:transform .55s cubic-bezier(.2,.8,.2,1);
-      touch-action:pan-y;
-    }
-      
-
-    /* Slides (UN tile style) */
-    #sdg-tiles-carousel .card{
-      flex:0 0 auto; width:100%; /* JS sets exact width */
-      border-radius:var(--radius); overflow:hidden; background:#fff;
-      border:1px solid #e5e7eb; display:grid; grid-template-rows:auto auto;
-      box-shadow:0 4px 18px rgba(2,6,23,.05);
-      transform:translateY(6px); opacity:0; animation:cardIn .5s .05s both;
-    }
-    #sdg-tiles-carousel .card:nth-child(2){animation-delay:.1s}
-    #sdg-tiles-carousel .card:nth-child(3){animation-delay:.15s}
-    #sdg-tiles-carousel .card:nth-child(4){animation-delay:.2s}
-
-    /* Subtle lift on hover */
-    #sdg-tiles-carousel .card:hover{transform:translateY(0); box-shadow:var(--elev)}
-
-    /* Progress for the first visible tile */
-    #sdg-tiles-carousel .progress{height:3px; width:0%; background:rgba(0,0,0,.12)}
-    #sdg-tiles-carousel .card.active .progress{animation:sdgTileProgress var(--slide-time) linear forwards}
-
-    /* Tile (colored square) */
-    #sdg-tiles-carousel .tile{
-      position:relative; display:grid; place-items:center;
-      aspect-ratio:1/1; background:#eee; overflow:hidden;
-    }
-    #sdg-tiles-carousel .card[data-goal="1"] .tile{background:var(--sdg-1)}
-    #sdg-tiles-carousel .card[data-goal="2"] .tile{background:var(--sdg-2)}
-    #sdg-tiles-carousel .card[data-goal="5"] .tile{background:var(--sdg-5)}
-    #sdg-tiles-carousel .card[data-goal="10"] .tile{background:var(--sdg-10)}
-    #sdg-tiles-carousel .card[data-goal="12"] .tile{background:var(--sdg-12)}
-    #sdg-tiles-carousel .card[data-goal="15"] .tile{background:var(--sdg-15)}
-    #sdg-tiles-carousel .card[data-goal="16"] .tile{background:var(--sdg-16)}
-
-    .badge{
-      position:absolute; top:10px; left:10px;
-      background:rgba(255,255,255,.95); color:#0b1220; font-weight:800;
-      font-size:14px; letter-spacing:.5px; border-radius:8px; padding:2px 8px;
-      box-shadow:0 6px 16px rgba(0,0,0,.12);
-      animation:popIn .35s ease both;
-    }
-    .icon{
-      width:64%; max-height:64%; object-fit:contain;
-      filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));
-      animation:floatY 4.5s ease-in-out infinite;
-    }
-
-    /* Meta text */
-    .meta{padding:14px 14px 16px; display:grid; gap:6px; background:#fff}
-    .meta h3{margin:0; font-size:clamp(14px,2vw,16px); letter-spacing:.2px; text-transform:uppercase}
-    .meta p{margin:0; color:var(--muted); font-size:14px; line-height:1.5}
-
-    /* Dots */
-    .dots{display:flex; justify-content:center; gap:8px; padding:14px 6px 0}
-    .dot{width:8px; height:8px; border-radius:999px; border:1px solid #cbd5e1;
-      background:#e2e8f0; cursor:pointer; transition:transform .18s, background .18s, border-color .18s}
-    .dot:hover{transform:scale(1.15)}
-    .dot.active{background:#0f172a; border-color:#0f172a}
-    .dot:focus-visible{outline:2px solid #0f172a; outline-offset:2px}
-
-    /* Animations */
-    @keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
-    @keyframes cardIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(6px)}}
-    @keyframes popIn{from{opacity:0; transform:scale(.92)} to{opacity:1; transform:scale(1)}}
-    @keyframes floatY{0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)}}
-    @keyframes sdgTileProgress{from{width:0%} to{width:100%}}
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion:reduce){
-      .icon,.card,.header,.badge{animation:none !important}
-      .track{transition:none}
-    }
-        .header h2 {
-    text-align: center;   /* Centers the text inside the h2 */
-  }
-  </style>
-
-  <div class="container">
-    <div class="header">
-      <h2>SDS’s Commitment to the SDGs</h2>
-      
-    </div>
-
-    <div class="frame" role="region" aria-roledescription="carousel" aria-label="SDG goals carousel">
-      <!-- Controls -->
-      <div class="controls" aria-hidden="false">
-        <button class="control prev" type="button" aria-label="Previous">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-        </button>
-        <button class="control next" type="button" aria-label="Next">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L12.17 12z"/></svg>
-        </button>
-      </div>
-
-      <!-- Track -->
-      <div class="track" role="listbox" aria-live="polite">
-        <!-- SDG 1 -->
-        <article class="card active" data-goal="1" role="option" aria-label="SDG 1 No Poverty">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 1</span>
-            <img class="icon" loading="eager"
-                 src="https://upload.wikimedia.org/wikipedia/commons/5/50/Sustainable_Development_Goal_01NoPoverty.svg"
-                 alt="SDG 1 - No Poverty icon">
-          </div>
-          <div class="meta">
-            <h3>No Poverty</h3>
-            <p>Stabilizing incomes for 1+ lakh households via inputs and market linkages.</p>
-          </div>
-        </article>
-
-        <!-- SDG 2 -->
-        <article class="card" data-goal="2" role="option" aria-label="SDG 2 Zero Hunger">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 2</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg"
-                 alt="SDG 2 - Zero Hunger icon">
-          </div>
-          <div class="meta">
-            <h3>Zero Hunger</h3>
-            <p>Food security through diversified production and last-mile extension.</p>
-          </div>
-        </article>
-
-        <!-- SDG 5 -->
-        <article class="card" data-goal="5" role="option" aria-label="SDG 5 Gender Equality">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 5</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Sustainable_Development_Goal_05GenderEquality.svg"
-                 alt="SDG 5 - Gender Equality icon">
-          </div>
-          <div class="meta">
-            <h3>Gender Equality</h3>
-            <p>Women-led FPCs and SHGs driving enterprise and assets in rural markets.</p>
-          </div>
-        </article>
-
-        <!-- SDG 10 -->
-        <article class="card" data-goal="10" role="option" aria-label="SDG 10 Reduced Inequalities">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 10</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg"
-                 alt="SDG 10 - Reduced Inequalities icon">
-          </div>
-          <div class="meta">
-            <h3>Reduced Inequalities</h3>
-            <p>Inclusive institutions and services bridging rural opportunity gaps.</p>
-          </div>
-        </article>
-
-        <!-- SDG 12 -->
-        <article class="card" data-goal="12" role="option" aria-label="SDG 12 Responsible Consumption and Production">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 12</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg"
-                 alt="SDG 12 - Responsible Consumption and Production icon">
-          </div>
-          <div class="meta">
-            <h3>Responsible Consumption</h3>
-            <p>Scaling climate-smart production and local processing with FPOs.</p>
-          </div>
-        </article>
-
-        <!-- SDG 15 -->
-        <article class="card" data-goal="15" role="option" aria-label="SDG 15 Life on Land">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 15</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg"
-                 alt="SDG 15 - Life on Land icon">
-          </div>
-          <div class="meta">
-            <h3>Life on Land</h3>
-            <p>Soil-water stewardship, agro-forestry and biodiversity mainstreaming.</p>
-          </div>
-        </article>
-
-        <!-- SDG 16 -->
-        <article class="card" data-goal="16" role="option" aria-label="SDG 16 Peace, Justice and Strong Institutions">
-          <div class="progress"></div>
-          <div class="tile">
-            <span class="badge">GOAL 16</span>
-            <img class="icon" loading="lazy"
-                 src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg"
-                 alt="SDG 16 - Peace, Justice and Strong Institutions icon">
-          </div>
-          <div class="meta">
-            <h3>Strong Institutions</h3>
-            <p>Community institutions (SHGs/VOs/FPCs) delivering accountable services.</p>
-          </div>
-        </article>
-      </div>
-
-      <!-- Dots -->
-      <div class="dots" aria-label="Slide navigation"></div>
-    </div>
-  </div>
-
-  <script>
-    (() => {
-      const root   = document.querySelector('#sdg-tiles-carousel');
-      const frame  = root.querySelector('.frame');
-      const track  = root.querySelector('.track');
-      const cards  = Array.from(root.querySelectorAll('.card'));
-      const prev   = root.querySelector('.prev');
-      const next   = root.querySelector('.next');
-      const dotsEl = root.querySelector('.dots');
-
-      let index = 0;
-      let perView = 1;
-      let timer = null;
-      const SLIDE_MS = parseInt(getComputedStyle(root).getPropertyValue('--slide-time')) || 5200;
-
-      /* Pages are groups of "perView" cards */
-      function pagesCount(){ return Math.max(1, Math.ceil(cards.length / perView)); }
-      function computePerView(){
-        if (window.innerWidth >= 1200) return 4;
-        if (window.innerWidth >= 992)  return 3;
-        if (window.innerWidth >= 640)  return 2;
-        return 1;
+        background:
+          radial-gradient(900px 420px at 12% 3%, rgba(56,189,248,.08), transparent 60%),
+          radial-gradient(900px 520px at 88% 18%, rgba(56,189,248,.06), transparent 62%),
+          radial-gradient(1000px 560px at 50% 100%, rgba(56,189,248,.08), transparent 62%),
+          #ffffff;
+        color: var(--ink);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
       }
 
-      function layout(){
-        perView = computePerView();
-        const gap = parseFloat(getComputedStyle(track).gap) || 0;
-        const cardWidth = (frame.clientWidth - gap * (perView - 1)) / perView;
-        cards.forEach(c => c.style.width = cardWidth + 'px');
-        renderDots();
-        goToPage(Math.min(getCurrentPage(), pagesCount()-1), false);
+      #about-sds * { box-sizing: border-box; }
+
+      #about-sds .container {
+        width: var(--container);
+        margin-inline: auto;
+        position: relative;
+        z-index: 1;
       }
 
-      function getCurrentPage(){ return Math.floor(index / perView); }
-      function goToPage(p, animate=true){
-        const pg = Math.max(0, Math.min(p, pagesCount()-1));
-        index = pg * perView;
-        translate(animate);
-        setActive();
-        resetAutoplay();
+      #about-sds .pad-xl { padding: clamp(2.2rem, 4vw, 4.4rem) 0; }
+      #about-sds .gap-lg { display: grid; gap: clamp(1.25rem, 2.4vw, 2rem); }
+
+      /* reveal utility */
+      #about-sds .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 900ms cubic-bezier(.2, .8, .2, 1), transform 900ms cubic-bezier(.2, .8, .2, 1);
+        will-change: opacity, transform;
       }
 
-      function translate(animate){
-        const first = cards[0];
-        const cardW = first.getBoundingClientRect().width;
-        const gap = parseFloat(getComputedStyle(track).gap) || 0;
-        const offset = index * (cardW + gap);
-        track.style.transitionDuration = animate ? '.55s' : '0s';
-        track.style.transform = `translateX(${-offset}px)`;
+      #about-sds .reveal.in { opacity: 1; transform: translateY(0); }
+
+      /* ===== HERO ===== */
+      #about-sds .hero {
+        position: relative;
+        height: 100svh;
+        min-height: 560px;
+        padding-top: var(--header-h, 90px);
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+        margin: 0;
       }
 
-      function setActive(){
-        cards.forEach((c,i)=> c.classList.toggle('active', i === index));
-        const pg = getCurrentPage();
-        Array.from(dotsEl.children).forEach((d,i)=> d.classList.toggle('active', i===pg));
+      #about-sds .hero .bg { position: absolute; inset: 0; background: #000; }
+
+      #about-sds .hero .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform: scale(1.03);
+        transition: filter 2200ms cubic-bezier(.2, .8, .2, 1), transform 2200ms cubic-bezier(.2, .8, .2, 1);
+        will-change: filter, transform;
       }
 
-      function renderDots(){
-        const count = pagesCount();
-        dotsEl.innerHTML = '';
-        for(let i=0;i<count;i++){
-          const dot = document.createElement('button');
-          dot.className = 'dot' + (i===getCurrentPage()?' active':'');
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Go to page ${i+1}`);
-          dot.addEventListener('click', ()=> goToPage(i));
-          dotsEl.appendChild(dot);
+      #about-sds .hero .bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, .52);
+      }
+
+      #about-sds .hero .overlay {
+        position: relative;
+        z-index: 1;
+        width: var(--container);
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        padding-inline: clamp(8px, 1vw, 14px);
+      }
+
+      #about-sds .hero .overlay .left {
+        max-width: 760px;
+        margin-left: clamp(6px, 1.2vw, 18px);
+      }
+
+      #about-sds .hero .title-wrap, #about-sds .lead-box { width: 100%; max-width: 760px; }
+
+      #about-sds .hero .title-wrap {
+        padding: clamp(14px, 2.2vw, 22px) clamp(14px, 2.2vw, 24px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .18);
+        background: rgba(15, 23, 42, .24);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, .22);
+        position: relative;
+      }
+
+      #about-sds .title-xl {
+        font-weight: 900;
+        font-family: Anton, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-size: clamp(2.0rem, 3.2vw + 1rem, 4rem);
+        margin: 0;
+        color: #fff;
+        letter-spacing: .02em;
+        line-height: 1.22;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      }
+
+      #about-sds .lead-box {
+        margin-top: 14px;
+        padding: clamp(14px, 2.2vw, 18px) clamp(14px, 2.2vw, 24px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .16);
+        background: rgba(15, 23, 42, .18);
+        box-shadow: 0 14px 44px rgba(0, 0, 0, .18);
+        position: relative;
+      }
+
+      #about-sds .lead-box::before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(255, 255, 255, .10);
+        border-radius: 14px;
+        pointer-events: none;
+      }
+
+      #about-sds .lead {
+        color: rgba(255, 255, 255, .92);
+        font-size: clamp(1rem, .6vw + .95rem, 1.15rem);
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      #about-sds .hero .left>* {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 1700ms cubic-bezier(.2, .8, .2, 1), transform 1700ms cubic-bezier(.2, .8, .2, 1);
+        will-change: opacity, transform;
+      }
+
+      #about-sds .hero.text-in .left>* { opacity: 1; transform: translateY(0); }
+      #about-sds .hero.text-in .left .title-wrap { transition-delay: 220ms; }
+      #about-sds .hero.text-in .left .lead-box { transition-delay: 720ms; }
+
+      #about-sds .hero.is-ready .bg img {
+        filter: brightness(.88) contrast(1.06) saturate(.95);
+        transform: scale(1.03);
+      }
+
+      #about-sds .hero:not(.is-ready) .bg img {
+        filter: blur(14px) brightness(.70) contrast(1.02) saturate(.92);
+        transform: scale(1.08);
+      }
+
+      @media (max-width: 900px) {
+        #about-sds .hero { min-height: 520px; }
+        #about-sds .hero .overlay .left { margin-left: 0; max-width: 92vw; }
+        #about-sds .hero .bg::after { background: rgba(0, 0, 0, .56); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #about-sds .hero .bg img,
+        #about-sds .hero .left>*,
+        #about-sds .reveal {
+          transition: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+          filter: none !important;
         }
       }
 
-      function nextPage(){ goToPage((getCurrentPage()+1)%pagesCount()); }
-      function prevPage(){ goToPage((getCurrentPage()-1+pagesCount())%pagesCount()); }
+      /* ===========================================================
+         FEATURE PANELS (FULLSCREEN, IMAGE IS THE BACKGROUND, NO GAP WITH HERO)
+         =========================================================== */
+      #about-sds .feature-panels {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        display: grid;
+        gap: 0;
+        margin-top: -1px;
+      }
 
-      /* Autoplay: automatic sliding carousel */
-      function startAutoplay(){ stopAutoplay(); timer = setInterval(nextPage, SLIDE_MS); }
-      function stopAutoplay(){ if(timer){ clearInterval(timer); timer=null; } }
-      function resetAutoplay(){ startAutoplay(); }
+      #about-sds .panel {
+        position: relative;
+        min-height: 100svh;
+        height: 100svh;
+        border-radius: 0;
+        overflow: hidden;
+        border: 0;
+        box-shadow: none;
+        background: #000;
+        isolation: isolate;
+      }
 
-      // Pause on hover/focus for usability
-      frame.addEventListener('mouseenter', stopAutoplay);
-      frame.addEventListener('mouseleave', startAutoplay);
-      frame.addEventListener('focusin', stopAutoplay);
-      frame.addEventListener('focusout', startAutoplay);
+      #about-sds .panel + .panel { margin-top: -1px; }
+      #about-sds .panel .p-bg { position: absolute; inset: 0; background: #000; }
 
-      // Touch swipe
-      let startX=0, dx=0, swiping=false;
-      track.addEventListener('touchstart', (e)=>{ startX=e.touches[0].clientX; dx=0; swiping=true; stopAutoplay(); }, {passive:true});
-      track.addEventListener('touchmove',  (e)=>{ if(!swiping) return; dx=e.touches[0].clientX-startX; }, {passive:true});
-      track.addEventListener('touchend',   ()=>{ if(Math.abs(dx)>50){ dx<0 ? nextPage() : prevPage(); } swiping=false; startAutoplay(); });
+      #about-sds .panel .p-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform: none;
+        filter: none;
+        background: transparent;
+      }
 
-      // Keyboard controls
-      frame.tabIndex = 0;
-      frame.addEventListener('keydown', (e)=>{
-        if(e.key==='ArrowRight'){ e.preventDefault(); nextPage(); }
-        if(e.key==='ArrowLeft'){  e.preventDefault(); prevPage(); }
-      });
+      #about-sds .panel .p-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, .52);
+      }
 
-      // Buttons
-      next.addEventListener('click', nextPage);
-      prev.addEventListener('click', prevPage);
+      #about-sds .feature-panels .panel:nth-child(2) .p-bg img { object-position: center 22%; }
 
-      // Init
-      layout(); setActive(); startAutoplay();
-      window.addEventListener('resize', ()=> requestAnimationFrame(layout));
-    })();
-  </script>
-</section>
+      @media (max-width: 900px) {
+        #about-sds .feature-panels .panel:nth-child(2) .p-bg img { object-position: center 18%; }
+      }
+
+      #about-sds .panel .p-inner {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: grid;
+        align-items: center;
+        padding: clamp(18px, 3vw, 44px);
+      }
+
+      #about-sds .panel .p-box {
+        max-width: 760px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, .16);
+        background: rgba(15, 23, 42, .18);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, .22);
+        padding: clamp(14px, 2.2vw, 22px) clamp(14px, 2.2vw, 24px);
+        position: relative;
+      }
+
+      #about-sds .panel .p-box::before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(255, 255, 255, .10);
+        border-radius: 14px;
+        pointer-events: none;
+      }
+
+      #about-sds .panel .p-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .14em;
+        font-size: 12px;
+        color: rgba(255, 255, 255, .92);
+      }
+
+      #about-sds .panel .p-kicker::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .82);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+      }
+
+      #about-sds .panel h3 {
+        margin: 10px 0 0;
+        font-size: clamp(1.4rem, 1.3vw + 1rem, 2.2rem);
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: .01em;
+        text-shadow: 0 10px 26px rgba(0, 0, 0, .35);
+        border: 0;
+      }
+
+      #about-sds .panel p {
+        margin: 10px 0 0;
+        color: rgba(255, 255, 255, .90);
+        line-height: 1.8;
+        font-size: clamp(15px, .55vw + .95rem, 17px);
+      }
+
+      @media (max-width: 980px) {
+        #about-sds .panel { min-height: 100svh; height: 100svh; }
+        #about-sds .panel .p-inner { padding: clamp(14px, 4.2vw, 26px); }
+      }
+
+      /* ===== SECTION WRAPS (MISSION/VISION/VALUES/STORY) ===== */
+      #about-sds .split,
+      #about-sds .statement {
+        border: 1px solid rgba(2, 6, 23, .14);
+        border-radius: calc(var(--radius) + 6px);
+        background: #ffffff;
+        box-shadow: 0 16px 52px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .05);
+        overflow: hidden;
+        position: relative;
+      }
+
+      @media (min-width: 981px) {
+        #about-sds .split {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0;
+          padding: 18px 18px 22px;
+        }
+
+        #about-sds .split.alt { grid-template-columns: 1fr; }
+        #about-sds .split .content {
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        #about-sds .split .content>* { width: 100%; }
+      }
+
+      /* Mobile base */
+      #about-sds .split {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 14px;
+      }
+
+      #about-sds .split .image { display: none !important; }
+
+      /* ===== heading box (no underline) ===== */
+      #about-sds .sec-headbox {
+        border-radius: 18px;
+        padding: 14px 16px;
+        border: 1px solid rgba(2, 6, 23, .14);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
+        box-shadow: 0 18px 60px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92);
+        transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #about-sds .sec-headbox::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(420px 120px at 14% 14%, rgba(56,189,248,.14), transparent 62%),
+          radial-gradient(420px 120px at 86% 86%, rgba(56,189,248,.10), transparent 62%);
+        pointer-events: none;
+        opacity: .9;
+      }
+
+     #about-sds .sec-headbox::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+
+  /* SAME background as the box */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.92),
+    rgba(255,255,255,.80)
+  );
+
+  /* subtle 3D depth instead of color */
+  box-shadow:
+    inset -1px 0 0 rgba(255,255,255,.6),
+    inset -4px 0 10px rgba(0,0,0,.08);
+
+  pointer-events: none;
+}
+
+      #about-sds .sec-headbox:hover {
+        transform: translateY(-3px);
+        border-color: rgba(var(--accent-rgb) / .28);
+        filter: saturate(1.03);
+        box-shadow: 0 26px 76px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92);
+      }
+
+      #about-sds .section-title {
+        margin: 0;
+        font-weight: 900;
+        font-size: clamp(18px, 2.2vw, 24px);
+        letter-spacing: .02em;
+        color: #0b1220;
+        text-shadow: 0 10px 24px rgba(2, 6, 23, .08);
+        border: 0;
+      }
+
+      /* ===== body box (background texture uses --bgimg) ===== */
+      #about-sds .sec-bodybox {
+        position: relative;
+        border-radius: 18px;
+        padding: 16px 16px 18px;
+        border: 1px solid rgba(2, 6, 23, .12);
+        background: rgba(255, 255, 255, .92);
+        box-shadow: 0 16px 52px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .05);
+        overflow: hidden;
+        transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease;
+      }
+
+      #about-sds .sec-bodybox::before{
+        content:"";
+        position:absolute;
+        inset:-20px;
+        background-image: var(--bgimg);
+        background-size: 160px;
+        background-repeat: repeat;
+        background-position: center;
+        opacity: .12;
+        filter: grayscale(.10) contrast(1.05);
+        pointer-events:none;
+      }
+
+      #about-sds .sec-bodybox::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background: rgba(255,255,255,.55);
+        pointer-events:none;
+      }
+
+      #about-sds .sec-bodybox:hover {
+        transform: translateY(-3px);
+        border-color: rgba(var(--accent-rgb) / .22);
+        box-shadow: 0 24px 72px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .05);
+      }
+
+      #about-sds .sec-bodybox p {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        color: rgba(15, 23, 42, .82);
+        line-height: 1.85;
+        font-size: 16px;
+        white-space: normal;
+        text-align: justify;
+        hyphens: auto;
+        word-break: normal;
+      }
+
+      #about-sds #mission .sec-bodybox { --bgimg: url("static/Images/mission.png"); }
+      #about-sds #vision  .sec-bodybox { --bgimg: url("static/Images/VISION.png"); }
+      #about-sds #values  .sec-bodybox { --bgimg: url("static/Images/values.png"); }
+      #about-sds #story   .sec-bodybox { --bgimg: url("static/Images/mission.png"); }
+
+      /* ===== Mobile Accordion Buttons (Mission/Vision/Values/Story) ===== */
+      @media (max-width: 980px) {
+        #about-sds .section-title { position: relative; }
+
+        #about-sds .section-title .acc-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 14px 16px;
+          border-radius: 16px;
+          background:
+            linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82));
+          border: 1px solid rgba(2, 6, 23, .14);
+          cursor: pointer;
+          text-align: left;
+          box-shadow: 0 12px 30px rgba(2, 6, 23, .10),
+            inset 0 2px 0 rgba(255, 255, 255, .92),
+            inset 0 -3px 0 rgba(2, 6, 23, .06);
+          transition: transform .18s ease, box-shadow .25s ease, border-color .25s ease;
+          -webkit-tap-highlight-color: transparent;
+          position: relative;
+          overflow: hidden;
+        }
+
+       
+
+        #about-sds .acc-label {
+          font-weight: 900;
+          color: #0b1220;
+          letter-spacing: .01em;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        #about-sds .acc-ico {
+          width: 40px;
+          height: 40px;
+          border-radius: 999px;
+          display: grid;
+          place-items: center;
+          background: rgba(255, 255, 255, .92);
+          border: 1px solid rgba(2, 6, 23, .12);
+          box-shadow: inset 0 2px 0 rgba(255, 255, 255, .92);
+          transition: transform .25s ease;
+          flex: 0 0 auto;
+        }
+
+        #about-sds .acc-ico svg { width: 18px; height: 18px; fill: #0b1220; transition: transform .25s ease; }
+        #about-sds .acc-open .acc-ico svg { transform: rotate(180deg); }
+
+        #about-sds .acc-panel {
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: max-height .75s cubic-bezier(.2, .8, .2, 1),
+            opacity .35s ease,
+            transform .35s ease;
+          padding: 0 2px;
+          margin-top: 10px;
+        }
+
+        #about-sds .acc-panel.open { opacity: 1; transform: translateY(0); }
+
+        #about-sds .acc-inner {
+          border-radius: 16px;
+          background: rgba(255, 255, 255, .92);
+          border: 1px solid rgba(2, 6, 23, .12);
+          box-shadow: 0 14px 44px rgba(2, 6, 23, .10);
+          padding: 12px 12px 14px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        #about-sds .acc-inner::before{
+          content:"";
+          position:absolute;
+          inset:-20px;
+          background-image: var(--bgimg);
+          background-size: 160px;
+          background-repeat: repeat;
+          background-position: center;
+          opacity: .22;
+          filter: grayscale(.10) contrast(1.05);
+          pointer-events:none;
+        }
+
+        #about-sds .acc-inner::after{
+          content:"";
+          position:absolute;
+          inset:0;
+          background: rgba(255,255,255,.55);
+          pointer-events:none;
+        }
+
+        #about-sds .acc-inner p {
+          position: relative;
+          z-index: 1;
+          margin: 0;
+          color: rgba(15, 23, 42, .84);
+          line-height: 1.75;
+          font-size: 15px;
+          white-space: normal;
+          text-align: left;
+        }
+      }
+
+      /* ===== STORY box ===== */
+      #about-sds .statement {
+        padding: 16px;
+        display: grid;
+        gap: 14px;
+      }
+
+      #about-sds .statement .sec-headbox,
+      #about-sds .statement .sec-bodybox { margin: 0; width: 100%; }
+
+      /* ===========================================================
+         SERVICES (same layout; NEW colors/effects from this section onwards)
+         - Now services are LINK BOXES (no descriptions, no expand/collapse)
+         =========================================================== */
+
+      #about-sds .services {
+        padding-top: 0;
+        padding-bottom: clamp(1.2rem, 2.4vw, 1.8rem);
+        position: relative;
+        isolation: isolate;
+      }
+
+      #about-sds .services::before {
+        content: "";
+        position: absolute;
+        inset: -40px -18px;
+        background:
+          radial-gradient(900px 420px at 15% 10%, rgba(56,189,248,.10), transparent 60%),
+          radial-gradient(780px 380px at 85% 30%, rgba(58,106,97,.10), transparent 60%),
+          radial-gradient(900px 500px at 40% 90%, rgba(241,217,183,.22), transparent 62%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      #about-sds .services::after {
+        content: "";
+        position: absolute;
+        left: -18px; right: -18px;
+        bottom: -60px;
+        height: 220px;
+        background:
+          radial-gradient(900px 240px at 50% 90%, rgba(56,189,248,.10), transparent 66%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      #about-sds .services .services-title { text-align: center; margin: 0 auto 14px; position: relative; z-index: 1; }
+
+      #about-sds .services .services-title h1 {
+        margin: 0;
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
+        border: 1px solid rgba(2, 6, 23, .14);
+        box-shadow:
+          0 18px 60px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+        font-weight: 900;
+        letter-spacing: .02em;
+        color: #0b1220;
+        text-shadow: 0 10px 24px rgba(2, 6, 23, .08);
+        transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 0;
+      }
+
+      #about-sds .services .services-title h1::after {
+        content:"";
+        position:absolute;
+        inset:-2px;
+        background:
+          radial-gradient(520px 140px at 18% 12%, rgba(56,189,248,.18), transparent 60%),
+          radial-gradient(520px 140px at 82% 88%, rgba(56,189,248,.12), transparent 60%);
+        opacity: .9;
+        pointer-events:none;
+        mix-blend-mode: normal;
+      }
+
+      #about-sds .services .services-title h1:hover {
+        transform: translateY(-3px);
+        border-color: rgba(56,189,248,.32);
+        filter: saturate(1.04);
+        box-shadow:
+          0 26px 76px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+      }
+
+      @keyframes sds-float-1 { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-2px);} }
+      @media (prefers-reduced-motion: no-preference){
+        #about-sds .services .services-title h1 { animation: sds-float-1 4.6s ease-in-out infinite; }
+        #about-sds .services .services-title h1:hover { animation: none; }
+      }
+
+      #about-sds .svc-accordion {
+        margin-top: 16px;
+        display: grid;
+        gap: 12px;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+      }
+
+      #about-sds .svc-item {
+        border-radius: 18px;
+        border: 1px solid rgba(2, 6, 23, .14);
+        background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+        box-shadow: 0 14px 44px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .05);
+        overflow: hidden;
+        transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+        position: relative;
+      }
+
+      
+
+      #about-sds .svc-item::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        border-radius: 18px;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.85),
+          inset 0 -1px 0 rgba(2,6,23,.06);
+        pointer-events:none;
+      }
+
+      #about-sds .svc-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(56,189,248,.30);
+        filter: saturate(1.03);
+        box-shadow: 0 24px 72px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .05);
+      }
+
+      #about-sds .svc-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 16px 16px;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        text-align: left;
+        font-weight: 900;
+        letter-spacing: .02em;
+        color: #0b1220;
+        position: relative;
+        z-index: 2;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      #about-sds .svc-btn:focus-visible {
+        outline: 2px solid rgba(56,189,248,.85);
+        outline-offset: 2px;
+        border-radius: 14px;
+      }
+
+      #about-sds .svc-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+      }
+
+      #about-sds .svc-chip {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(2, 6, 23, .12);
+        background: linear-gradient(180deg, rgba(56,189,248,.18), rgba(56,189,248,.08));
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, .92);
+        flex: 0 0 auto;
+        transition: transform .25s ease;
+        color: #0b1220;
+      }
+
+      #about-sds .svc-chip i { font-size: 16px; line-height: 1; }
+
+      #about-sds .svc-item:hover .svc-chip { transform: scale(1.03); }
+
+     
+
+      #about-sds .svc-item:hover .svc-caret {
+        transform: translateX(3px);
+        border-color: rgba(56,189,248,.28);
+        background: linear-gradient(180deg, rgba(56,189,248,.12), rgba(255,255,255,.92));
+      }
+
+      #about-sds .svc-panel { display: none !important; }
+
+      #about-sds .services-cta {
+        display: flex;
+        justify-content: center;
+        padding: clamp(2.2rem, 3.5vw, 3rem) 0;
+        margin: 0;
+      }
+
+      #about-sds .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        background: linear-gradient(180deg, rgba(56,189,248,1), rgba(56,189,248,.86));
+        color: #fff;
+        border: 1px solid rgba(2, 6, 23, .12);
+        border-radius: 999px;
+        padding: .92rem 1.2rem;
+        font-weight: 900;
+        text-decoration: none;
+        box-shadow: 0 16px 46px rgba(56,189,248,.26);
+        transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .2s ease, filter .2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #about-sds .btn::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: radial-gradient(480px 140px at 20% 10%, rgba(255,255,255,.35), transparent 60%);
+        opacity: .75;
+        pointer-events: none;
+      }
+
+      #about-sds .btn:hover {
+        transform: translateY(-2px);
+        filter: saturate(1.05);
+        box-shadow: 0 22px 58px rgba(56,189,248,.32);
+      }
+
+      #about-sds .btn:active { transform: translateY(0); }
+
+      #about-sds .btn:focus-visible {
+        outline: 2px solid rgba(56,189,248,.85);
+        outline-offset: 3px;
+      }
+    </style>
+
+    <header class="hero" id="hero">
+      <div class="bg" aria-hidden="true">
+        <img src="static/Images/Photo.png" alt="Community collaboration across Northeast India">
+      </div>
+
+      <div class="overlay">
+        <div class="left">
+          <div class="title-wrap">
+            <h1 class="title-xl">Nurturing <br>Innovation,<br>Delivering Excellence</h1>
+          </div>
+          <div class="lead-box">
+            <p class="lead">We partner with governments, CSR agencies, FPOs, and enterprises to turn development goals into measurable outcomes—across Eastern and North-Eastern India.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- FEATURES -->
+    <section class="feature-panels" id="features" aria-label="Highlights">
+      <article class="panel reveal">
+        <div class="p-bg" aria-hidden="true">
+          <img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__69467.png" alt="Leadership">
+        </div>
+        <div class="p-inner">
+          <div class="p-box">
+            <div class="p-kicker">Leadership</div>
+            <h3>The People Leading The Way</h3>
+            <p>Building direction with clarity, accountability, and a strong bias for execution—so field realities translate into outcomes that last.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel reveal">
+        <div class="p-bg" aria-hidden="true">
+          <img src="static/Images/freepik__the-style-is-candid-image-photography-with-natural__95362.jpeg" alt="Community">
+        </div>
+        <div class="p-inner">
+          <div class="p-box">
+            <div class="p-kicker">Community</div>
+            <h3>Giving Back To Communities</h3>
+            <p>Staying close to the ground—partnering with communities to strengthen local institutions, improve livelihoods, and create shared value.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CONTENT AFTER PANELS -->
+    <div class="container pad-xl gap-lg">
+
+      <section class="split pad-xl reveal" id="mission">
+        <div class="content">
+          <div class="sec-headbox reveal">
+            <h2 class="section-title">Our Mission</h2>
+          </div>
+          <div class="sec-bodybox reveal">
+            <p>SDS’s mission is to provide enabling services to organisations or individuals to unlock potential to impact the lives of the rural poor and disadvantaged.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="split pad-xl reveal alt" id="vision">
+        <div class="content">
+          <div class="sec-headbox reveal">
+            <h2 class="section-title">Our Vision</h2>
+          </div>
+          <div class="sec-bodybox reveal">
+            <p>SDS aims to be a world-class development support organisation for rural livelihood promotion.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="split pad-xl reveal" id="values">
+        <div class="content">
+          <div class="sec-headbox reveal">
+            <h2 class="section-title">Our Values</h2>
+          </div>
+          <div class="sec-bodybox reveal">
+            <p>SDS believes in cultivating and ensuring a culture that embraces a striving for excellence, expertise and reaching out to people. It uses the following values as a base on which the organization is built. A value is an inherent universal need, important to life and living, and which people strive to meet. SDS espouses and attempts to uphold the values of: 1. Equity-Justness, fairness, and equality of rights and opportunities. Equity demands affirmative action towards the marginalized, disadvantaged and alienated. Such affirmative action will be reflected in SDS’s vision, mission, norms and policies. Integrity- Alignment in thought, word and action. It is also freedom from corruptive influence or motive. The staff of SDS will value commitments, not misappropriate, or knowingly misrepresent facts, and will maintain transparent and accountable systems and procedures. 2. Excellence- Being extremely good at something. 3. Trust- The expectation of the opportunity to function and to become, in a world that provides support and freedom. Firm belief in the reliability, truth, or ability of someone or something.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement reveal" id="story">
+        <div class="sec-headbox reveal">
+          <h2 class="section-title">Our Story</h2>
+        </div>
+        <div class="sec-bodybox reveal">
+          <p>Founded in 2013, Sesta Development Services (SDS) is among the leading firms delivering high-quality services in Research & Communication, Livelihoods, Value Chain & Skills, FPO Promotion, Organization Development, Climate Change, and Natural Resource Management. Over the past decade, we have supported Government bodies, CSR agencies, corporates, FPOs, and NGOs with tailored solutions for planning, implementation, and review of development programmes—anchored on four pillars: sustainable lives, sustainable communities, sustainable markets, and sustainable growth.</p>
+        </div>
+      </section>
+
+      <!-- SERVICES (Now link boxes) -->
+      <section class="services pad-xl">
+        <div class="services-title">
+          <h1 class="reveal">Our Services</h1>
+        </div>
+
+        <div class="focus" id="services-focus" style="display:none;">
+          <span>FPO MANAGEMENT & DEVELOPMENT</span>
+          <span>RESEARCH & STUDY</span>
+          <span>AGRIPRENEURSHIP</span>
+          <span>VALUE CHAIN DEVELOPMENT</span>
+          <span>MARKETING</span>
+          <span>INSTITUTION & CAPACITY BUILDING (IBCBC)</span>
+          <span>MONITORING & EVALUATION</span>
+          <span>ORGANIZATIONAL DEVELOPMENT</span>
+          <span>COMMUNICATION FOR DEVELOPMENT</span>
+        </div>
+
+        <div class="svc-accordion" id="svc-accordion" aria-label="Services links"></div>
+      </section>
+
+      <section class="services-cta">
+        <a class="btn" href="/getintouch" aria-label="Get in touch with SDS">
+          Get in touch
+        </a>
+      </section>
+
+    </div>
+
+    <!-- ABOUT JS (WebView-safe + fixes for mobile app view) -->
+    <script>
+      (function () {
+        var root = document.querySelector('#about-sds');
+        if (!root) return;
+
+        var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var hero = root.querySelector('.hero');
+        var heroImg = root.querySelector('.hero .bg img');
+
+        function startHeroSequence() {
+          if (!hero) return;
+          requestAnimationFrame(function () {
+            hero.classList.add('is-ready');
+            hero.classList.add('text-in');
+          });
+        }
+
+        if (hero && !prefersReduced) {
+          if (heroImg && !heroImg.complete) heroImg.addEventListener('load', startHeroSequence, { once: true });
+          else startHeroSequence();
+        } else if (hero && prefersReduced) {
+          hero.classList.add('is-ready');
+          hero.classList.add('text-in');
+        }
+
+        var reveals = root.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          for (var r = 0; r < reveals.length; r++) reveals[r].classList.add('in');
+        } else {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          }, { rootMargin: '-10% 0px -10% 0px', threshold: .12 });
+
+          for (var i = 0; i < reveals.length; i++) io.observe(reveals[i]);
+        }
+
+        var mqMobileAcc = window.matchMedia ? window.matchMedia('(max-width: 980px)') : { matches: false };
+
+        var chevronSVG =
+          '<span class="acc-ico" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24"><path d="M12 15.5 5.5 9l1.4-1.4L12 12.7l5.1-5.1L18.5 9z"/></svg>' +
+          '</span>';
+
+        function setPanelHeight(panel, open) {
+          if (!panel) return;
+          if (open) panel.style.maxHeight = panel.scrollHeight + 'px';
+          else panel.style.maxHeight = '0px';
+        }
+
+        function forceVisible(el) {
+          if (!el) return;
+          el.classList.remove('reveal');
+          el.classList.add('in');
+          el.style.opacity = '';
+          el.style.transform = '';
+        }
+
+        function getComputedBgImgFromBodyBox(section) {
+          var body = section.querySelector('.sec-bodybox');
+          if (!body) return '';
+          var bg = '';
+          try {
+            bg = getComputedStyle(body).getPropertyValue('--bgimg');
+          } catch (e) { bg = ''; }
+          return (bg || '').trim();
+        }
+
+        function makeMobileAccordion(section) {
+  if (!mqMobileAcc.matches) return;
+
+  var titleEl = section.querySelector('.section-title');
+  if (!titleEl || titleEl.querySelector('.acc-btn')) return;
+
+  var labelText = (titleEl.textContent || '').trim();
+  titleEl.textContent = '';
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'acc-btn';
+  btn.setAttribute('aria-expanded', 'false');
+
+  var label = document.createElement('span');
+  label.className = 'acc-label';
+  label.textContent = labelText;
+
+  btn.appendChild(label);
+  btn.insertAdjacentHTML('beforeend', chevronSVG);
+  titleEl.appendChild(btn);
+
+  var body = section.querySelector('.sec-bodybox');
+  var p = body ? body.querySelector('p') : section.querySelector('.content p');
+
+  var panel = document.createElement('div');
+  panel.className = 'acc-panel';
+  panel.style.maxHeight = '0px';
+
+  var inner = document.createElement('div');
+  inner.className = 'acc-inner';
+
+  var bg = getComputedBgImgFromBodyBox(section);
+  if (bg) inner.style.setProperty('--bgimg', bg);
+
+  if (p) { forceVisible(p); inner.appendChild(p); }
+
+  panel.appendChild(inner);
+
+  var content = section.querySelector('.content');
+  if (content) {
+    var bodyBox = content.querySelector('.sec-bodybox');
+
+    /* ✅ DON'T hide headBox (it contains the new button) */
+    /* ✅ Only hide the body box (we moved its <p> into accordion panel) */
+    if (bodyBox) bodyBox.style.display = 'none';
+
+    content.appendChild(panel);
+  }
+
+  function open() {
+    section.classList.add('acc-open');
+    btn.setAttribute('aria-expanded', 'true');
+    panel.classList.add('open');
+    setPanelHeight(panel, true);
+  }
+
+  function close() {
+    section.classList.remove('acc-open');
+    btn.setAttribute('aria-expanded', 'false');
+    panel.classList.remove('open');
+    setPanelHeight(panel, false);
+  }
+
+  close();
+
+  btn.addEventListener('click', function () {
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) close(); else open();
+  });
+
+  window.addEventListener('resize', function () {
+    if (!mqMobileAcc.matches) return;
+    if (btn.getAttribute('aria-expanded') === 'true') {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+  });
+}
 
 
+        function makeMobileAccordionStory() {
+  if (!mqMobileAcc.matches) return;
+  var storyEl = document.getElementById('story');
+  if (!storyEl) return;
 
-    
+  var h2 = storyEl.querySelector('.section-title');
+  var bodyBox = storyEl.querySelector('.sec-bodybox');
+  var p = bodyBox ? bodyBox.querySelector('p') : storyEl.querySelector('p');
+  if (!h2 || !p || h2.querySelector('.acc-btn')) return;
+
+  /* ✅ DON'T hide sec-headbox (it contains the new button) */
+  /* ✅ Only hide the body box */
+  if (bodyBox) bodyBox.style.display = 'none';
+
+  var labelText = (h2.textContent || '').trim();
+  h2.textContent = '';
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'acc-btn';
+  btn.setAttribute('aria-expanded', 'false');
+
+  var label = document.createElement('span');
+  label.className = 'acc-label';
+  label.textContent = labelText;
+
+  btn.appendChild(label);
+  btn.insertAdjacentHTML('beforeend', chevronSVG);
+  h2.appendChild(btn);
+
+  var panel = document.createElement('div');
+  panel.className = 'acc-panel';
+  panel.style.maxHeight = '0px';
+
+  var inner = document.createElement('div');
+  inner.className = 'acc-inner';
+
+  var bg = '';
+  try { bg = getComputedStyle(document.querySelector('#story .sec-bodybox')).getPropertyValue('--bgimg'); } catch (e) { bg = ''; }
+  bg = (bg || '').trim();
+  if (bg) inner.style.setProperty('--bgimg', bg);
+
+  forceVisible(p);
+  inner.appendChild(p);
+
+  panel.appendChild(inner);
+
+  /* insert panel after the heading box */
+  var headBox = storyEl.querySelector('.sec-headbox');
+  if (headBox) headBox.insertAdjacentElement('afterend', panel);
+  else h2.insertAdjacentElement('afterend', panel);
+
+  function open() {
+    storyEl.classList.add('acc-open');
+    btn.setAttribute('aria-expanded', 'true');
+    panel.classList.add('open');
+    setPanelHeight(panel, true);
+  }
+
+  function close() {
+    storyEl.classList.remove('acc-open');
+    btn.setAttribute('aria-expanded', 'false');
+    panel.classList.remove('open');
+    setPanelHeight(panel, false);
+  }
+
+  close();
+
+  btn.addEventListener('click', function () {
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) close(); else open();
+  });
+
+  window.addEventListener('resize', function () {
+    if (!mqMobileAcc.matches) return;
+    if (btn.getAttribute('aria-expanded') === 'true') {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+  });
+}
+
+
+        var sections = [];
+        var mission = document.getElementById('mission');
+        var vision = document.getElementById('vision');
+        var values = document.getElementById('values');
+        if (mission) sections.push(mission);
+        if (vision) sections.push(vision);
+        if (values) sections.push(values);
+
+        for (var m = 0; m < sections.length; m++) makeMobileAccordion(sections[m]);
+        makeMobileAccordionStory();
+
+        /* =========================
+           SERVICES: build LINK boxes (meaningful icons via Font Awesome)
+           ========================= */
+        var serviceLinks = [
+          { title: "FPO MANAGEMENT & DEVELOPMENT", href: "https://sayanant.com/fpo", icon: "fa-solid fa-people-group" },
+          { title: "RESEARCH & STUDY", href: "https://sayanant.com/research", icon: "fa-solid fa-magnifying-glass-chart" },
+          { title: "AGRIPRENEURSHIP", href: "https://sayanant.com/agri", icon: "fa-solid fa-seedling" },
+          { title: "VALUE CHAIN DEVELOPMENT", href: "https://sayanant.com/value", icon: "fa-solid fa-link" },
+          { title: "MARKETING", href: "https://sayanant.com/mark", icon: "fa-solid fa-bullhorn" },
+          { title: "INSTITUTION BUILDING & CAPACITY BUILDING (IBCB)", href: "https://sayanant.com/ibcb", icon: "fa-solid fa-chalkboard-user" },
+          { title: "MONITORING & EVALUATION", href: "https://sayanant.com/mon", icon: "fa-solid fa-chart-line" },
+          { title: "ORGANIZATIONAL DEVELOPMENT", href: "https://sayanant.com/org", icon: "fa-solid fa-sitemap" },
+          { title: "COMMUNICATION FOR DEVELOPMENT", href: "https://sayanant.com/com", icon: "fa-solid fa-comments" }
+        ];
+
+        var svcWrap = root.querySelector('#svc-accordion');
+        if (svcWrap) {
+          var html = '';
+          for (var k = 0; k < serviceLinks.length; k++) {
+            var item = serviceLinks[k];
+            html +=
+              '<div class="svc-item">' +
+              '  <a class="svc-btn" href="' + item.href + '" aria-label="' + item.title + '">' +
+              '    <div class="svc-title">' +
+              '      <span class="svc-chip" aria-hidden="true"><i class="' + item.icon + '" aria-hidden="true"></i></span>' +
+              '      <span>' + item.title + '</span>' +
+              '    </div>' +
+            
+              '  </a>' +
+              '</div>';
+          }
+          svcWrap.innerHTML = html;
+        }
+
+      })();
+    </script>
+  </section>
+
+  <!-- ===================== SDG CAROUSEL (layout unchanged; heading design updated; hue top+bottom) ===================== -->
+  <section id="sdg-tiles-carousel" aria-label="SDS's Commitment to the SDGs">
+    <style>
+      #sdg-tiles-carousel {
+        --bg: #ffffff;
+        --ink: #0b1220;
+        --muted: #475569;
+        --shadow: 0 14px 40px rgba(2, 6, 23, .08);
+        --radius: 16px;
+        --gap: 16px;
+        --elev: 0 8px 24px rgba(2, 6, 23, .06);
+
+        --accent: #38bdf8;
+        --accent-rgb: 56 189 248;
+
+        --sdg-speed: 46s;
+
+        background: var(--bg);
+        color: var(--ink);
+        padding: clamp(28px, 3.4vw, 56px) 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      #sdg-tiles-carousel::before {
+        content: "";
+        position: absolute;
+        inset: -60px -20px;
+        background:
+          radial-gradient(900px 420px at 20% 10%, rgba(56,189,248,.10), transparent 60%),
+          radial-gradient(900px 500px at 80% 30%, rgba(58,106,97,.08), transparent 62%),
+          radial-gradient(1000px 520px at 50% 95%, rgba(241,217,183,.18), transparent 62%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      #sdg-tiles-carousel::after{
+        content:"";
+        position:absolute;
+        left:-20px; right:-20px;
+        bottom:-70px;
+        height: 240px;
+        background: radial-gradient(980px 260px at 50% 90%, rgba(56,189,248,.10), transparent 66%);
+        pointer-events:none;
+        z-index:0;
+      }
+
+      #sdg-tiles-carousel * { box-sizing: border-box; }
+
+      #sdg-tiles-carousel {
+        --sdg-1: #E5243B;
+        --sdg-2: #DDA63A;
+        --sdg-5: #FF3A21;
+        --sdg-10: #DD1367;
+        --sdg-12: #BF8B2E;
+        --sdg-15: #56C02B;
+        --sdg-16: #00689D;
+      }
+
+      #sdg-tiles-carousel .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        padding-inline: clamp(8px, 1vw, 14px);
+        position: relative;
+        z-index: 1;
+      }
+
+      #sdg-tiles-carousel .sdg-head {
+        text-align: center;
+        margin: 0 auto clamp(18px, 2.6vw, 28px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #sdg-tiles-carousel .sdg-title {
+        margin: 0;
+        font-weight: 900;
+        line-height: 1.08;
+        text-wrap: balance;
+        font-size: clamp(24px, 5vw, 44px);
+        display: inline-block;
+        text-align: center;
+        padding: 12px 18px;
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.80));
+        border: 1px solid rgba(2, 6, 23, .14);
+        box-shadow:
+          0 18px 60px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+        text-shadow: 0 10px 24px rgba(2, 6, 23, .08);
+        transition: transform .25s ease, box-shadow .35s ease, border-color .35s ease;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 0;
+      }
+
+      #sdg-tiles-carousel .sdg-title::before {
+        content:"";
+        position:absolute;
+        inset:0;
+        background:
+          linear-gradient(90deg, rgba(56,189,248,.16), transparent 42%, rgba(56,189,248,.12));
+        opacity:.7;
+        pointer-events:none;
+      }
+
+      #sdg-tiles-carousel .sdg-title::after{
+        content:"";
+        position:absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 8px;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(56,189,248,.75), transparent);
+        pointer-events:none;
+        opacity:.9;
+      }
+
+      #sdg-tiles-carousel .sdg-title:hover {
+        transform: translateY(-3px);
+        border-color: rgba(56,189,248,.32);
+        box-shadow: 0 26px 74px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+      }
+
+      @media (prefers-reduced-motion: no-preference){
+        #sdg-tiles-carousel .sdg-title { animation: sds-float-1 5.1s ease-in-out infinite; }
+        #sdg-tiles-carousel .sdg-title:hover { animation: none; }
+      }
+
+      #sdg-tiles-carousel .frame {
+        position: relative;
+        padding: clamp(12px, 2vw, 18px);
+        border-radius: calc(var(--radius) + 10px);
+        background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.90));
+        overflow: hidden;
+        border: 2px solid rgba(2, 6, 23, .16);
+        box-shadow: 0 22px 70px rgba(2, 6, 23, .10),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+      }
+
+      #sdg-tiles-carousel .sdg-marquee {
+        position: relative;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        user-select: none;
+      }
+
+      #sdg-tiles-carousel .sdg-marquee::-webkit-scrollbar { display: none; }
+
+      #sdg-tiles-carousel .sdg-track {
+        display: flex;
+        gap: var(--gap);
+        width: max-content;
+        will-change: transform;
+        animation: sdg-scroll-left var(--sdg-speed) linear infinite;
+      }
+
+      #sdg-tiles-carousel .sdg-marquee:focus-within .sdg-track,
+      #sdg-tiles-carousel .sdg-marquee:hover .sdg-track { animation-play-state: paused; }
+
+      @media (prefers-reduced-motion: reduce) {
+        #sdg-tiles-carousel .sdg-track { animation: none; }
+      }
+
+      @keyframes sdg-scroll-left {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+      }
+
+      #sdg-tiles-carousel .sdg-group { display: flex; gap: var(--gap); }
+
+      #sdg-tiles-carousel .card {
+        flex: 0 0 auto;
+        width: clamp(220px, 24vw, 280px);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        display: grid;
+        grid-template-rows: auto auto;
+        box-shadow: 0 6px 22px rgba(2, 6, 23, .06);
+        transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        cursor: pointer;
+        scroll-snap-align: start;
+      }
+
+      #sdg-tiles-carousel .card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(56,189,248,.28);
+        box-shadow: 0 18px 50px rgba(2, 6, 23, .12);
+      }
+
+      #sdg-tiles-carousel .tile {
+        position: relative;
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1/1;
+        background: #eee;
+        overflow: hidden;
+      }
+
+      #sdg-tiles-carousel .card[data-goal="1"] .tile { background: var(--sdg-1); }
+      #sdg-tiles-carousel .card[data-goal="2"] .tile { background: var(--sdg-2); }
+      #sdg-tiles-carousel .card[data-goal="5"] .tile { background: var(--sdg-5); }
+      #sdg-tiles-carousel .card[data-goal="10"] .tile { background: var(--sdg-10); }
+      #sdg-tiles-carousel .card[data-goal="12"] .tile { background: var(--sdg-12); }
+      #sdg-tiles-carousel .card[data-goal="15"] .tile { background: var(--sdg-15); }
+      #sdg-tiles-carousel .card[data-goal="16"] .tile { background: var(--sdg-16); }
+
+      #sdg-tiles-carousel .badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(255, 255, 255, .95);
+        color: #0b1220;
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: .5px;
+        border-radius: 8px;
+        padding: 2px 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+      }
+
+      #sdg-tiles-carousel .icon {
+        width: 64%;
+        max-height: 64%;
+        object-fit: contain;
+        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .18));
+      }
+
+      #sdg-tiles-carousel .meta {
+        padding: 14px 14px 16px;
+        display: grid;
+        gap: 6px;
+        background: #fff;
+      }
+
+      #sdg-tiles-carousel .meta h3 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: .2px;
+        text-transform: uppercase;
+        border: 0;
+      }
+
+      #sdg-tiles-carousel .meta p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      #sdg-tiles-carousel .controls {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        padding: clamp(2px, 1vw, 12px);
+      }
+
+      #sdg-tiles-carousel .control {
+        pointer-events: auto;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .92);
+        border: 1px solid rgba(2,6,23,.12);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 12px 28px rgba(2, 6, 23, .12),
+          inset 0 2px 0 rgba(255, 255, 255, .92),
+          inset 0 -3px 0 rgba(2, 6, 23, .06);
+        cursor: pointer;
+        transition: transform .15s ease, border-color .2s ease;
+      }
+
+      #sdg-tiles-carousel .control:hover {
+        transform: scale(1.06);
+        border-color: rgba(56,189,248,.28);
+      }
+
+      #sdg-tiles-carousel .control:active { transform: scale(.96); }
+
+      #sdg-tiles-carousel .control svg { width: 20px; height: 20px; fill: #0f172a; }
+      #sdg-tiles-carousel .control:focus-visible { outline: 2px solid rgba(56,189,248,.85); outline-offset: 2px; }
+    </style>
+
+    <div class="container">
+      <div class="sdg-head">
+        <h2 class="sdg-title">SDS’s Commitment to the SDGs</h2>
+      </div>
+
+      <div class="frame" role="region" aria-roledescription="carousel" aria-label="SDG goals carousel (auto-scrolling)">
+        <div class="controls" aria-hidden="false">
+          <button class="control prev" type="button" aria-label="Previous">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button class="control next" type="button" aria-label="Next">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L12.17 12z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="sdg-marquee" role="region" aria-label="SDG tiles marquee">
+          <div class="sdg-track" aria-hidden="false">
+            <div class="sdg-group">
+              <article class="card" data-goal="1" role="option" aria-label="SDG 1 No Poverty" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 1</span>
+                  <img class="icon" loading="eager"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/50/Sustainable_Development_Goal_01NoPoverty.svg"
+                    alt="SDG 1 - No Poverty icon">
+                </div>
+                <div class="meta">
+                  <h3>No Poverty</h3>
+                  <p>Stabilizing incomes for 1+ lakh households via inputs and market linkages.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="2" role="option" aria-label="SDG 2 Zero Hunger" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 2</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg"
+                    alt="SDG 2 - Zero Hunger icon">
+                </div>
+                <div class="meta">
+                  <h3>Zero Hunger</h3>
+                  <p>Food security through diversified production and last-mile extension.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="5" role="option" aria-label="SDG 5 Gender Equality" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 5</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Sustainable_Development_Goal_05GenderEquality.svg"
+                    alt="SDG 5 - Gender Equality icon">
+                </div>
+                <div class="meta">
+                  <h3>Gender Equality</h3>
+                  <p>Women-led FPCs and SHGs driving enterprise and assets in rural markets.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="10" role="option" aria-label="SDG 10 Reduced Inequalities" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 10</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg"
+                    alt="SDG 10 - Reduced Inequalities icon">
+                </div>
+                <div class="meta">
+                  <h3>Reduced Inequalities</h3>
+                  <p>Inclusive institutions and services bridging rural opportunity gaps.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="12" role="option" aria-label="SDG 12 Responsible Consumption and Production" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 12</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg"
+                    alt="SDG 12 - Responsible Consumption and Production icon">
+                </div>
+                <div class="meta">
+                  <h3>Responsible Consumption</h3>
+                  <p>Scaling climate-smart production and local processing with FPOs.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="15" role="option" aria-label="SDG 15 Life on Land" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 15</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg"
+                    alt="SDG 15 - Life on Land icon">
+                </div>
+                <div class="meta">
+                  <h3>Life on Land</h3>
+                  <p>Soil-water stewardship, agro-forestry and biodiversity mainstreaming.</p>
+                </div>
+              </article>
+
+              <article class="card" data-goal="16" role="option" aria-label="SDG 16 Peace, Justice and Strong Institutions" tabindex="0">
+                <div class="tile">
+                  <span class="badge">GOAL 16</span>
+                  <img class="icon" loading="lazy"
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg"
+                    alt="SDG 16 - Peace, Justice and Strong Institutions icon">
+                </div>
+                <div class="meta">
+                  <h3>Strong Institutions</h3>
+                  <p>Community institutions (SHGs/VOs/FPCs) delivering accountable services.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SDG JS (WebView-safe: removed optional chaining) -->
+    <script>
+      (function () {
+        var root = document.getElementById('sdg-tiles-carousel');
+        if (!root) return;
+
+        var marquee = root.querySelector('.sdg-marquee');
+        var track = root.querySelector('.sdg-track');
+        var groupA = root.querySelector('.sdg-group');
+
+        var prev = root.querySelector('.prev');
+        var next = root.querySelector('.next');
+
+        if (track && groupA && track.children.length < 2) {
+          var clone = groupA.cloneNode(true);
+          track.appendChild(clone);
+        }
+
+        function scrollByCard(dir) {
+          if (!marquee) return;
+          var card = root.querySelector('.card');
+          var gap = track ? (parseFloat(getComputedStyle(track).gap) || 0) : 0;
+          var w = card ? card.getBoundingClientRect().width : 260;
+          marquee.scrollBy({ left: dir * (w + gap), behavior: 'smooth' });
+        }
+
+        if (prev) prev.addEventListener('click', function () { scrollByCard(-1); });
+        if (next) next.addEventListener('click', function () { scrollByCard(1); });
+
+        var isDown = false, startX = 0, startScroll = 0, resumeTimer = null, scrollPauseTimer = null;
+
+        function pauseAnim() { if (track) track.style.animationPlayState = 'paused'; }
+        function resumeAnim() {
+          if (!track) return;
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          track.style.animationPlayState = 'running';
+        }
+
+        function onPointerDown(e) {
+          if (!marquee) return;
+          isDown = true;
+          startX = e.clientX;
+          startScroll = marquee.scrollLeft;
+          marquee.classList.add('dragging');
+          if (marquee.setPointerCapture) marquee.setPointerCapture(e.pointerId);
+          pauseAnim();
+          clearTimeout(resumeTimer);
+        }
+
+        function onPointerMove(e) {
+          if (!isDown || !marquee) return;
+          var dx = e.clientX - startX;
+          marquee.scrollLeft = startScroll - dx;
+        }
+
+        function onPointerUp() {
+          if (!marquee) return;
+          isDown = false;
+          marquee.classList.remove('dragging');
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(resumeAnim, 900);
+        }
+
+        if (marquee) marquee.addEventListener('pointerdown', onPointerDown, { passive: true });
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
+        window.addEventListener('pointerup', onPointerUp, { passive: true });
+        window.addEventListener('pointercancel', onPointerUp, { passive: true });
+        window.addEventListener('blur', onPointerUp, { passive: true });
+
+        if (marquee) {
+          marquee.addEventListener('scroll', function () {
+            pauseAnim();
+            clearTimeout(scrollPauseTimer);
+            scrollPauseTimer = setTimeout(resumeAnim, 700);
+          }, { passive: true });
+
+          marquee.tabIndex = 0;
+          marquee.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { e.preventDefault(); scrollByCard(1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByCard(-1); }
+          });
+        }
+      })();
+    </script>
+  </section>
+
+ <!-- ===================== MEET OUR TEAM (UPDATED: pause-on-center-image + manual/auto autoplay rules + stronger headings/subtext + subtle “3D” feel via neutral highlights only + NO colored left strip) ===================== -->
+<!-- ===================== MEET OUR TEAM (UPDATED: pause-on-center-image + manual/auto autoplay rules + stronger headings/subtext + subtle “3D” feel via neutral highlights only + NO colored left strip) ===================== -->
 <section id="sds-team-marquee" class="sds-team-marquee" aria-label="Meet our team">
   <style>
-  /* =========================
-     Meet Our Team — Marquee
-     - Mobile: swipe/drag scroll + snap + auto-marquee (pauses on hover/drag)
-     - Desktop: auto-marquee (pauses on hover/drag) + swipe/drag scroll + snap
-     - Social links removed from shards
-     ========================= */
-
-  /* Design tokens scoped to the section (not global) */
-  #sds-team-marquee{
-    /* Theme palette */
-    --sds-tm-bg:#0a0b10;
-    --sds-tm-card:#12131b;
-    --sds-tm-ink:#f1f5f9;
-    --sds-tm-ink-dim:#9aa4b2;
-    --sds-tm-accent:#f59e0b;
-    --sds-tm-accent-2:#10b981;
-
-    /* Layout variables */
-    --sds-tm-radius:20px;
-    --sds-tm-gap:18px;
-    --sds-tm-speed:44s;
-    --sds-tm-shard-w:320px;
-
-    /* IMAGE HEIGHT = CROPPED COVER */
-    --sds-tm-shard-h: 360px;  /* desktop image window height */
-
-    /* CARD HEIGHTS — ensures every shard is identical */
-    --sds-tm-card-h: 560px;   /* total card height desktop */
-    --sds-tm-body-min: 170px; /* space reserved for text */
-  }
-
-  /* Section */
-  #sds-team-marquee.sds-team-marquee{
-    background:
-      radial-gradient(1200px 600px at 20% -10%, rgba(245,158,11,.10), transparent 60%),
-      radial-gradient(900px 560px at 100% 100%, rgba(16,185,129,.10), transparent 60%),
-      linear-gradient(180deg,#0a0b10 0%, #0b0d13 100%);
-    padding:clamp(44px,6.5vw,90px) 16px;
-    color:var(--sds-tm-ink);
-    font-family:ui-sans-serif,system-ui,-apple-system,"Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
-    overflow:hidden; position:relative; isolation:isolate;
-  }
-
-  #sds-team-marquee .sds-tm-header{ text-align:center; margin-bottom:clamp(26px,4.8vw,46px); }
-  #sds-team-marquee .sds-tm-eyebrow{
-    display:inline-block; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
-    color:var(--sds-tm-ink-dim); border:1px solid rgba(241,245,249,.08);
-    padding:6px 12px; border-radius:999px; backdrop-filter:blur(6px);
-    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.00));
-    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 6px 24px rgba(16,185,129,.05);
-  }
-  #sds-team-marquee .sds-tm-title{
-    font-size:clamp(30px,3.8vw,48px); line-height:1.05; margin:12px 0 10px;
-    font-weight:900; letter-spacing:-.01em;
-    background:linear-gradient(90deg,#ffffff 0%, #fde68a 25%, #bbf7d0 50%, #a7f3d0 60%, #ffffff 100%);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    text-shadow:0 0 20px rgba(16,185,129,.08);
-  }
-  #sds-team-marquee .sds-tm-sub{
-    color:var(--sds-tm-ink-dim); max-width:880px; margin:0 auto;
-    font-size:clamp(14px,1.8vw,16px); line-height:1.7;
-  }
-
-  /* Marquee rails (scroll container) */
-  #sds-team-marquee .sds-tm-marquee{
-    position:relative;
-    margin-top:clamp(22px,3vw,34px);
-    /* Make it scrollable by drag on both desktop & mobile */
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    /* Hide scrollbars */
-    -ms-overflow-style:none; scrollbar-width:none;
-    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-            mask-image:linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-    user-select:none;
-  }
-  #sds-team-marquee .sds-tm-marquee::-webkit-scrollbar{ display:none; }
-  #sds-team-marquee .sds-tm-marquee.dragging{ cursor:grabbing; }
-
-  /* Moving track (auto-marquee via CSS keyframes) */
-  #sds-team-marquee .sds-tm-track{
-    display:flex; gap:var(--sds-tm-gap); width:max-content; will-change:transform;
-    animation:sds-tm-scroll-left var(--sds-tm-speed) linear infinite;
-  }
-  /* Pause on hover/focus for both desktop & touch devices */
-  #sds-team-marquee .sds-tm-marquee:focus-within .sds-tm-track,
-  #sds-team-marquee .sds-tm-marquee:hover .sds-tm-track{
-    animation-play-state:paused;
-  }
-  @media (prefers-reduced-motion: reduce){
-    #sds-team-marquee .sds-tm-track{ animation:none; }
-  }
-  #sds-team-marquee .sds-tm-group{ display:flex; gap:var(--sds-tm-gap); }
-
-  @keyframes sds-tm-scroll-left { 0%{transform:translateX(0%);} 100%{transform:translateX(-50%);} }
-
-  /* Card */
-  #sds-team-marquee .sds-tm-card{
-    width:var(--sds-tm-shard-w);
-    height:var(--sds-tm-card-h);
-    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00)), var(--sds-tm-card);
-    border:1px solid rgba(255,255,255,.06); border-radius:var(--sds-tm-radius);
-    overflow:hidden; position:relative;
-    box-shadow:0 12px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.02) inset;
-    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease, filter .35s ease;
-    clip-path:polygon(0% 0%, calc(100% - 22px) 0%, 100% 22px, 100% 100%, 0% 100%);
-    backdrop-filter:saturate(110%) blur(6px);
-    display:flex; flex-direction:column;
-    scroll-snap-align:start; /* snap stop */
-  }
-  #sds-team-marquee .sds-tm-card::after{
-    content:""; position:absolute; top:0; right:0; width:32px; height:32px;
-    background:conic-gradient(from 210deg, var(--sds-tm-accent), var(--sds-tm-accent-2));
-    filter:blur(.2px); clip-path:polygon(100% 0, 0 0, 100% 100%); opacity:.95;
-  }
-  #sds-team-marquee .sds-tm-card:hover{
-    transform:translateY(-6px) scale(1.01);
-    border-color:rgba(16,185,129,.45);
-    box-shadow:0 18px 60px rgba(16,185,129,.14), 0 28px 80px rgba(0,0,0,.50);
-    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.00)), var(--sds-tm-card);
-  }
-
-  /* Image */
-  #sds-team-marquee .sds-tm-media{
-    height:var(--sds-tm-shard-h) !important;
-    background:transparent; overflow:hidden; position:relative; flex:0 0 auto;
-  }
-  #sds-team-marquee .sds-tm-media::before{
-    content:""; position:absolute; inset:auto 16px 0 16px; height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); opacity:.6;
-  }
-  #sds-team-marquee .sds-tm-media img{
-    display:block; width:100%; height:100%;
-    object-fit:cover; object-position:center 35%;
-    transform:none; transition:transform .35s ease, filter .35s ease;
-    filter:drop-shadow(0 10px 20px rgba(0,0,0,.25));
-    pointer-events:none; -webkit-user-drag:none; user-drag:none; /* smoother dragging */
-  }
-  #sds-team-marquee .sds-tm-card:hover .sds-tm-media img{
-    transform:scale(1.015);
-    filter:drop-shadow(0 18px 28px rgba(16,185,129,.12));
-  }
-
-  /* Body */
-  #sds-team-marquee .sds-tm-body{
-    padding:14px 16px 16px;
-    min-height:var(--sds-tm-body-min);
-    display:flex; flex-direction:column; gap:6px; flex:1 1 auto;
-  }
-  #sds-team-marquee .sds-tm-name{
-    font-weight:800; font-size:19px; line-height:1.2; margin:2px 0 0;
-    letter-spacing:.01em; color:#f8fafc; text-shadow:0 1px 0 rgba(255,255,255,.02);
-    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
-  }
-  #sds-team-marquee .sds-tm-role{
-    font-size:12px; color:#fde68a; text-transform:uppercase; letter-spacing:.10em; margin-bottom:4px;
-    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
-  }
-  #sds-team-marquee .sds-tm-bio{
-    font-size:13.5px; line-height:1.6; color:var(--sds-tm-ink-dim);
-    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-  }
-
-  /* Responsive */
-  @media (max-width:1024px){
     #sds-team-marquee{
-      --sds-tm-shard-h: 320px;
-      --sds-tm-card-h: 520px;
-      --sds-tm-body-min: 160px;
+      --tm-bg: #ffffff;
+      --tm-ink: #0b1220;
+      --tm-muted: rgba(11, 18, 32, .74);
+
+      --tm-card-w: 320px;
+      --tm-card-h: 560px;
+      --tm-gap: 22px;
+      --tm-radius: 22px;
+
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(44px, 6.5vw, 90px) 16px;
+
+      background:
+        radial-gradient(900px 420px at 18% 14%, rgba(56,189,248,.10), transparent 62%),
+        radial-gradient(780px 380px at 86% 28%, rgba(58,106,97,.10), transparent 62%),
+        radial-gradient(1000px 520px at 50% 92%, rgba(241,217,183,.18), transparent 62%),
+        var(--tm-bg);
+
+      color: var(--tm-ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
     }
-  }
-  @media (max-width:640px){
-    #sds-team-marquee{
-      --sds-tm-shard-w:260px;
-      --sds-tm-gap:14px;
-      --sds-tm-shard-h: 260px;
-      --sds-tm-card-h: 460px;
-      --sds-tm-body-min: 150px;
+
+    #sds-team-marquee *{ box-sizing:border-box; }
+
+    #sds-team-marquee::before{
+      content:"";
+      position:absolute;
+      inset:-80px -40px;
+      background:
+        radial-gradient(900px 420px at 20% 15%, rgba(56,189,248,.12), transparent 62%),
+        radial-gradient(820px 380px at 82% 25%, rgba(124,58,237,.08), transparent 60%),
+        radial-gradient(980px 520px at 50% 92%, rgba(255,255,255,.08), transparent 70%);
+      pointer-events:none;
+      z-index:0;
     }
-    /* On small screens, show full edges (remove mask feather) */
-    #sds-team-marquee .sds-tm-marquee{
-      -webkit-mask-image:none; mask-image:none;
+
+    #sds-team-marquee::after{
+      content:"";
+      position:absolute;
+      left:-40px; right:-40px;
+      bottom:-120px;
+      height: 340px;
+      background:
+        radial-gradient(980px 300px at 50% 60%, rgba(56,189,248,.10), transparent 68%),
+        radial-gradient(980px 340px at 50% 85%, rgba(58,106,97,.08), transparent 70%);
+      pointer-events:none;
+      z-index:0;
     }
-  }
+
+    #sds-team-marquee .sds-tm-header{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      max-width:980px;
+      margin:0 auto clamp(22px, 4.2vw, 40px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+      padding-inline:10px;
+    }
+
+    /* Make “Our People” more eye-catching + subtle depth (neutral only) */
+    #sds-team-marquee .sds-tm-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      padding:10px 16px;
+      border-radius:999px;
+
+      color: rgba(11,18,32,.95);
+      font-weight: 950;
+
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+      border: 1px solid rgba(2,6,23,.16);
+
+      /* subtle “3D” feel without color */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(2,6,23,.10);
+
+      text-shadow: 0 1px 0 rgba(255,255,255,.65), 0 10px 24px rgba(2,6,23,.06);
+      user-select:none;
+    }
+
+    #sds-team-marquee .sds-tm-title{
+      margin:0;
+      font-weight: 980;
+      letter-spacing:.02em;
+      font-size: clamp(30px, 4.1vw, 54px);
+      line-height:1.04;
+
+      padding:12px 18px;
+      border-radius:20px;
+
+      color: #0b1220;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+      border: 1px solid rgba(2,6,23,.16);
+
+      /* subtle “3D” feel without color */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(2,6,23,.12);
+
+      text-shadow: 0 1px 0 rgba(255,255,255,.65), 0 12px 28px rgba(2,6,23,.08);
+    }
+
+    /* Make the paragraph more bold/catchy + subtle depth (neutral only) */
+    #sds-team-marquee .sds-tm-sub{
+      margin:0;
+      max-width:860px;
+
+      color: rgba(11,18,32,.88);
+      font-size: clamp(14px, 1.9vw, 16px);
+      line-height:1.85;
+      font-weight: 750;
+
+      padding: 14px 16px;
+      border-radius: 18px;
+
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+      border: 1px solid rgba(2,6,23,.14);
+
+      /* subtle “3D” feel without color */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(2,6,23,.10);
+
+      text-shadow: 0 1px 0 rgba(255,255,255,.65);
+    }
+
+    #sds-team-marquee .tm-carousel{
+      position:relative;
+      z-index:1;
+      max-width:min(1200px, 94vw);
+      margin:0 auto;
+      padding:10px 0 30px;
+    }
+
+    #sds-team-marquee .tm-viewport{
+      position:relative;
+      height: calc(var(--tm-card-h) + 12px);
+      outline:none;
+      overflow:visible;
+      -webkit-tap-highlight-color: transparent;
+
+      /* ✅ ADDED: allow horizontal swipe in mobile/webview while keeping vertical scroll */
+      touch-action: pan-y;
+    }
+
+    #sds-team-marquee .tm-track{
+      position:relative;
+      width:100%;
+      height:100%;
+    }
+
+    /* Nav buttons: subtle depth, neutral only */
+    #sds-team-marquee .tm-nav{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:1px solid rgba(2,6,23,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .18s ease, border-color .2s ease;
+      z-index:2;
+      user-select:none;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(2,6,23,.10);
+    }
+    #sds-team-marquee .tm-nav svg{ width:20px; height:20px; fill: rgba(11,18,32,.9); }
+    #sds-team-marquee .tm-nav:hover{ transform: translateY(-50%) scale(1.06); border-color: rgba(56,189,248,.30); }
+    #sds-team-marquee .tm-nav:active{ transform: translateY(-50%) scale(.98); }
+    #sds-team-marquee .tm-nav:focus-visible{ outline:2px solid rgba(56,189,248,.85); outline-offset:3px; }
+
+    #sds-team-marquee .tm-prev{ left:-10px; }
+    #sds-team-marquee .tm-next{ right:-10px; }
+
+    #sds-team-marquee .tm-dots{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-top:30px;
+      position:relative;
+      z-index:3;
+    }
+    #sds-team-marquee .tm-dots button{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(2,6,23,.22);
+      background: rgba(2,6,23,.10);
+      cursor:pointer;
+      transition: transform .18s ease, background .2s ease, border-color .2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #sds-team-marquee .tm-dots button.is-active{
+      transform: scale(1.18);
+      background: rgba(56,189,248,.55);
+      border-color: rgba(56,189,248,.80);
+    }
+
+    /* ========= CARDS (opaque + subtle depth using neutral highlights) ========= */
+    #sds-team-marquee .sds-tm-card{
+      position:absolute;
+      top:0;
+      left:50%;
+      width: var(--tm-card-w);
+      height: var(--tm-card-h);
+      border-radius: var(--tm-radius);
+      overflow:hidden;
+
+      background: #ffffff;
+      border: 1px solid rgba(2,6,23,.14);
+
+      /* subtle depth (neutral only) */
+      box-shadow:
+        0 14px 44px rgba(2,6,23,.08),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -2px 0 rgba(2,6,23,.06);
+
+      transform-style: flat;
+      backface-visibility: hidden;
+      will-change: transform, box-shadow;
+
+      transition:
+        transform 420ms cubic-bezier(.2,.8,.2,1),
+        opacity 320ms ease,
+        filter 320ms ease,
+        border-color 320ms ease,
+        box-shadow 420ms ease;
+      user-select:none;
+
+      /* ✅ ADDED: improves tap/swipe responsiveness on mobile */
+      touch-action: manipulation;
+    }
+
+    /* Glassy watery “3D edge” — SAME on ALL cards, no image colors */
+    #sds-team-marquee .sds-tm-card::after{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:14px;
+      pointer-events:none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.58),
+          rgba(255,255,255,.18) 38%,
+          rgba(255,255,255,.40) 58%,
+          rgba(255,255,255,.14)
+        );
+
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+
+      box-shadow:
+        inset -1px 0 0 rgba(255,255,255,.60),
+        inset -6px 0 14px rgba(2,6,23,.22);
+
+      border-right: 1px solid rgba(255,255,255,.35);
+    }
+
+    /* neutral inner sheen for depth (no color strip) */
+    #sds-team-marquee .sds-tm-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(520px 220px at 24% 14%, rgba(255,255,255,.42), transparent 62%),
+        radial-gradient(520px 260px at 70% 88%, rgba(2,6,23,.06), transparent 65%);
+      opacity: .85;
+    }
+
+    /* ========= ACTIVE CARD: animate WHOLE CARD (not only image) ========= */
+    @keyframes tm-card-breathe{
+      0%{
+        transform: translateX(-50%) scale(1.10);
+        box-shadow:
+          0 34px 100px rgba(2,6,23,.18),
+          inset 0 1px 0 rgba(255,255,255,.92),
+          inset 0 -2px 0 rgba(2,6,23,.06);
+      }
+      50%{
+        transform: translateX(-50%) scale(1.125);
+        box-shadow:
+          0 44px 124px rgba(2,6,23,.24),
+          inset 0 1px 0 rgba(255,255,255,.96),
+          inset 0 -3px 0 rgba(2,6,23,.08);
+      }
+      100%{
+        transform: translateX(-50%) scale(1.10);
+        box-shadow:
+          0 34px 100px rgba(2,6,23,.18),
+          inset 0 1px 0 rgba(255,255,255,.92),
+          inset 0 -2px 0 rgba(2,6,23,.06);
+      }
+    }
+
+    /* (optional) tiny image breathe stays consistent with the card motion */
+    @keyframes tm-img-breathe{
+      0%{ transform: scale(1.00); }
+      50%{ transform: scale(1.02); }
+      100%{ transform: scale(1.00); }
+    }
+
+    /* Positions (5 visible) — 2D ONLY */
+    #sds-team-marquee .sds-tm-card[data-pos="0"]{
+      opacity: 1;
+      z-index:5;
+      filter:none;
+      transform: translateX(-50%) scale(1.10);
+      border-color: rgba(56,189,248,.35);
+      box-shadow: 0 34px 100px rgba(2,6,23,.22);
+      pointer-events:auto;
+    }
+
+    /* ✅ WHOLE ACTIVE CARD animation applied here */
+    @media (prefers-reduced-motion: no-preference){
+      #sds-team-marquee:not(.is-paused)
+      .sds-tm-card[data-pos="0"]{
+        animation: tm-card-breathe 4.2s ease-in-out infinite;
+      }
+
+      #sds-team-marquee:not(.is-paused)
+      .sds-tm-card[data-pos="0"] .sds-tm-media img{
+        animation: tm-img-breathe 4.2s ease-in-out infinite;
+      }
+    }
+
+    #sds-team-marquee .sds-tm-card[data-pos="-1"]{
+      opacity:1;
+      z-index:4;
+      filter:saturate(.98) contrast(.98);
+      transform: translateX(calc(-50% - (var(--tm-card-w) * .78) - var(--tm-gap))) scale(.96);
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    #sds-team-marquee .sds-tm-card[data-pos="1"]{
+      opacity:1;
+      z-index:4;
+      filter:saturate(.98) contrast(.98);
+      transform: translateX(calc(-50% + (var(--tm-card-w) * .78) + var(--tm-gap))) scale(.96);
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    #sds-team-marquee .sds-tm-card[data-pos="-2"]{
+      opacity:1;
+      z-index:3;
+      filter:saturate(.94);
+      transform: translateX(calc(-50% - (var(--tm-card-w) * 1.55) - (var(--tm-gap) * 2))) scale(.88);
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    #sds-team-marquee .sds-tm-card[data-pos="2"]{
+      opacity:1;
+      z-index:3;
+      filter:saturate(.94);
+      transform: translateX(calc(-50% + (var(--tm-card-w) * 1.55) + (var(--tm-gap) * 2))) scale(.88);
+      pointer-events:auto;
+      cursor:pointer;
+    }
+
+    #sds-team-marquee .sds-tm-card[data-pos="off"]{
+      opacity:0;
+      z-index:1;
+      pointer-events:none;
+      transform: translateX(-50%) scale(.75);
+      filter:none;
+    }
+
+    /* Hover: subtle lift, neutral only */
+    #sds-team-marquee .sds-tm-card:hover{
+      border-color: rgba(56,189,248,.32);
+      box-shadow:
+        0 24px 72px rgba(2,6,23,.12),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -2px 0 rgba(2,6,23,.06);
+    }
+
+    /* Selected/active state while paused */
+    #sds-team-marquee .sds-tm-card.is-selected{
+      border-color: rgba(56,189,248,.55) !important;
+      outline: 2px solid rgba(56,189,248,.22);
+      outline-offset: -2px;
+      box-shadow:
+        0 28px 90px rgba(2,6,23,.14),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -2px 0 rgba(2,6,23,.06);
+    }
+
+    #sds-team-marquee .sds-tm-media{
+      height:330px;
+      overflow:hidden;
+      position:relative;
+      background:#fff;
+      flex:0 0 auto;
+      cursor:pointer;
+    }
+
+    #sds-team-marquee .sds-tm-media img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 35%;
+      transition: transform .35s ease;
+      pointer-events:none;
+      -webkit-user-drag:none;
+      user-drag:none;
+    }
+
+    #sds-team-marquee .sds-tm-card:hover .sds-tm-media img{
+      transform: scale(1.02);
+    }
+
+    #sds-team-marquee .sds-tm-body{
+      padding:14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1 1 auto;
+      background:#fff;
+    }
+
+    #sds-team-marquee .sds-tm-name{
+      font-weight:950;
+      font-size:19px;
+      letter-spacing:.01em;
+      margin:2px 0 0;
+      color: rgba(11,18,32,.96);
+      display:-webkit-box;
+      -webkit-line-clamp:1;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    #sds-team-marquee .sds-tm-role{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color: rgba(56,189,248,.95);
+      display:-webkit-box;
+      -webkit-line-clamp:1;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    /* ✅ BIO: more eye-catching (better contrast + tasteful accent + subtle depth) */
+    #sds-team-marquee .sds-tm-bio{
+      font-size:13.6px;
+      line-height:1.75;
+      font-weight: 650;
+      color: rgba(11,18,32,.90);
+
+      padding: 10px 12px;
+      border-radius: 14px;
+
+      text-shadow: 0 1px 0 rgba(255,255,255,.65);
+
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    /* make bio pop slightly on the active card */
+    #sds-team-marquee .sds-tm-card[data-pos="0"] .sds-tm-bio{
+      border-color: rgba(56,189,248,.22);
+      box-shadow:
+        0 10px 26px rgba(2,6,23,.08),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -1px 0 rgba(2,6,23,.06);
+    }
+
+    @media (max-width:1024px){
+      #sds-team-marquee{ --tm-card-h: 520px; }
+      #sds-team-marquee .sds-tm-media{ height:320px; }
+    }
+
+    @media (max-width:700px){
+      #sds-team-marquee{ --tm-card-w: 260px; --tm-card-h: 460px; --tm-gap: 14px; }
+      #sds-team-marquee .sds-tm-media{ height:260px; }
+      #sds-team-marquee .tm-prev{ left:-2px; }
+      #sds-team-marquee .tm-next{ right:-2px; }
+      #sds-team-marquee .tm-dots{ margin-top:34px; }
+      #sds-team-marquee .sds-tm-card::after{ width:10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      #sds-team-marquee .sds-tm-card,
+      #sds-team-marquee .sds-tm-media img{
+        animation:none !important;
+        transition:none !important;
+      }
+    }
   </style>
 
   <div class="sds-tm-header">
     <span class="sds-tm-eyebrow">Our People</span>
     <h2 class="sds-tm-title">Meet Our Team</h2>
-    <p class="sds-tm-sub">Curious minds and careful builders—our people bring diverse skills and perspectives to push what’s possible and make a difference together.</p>
+    <p class="sds-tm-sub">
+      Curious minds and careful builders—our people bring diverse skills and perspectives to push what’s possible and make a difference together.
+    </p>
   </div>
 
-  <!-- Marquee -->
-  <div class="sds-tm-marquee" role="region" aria-label="Team carousel (auto-scrolling left)">
-    <div class="sds-tm-track" aria-hidden="false">
-      <!-- GROUP A (define once; JS clones for seamless loop) -->
-      <div class="sds-tm-group">
-        <!-- 1 -->
+  <div class="tm-carousel" role="region" aria-roledescription="carousel" aria-label="Team carousel">
+    <button class="tm-nav tm-prev" type="button" aria-label="Previous">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+    </button>
+
+    <div class="tm-viewport" tabindex="0" aria-label="Team cards viewport">
+      <div class="tm-track" aria-live="polite">
+        <!-- ✅ KEEP YOUR EXISTING CARDS (UNCHANGED) -->
         <article class="sds-tm-card">
           <div class="sds-tm-media">
             <img src="static/Images/em/Parag_sir[1].png" alt="Mr Parag Baruah portrait">
           </div>
           <div class="sds-tm-body">
-            <div class="sds-tm-name">Mr Parag Baruah</div>
+            <div class="sds-tm-name">Mr Parag Boruah</div>
             <div class="sds-tm-role">Managing Director</div>
             <p class="sds-tm-bio">Leads strategy and culture with a people-first approach and a bias for delivery.</p>
           </div>
         </article>
 
-        <!-- 2 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media">
             <img src="static/Images/em/madhurjya2.png" alt="Madhurjya Madhob Borah portrait">
@@ -1433,7 +3015,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 3 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media">
             <img src="static/Images/em/Saunak_Photo.png" alt="Saunak Jyoti Bhuyan portrait">
@@ -1445,7 +3026,7 @@ livelihood Promotion.
           </div>
         </article>
 
-           <article class="sds-tm-card">
+        <article class="sds-tm-card">
           <div class="sds-tm-media">
             <img src="static/Images/em/jogenda.png" alt="Jogen Kalita">
           </div>
@@ -1456,19 +3037,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 4 -->
-        <article class="sds-tm-card">
-          <div class="sds-tm-media">
-            <img src="static/Images/em/tirtha.jpg" alt="Tirtharaj Gohain portrait">
-          </div>
-          <div class="sds-tm-body">
-            <div class="sds-tm-name">Tirtharaj Gohain</div>
-            <div class="sds-tm-role">Executive — Communications & Business Development</div>
-            <p class="sds-tm-bio">Cause-driven professional in communications, partnerships, and community development.</p>
-          </div>
-        </article>
-
-        <!-- 5 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media">
             <img src="static/Images/em/Priya.jpg" alt="Priya Thihing portrait">
@@ -1480,7 +3048,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 6 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/richa.jpg" alt="Richa Gogoi portrait"></div>
           <div class="sds-tm-body">
@@ -1490,12 +3057,8 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 7 -->
-
-
-
-          <article class="sds-tm-card">
-          <div class="sds-tm-media"><img src="static/Images/em/baruah.jpg" alt="Richa Gogoi portrait"></div>
+        <article class="sds-tm-card">
+          <div class="sds-tm-media"><img src="static/Images/em/baruah.jpg" alt="Rahul Baruah portrait"></div>
           <div class="sds-tm-body">
             <div class="sds-tm-name">Rahul Baruah</div>
             <div class="sds-tm-role">Associate (IT)</div>
@@ -1503,7 +3066,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 8 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/ruhul.jpg" alt="Md Ruhul Amin portrait"></div>
           <div class="sds-tm-body">
@@ -1513,7 +3075,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 9 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Amitsda21.jpg" alt="Amit Saha portrait"></div>
           <div class="sds-tm-body">
@@ -1523,7 +3084,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 10 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/farhan.JPG" alt="Farhan Ahmed portrait"></div>
           <div class="sds-tm-body">
@@ -1533,7 +3093,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 11 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Upasana.jpg" alt="Upasana Goswami portrait"></div>
           <div class="sds-tm-body">
@@ -1543,7 +3102,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 12 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Sonali.jpg" alt="Sonali Boro portrait"></div>
           <div class="sds-tm-body">
@@ -1553,17 +3111,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 13 -->
-        <article class="sds-tm-card">
-          <div class="sds-tm-media"><img src="static/Images/em/Monashree.jpg" alt="Monashree Sarma Bora portrait"></div>
-          <div class="sds-tm-body">
-            <div class="sds-tm-name">Dr. Monashree Sarma Bora</div>
-            <div class="sds-tm-role">Executive (Research)</div>
-            <p class="sds-tm-bio">No research without action; no action without research.</p>
-          </div>
-        </article>
-
-        <!-- 14 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Menoka.jpeg" alt="Menoka Bordoloi portrait"></div>
           <div class="sds-tm-body">
@@ -1573,7 +3120,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 15 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Dhurbo.jpeg" alt="Dhrubajyoti Kakati portrait"></div>
           <div class="sds-tm-body">
@@ -1583,7 +3129,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 16 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Amitabh.jpg" alt="Amitabh Guha Thakurata portrait"></div>
           <div class="sds-tm-body">
@@ -1593,7 +3138,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 18 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Susmita.jpeg" alt="Susmita Roy portrait"></div>
           <div class="sds-tm-body">
@@ -1603,7 +3147,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 19 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Biplab.jpg" alt="Biplab Singha portrait"></div>
           <div class="sds-tm-body">
@@ -1613,7 +3156,6 @@ livelihood Promotion.
           </div>
         </article>
 
-        <!-- 20 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/deharjoy.jpeg" alt="Deharjoy Reang portrait"></div>
           <div class="sds-tm-body">
@@ -1623,8 +3165,6 @@ livelihood Promotion.
           </div>
         </article>
 
-
-        <!-- 25 -->
         <article class="sds-tm-card">
           <div class="sds-tm-media"><img src="static/Images/em/Nahakpam.jpeg" alt="Nahakpam Surjobala Devi portrait"></div>
           <div class="sds-tm-body">
@@ -1635,86 +3175,319 @@ livelihood Promotion.
         </article>
       </div>
     </div>
+
+    <button class="tm-nav tm-next" type="button" aria-label="Next">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L12.17 12z"></path></svg>
+    </button>
+
+    <div class="tm-dots" aria-label="Carousel pagination"></div>
   </div>
 
+  <!-- UPDATED: WebView-safe carousel JS
+       ✅ AUTOPLAY RULES:
+       - Automatic autoplay starts ONLY when the section comes into view the first time (so Parag stays centered until user reaches the section).
+       - Manual start: if user clicks prev/next/dots/cards before auto-start, autoplay starts immediately after that interaction.
+       ✅ PAUSE RULES:
+       - Clicking the CENTER image pauses autoplay for 5 seconds and highlights the active card.
+       - Any navigation interaction pauses for 5 seconds (keeps the “active” highlight).
+       ✅ NO optional chaining used.
+  -->
   <script>
-    (function(){
-      const root = document.getElementById('sds-team-marquee');
-      if(!root) return;
+    (function () {
+      var root = document.getElementById('sds-team-marquee');
+      if (!root) return;
 
-      const marquee = root.querySelector('.sds-tm-marquee');
-      const track   = root.querySelector('.sds-tm-track');
-      const groupA  = root.querySelector('.sds-tm-group');
+      var track = root.querySelector('.tm-track');
+      var viewport = root.querySelector('.tm-viewport');
+      var prevBtn = root.querySelector('.tm-prev');
+      var nextBtn = root.querySelector('.tm-next');
+      var dotsWrap = root.querySelector('.tm-dots');
 
-      /* Build seamless loop (clone once to make 50% width shift loop clean) */
-      if (track && groupA && track.children.length < 2) {
-        const clone = groupA.cloneNode(true);
-        track.appendChild(clone);
+      if (!track) return;
+
+      var cards = Array.prototype.slice.call(track.querySelectorAll('.sds-tm-card'));
+      var total = cards.length;
+      if (total < 1) return;
+
+      var prefersReduced = false;
+      try {
+        prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (e) { prefersReduced = false; }
+
+      for (var i = 0; i < total; i++) {
+        cards[i].setAttribute('role', 'group');
+        cards[i].setAttribute('aria-roledescription', 'slide');
+        cards[i].setAttribute('aria-label', (i + 1) + ' of ' + total);
       }
 
-      /* Keyboard nudge for accessibility */
-      root.addEventListener('keydown', (e) => {
-        if (!marquee) return;
-        if (e.key === 'ArrowRight') { marquee.scrollLeft += 80; }
-        if (e.key === 'ArrowLeft')  { marquee.scrollLeft -= 80; }
+      /* Start with FIRST card centered (Parag) */
+      var index = 0;
+
+      /* autoplay */
+      var autoplayMs = 3200;
+      var timer = null;
+      var autoplayStarted = false;
+
+      /* pause + active state */
+      var paused = false;
+      var pauseTimer = null;
+      var selectedCard = null;
+
+      function clampIndex(n) {
+        if (n < 0) return total - 1;
+        if (n >= total) return 0;
+        return n;
+      }
+
+      function clearSelected() {
+        if (selectedCard && selectedCard.classList) selectedCard.classList.remove('is-selected');
+        selectedCard = null;
+      }
+
+      function setPaused(on) {
+        paused = on;
+        if (on) root.classList.add('is-paused');
+        else root.classList.remove('is-paused');
+        if (!on) clearSelected();
+      }
+
+      function pauseFor(ms, cardToSelect) {
+        setPaused(true);
+        clearTimeout(pauseTimer);
+
+        if (cardToSelect && cardToSelect.classList) {
+          clearSelected();
+          selectedCard = cardToSelect;
+          selectedCard.classList.add('is-selected');
+        }
+
+        pauseTimer = setTimeout(function () {
+          setPaused(false);
+        }, ms);
+      }
+
+      function resumeNow() {
+        clearTimeout(pauseTimer);
+        setPaused(false);
+      }
+
+      function setIndex(next) {
+        index = clampIndex(next);
+
+        for (var k = 0; k < total; k++) {
+          var rel = k - index;
+
+          if (rel > total / 2) rel -= total;
+          if (rel < -total / 2) rel += total;
+
+          if (rel < -2 || rel > 2) {
+            cards[k].setAttribute('data-pos', 'off');
+            cards[k].setAttribute('aria-hidden', 'true');
+            cards[k].tabIndex = -1;
+          } else {
+            cards[k].setAttribute('data-pos', String(rel));
+            cards[k].setAttribute('aria-hidden', 'false');
+            cards[k].tabIndex = 0;
+          }
+        }
+
+        if (dotsWrap) {
+          var dots = dotsWrap.querySelectorAll('button');
+          for (var d = 0; d < dots.length; d++) {
+            var active = (d === index);
+            dots[d].setAttribute('aria-current', active ? 'true' : 'false');
+            if (active) dots[d].classList.add('is-active');
+            else dots[d].classList.remove('is-active');
+          }
+        }
+      }
+
+      function next() { setIndex(index + 1); }
+      function prev() { setIndex(index - 1); }
+
+      function stopAutoplay() {
+        if (timer) clearInterval(timer);
+        timer = null;
+      }
+
+      function startAutoplay() {
+        if (prefersReduced) return;
+        stopAutoplay();
+        timer = setInterval(function () {
+          if (paused) return;
+          next();
+        }, autoplayMs);
+      }
+
+      function ensureAutoplayStarted() {
+        if (autoplayStarted) return;
+        autoplayStarted = true;
+        startAutoplay();
+      }
+
+      /* Build dots */
+      if (dotsWrap) {
+        var dotsHtml = '';
+        for (var j = 0; j < total; j++) {
+          dotsHtml += '<button type="button" aria-label="Go to slide ' + (j + 1) + '"></button>';
+        }
+        dotsWrap.innerHTML = dotsHtml;
+
+        var dotBtns = dotsWrap.querySelectorAll('button');
+        for (var z = 0; z < dotBtns.length; z++) {
+          (function (n) {
+            dotBtns[n].addEventListener('click', function () {
+              setIndex(n);
+              pauseFor(5000, cards[n]);
+              ensureAutoplayStarted(); /* manual start */
+            });
+          })(z);
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () {
+        prev();
+        pauseFor(5000, cards[index]);
+        ensureAutoplayStarted(); /* manual start */
       });
 
-      /* Drag / swipe to scroll (desktop + mobile via Pointer Events) */
-      let isDown = false, startX = 0, startScroll = 0, pointerId = null, resumeTimer = null, scrollPauseTimer = null;
+      if (nextBtn) nextBtn.addEventListener('click', function () {
+        next();
+        pauseFor(5000, cards[index]);
+        ensureAutoplayStarted(); /* manual start */
+      });
 
-      const pauseAnim = () => { if (track) track.style.animationPlayState = 'paused'; };
-      const resumeAnim = () => {
-        if (!track) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        track.style.animationPlayState = 'running';
-      };
+      /* Card click behavior:
+         - side cards navigate + pause 5s
+         - clicking CENTER IMAGE pauses 5s and highlights that card
+      */
+      track.addEventListener('click', function (e) {
+        var card = e.target;
+        while (card && card !== track && !(card.classList && card.classList.contains('sds-tm-card'))) {
+          card = card.parentNode;
+        }
+        if (!card || card === track) return;
 
-      const onPointerDown = (e) => {
-        if (!marquee) return;
-        isDown = true; pointerId = e.pointerId;
-        startX = e.clientX; startScroll = marquee.scrollLeft;
-        marquee.classList.add('dragging');
-        marquee.setPointerCapture && marquee.setPointerCapture(pointerId);
-        pauseAnim();
-        clearTimeout(resumeTimer);
-      };
+        var pos = card.getAttribute('data-pos');
+        var clickedImg = (e.target && e.target.tagName === 'IMG');
 
-      const onPointerMove = (e) => {
-        if (!isDown || !marquee) return;
-        const dx = e.clientX - startX;
-        marquee.scrollLeft = startScroll - dx;
-      };
+        if (pos === '-2' || pos === '-1') { prev(); }
+        else if (pos === '1' || pos === '2') { next(); }
 
-      const onPointerUp = () => {
-        if (!marquee) return;
-        isDown = false; pointerId = null;
-        marquee.classList.remove('dragging');
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(resumeAnim, 1200); /* grace period before resuming auto */
-      };
+        /* center-image pause feature (only when clicking the centered card image) */
+        if (clickedImg && pos === '0') {
+          pauseFor(5000, card);
+        } else {
+          pauseFor(5000, cards[index]);
+        }
 
-      marquee.addEventListener('pointerdown', onPointerDown, {passive:true});
-      window.addEventListener('pointermove', onPointerMove, {passive:true});
-      window.addEventListener('pointerup', onPointerUp, {passive:true});
-      window.addEventListener('pointercancel', onPointerUp, {passive:true});
-      window.addEventListener('blur', onPointerUp, {passive:true});
+        ensureAutoplayStarted(); /* manual start */
+      });
 
-      /* Also pause while user scrolls via wheel/trackpad/touch momentum */
-      marquee.addEventListener('scroll', () => {
-        pauseAnim();
-        clearTimeout(scrollPauseTimer);
-        scrollPauseTimer = setTimeout(resumeAnim, 800);
-      }, {passive:true});
+      /* Optional hover: pause while hovering over the carousel (then continue).
+         (keeps your click-pause feature intact) */
+      if (viewport) {
+        viewport.addEventListener('mouseenter', function () {
+          if (!autoplayStarted) return;
+          setPaused(true);
+        });
+        viewport.addEventListener('mouseleave', function () {
+          if (!autoplayStarted) return;
+          setPaused(false);
+        });
+      }
+
+      /* click anywhere outside to resume immediately */
+      document.addEventListener('click', function (e) {
+        if (!paused) return;
+        if (!viewport) return;
+        if (!viewport.contains(e.target)) resumeNow();
+      });
+
+      /* keyboard + swipe also pause briefly and can manual-start autoplay */
+      if (viewport) {
+        viewport.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            next();
+            pauseFor(5000, cards[index]);
+            ensureAutoplayStarted();
+          }
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prev();
+            pauseFor(5000, cards[index]);
+            ensureAutoplayStarted();
+          }
+        });
+      }
+
+      /* ✅ UPDATED: mobile/webview-safe horizontal swipe */
+      var startX = 0;
+      var startY = 0;
+      var down = false;
+
+      if (viewport) {
+        viewport.addEventListener('pointerdown', function (e) {
+          down = true;
+          startX = e.clientX;
+          startY = e.clientY;
+          if (viewport.setPointerCapture) viewport.setPointerCapture(e.pointerId);
+        }, { passive: true });
+
+        viewport.addEventListener('pointerup', function (e) {
+          if (!down) return;
+          down = false;
+
+          var dx = e.clientX - startX;
+          var dy = e.clientY - startY;
+
+          /* ignore vertical scroll gestures */
+          if (Math.abs(dy) > Math.abs(dx)) return;
+
+          /* stronger threshold for mobile */
+          if (Math.abs(dx) > 55) {
+            if (dx < 0) next(); else prev();
+            pauseFor(5000, cards[index]);
+            ensureAutoplayStarted();
+          }
+        }, { passive: true });
+
+        viewport.addEventListener('pointercancel', function () { down = false; }, { passive: true });
+      }
+
+      /* Automatic autoplay: start only when section enters viewport the first time */
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          for (var a = 0; a < entries.length; a++) {
+            if (entries[a].isIntersecting) {
+              ensureAutoplayStarted(); /* automatic start */
+              io.disconnect();
+              break;
+            }
+          }
+        }, { threshold: 0.35 });
+
+        io.observe(root);
+      } else {
+        /* Fallback: if no IO support, start immediately */
+        ensureAutoplayStarted();
+      }
+
+      window.addEventListener('blur', function () { setPaused(true); });
+      window.addEventListener('focus', function () { setPaused(false); });
+
+      /* Initial render: Parag centered. Autoplay will start only when in view (or on manual interaction). */
+      setIndex(index);
     })();
   </script>
 </section>
 
 
 
-
+  
     <!--Footer Section-->
 
-<!-- Footers -->
 <footer>
   <div class="footer-wrapper" role="contentinfo" aria-label="Footer">
       <div class="logo-container-f">
@@ -1791,21 +3564,19 @@ livelihood Promotion.
   </div>
 </footer>
 
-    <!-- Back to top -->
-    <button class="to-top" aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 5l7 7-1.41 1.41L13 9.83V20h-2V9.83l-4.59 4.58L5 12l7-7z" />
-        </svg>
-    </button>
 
+  <!-- Back to top -->
+  <button class="to-top" aria-label="Back to top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 5l7 7-1.41 1.41L13 9.83V20h-2V9.83l-4.59 4.58L5 12l7-7z" />
+    </svg>
+  </button>
 
+  <!-- Minimal, dependency-free scroll effects -->
+  <script>
 
-    <!-- Minimal, dependency-free scroll effects -->
-    <script>
-    
-
-    </script>
-   <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
